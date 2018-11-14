@@ -1,5 +1,8 @@
 package com.playchoice.member.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("memberDTO")
 public class MemberDTO {
 	int m_code;
 	String m_id, m_pw, m_name, m_mail, m_phone;
