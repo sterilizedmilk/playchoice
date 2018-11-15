@@ -38,7 +38,7 @@
 					<input type="text" class="form-control" name="mbrName" id="inputName" placeholder="이름 입력">
 			  	</div>
 			  	<div class="form-group">
-					<label for="m_email">이메일</label>
+					<label for="m_email">이메일1</label>
 					<input type="email" class="form-control" name="m_email" id="m_email" placeholder="이메일 입력">
 			  	</div>
 			  	<div class="form-group">
