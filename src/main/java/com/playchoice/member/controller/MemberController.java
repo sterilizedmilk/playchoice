@@ -43,7 +43,7 @@ public class MemberController {
 			//객체 세션 추가
 			session.setAttribute("loginInfo", loginInfo);
 			
-			switch(loginInfo.getM_sep()) {
+			switch(loginInfo.getM_level()) {
 			//사용자
 			case 0 :
 				model.addAttribute("msg", "로그인 성공");

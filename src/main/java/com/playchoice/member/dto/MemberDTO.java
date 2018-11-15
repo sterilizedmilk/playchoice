@@ -4,9 +4,8 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("memberDTO")
 public class MemberDTO {
-	int m_code;
+	int m_code, m_level, m_black;
 	String m_id, m_pw, m_name, m_mail, m_phone;
-	byte m_sep, m_black;
 
 	public int getM_code() {
 		return m_code;
@@ -14,6 +13,14 @@ public class MemberDTO {
 
 	public void setM_code(int m_code) {
 		this.m_code = m_code;
+	}
+
+	public int getM_level() {
+		return m_level;
+	}
+
+	public void setM_level(int m_level) {
+		this.m_level = m_level;
 	}
 
 	public String getM_id() {
@@ -56,19 +63,11 @@ public class MemberDTO {
 		this.m_phone = m_phone;
 	}
 
-	public byte getM_sep() {
-		return m_sep;
-	}
-
-	public void setM_sep(byte m_sep) {
-		this.m_sep = m_sep;
-	}
-
-	public byte getM_black() {
+	public int getM_black() {
 		return m_black;
 	}
 
-	public void setM_black(byte m_black) {
+	public void setM_black(int m_black) {
 		this.m_black = m_black;
 	}
 
