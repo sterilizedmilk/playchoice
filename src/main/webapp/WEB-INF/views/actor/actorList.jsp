@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +15,11 @@
 <body>
 <div class="container" align="center">
 	<div>
-	<form action="" id="searchActor">
+	<form action="" id="search">
 	<tr>
 		<td>
-			<select name="type" form="searchActor" size="number">
-				<option value="a_name" selected>이름</option>
+			<select name="type" form="search" style="width:70px">
+				<option value="a_name" selected >이름</option>
 				<option value="">기타</option>
 			</select>
 			<input type="text" name="keyword" />
@@ -36,21 +37,21 @@
 		<th>찜하기</th>
 	</tr>
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<c:forEach items="${actorList }" var="actor">
+			<td></td>
+			<td>${actor.a_name}</td>
+			<td>${actor.a_birth}</td>
+			<td><a href="http://${actor.a_homepage}" target="_blank">${actor.a_homepage}</a></td>
+			<td><button>찜</button></td>
 	</tr>
-</table>
-</div>
-	
-
+		</c:forEach>
+	</table>
+	<button><a href="insertActor">배우등록해버리기</a></button>
+	</div>
 		<div class="span12" align="center">
-		
+			
 		</div>
 
-	
 <jsp:include page="../page/footer.jsp"></jsp:include>
 </body>
 </html>

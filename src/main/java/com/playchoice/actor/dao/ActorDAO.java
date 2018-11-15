@@ -7,6 +7,10 @@ import com.playchoice.actor.dto.SearchActorDTO;
 import com.playchoice.play.dto.PlayDTO;
 
 public interface ActorDAO {
+	
+	public List<ActorDTO> listActor();
+	
+	public List<ActorDTO> seachActor(String keyword);
 
 	public ActorDTO getActor(int a_id);
 	

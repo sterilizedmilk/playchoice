@@ -2,6 +2,8 @@ package com.playchoice.actor.dto;
 
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Component;
+
 public class ActorDTO {
 	int a_id;
 	String a_name, a_homepage, a_picture;
