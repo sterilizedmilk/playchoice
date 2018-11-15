@@ -18,9 +18,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Object loginMember(MemberDTO dto) throws Exception {
-
 		return memberDao.loginMember(dto);
-
 	}
 
 	@Override
@@ -28,9 +26,8 @@ public class MemberServiceImpl implements MemberService {
 		Object obj = (MemberDTO)memberDao.findId(dto);
 		if(obj == null) {
 			return "fail";
-		}else {
+		} else {
 			return ((MemberDTO)obj).getM_id();
-		
 		}
 	}
 
@@ -61,7 +58,41 @@ public class MemberServiceImpl implements MemberService {
 		}else {
 			return tmp;
 		}
-			
+	}
+
+	@Override
+	public List<MemberDTO> memberList() throws Exception {
+		return memberDao.memberList();
+	}
+
+	@Override
+	public void insertMember(MemberDTO dto) throws Exception {
+		memberDao.insertMember(dto);	
+	}
+
+	@Override
+	public void updateMember(MemberDTO dto) throws Exception {
+		memberDao.updateMember(dto);
+	}
+
+	@Override
+	public void deleteMember(String m_id) throws Exception {
+		memberDao.deleteMember(m_id);
+	}
+
+	@Override
+	public MemberDTO viewMember(String m_id) throws Exception {
+		return memberDao.getMemberById(m_id);
+	}
+
+	@Override
+	public boolean duplicateId(String m_id) throws Exception {
+		MemberDTO dto = null;
+		dto = memberDao.getMemberById(m_id);
+		if(dto != null) {
+			return true;
+		}
+		return false;
 	}
 
 }
