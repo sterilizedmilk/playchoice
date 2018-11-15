@@ -1,7 +1,5 @@
 package com.playchoice;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -24,10 +22,6 @@ public class HomeController {
 		System.out.println(123);
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
 
 		return "page/main";
 	}

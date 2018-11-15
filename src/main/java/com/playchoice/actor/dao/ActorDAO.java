@@ -9,10 +9,15 @@ import com.playchoice.play.dto.PlayDTO;
 public interface ActorDAO {
 
 	public ActorDTO getActor(int a_id);
-	public List<ActorDTO> searchActor(SearchActorDTO search);
-	public int insertActor(ActorDTO dto);
-	public int updateActor(ActorDTO dto);
-	public int addPreferActor(int m_id, int a_id);
-	public List<PlayDTO> getAppearedPlays(int a_id);
 	
+	public List<ActorDTO> searchActor(SearchActorDTO search);
+
+	public int insertActor(ActorDTO dto);
+
+	public int updateActor(ActorDTO dto);
+
+	public int addPreferActor(int m_id, int a_id);
+
+	public List<PlayDTO> getAppearedPlays(int a_id);
+
 }

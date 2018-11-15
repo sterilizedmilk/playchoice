@@ -4,6 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+/**
+ * 고객센터
+ * 공지사항, FAQ, 1:1 문의
+ */
 @Controller
 @RequestMapping("board")
 public class ArticleController {
