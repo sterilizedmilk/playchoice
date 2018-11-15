@@ -3,13 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.playchoice.mapper.memberMapper">
-	<select id="memberList" resultType="MemberDTO">
+
+	<select id="memberList" resultType="com.playchoice.member.dto.MemberDTO">
 		SELECT *
 		FROM member
 	</select>
 
 	<insert id="insertMember">
-		INSERT member INTO (m_id, m_pw, m_name, m_level, 
+		INSERT INTO member (m_id, m_pw, m_name, m_level, 
 							m_mail, m_black, m_phone)
 		VALUES (#{m_id}, #{m_pw}, #{m_name}, #{m_level}, 
 				#{m_mail}, #{m_black}, #{m_phone})
@@ -27,21 +28,28 @@
 		WHERE m_code=#{m_code}
 	</delete>
 	
-	<select id="getMemberByCode" resultType="MemberDTO">
-		SELECT *
-		FROM member
-		WHERE m_code=#{m_code}
-	</select>
-	
-	<select id="getMemberById" resultType="MemberDTO">
+	<select id="getMemberById" resultType="com.playchoice.member.dto.MemberDTO">
 		SELECT *
 		FROM member
 		WHERE m_id=#{m_id}
 	</select>
 	
-	<select id="loginMember" resultType="MemberDTO">
+	<select id="loginMember" resultType="com.playchoice.member.dto.MemberDTO">
 		SELECT *
 		FROM member
 		WHERE m_id=#{m_id} and m_pw=#{m_pw}
 	</select>
+	
+	<select id="findId" resultType="com.playchoice.member.dto.MemberDTO">
+		SELECT *
+		FROM member
+		WHERE m_name = #{m_name} AND m_mail = #{m_mail}
+	</select>
+	
+	<update id="findPw">
+		UPDATE member
+		SET m_pw = #{m_pw}
+		WHERE m_id = #{m_id} AND m_mail = #{m_mail}
+	</update>
+	
 </mapper>

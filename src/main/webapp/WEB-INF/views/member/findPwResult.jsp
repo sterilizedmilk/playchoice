@@ -13,7 +13,7 @@
 		<div class="span12" align="center">
 			임시비밀번호는 ${m_pw }입니다!<br>
 			<a href="login">로그인페이지</a>
-			<a href="/web">홈으로</a>
+			<a href="/playchoice">홈으로</a>
 		</div>
 	</div>
 <jsp:include page="../page/footer.jsp" />

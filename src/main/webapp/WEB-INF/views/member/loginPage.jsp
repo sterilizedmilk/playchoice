@@ -30,9 +30,9 @@ $(document).ready(function(){
 			<input type="text" id="id" name="m_id" placeholder="아이디" /><br>
 			<input type="text" id="pw" name="m_pw" placeholder="비밀번호"/><br>
 			<input type="submit" id="login" value="로그인" />
-			<button><a href="/web">돌아가기</a></button>
+			<button><a href="/playchoice">돌아가기</a></button>
 			</form>
-			<button id="test">테스트버튼</button>
+			<button id="test">테스트버튼</button><!-- AJAX -->
 			<hr>
 		
 		<a href="findId">아이디 찾기</a>

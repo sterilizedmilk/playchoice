@@ -15,9 +15,9 @@
 			<input type="text" id="id" name="m_id" placeholder="아이디" /><br>
 			<input type="text" id="mail" name="m_mail" placeholder="이메일"/><br>
 			<input type="submit" id="login" value="찾기" />
-			<button><a href="/web">돌아가기</a></button>
+			<button><a href="/playchoice">돌아가기</a></button>
 			</form>
-			<button id="test">테스트버튼</button>
+			<button id="test">테스트버튼</button> <!-- AJAX -->
 			<hr>
 		</div>
 	</div>

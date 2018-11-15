@@ -3,16 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html>
-<html lang="ko">
+
 <jsp:include page="../page/header.jsp" />
-<head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
-</head>
-<body>
+
 	<h1>가입 완료!!</h1>
-	<h2>${member.mbrName} 님 가입을 환영합니다.</h2>
+	<h2>${member.m_name} 님 가입을 환영합니다.</h2>
+	
 <jsp:include page="../page/footer.jsp" />
-</body>
-</html>

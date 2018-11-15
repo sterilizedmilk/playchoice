@@ -9,12 +9,12 @@
 
 <div class="container-fluid">
     <div class="row">
-	    <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 main">
+	    <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 main" style="padding-left: 50px">
 	    	<!-- 콘텐츠 부분 -->
 	     	<h2><i class="fa fa-pencil-square-o text-info" aria-hidden="true"></i> 회원 가입</h2>
 			<form id="joinForm" name="joinForm" method="post">
 				<div class="form-group">
-			  		<label for="m_id">아이디12</label>
+			  		<label for="m_id">아이디</label>
 			  		<input type="text" class="form-control" name="m_id" id="m_id" placeholder="아이디 입력">
 			  		<button type="button" id="confirmBtn">중복체크</button>
 				</div>
@@ -34,12 +34,12 @@
 				<div class="alert alert-danger" id="alert-dangerPw" style="margin-bottom:5px;">비밀번호가 일치하지 않습니다.</div>
 				<!-- //.비밀번호 불일치 경고창 -->
 			  	<div class="form-group">
-					<label for="inputName">이름</label>
-					<input type="text" class="form-control" name="mbrName" id="inputName" placeholder="이름 입력">
+					<label for="m_name">이름</label>
+					<input type="text" class="form-control" name="m_name" id="m_name" placeholder="이름 입력">
 			  	</div>
 			  	<div class="form-group">
-					<label for="m_email">이메일23451</label>
-					<input type="email" class="form-control" name="m_email" id="m_email" placeholder="이메일 입력">
+					<label for="m_mail">이메일</label>
+					<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일 입력">
 			  	</div>
 			  	<div class="form-group">
 					<label for="m_phone">연락처</label>
@@ -47,7 +47,7 @@
 			  	</div>
 			  	<div class="button-group pull-right">
 				  	<button type="submit" class="btn btn-primary" id="submit"><i class="fa fa-pencil"></i> 등록</button>&nbsp;
-				  	<%-- <a href='${pageContext.request.contextPath}/board/list.do' class="btn btn-default"><i class="fa fa-list"></i> 취소</a> --%>
+				  	<a href='/playChoice' class="btn btn-default"><i class="fa fa-list"></i> 취소</a>
 				</div>
 			</form><!-- / 콘텐츠 부분 -->
 	    </div><!-- /.main -->
@@ -57,34 +57,37 @@
 <!-- JavaScript ============================================= -->
 <script>
 	$(function(){
-		// 아이디, 비밀번호 경고창 숨김
+		// 모든 경고창 숨김
 		$("#alert-dangerId").hide();
+		$("#alert-submitId").hide();
 		$("#alert-dangerPw").hide();
 		
 		// 아이디 검사
 		$(document).ready(function(){
 			$("#confirmBtn").click(function(){
-				var mbrId = $("#inputId").val();
-				if(mbrId == "") {
-					alert("아이디를 입력하세요.")
-					$("#inputId").focus();
+				var m_id = $("#m_id").val();
+				if(m_id == "") {
+					alert("아이디를 입력하세요")
+					$("#m_id").focus();
 					return;
-				} else if((mbrId < "0" || mbrId > "9") && (mbrId < "A" || mbrId > "Z") && (mbrId < "a" || mbrId > "z")) {
-					alert("한글 및 특수문자는 사용할 수 없습니다.");
-					$("#inputId").focus();
+				} else if((m_id < "0" || m_id > "9") && (m_id < "A" || m_id > "Z") && (m_id < "a" || m_id > "z")) {
+					alert("한글 및 특수문자는 사용할 수 없습니다");
+					$("#m_id").focus();
 					return;
 				} else {
 					$.ajax({
 						url : "${pageContext.request.contextPath}/member/duplicate/" + m_id,
 						type : "POST",
 						success : function(data){
-							// 아이디 중복 체크
+							// 아이디 중복 검사
 							if(data == "DUPLICATED") { // 아이디 중복인 경우
+								$("#alert-submitId").hide();
 								$("#alert-dangerId").show();
-								$("#inputId").focus();
-								$("#submit").attr("disabled", "'disabled'");
+								$("#m_id").focus();
+								$("#submit").attr("disabled", "disabled");
 							} else { // 사용가능한 경우
 								$("#alert-dangerId").hide();
+								$("#alert-submitId").show();
 								$("#submit").removeAttr("disabled");
 							}
 						}
@@ -93,10 +96,10 @@
 			});
 		});
 		
-		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+		// 비밀번호 일치 검사
 		$("input").keyup(function(){
-			var pw1 = $("#inputPw").val();
-			var pw2 = $("#inputPwConfirm").val();
+			var pw1 = $("#m_pw").val();
+			var pw2 = $("#m_pwCheck").val();
 			if(pw1 != "" && pw2 != "") {
 				if(pw1 != pw2) { // 비밀번호 불일치하는 경우
 					$("#alert-dangerPw").show();

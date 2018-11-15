@@ -86,15 +86,15 @@
 					<div class="headnav">
 						<ul>
 							<c:choose>
-								<c:when test="${empty loginInfo }">
-									<li><a href="#mySignup" data-toggle="modal"><i
+								<c:when test="${empty login }">
+									<li><a href="${pageContext.request.contextPath}/member/insert" data-toggle="modal"><i
 											class="icon-user"></i> 회원가입</a></li>
-									<li><a href="login">로그인</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><i class="icon-user"></i> ${loginInfo.m_name} 님</li>
+									<li><i class="icon-user"></i> ${login.m_id } 님</li>
 									<li><a href="#">마이페이지</a></li>
-									<li><a href="logout">로그아웃</a></li>
+									<li><a href="member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
 							<li class="dropdown"><a href="page/customergongi">고객센터 </a>
