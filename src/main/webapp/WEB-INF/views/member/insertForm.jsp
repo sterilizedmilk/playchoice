@@ -14,7 +14,7 @@
 	     	<h2><i class="fa fa-pencil-square-o text-info" aria-hidden="true"></i> 회원 가입</h2>
 			<form id="joinForm" name="joinForm" method="post">
 				<div class="form-group">
-			  		<label for="m_id">아이디</label>
+			  		<label for="m_id">아이디12</label>
 			  		<input type="text" class="form-control" name="m_id" id="m_id" placeholder="아이디 입력">
 			  		<button type="button" id="confirmBtn">중복체크</button>
 				</div>
