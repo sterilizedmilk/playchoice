@@ -4,17 +4,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.playchoice.SearchDTO;
-
 @Controller
 @RequestMapping("admin/member")
 public class AdminController {
 
-	@RequestMapping("list")
-	public String memberListController(SearchDTO search) {
-
-		return "";
-	}
+//	@RequestMapping("list")
+//	public String memberListController(SearchDTO search) {
+//
+//		return "";
+//	}
 
 	@RequestMapping("Black")
 	public ResponseEntity<String> memberBlackController(int m_id) {

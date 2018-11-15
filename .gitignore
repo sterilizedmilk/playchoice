@@ -28,3 +28,4 @@ hs_err_pid*
 .classpath
 .springBeans
 target/
+src/main/java/com/playchoice/actor/dao/ActorDAO.java
