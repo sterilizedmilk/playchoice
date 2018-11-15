@@ -18,7 +18,8 @@ public class ActorController {
 	// 배우 목록/검색
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public String actorListController(@RequestParam(required = false) SearchActorDTO search) {
-		return "";
+		
+		return "actor/actorList";
 	}
 	
 	// 배우 정보
