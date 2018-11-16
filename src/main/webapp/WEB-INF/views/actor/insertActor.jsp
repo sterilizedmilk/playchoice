@@ -22,25 +22,24 @@
 					<i class="fa fa-pencil-square-o text-info" aria-hidden="true"></i>
 					배우 등록
 				</h2>
-				<form id="insertActor" name="insertActor" method="post">
-					<div class="form-group">
+				<form id="insertActor" name="insertActor" method="post" enctype="multipart/form-data">
+								
+			 		<div class="form-group">
 						<label for="a_name">이름</label> <input type="text"
 							class="form-control" name="a_name" id="a_name" placeholder="이름 입력">
 					</div>
 					<div class="form-group">
-						<label for="a_birth">생년월일</label> <input type="password"
-							class="form-control" name="a_birth" id="a_birth" placeholder="생년월일 입력">
+						<label for="a_birth">생년월일</label> <input type="date"
+							class="form-control" name="a_birth" id="a_birth" >
 					</div>
-		
 					<div class="form-group">
 						<label for="a_homepage">홈페이지</label> <input type="text"
 							class="form-control" name="a_homepage" id="a_homepage"
 							placeholder="홈페이지 입력">
 					</div>
 					<div class="form-group">
-						<label for="a_picture">프로필사진</label> <input type="email"
-							class="form-control" name="a_picture" id="a_picture"
-							placeholder="프로필사진 입력">
+						<label>프로필사진</label> <input type="file"
+							class="form-control" name="a_picture" id="a_picture">
 					</div>
 					<div class="button-group pull-right">
 						<button type="submit" class="btn btn-primary" id="submit">
