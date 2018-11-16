@@ -3,6 +3,8 @@ package com.playchoice.actor.controller;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,4 +70,12 @@ public class ActorController {
 			
 		return "redirect:/actor/list";
 	}
+	
+	//배우 찜하기
+	@RequestMapping(value="mypick", method=RequestMethod.POST)
+	public void mypickActor(String a_id, HttpSession session) {
+		session.getAttribute("login");
+		System.out.println(a_id);
+	}
+	
 }

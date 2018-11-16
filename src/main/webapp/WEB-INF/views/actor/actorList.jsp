@@ -8,7 +8,23 @@
 <title>배우리스트</title>
 <jsp:include page="../page/header.jsp"></jsp:include>
 <script>
-
+	$(document).ready(function(){
+		$('.mypick').click(function(){
+			a_id = $(this).attr('value');
+			alert($(this).attr('value'));
+			$.ajax({
+				 type : "POST"
+				,url  : "mypick"
+				,data : {"a_id" : a_id}
+				,success : function(data){
+					alert("성공")
+				}
+				,error : function(){
+					alert("에러")
+				}
+			})
+		});
+	});
 </script>
 
 </head>
@@ -38,12 +54,12 @@
 	</tr>
 	<tr>
 		<c:forEach items="${actorList }" var="actor">
-			<td><img src="../resources/img/actor/${actor.a_picture }" width="170px" height="170px"
+			<td><img src="<c:url value="/"/>resources/img/actor/${actor.a_picture }" width="170px" height="170px"
 			style="padding:10px"/></td>
 			<td>${actor.a_name}</td>
 			<td>${actor.sdf}</td>
 			<td><a href="http://${actor.a_homepage}" target="_blank">${actor.a_homepage}</a></td>
-			<td><button>찜</button></td>
+			<td><button id="mypick_${actor.a_id }" class="btn btn-info mypick" value="${actor.a_id }">찜</button></td>
 	</tr>
 		</c:forEach>
 	</table>
