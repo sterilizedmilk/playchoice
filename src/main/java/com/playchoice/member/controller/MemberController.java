@@ -1,6 +1,7 @@
 package com.playchoice.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playchoice.member.dto.LoginDTO;
 import com.playchoice.member.dto.MemberDTO;
@@ -61,8 +63,8 @@ public class MemberController {
 	public String loginPOST(LoginDTO dto, HttpServletRequest request, Model model) throws Exception{
 		//System.out.println(dto.toString());
 		MemberDTO memberDto = memberService.loginMember(dto);
-		if(memberDto == null) { 
-			model.addAttribute("msg", "로그인 실패");
+		if(memberDto == null) {
+			System.out.println("로그인 실패");
 			return "redirect:/member/login";
 		}
 		HttpSession session = request.getSession(); // 세션에 로그인 정보 넣기
@@ -70,15 +72,18 @@ public class MemberController {
 		
 		switch(memberDto.getM_level()) {
 		case 0 : // 일반회원
-			model.addAttribute("msg", "로그인 성공");
-			model.addAttribute("url", "/playchoice");
-			return "redirect:/playchoice";
+			//model.addAttribute("msg", "로그인 되었습니다");
+			//model.addAttribute("url", "/playChoice");
+			System.out.println("일반회원 로그인");
+			return "redirect:/";
 		case 1 : // 연극 관리자
+			System.out.println("연극관리자 로그인");
 			return "";
 		case 2 : // 사이트 관리자
+			System.out.println("사이트관리자 로그인");
 			return "";
 		}
-		return "redirect:/playchoice"; // (수정필요) 현재 보는 페이지로 가야함
+		return "redirect:/"; // (수정필요)
 	}
 
 	/*// 로그인
@@ -113,16 +118,19 @@ public class MemberController {
 		return "redirect:/ ";
 	}*/
 
+	// 로그아웃
 	@RequestMapping(value="/logout")
-	public String logout(HttpServletRequest request) throws Exception {
+	public String logout(HttpServletRequest request, RedirectAttributes rttr) throws Exception {
 		HttpSession session = request.getSession();
 		// session.invalidate(); // 세션 정보 완전 삭제
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		if(dto == null ) {
 			return "redirect:/member/login";
 		}
-		session.removeAttribute("login"); // 세션에 로그인 정보 삭제.
-		return "redirect:/playchoice";
+		session.removeAttribute("login"); // 세션에 로그인 정보 삭제
+		//rttr.addFlashAttribute("msg", "로그아웃");
+		System.out.println("로그아웃");
+		return "redirect:/"; // (수정필요) 보고있는 페이지를 새로고침 해줘야함
 	}
 	
 	/*// 로그아웃
@@ -131,6 +139,12 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}*/
+	
+	// 마이페이지
+	@RequestMapping(value = "/mypage")
+	public String myPage() throws Exception {
+		return "/member/mypage";
+	}
 
 	// 아이디 찾기 form
 	@RequestMapping(value = "/findId", method = RequestMethod.GET)
@@ -150,6 +164,12 @@ public class MemberController {
 			return "member/findIdResult";
 		}
 	}
+	
+/*	@RequestMapping("loginAlert")
+	public String alerttt() {
+		
+		return "member/loginAlert";
+	}*/
 
 	// 비밀번호 찾기 form
 	@RequestMapping(value = "findPw", method = RequestMethod.GET)
