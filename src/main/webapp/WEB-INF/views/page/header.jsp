@@ -87,9 +87,11 @@
 						<ul>
 							<c:choose>
 								<c:when test="${empty login }">
-									<li><a href="${pageContext.request.contextPath}/member/insert" data-toggle="modal"><i
-											class="icon-user"></i> 회원가입</a></li>
-									<li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/member/insert"
+										data-toggle="modal"><i class="icon-user"></i> 회원가입</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/member/login">로그인</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><i class="icon-user"></i> ${login.m_id } 님</li>
@@ -97,8 +99,7 @@
 									<li><a href="member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li class="dropdown"><a href="page/customergongi">고객센터 </a>
-								<ul class="dropdown-menu">
+							<li class="dropdown"><a href="article/notice">고객센터 </a> <!-- <ul class="dropdown-menu">
 									<li class="dropdown"><a href="#">공지사항<i
 											class="icon-angle-right"></i></a></li>
 									<li class="dropdown"><a href="#">FAQ<i
@@ -106,7 +107,7 @@
 									<li class="dropdown"><a href="#">1:1문의<i
 											class="icon-angle-right"></i></a></li>
 
-								</ul></li>
+								</ul> --></li>
 						</ul>
 					</div>
 				</div>

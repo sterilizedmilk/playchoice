@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html >
-<jsp:include page="header.jsp"></jsp:include>
+<!DOCTYPE html>
+<jsp:include page="../page/header.jsp" />
 <section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -17,7 +17,7 @@
 						class="icon-angle-right"></i></li>
 					<li><a href="customergongi">고객센터</a><i
 						class="icon-angle-right"></i></li>
-					<li class="active">공지사항</li>
+					<li class="active">1:1문의</li>
 				</ul>
 			</div>
 		</div>
@@ -32,10 +32,9 @@
 					<div class="widget">
 						<h5 class="widgetheading">고객센터</h5>
 						<ul class="cat">
-							<li><i class="icon-angle-right"></i><a href="customergongi">공지사항</a></li>
-							<li><i class="icon-angle-right"></i><a href="customerfaq">FAQ</a></li>
-							<li><i class="icon-angle-right"></i><a
-								href="customerprivate">1:1문의</a></li>
+							<li><i class="icon-angle-right"></i><a href="notice">공지사항</a></li>
+							<li><i class="icon-angle-right"></i><a href="faq">FAQ</a></li>
+							<li><i class="icon-angle-right"></i><a href="contact">1:1문의</a></li>
 						</ul>
 					</div>
 				</aside>
@@ -43,24 +42,35 @@
 			<!-- Default table -->
 			<div class="row">
 				<div class="span8">
-					<h4>공지사항</h4>
+					<h4>1:1문의</h4>
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>글 번호</th>
 								<th colspan="2">제목</th>
+								<th>아이디</th>
 								<th>작성일</th>
+								<th>처리상태</th>
 							</tr>
 						</thead>
-						<c:forEach items="${data }" var="dd" varStatus="no">
-							<tbody>
-								<tr>
-									<td>${no.index }</td>
-									<td colspan="2"><a href="detail?id=${dd.a_board }">${dd.a_title }</a></td>
-									<td>${dd.a_time }</td>
-								</tr>
-							</tbody>
-						</c:forEach>
+						<tbody>
+							<!-- 반복문 작성  -->
+							<tr>
+								<td>${no.index }</td>
+								<td colspan="2"><a href="detail?id=${board.id }">${board.title }</a></td>
+								<td>${dd.name }</td>
+								<td>${dd.reg_date }</td>
+								<td>${dd.confirm }</td>
+							</tr>
+							<!-- 반복문 작성  -->
+							<tr>
+								<td colspan="8">
+									<button type="button" class="btn btn-square btn-theme"
+										style="width: 100%"
+										onclick="location.href='customerprivatewrite'">글쓰기</button>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -73,5 +83,4 @@
 		</div>
 	</div>
 </section>
-
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="../page/footer.jsp" />
