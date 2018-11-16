@@ -1,12 +1,28 @@
 package com.playchoice.actor.dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ActorDTO {
 	int a_id;
 	String a_name, a_homepage, a_picture;
-	Timestamp a_birth;
-
+	Date a_birth;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+	
+	//날짜 형식 변경 
+	public String getSdf() {
+		String res = sdf.format(a_birth);
+		//1900.01.01은 배우등록시 생일이 null일 경우 기본값임
+		if(res == null || res.equals("") ||("1900.01.01").equals(res)) {
+			return "-";
+		}else
+			return res;
+	}
+	
 	public int getA_id() {
 		return a_id;
 	}
@@ -39,11 +55,11 @@ public class ActorDTO {
 		this.a_picture = a_picture;
 	}
 
-	public Timestamp getA_birth() {
+	public Date getA_birth() {
 		return a_birth;
 	}
 
-	public void setA_birth(Timestamp a_birth) {
+	public void setA_birth(Date a_birth) {
 		this.a_birth = a_birth;
 	}
 
