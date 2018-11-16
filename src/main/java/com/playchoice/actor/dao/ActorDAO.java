@@ -1,5 +1,6 @@
 package com.playchoice.actor.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.playchoice.actor.dto.ActorDTO;
@@ -16,7 +17,7 @@ public interface ActorDAO {
 	
 	public List<ActorDTO> searchActor(SearchActorDTO search);
 
-	public int insertActor(ActorDTO dto);
+	public int insertActor(HashMap<String, Object> param);
 
 	public int updateActor(ActorDTO dto);
 

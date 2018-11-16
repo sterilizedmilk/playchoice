@@ -14,4 +14,9 @@
 	WHERE a_name LIKE CONCAT('%',#{keyword},'%')
 	</select>
 	
+	<insert id="insertActor" parameterType="java.util.HashMap">
+	INSERT INTO actor(a_name,a_birth,a_homepage,a_picture)
+	VALUES(#{a_name},#{a_birth},#{a_homepage},#{a_picture})
+	</insert>
+	
 </mapper>

@@ -38,9 +38,10 @@
 	</tr>
 	<tr>
 		<c:forEach items="${actorList }" var="actor">
-			<td></td>
+			<td><img src="../resources/img/actor/${actor.a_picture }" width="170px" height="170px"
+			style="padding:10px"/></td>
 			<td>${actor.a_name}</td>
-			<td>${actor.a_birth}</td>
+			<td>${actor.sdf}</td>
 			<td><a href="http://${actor.a_homepage}" target="_blank">${actor.a_homepage}</a></td>
 			<td><button>찜</button></td>
 	</tr>
