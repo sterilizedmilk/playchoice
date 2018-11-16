@@ -27,18 +27,7 @@
 <section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="span2">
-				<aside class="left-sidebar">
-					<div class="widget">
-						<h5 class="widgetheading">고객센터</h5>
-						<ul class="cat">
-							<li><i class="icon-angle-right"></i><a href="article/notice">공지사항</a></li>
-							<li><i class="icon-angle-right"></i><a href="article/faq">FAQ</a></li>
-							<li><i class="icon-angle-right"></i><a href="article/contact">1:1문의</a></li>
-						</ul>
-					</div>
-				</aside>
-			</div>
+			<jsp:include page="leftside.jsp" />
 			<!-- Default table -->
 			<div class="row">
 				<div class="span8">
@@ -60,6 +49,24 @@
 								</tr>
 							</tbody>
 						</c:forEach>
+						<c:choose>
+							<c:when test="${empty login }">
+								<!-- 관리자일 경우, -->
+								<td colspan="8">
+									<button type="button" class="btn btn-square btn-theme"
+										style="width: 100%"
+										onclick="location.href='customerprivatewrite'">글쓰기</button>
+								</td>
+							</c:when>
+							<c:otherwise>
+								<!-- 일반 회원일 경우, -->
+								<td colspan="8">
+									<button type="button" class="btn btn-square btn-theme"
+										style="width: 100%"
+										onclick="location.href='customerprivatewrite'">글쓰기</button>
+								</td>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 			</div>

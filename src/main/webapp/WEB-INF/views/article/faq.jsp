@@ -26,18 +26,7 @@
 <section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="span2">
-				<aside class="left-sidebar">
-					<div class="widget">
-						<h5 class="widgetheading">고객센터</h5>
-						<ul class="cat">
-							<li><i class="icon-angle-right"></i><a href="notice">공지사항</a></li>
-							<li><i class="icon-angle-right"></i><a href="faq">FAQ</a></li>
-							<li><i class="icon-angle-right"></i><a href="contact">1:1문의</a></li>
-						</ul>
-					</div>
-				</aside>
-			</div>
+			<jsp:include page="leftside.jsp" />
 			<!-- Default table -->
 			<div class="row">
 				<div class="span8">
@@ -65,6 +54,20 @@
 							<tr>
 								<td>${no.index }</td>
 								<td colspan="3"><a href="detail?id=${board.id }">${board.title }</a></td>
+							</tr>
+							<tr>
+								<c:choose>
+									<c:when test="${empty login }">
+									</c:when>
+									<c:otherwise>
+										<!-- 관리자일 경우, -->
+										<td colspan="8">
+											<button type="button" class="btn btn-square btn-theme"
+												style="width: 100%"
+												onclick="location.href='customerprivatewrite'">글쓰기</button>
+										</td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</tbody>
 					</table>
