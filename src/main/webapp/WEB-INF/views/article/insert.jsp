@@ -25,56 +25,42 @@
 </section>
 <section id="content">
 	<div class="container">
+		<jsp:include page="leftside.jsp" />
+		<!-- Default table -->
 		<div class="row">
-			<div class="span2">
-				<aside class="left-sidebar">
-					<div class="widget">
-						<h5 class="widgetheading">고객센터</h5>
-						<ul class="cat">
-							<li><i class="icon-angle-right"></i><a href="customergongi">공지사항</a></li>
-							<li><i class="icon-angle-right"></i><a href="customerfaq">FAQ</a></li>
-							<li><i class="icon-angle-right"></i><a
-								href="customerprivate">1:1문의</a></li>
-						</ul>
-					</div>
-				</aside>
-			</div>
-			<!-- Default table -->
-			<div class="row">
-				<div class="span8">
-					<h4>1:1문의</h4>
-					<form action="page/customerprivatewrite" method="post">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th colspan="4">· 티켓 환불은 마이티켓 > 예매내역에서 환불신청 버튼을 이용해주세요.<br>
-										· 1:1문의 답변은 업무일(평일10:00~18:00) 기준 24시간 내로 완료되며, 주말/공휴일은 답변이
-										지연될 수 있습니다.
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>제목</td>
-									<td colspan="3"><input type="text" name="a_title"
-										style="width: 95%"></td>
-								</tr>
-								<tr>
-									<td colspan="4"><input type="text" name="a_content"
-										style="width: 98%; height: 300px"></td>
-								</tr>
-								<tr>
-									<td colspan="4">
-										<button type="submit" class="btn btn-square btn-theme"
-											style="width: 100%">등록</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
+			<div class="span8">
+				<h4>관리자 고객센터 글 작성</h4>
+				<form action="page/customerprivatewrite" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<td>제목<input type="text" name="a_title" style="width: 95%"></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="4"><select name="target">
+										<option value="">타입 선택</option>
+										<option value="notice" selected="selected">공지사항</option>
+										<option value="faq">FAQ</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td colspan="4"><input type="text" name="a_content"
+									style="width: 98%; height: 300px"></td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									<button type="submit" class="btn btn-square btn-theme"
+										style="width: 100%">등록</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </section>
 <jsp:include page="../page/footer.jsp" />

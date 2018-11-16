@@ -55,7 +55,7 @@
 									<td colspan="8">
 										<button type="button" class="btn btn-square btn-theme"
 											style="width: 100%"
-											onclick="location.href='${uuu }notice/write'">글쓰기</button>
+											onclick="location.href='${uuu }notice/insert'">글쓰기</button>
 									</td>
 								</c:when>
 								<c:otherwise>

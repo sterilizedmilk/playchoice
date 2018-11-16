@@ -25,54 +25,52 @@
 </section>
 <section id="content">
 	<div class="container">
+		<jsp:include page="leftside.jsp" />
+		<!-- Default table -->
 		<div class="row">
-			<div class="span2">
-				<aside class="left-sidebar">
-					<div class="widget">
-						<h5 class="widgetheading">고객센터</h5>
-						<ul class="cat">
-							<li><i class="icon-angle-right"></i><a href="customergongi">공지사항</a></li>
-							<li><i class="icon-angle-right"></i><a href="customerfaq">FAQ</a></li>
-							<li><i class="icon-angle-right"></i><a
-								href="customerprivate">1:1문의</a></li>
-						</ul>
-					</div>
-				</aside>
-			</div>
-			<!-- Default table -->
-			<div class="row">
-				<div class="span8">
-					<h4>1:1문의</h4>
-					<form action="page/customerprivatewrite" method="post">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th colspan="4">· 티켓 환불은 마이티켓 > 예매내역에서 환불신청 버튼을 이용해주세요.<br>
-										· 1:1문의 답변은 업무일(평일10:00~18:00) 기준 24시간 내로 완료되며, 주말/공휴일은 답변이
-										지연될 수 있습니다.
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>제목</td>
-									<td colspan="3">${a_title }</td>
-								</tr>
-								<tr>
-									<td colspan="4">${a_content }</td>
-								</tr>
-								<tr>
-									<td colspan="4">
-										<button type="submit" class="btn btn-square btn-theme"
-											style="width: 100%">등록</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
+			<div class="span8">
+				<h4>1:1문의</h4>
+				<form action="page/customerprivatewrite" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th colspan="4">· 티켓 환불은 마이티켓 > 예매내역에서 환불신청 버튼을 이용해주세요.<br>
+									· 1:1문의 답변은 업무일(평일10:00~18:00) 기준 24시간 내로 완료되며, 주말/공휴일은 답변이 지연될
+									수 있습니다.
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>제목</th>
+								<th colspan="4">${a_title }</th>
+							</tr>
+							<tr>
+								<th>작성일</th>
+								<th>${a_title }</th>
+								<th>작성자</th>
+								<th>${a_title }</th>
+							</tr>
+							<tr>
+								<td colspan="5">${a_content }</td>
+							</tr>
+							<tr>
+								<td colspan="5">
+									<button type="submit" class="btn btn-square btn-theme">수정</button>
+									<button type="submit" class="btn btn-square btn-theme">삭제</button>
+									<button type="submit" class="btn btn-square btn-theme">목록
+										전체보기</button>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="5">${a_name }| ${a_reg}</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </section>
 <jsp:include page="../page/footer.jsp" />

@@ -87,7 +87,11 @@ public class ArticleController {
 	@RequestMapping()
 	public String view(@PathVariable("Content") String content, @PathVariable("No") String no) {
 		String spath = "";
-		spath = "article/" + content;
+		if (!no.equals("list"))
+			spath = "article/" + no;
+		else
+			spath = "article/" + content;
+
 		System.out.println(spath);
 		return spath;
 	}
