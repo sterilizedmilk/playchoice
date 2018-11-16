@@ -107,7 +107,7 @@
 				<div class="logo">
 					<a href="main">
 						<h1>
-							<a href="main"><img
+							<a href="page/main"><img
 								src="${pageContext.request.contextPath}/resources/img/logo.png"
 								alt="" class="logo" /></a>
 						</h1>
@@ -168,7 +168,7 @@
 								</ul></li>
 							<li><a href="#">오늘(11/11)</a></li>
 							<li><a href="#">내일(11/12)</a></li>
-							<li><a href="mainlist">전체 일정</a></li>
+							<li><a href="page/mainlist">전체 일정</a></li>
 							<li><a href="#">이벤트</a></li>
 							<li><a href="#">주간랭킹</a></li>
 						</ul>
