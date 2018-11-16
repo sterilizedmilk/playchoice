@@ -16,10 +16,8 @@
 			</div>
 			<div class="span8">
 				<ul class="breadcrumb">
-					<li><a href="#"><i class="icon-home"></i></a><i
-						class="icon-angle-right"></i></li>
-					<li><a href="customergongi">고객센터</a><i
-						class="icon-angle-right"></i></li>
+					<li><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li>고객센터<i class="icon-angle-right"></i></li>
 					<li class="active">1:1문의</li>
 				</ul>
 			</div>
@@ -39,7 +37,7 @@
 						<thead>
 							<tr>
 								<th>글 번호</th>
-								<th colspan="2">제목</th>
+								<th colspan="6">제목</th>
 								<th>아이디</th>
 								<th>작성일</th>
 								<th>처리상태</th>
@@ -47,19 +45,20 @@
 						</thead>
 						<tbody>
 							<!-- 반복문 작성  -->
+							<c:forEach items="${data }" var="dd" varStatus="no">
+								<tr>
+									<td>${no.index }</td>
+									<td colspan="6"><a href="detail?id=${board.a_id }">${board.a_title }</a></td>
+									<td>${dd.m_code }</td>
+									<td>${dd.a_time }</td>
+									<td>${dd.a_solved }</td>
+								</tr>
+							</c:forEach>
 							<tr>
-								<td>${no.index }</td>
-								<td colspan="2"><a href="detail?id=${board.id }">${board.title }</a></td>
-								<td>${dd.name }</td>
-								<td>${dd.reg_date }</td>
-								<td>${dd.confirm }</td>
-							</tr>
-							<!-- 반복문 작성  -->
-							<tr>
-								<td colspan="8">
+								<td colspan="10">
 									<button type="button" class="btn btn-square btn-theme"
 										style="width: 100%"
-										onclick="location.href='customerprivatewrite'">글쓰기</button>
+										onclick="location.href='${uuu }contact/userinsert'">글쓰기</button>
 								</td>
 							</tr>
 						</tbody>

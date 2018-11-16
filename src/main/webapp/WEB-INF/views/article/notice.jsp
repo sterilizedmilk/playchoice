@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
+
 <!DOCTYPE html >
 <jsp:include page="../page/header.jsp" />
 <section id="inner-headline">
@@ -13,10 +15,8 @@
 			</div>
 			<div class="span8">
 				<ul class="breadcrumb">
-					<li><a href="#"><i class="icon-home"></i></a><i
-						class="icon-angle-right"></i></li>
-					<li><a href="customergongi">고객센터</a><i
-						class="icon-angle-right"></i></li>
+					<li><i class="icon-home"></i><i class="icon-angle-right"></i></li>
+					<li>고객센터<i class="icon-angle-right"></i></li>
 					<li class="active">공지사항</li>
 				</ul>
 			</div>
@@ -40,33 +40,34 @@
 								<th>작성일</th>
 							</tr>
 						</thead>
-						<c:forEach items="${data }" var="dd" varStatus="no">
-							<tbody>
+						<tbody>
+							<c:forEach items="${data }" var="dd" varStatus="no">
 								<tr>
 									<td>${no.index }</td>
 									<td colspan="2"><a href="detail?id=${dd.a_board }">${dd.a_title }</a></td>
 									<td>${dd.a_time }</td>
 								</tr>
-							</tbody>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${empty login }">
-								<!-- 관리자일 경우, -->
-								<td colspan="8">
-									<button type="button" class="btn btn-square btn-theme"
-										style="width: 100%"
-										onclick="location.href='customerprivatewrite'">글쓰기</button>
-								</td>
-							</c:when>
-							<c:otherwise>
-								<!-- 일반 회원일 경우, -->
-								<td colspan="8">
-									<button type="button" class="btn btn-square btn-theme"
-										style="width: 100%"
-										onclick="location.href='customerprivatewrite'">글쓰기</button>
-								</td>
-							</c:otherwise>
-						</c:choose>
+
+							</c:forEach>
+							<c:choose>
+								<c:when test="${empty login }">
+									<!-- 관리자일 경우, -->
+									<td colspan="8">
+										<button type="button" class="btn btn-square btn-theme"
+											style="width: 100%"
+											onclick="location.href='${uuu }notice/write'">글쓰기</button>
+									</td>
+								</c:when>
+								<c:otherwise>
+									<!-- 일반 회원일 경우, -->
+									<td colspan="8">
+										<button type="button" class="btn btn-square btn-theme"
+											style="width: 100%"
+											onclick="location.href='${uuu }notice/insert'">글쓰기</button>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</tbody>
 					</table>
 				</div>
 			</div>
