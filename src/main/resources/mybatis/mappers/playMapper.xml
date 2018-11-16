@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- com.playchoice.play.dto.PlayDTO --> 
+<mapper namespace="com.playchoice.mappers.playMapper">
+									<!-- com.playchoice.play.dto.PlayDTO -->
+    <select id="playList" resultType="PlayDTO">
+    	select * from play
+    </select>
+    
+    <select id="playDetail" resultType="PlayDTO">
+    	select p_id, p_name, p_info, p_refund_policy, p_location
+    	from play
+    	where p_id = #{p_id}
+    </select>
+</mapper>

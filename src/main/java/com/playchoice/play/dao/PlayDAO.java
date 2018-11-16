@@ -6,18 +6,20 @@ import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
 public interface PlayDAO {
+	//연극 전체 리스트
+	public List<PlayDTO> playList();
+	//연극 detail
+	public PlayDTO playDetail(int p_id);
 
-	public PlayDAO getPlay(int p_id);
-
-	public List<PlayDAO> searchPlay(SearchPlayDTO search);
+	public List<PlayDAO> playSearch(SearchPlayDTO search);
 
 	// 연극 게시물 작성
-	public int addPlay(PlayDTO dto);
+	public int playAdd(PlayDTO dto);
 
 	// 새 연극 올리기
-	public int postPlay(int p_id);
+	public int playPost(int p_id);
 
 	// 끝난 연극 내리기?
-	public int detachPlay(int p_id);
+	public int playDetach(int p_id);
 
 }
