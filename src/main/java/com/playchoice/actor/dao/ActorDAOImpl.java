@@ -1,7 +1,6 @@
 package com.playchoice.actor.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -40,9 +39,9 @@ public class ActorDAOImpl implements ActorDAO {
 	}
 
 	@Override
-	public int insertActor(HashMap<String, Object> param) {
-	
-		return session.insert(namespace+".insertActor", param);
+	public int insertActor(ActorDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
