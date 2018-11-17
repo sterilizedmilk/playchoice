@@ -2,10 +2,10 @@ package com.playchoice.actor.dto;
 
 public class SearchActorDTO {
 
-	String type; // name, play..
+	String type; // 이름, 출연 연극...
 	String keyword;
-	
-	String order; // name, age, rate?
+
+	String order; // 이름, 나이, 점수?
 	
 	int page;
 

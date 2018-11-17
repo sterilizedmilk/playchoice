@@ -1,5 +1,6 @@
 package com.playchoice.member.dto;
 
+// 쓸지 아직 모르겠음
 public enum MemberLevel {
 	COMMON(1),
 	PLAY_ADMIN(2),

@@ -25,31 +25,17 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.playchoice" />
-	
-	<context:component-scan base-package="com.playchoice.article" />
+
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
-	
-	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<beans:property name="url" value="jdbc:mysql://localhost:3306/play?useUnicode=true&amp;characterEncoding=utf8"/>
-		<beans:property name="username" value="root"/>
-		<beans:property name="password" value="1234"/>
-		<beans:property name="maxActive" value="500"/>
-		<beans:property name="maxIdle" value="100"/>
-		<beans:property name="poolPreparedStatements" value="true"/>
-	</beans:bean>
-	
-	<beans:bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="dataSource" ref="dataSource"/>
-		<!--  <beans:property name="mapperLocations" value="classpath:/mapper/*.xml"/>-->
-	</beans:bean>			
-	
-	
-	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-	<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
-	</beans:bean>
-	
-	
+	<!-- LoginInterceptor -->
+	<beans:bean id="LoginInterceptor" class="com.playchoice.member.interceptor.LoginInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/logout"/><!-- 인터셉터 매핑 url -->
+			<mapping path="/member/mypage"/>
+			<beans:ref bean="LoginInterceptor"/><!-- 참조할 bean -->
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

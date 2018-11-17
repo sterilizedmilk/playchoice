@@ -70,7 +70,7 @@
 						</h3>
 					</div>
 					<div class="cta floatright">
-						<a class="btn btn-large btn-theme btn-rounded" href="#">예매하러
+						<a class="btn btn-large btn-theme btn-rounded" href="play/playlist">예매하러 <!-- href="#" -->
 							가기</a>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 									오늘 당장 저렴하게 이용할 수 있는<br>
 								</p>
 								<p>마감 임박 할인 오늘 티켓</p>
-								<a href="#">예매하러 가기</a>
+								<a href="play/playlist">예매하러 가기</a>
 							</div>
 						</div>
 					</div>
