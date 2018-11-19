@@ -9,11 +9,11 @@
 
 <div class="container">
 	<h2>회원 가입</h2>
-		<form id="joinForm" name="joinForm" method="post">
+		<form id="insertForm" name="insertForm" method="post">
 			<div class="form-group">
 		  		<label for="m_id">아이디</label>
-		  		<input type="text" class="form-control" name="m_id" id="m_id" placeholder="아이디 입력">
-		  		<button type="button" id="confirmBtn">중복체크</button>
+		  		<input type="text" class="form-control" name="m_id" id="m_id" placeholder="아이디">
+		  		<button type="button" class="btn btn-default" id="confirmBtn">중복체크</button>
 			</div>
 			<!-- 아이디 중복 경고창 -->
 			<div class="alert alert-danger" id="alert-dangerId" style="margin-bottom:5px;">이미 사용중인 아이디입니다.</div>
@@ -21,7 +21,7 @@
 			<!-- //.아이디 중복 경고창 -->
 			<div class="form-group">
 		  		<label for="m_pw">비밀번호</label>
-		  		<input type="password" class="form-control" name="m_pw" id="m_pw" placeholder="비밀번호 입력">
+		  		<input type="password" class="form-control" name="m_pw" id="m_pw" placeholder="비밀번호">
 			</div>
 			<div class="form-group">
 		  		<label for="m_pwCheck">비밀번호 확인</label>
@@ -32,25 +32,29 @@
 			<!-- //.비밀번호 불일치 경고창 -->
 		  	<div class="form-group">
 				<label for="m_name">이름</label>
-				<input type="text" class="form-control" name="m_name" id="m_name" placeholder="이름 입력">
+				<input type="text" class="form-control" name="m_name" id="m_name" placeholder="이름">
 		  	</div>
 		  	<div class="form-group">
 				<label for="m_mail">이메일</label>
-				<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일 입력">
+				<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일">
 		  	</div>
+		  	<!-- 이메일 중복 경고창 -->
+			<div class="alert alert-danger" id="alert-dangerEmail" style="margin-bottom:5px;">이미 등록된 이메일입니다.</div>
+			<div class="alert alert-submit" id="alert-submitEmail" style="margin-bottom:5px;">사용가능한 이메일입니다.</div>
+			<!-- //.이메일 중복 경고창 -->
 		  	<div class="form-group">
 				<label for="m_phone">연락처</label>
-				<input type="text" class="form-control" name="m_phone" id="m_phone" placeholder="연락처 입력">
+				<input type="text" class="form-control" name="m_phone" id="m_phone" placeholder="연락처">
 		  	</div>
-		  	<div class="button-group pull-right">
-			  	<button type="submit" class="btn btn-submit" id="submit">등록</button>
-			  	<button type="reset" class="btn btn-danger">리셋</button>
+		  	<div class="button-group">
+			  	<button type="submit" class="btn btn-success" id="submit">확인</button>
+			  	<button type="reset" class="btn btn-danger">취소</button>
 			  	<button onclick="history.go(-1)" class="btn btn-primary">뒤로</button>
 			</div>
 		</form><!-- / 콘텐츠 부분 -->
 </div><!-- /.container -->
 
-<!-- JavaScript ============================================= -->
+<!-- JavaScript -->
 <script>
 	$(function(){
 		// 모든 경고창 숨김
@@ -106,8 +110,11 @@
 				}
 			}
 		});
+		
+		// 이메일 중복 검사
+		
 	});
 </script>
-<!-- //.JavaScript ============================================== -->
+<!-- /.JavaScript -->
 
 <jsp:include page="../page/footer.jsp" />

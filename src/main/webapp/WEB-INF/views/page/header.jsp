@@ -95,8 +95,8 @@
 								</c:when>
 								<c:otherwise>
 									<li><i class="icon-user"></i> ${login.m_id } 님</li>
-									<li><a href="#">마이페이지</a></li>
-									<li><a href="member/logout">로그아웃</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
 							<li class="dropdown"><a href="article/notice/list">고객센터 </a></li>
@@ -107,13 +107,12 @@
 			<div class="row">
 				<div class="span3">
 					<div class="logo">
-						<a href="main">
-							<h1>
-								<a href="main"><img
-									src="${pageContext.request.contextPath}/resources/img/logo.png"
-									alt="" class="logo" /></a>
-							</h1>
-						</a><br>
+						<h1>
+							<a href="main"><img
+								src="${pageContext.request.contextPath}/resources/img/logo.png"
+								alt="" class="logo" /></a>
+						</h1>
+						<br>
 						<h1>연극을 좀 더 저렴하게 많은 사람들이</h1>
 					</div>
 				</div>

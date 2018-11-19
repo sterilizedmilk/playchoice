@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,13 +28,13 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
-	// 회원 가입 form
+	// 회원 가입 페이지로 이동
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insertGET() throws Exception {
 		return "member/insertForm";
 	}
 
-	// 회원 가입 action
+	// 회원 가입 처리
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertPOST(MemberDTO memberDto, Model model) throws Exception {
 		memberService.insertMember(memberDto);
@@ -42,8 +43,8 @@ public class MemberController {
 		return "member/insertResult";
 	}
 
-	// 로그인 form
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	// 로그인 페이지로 이동
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET() throws Exception {
 		return "member/loginForm";
 	}
@@ -58,23 +59,21 @@ public class MemberController {
 		return "member/loginPage";
 	}*/
 	
-	// 로그인 action
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loginPOST(LoginDTO dto, HttpServletRequest request, Model model) throws Exception{
+	// 로그인 처리
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginPOST(LoginDTO dto, HttpServletRequest request) throws Exception{
 		//System.out.println(dto.toString());
 		MemberDTO memberDto = memberService.loginMember(dto);
 		if(memberDto == null) {
 			System.out.println("로그인 실패");
 			return "redirect:/member/login";
 		}
+		memberDto.setM_pw(""); // 비밀번호 삭제
 		HttpSession session = request.getSession(); // 세션에 로그인 정보 넣기
 		session.setAttribute("login", memberDto);
 		
 		switch(memberDto.getM_level()) {
 		case 0 : // 일반회원
-			//model.addAttribute("msg", "로그인 되었습니다");
-			//model.addAttribute("url", "/playChoice");
-			System.out.println("일반회원 로그인");
 			return "redirect:/";
 		case 1 : // 연극 관리자
 			System.out.println("연극관리자 로그인");
@@ -118,8 +117,8 @@ public class MemberController {
 		return "redirect:/ ";
 	}*/
 
-	// 로그아웃
-	@RequestMapping(value="/logout")
+	// 로그아웃 처리
+	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request, RedirectAttributes rttr) throws Exception {
 		HttpSession session = request.getSession();
 		// session.invalidate(); // 세션 정보 완전 삭제
@@ -129,7 +128,6 @@ public class MemberController {
 		}
 		session.removeAttribute("login"); // 세션에 로그인 정보 삭제
 		//rttr.addFlashAttribute("msg", "로그아웃");
-		System.out.println("로그아웃");
 		return "redirect:/"; // (수정필요) 보고있는 페이지를 새로고침 해줘야함
 	}
 	
@@ -140,19 +138,13 @@ public class MemberController {
 		return "redirect:/";
 	}*/
 	
-	// 마이페이지
-	@RequestMapping(value = "/mypage")
-	public String myPage() throws Exception {
-		return "/member/mypage";
-	}
-
-	// 아이디 찾기 form
+	// 아이디 찾기 페이지로 이동
 	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findId() {
 		return "member/findId";
 	}
 
-	// 아이디 찾기 action
+	// 아이디 찾기 처리
 	@RequestMapping(value = "findId", method = RequestMethod.POST)
 	public String findIdGo(@ModelAttribute MemberDTO dto, Model model) {
 		if (memberService.findId(dto).equals("fail")) {
@@ -164,20 +156,14 @@ public class MemberController {
 			return "member/findIdResult";
 		}
 	}
-	
-/*	@RequestMapping("loginAlert")
-	public String alerttt() {
-		
-		return "member/loginAlert";
-	}*/
 
-	// 비밀번호 찾기 form
+	// 비밀번호 찾기 페이지로 이동
 	@RequestMapping(value = "findPw", method = RequestMethod.GET)
 	public String findPw() {
 		return "member/findPw";
 	}
 
-	// 비밀번호 찾기(임의 난수 6자 출력) action
+	// 비밀번호 찾기 처리 ==> 임의 난수 6자로 비밀번호 변경
 	@RequestMapping(value = "findPw", method = RequestMethod.POST)
 	public String findPwGo(@ModelAttribute MemberDTO dto, Model model) {
 		String res = memberService.findPw(dto);
@@ -189,7 +175,85 @@ public class MemberController {
 			model.addAttribute("m_pw", res);
 			return "member/findPwResult";
 		}
-
+	}
+	
+	// 회원 정보 페이지로 이동
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String viewGET(@RequestParam(value="m_id", required=false) String m_id, HttpSession session, Model model) throws Exception {
+		//MemberDTO dto = memberService.viewMember(m_id);
+		//model.addAttribute("dto", dto);
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		model.addAttribute("dto", dto);
+		return "/member/viewForm";
+	}
+	
+	// 회원 정보 수정 페이지로 이동
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateGET(HttpSession session, Model model) throws Exception {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		model.addAttribute("dto", dto);
+		return "/member/updateForm";
+	}
+	
+	// 회원 정보 수정 처리
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updatePOST(@ModelAttribute MemberDTO dto, HttpSession session, RedirectAttributes rttr) throws Exception {
+		// 비밀번호 체크
+		boolean result = memberService.checkPw(dto.getM_id(), dto.getM_pw());
+		if(result) { // 비밀번호가 일치하면 수정 처리 후, 메인페이지로 리다이렉트
+			memberService.updateMember(dto);
+			dto.setM_pw("");
+			session.setAttribute("login", dto);
+			return "redirect:/";
+		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 viewForm.jsp로 포워드
+			rttr.addFlashAttribute("msg", "비밀번호 불일치");
+			return "redirect:/member/view";
+		}
+	}
+	
+	// 비밀번호 변경 페이지로 이동
+	@RequestMapping(value = "/updatePw", method = RequestMethod.GET)
+	public String updatePwGET() throws Exception {
+		return "/member/updatePwForm";
+	}
+	
+	// 비밀번호 변경 처리
+	@RequestMapping(value = "/updatePw", method = RequestMethod.POST)
+	public String updatePwPOST(@ModelAttribute MemberDTO dto, HttpSession session, RedirectAttributes rttr) throws Exception {
+		boolean result = memberService.checkPw(dto.getM_id(), dto.getM_pw());
+		if(result) {
+			memberService.updateMember(dto);
+			dto.setM_pw("");
+			session.setAttribute("login", dto);
+			return "redirect:/";
+		} else {
+			rttr.addFlashAttribute("msg", "비밀번호 불일치");
+			return "redirect:/member/view";
+		}
+	}
+	
+	// 회원 탈퇴 페이지로 이동
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteGET(HttpSession session, Model model) throws Exception {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		model.addAttribute("dto", dto);
+		return "/member/deleteForm";
+	}
+	
+	// 회원 탈퇴 처리
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deletePOST(@RequestParam("m_id") String m_id, @RequestParam("m_pw") String m_pw, HttpSession session, Model model) throws Exception {
+		// 비밀번호 체크
+		boolean result = memberService.checkPw(m_id, m_pw);
+		if(result) { // 비밀번호가 일치하면 삭제 처리 후, 메인페이지로 리다이렉트
+			memberService.deleteMember(m_id);
+			session.invalidate();
+			return "redirect:/";
+		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 deleteForm.jsp로 포워드
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
+			model.addAttribute("dto", memberService.viewMember(m_id));
+			return "member/deleteForm";
+		}
 	}
 
 	// 아이디 중복체크 AJAX 처리
@@ -197,7 +261,6 @@ public class MemberController {
 	@RequestMapping(value = "/duplicate/{m_id}", method = RequestMethod.POST)
 	public ResponseEntity<String> duplicateId(@PathVariable("m_id") String m_id) throws Exception {
 		ResponseEntity<String> entity = null;
-		/*System.out.println("들어옴");*/
 		try {
 			if (memberService.duplicateId(m_id)) { // 아이디 중복 되는 경우
 				entity = new ResponseEntity<String>("DUPLICATED", HttpStatus.OK);

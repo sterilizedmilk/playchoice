@@ -18,23 +18,34 @@
 			<label for="m_pw" class="sr-only">비밀번호</label>
 			<input type="password" id="m_pw" name="m_pw" class="form-control" placeholder="비밀번호 입력" required>
 		</div>
-		<!-- <div class="checkbox">
-			<label> <input type="checkbox" name="rememberMe" value="true">
-				Remember me
-			</label>
-		</div> -->
-		<div class="form-group">
-			<button class="btn btn-lg btn-submit btn-block" type="submit">로그인</button>
-			<button class="btn btn-lg btn-primary btn-block" onclick="history.go(-1)">뒤로가기</button>
+		<div class="button-group">
+			<button class="btn btn-lg btn-primary btn-block" id="submitBtn" type="submit">로그인</button>
+			<button class="btn btn-lg btn-default btn-block" onclick="history.go(-1)">취소</button>
 		</div>
 		<span class="pull-right">
-			<a href="${pageContext.request.contextPath}/member/insert">회원가입</a>&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath}/member/findId">아이디 찾기</a>&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath}/member/findPw">비밀번호 찾기</a>
 		</span>
 	</form>
 </div>
 <!-- /.container -->
+
+<!-- JavaScript -->
+<script>
+	$(document).ready(function(){
+		$("#submitBtn").click(function(){
+			var m_id = $("#m_id").val();
+			var m_pw = $("#m_pw").val();
+			if(m_id == "") {
+				alert("아이디를 입력해주세요");
+			}
+			if(m_pw == "") {
+				alert("비밀번호를 입력해주세요");
+			}
+		});
+	});
+</script>
+<!-- /.JavaScript -->
 
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 

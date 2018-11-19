@@ -5,19 +5,19 @@ import com.playchoice.member.dto.MemberDTO;
 
 public interface MemberDAO {
 	
-	// 회원가입
+	// 회원 가입
 	public void insertMember(MemberDTO dto) throws Exception;
 	
-	// 아이디로 회원 읽어오기
-	public MemberDTO getMemberById(String m_id) throws Exception;
+	// 회원 정보 조회
+	public MemberDTO viewMember(String m_id) throws Exception;
 	
-	// 멤버 수정
+	// 회원 정보 수정
 	public void updateMember(MemberDTO dto) throws Exception;
 	
-	// 멤버 삭제
+	// 회원 탈퇴
 	public void deleteMember(String m_id) throws Exception;
 		
-	// 로그인 회원 읽어오기
+	// 로그인
 	public MemberDTO loginMember(LoginDTO dto) throws Exception;
 	
 	// 아이디 찾기
@@ -25,5 +25,8 @@ public interface MemberDAO {
 	
 	// 비밀번호 찾기
 	public int findPw(MemberDTO dto);
+	
+	// 회원 정보 수정 및 삭제를 위한 비밀번호 체크
+	public boolean checkPw(String m_id, String m_pw) throws Exception;
 	
 }

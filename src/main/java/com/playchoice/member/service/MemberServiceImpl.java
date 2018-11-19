@@ -15,36 +15,13 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDao;
 
+	// 회원 가입
 	@Override
 	public void insertMember(MemberDTO dto) throws Exception {
 		memberDao.insertMember(dto);
 	}
-
-	@Override
-	public void updateMember(MemberDTO dto) throws Exception {
-		memberDao.updateMember(dto);
-	}
-
-	@Override
-	public void deleteMember(String m_id) throws Exception {
-		memberDao.deleteMember(m_id);
-	}
-
-	@Override
-	public MemberDTO viewMember(String m_id) throws Exception {
-		return memberDao.getMemberById(m_id);
-	}
 	
-	@Override
-	public boolean duplicateId(String m_id) throws Exception {
-		MemberDTO dto = null;
-		dto = memberDao.getMemberById(m_id);
-		if(dto != null) {
-			return true;
-		}
-		return false;
-	}
-
+	// 로그인
 	@Override
 	public MemberDTO loginMember(LoginDTO dto) throws Exception {
 		MemberDTO memberDto = null;
@@ -52,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDto;
 	}
 	
+	// 아이디 찾기
 	@Override
 	public String findId(MemberDTO dto) {
 		Object obj = (MemberDTO)memberDao.findId(dto);
@@ -62,6 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	// 비밀번호 찾기
 	@Override
 	public String findPw(MemberDTO dto) {
 		//임시 비밀번호 난수 6글자 조합
@@ -86,6 +65,42 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			return tmp;
 		}
+	}
+	
+	// 회원 정보 조회
+	@Override
+	public MemberDTO viewMember(String m_id) throws Exception {
+		MemberDTO dto = memberDao.viewMember(m_id);
+		return dto;
+	}
+
+	// 회원 정보 수정
+	@Override
+	public void updateMember(MemberDTO dto) throws Exception {
+		memberDao.updateMember(dto);
+	}
+
+	// 회원 탈퇴
+	@Override
+	public void deleteMember(String m_id) throws Exception {
+		memberDao.deleteMember(m_id);
+	}
+
+	// 아이디 중복체크
+	@Override
+	public boolean duplicateId(String m_id) throws Exception {
+		MemberDTO dto = null;
+		dto = memberDao.viewMember(m_id);
+		if(dto != null) {
+			return true;
+		}
+		return false;
+	}
+
+	// 회원 정보 수정 및 삭제를 위한 비밀번호 체크
+	@Override
+	public boolean checkPw(String m_id, String m_pw) throws Exception {
+		return memberDao.checkPw(m_id, m_pw);
 	}
 
 }
