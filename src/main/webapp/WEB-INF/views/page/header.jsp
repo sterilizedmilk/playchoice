@@ -108,7 +108,7 @@
 				<div class="span3">
 					<div class="logo">
 						<h1>
-							<a href="main"><img
+							<a href="${pageContext.request.contextPath}"><img
 								src="${pageContext.request.contextPath}/resources/img/logo.png"
 								alt="" class="logo" /></a>
 						</h1>

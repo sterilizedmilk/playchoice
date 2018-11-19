@@ -1,5 +1,7 @@
 package com.playchoice.play.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.dto.PlayshowDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
 @Repository
@@ -47,6 +50,17 @@ public class PlayDAOImpl implements PlayDAO{
 	@Override
 	public int playDetach(int p_id) {
 		return 0;
+	}
+
+	@Override
+	public List<Object> viewCal(HashMap<String,Object> param) {
+		System.out.println("viewCal Dao입니다");
+	
+		List<Object> res = new ArrayList<Object>();
+		res = sqlSession.selectList(namespace+".viewCal", param);
+		System.out.println(res);
+		
+		return res;
 	}
 
 }

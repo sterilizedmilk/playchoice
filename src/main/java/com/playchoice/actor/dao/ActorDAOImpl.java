@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.actor.dto.SearchActorDTO;
+import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 
 @Repository
@@ -61,6 +62,13 @@ public class ActorDAOImpl implements ActorDAO {
 	public List<PlayDTO> getAppearedPlays(int a_id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	//배우 찜하기
+	@Override
+	public int mypickActor(HashMap<String, Object> param) {
+		
+		return session.insert(namespace+".mypickActor", param);
 	}
 
 }

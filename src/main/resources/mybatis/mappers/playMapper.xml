@@ -14,4 +14,11 @@
     	from play
     	where p_id = #{p_id}
     </select>
+    
+    <select id="viewCal" parameterType="java.util.HashMap" resultType="playshowDTO">
+    	select *
+    	from playshow
+    	where p_id = #{p_id} 
+    	order by s_time	
+    </select>
 </mapper>

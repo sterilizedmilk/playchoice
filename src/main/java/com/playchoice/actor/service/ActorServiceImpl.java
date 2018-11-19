@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.playchoice.actor.dao.ActorDAO;
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.actor.dto.SearchActorDTO;
+import com.playchoice.member.dto.MemberDTO;
 
 @Service
 public class ActorServiceImpl implements ActorService {
@@ -32,6 +33,16 @@ public class ActorServiceImpl implements ActorService {
 		if(param.get("a_birth") == null || param.get("a_birth").equals(""))
 			param.put("a_birth", "1900-01-01");
 		return dao.insertActor(param);
+	}
+
+	//배우 찜하기
+	@Override
+	public int mypickActor(MemberDTO dto, String a_id) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("m_code",dto.getM_code());
+		param.put("a_id", a_id);
+		
+		return dao.mypickActor(param);
 	}
 
 }

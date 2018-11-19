@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.playchoice.actor.service.ActorService;
 import com.playchoice.actor.service.FileService;
+import com.playchoice.member.dto.MemberDTO;
 
 
 /**
@@ -74,8 +75,11 @@ public class ActorController {
 	//배우 찜하기
 	@RequestMapping(value="mypick", method=RequestMethod.POST)
 	public void mypickActor(String a_id, HttpSession session) {
-		session.getAttribute("login");
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		System.out.println(dto.getM_code());
 		System.out.println(a_id);
+		
+		service.mypickActor(dto, a_id);
 	}
 	
 }
