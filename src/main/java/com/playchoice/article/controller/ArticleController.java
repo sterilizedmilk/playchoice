@@ -1,8 +1,8 @@
 package com.playchoice.article.controller;
 /*
-?‘?—…ëª? : ê³µì???‚¬?•­ ?‘?—…
-?‘?—…? : ì¶”ìœ¤ì§?
-?‘?—… ?‚ ì§? : 2018-11-16
+?ï¿½ï¿½?ï¿½ï¿½ï¿½? : ê³µï¿½???ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½
+?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ : ì¶”ìœ¤ï¿½?
+?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? : 2018-11-16
 */
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class ArticleController {
 	@Autowired
 	CustomerCenterDAO dao;
 
-	// a_target 1 = ê³µì???‚¬?•­ 2 = FAQ 3 = 1:1ë¬¸ì˜
+	// a_target 1 = ê³µï¿½???ï¿½ï¿½?ï¿½ï¿½ 2 = FAQ 3 = 1:1ë¬¸ì˜
 	@ModelAttribute("data")
 	public Object Article(@PathVariable("Content") String content, @PathVariable("No") String no) {
 		Object res = null;
@@ -96,7 +96,7 @@ public class ArticleController {
 		return spath;
 	}
 
-	// a_target 1 = ê³µì???‚¬?•­ 2 = FAQ 3 = 1:1ë¬¸ì˜
+	// a_target 1 = ê³µï¿½???ï¿½ï¿½?ï¿½ï¿½ 2 = FAQ 3 = 1:1ë¬¸ì˜
 	// @RequestMapping("/article/{path}")
 	// @ModelAttribute("data")
 	// public Object Article(@PathVariable("path") String str) {
@@ -147,7 +147,7 @@ public class ArticleController {
 	// return str;
 	// }
 	//
-	// // ê³µì???‚¬?•­ view
+	// // ê³µï¿½???ï¿½ï¿½?ï¿½ï¿½ view
 	// @RequestMapping("/article/notice/{no}")
 	// public String noticeView(@PathVariable("no") String path) {
 	// String spath = "article/notice/" + path;
@@ -216,7 +216,7 @@ public class ArticleController {
 	// return spath;
 	// }
 
-	// // ? •???
+	// // ì •ëŒ€
 	// @RequestMapping("notice/{no}")
 	// public String noticeDetailController(@PathVariable(name = "no") int no) {
 	// return "";

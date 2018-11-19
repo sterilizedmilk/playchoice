@@ -8,7 +8,6 @@ import com.playchoice.play.dto.SearchPlayDTO;
 public interface AdminDAO {
 
 	public List<MemberDTO> memberList(SearchPlayDTO search);
-
 	public int black(int m_id);
 
 	public int unBlack(int m_id);
