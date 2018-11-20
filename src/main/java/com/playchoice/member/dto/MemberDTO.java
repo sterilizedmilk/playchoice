@@ -4,7 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("memberDTO")
 public class MemberDTO {
-	int m_code, m_level, m_black;
+	int m_code, m_level, m_status;
 	String m_id, m_pw, m_name, m_mail, m_phone;
 
 	public int getM_code() {
@@ -63,12 +63,12 @@ public class MemberDTO {
 		this.m_phone = m_phone;
 	}
 
-	public int getM_black() {
-		return m_black;
+	public int getM_status() {
+		return m_status;
 	}
 
-	public void setM_black(int m_black) {
-		this.m_black = m_black;
+	public void setM_status(int m_status) {
+		this.m_status = m_status;
 	}
 
 }
