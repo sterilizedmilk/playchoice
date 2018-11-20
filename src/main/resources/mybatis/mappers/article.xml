@@ -17,4 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="aaaDTO">
 		select * from article where a_id = #{a_id}
 	</select>
+	<update id="modifyOne" parameterType="aaaDTO">
+		update article set a_title=
+		#{a_title},a_content = #{a_content} where a_id = #{a_id}
+	</update>
+
 </mapper>

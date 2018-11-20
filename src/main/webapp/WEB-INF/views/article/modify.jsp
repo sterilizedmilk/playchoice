@@ -31,35 +31,31 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>${data.a_solved}</h4>
-				<form>
+				<h4></h4>
+				<form action="${uuu }notice/modifyReg">
 					<table class="table table-bordered">
-						<tr>
-							<th>제목</th>
-							<th colspan="4">${data.a_title }</th>
-						</tr>
-						<tr>
-							<th>작성일</th>
-							<th>${data.a_title }</th>
-							<th>작성자</th>
-							<th>${data.a_title }</th>
-						</tr>
-						<tr>
-							<th colspan="5" style="width: 98%; height: 300px">${data.a_content }</th>
-						</tr>
-						<tr>
-							<td colspan="5"><input type="hidden" value="${data.a_id }" />
-								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/modify?a_id=${data.a_id }'">수정</button>
-								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
-								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/list'">목록 전체보기</button></td>
-						</tr>
+						<thead>
+							<tr>
+								<td>제목<input type="text" name="a_title" style="width: 95%"
+									value=${data.a_title }> <input type="hidden"
+									name="a_id" style="width: 95%" value="${data.a_id }"></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="4"><input type="text" name="a_content"
+									style="width: 98%; height: 300px" value="${data.a_content }"></td>
+							</tr>
+							<tr>
+								<td colspan="4"><input type="submit"
+									class="btn btn-square btn-theme" style="width: 100%" value="수정" /></td>
+							</tr>
+						</tbody>
 					</table>
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </section>
 <jsp:include page="../page/footer.jsp" />

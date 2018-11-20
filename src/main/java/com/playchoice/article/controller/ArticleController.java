@@ -46,15 +46,13 @@ public class ArticleController {
 			break;
 		case "detail":
 			res = dao.selectOne(dto.getA_id());
-			System.out.println("detail : " + res);
 			break;
 		// 글작성 화면 노출
 		case "insert":
-			// res = dao.insertOne(dto);
 			break;
 		// 수정 화면 노출
 		case "modify":
-			// res = dto;
+			res = dao.selectOne(dto.getA_id());
 			break;
 		// 삽입 후 db 처리
 		case "insertReg":
@@ -72,11 +70,10 @@ public class ArticleController {
 			break;
 		// 수정 후 db처리
 		case "modifyReg":
+			System.out.println(dto);
 			res = dao.modifyOne(dto);
-			if ((Integer) dao.modifyOne(dto) >= 1) {
-				status.setMsg("수정되었습니다.");
-				status.setMsg("detail?a_id" + dto.getA_id());
-			}
+			status.setMsg("수정되었습니다.");
+			status.setUrl("list");
 			break;
 		// 삭제는 기존에 ajax로 삭제할 것인지 물었기 떄문에 바로 삭제
 		case "deleteReg":

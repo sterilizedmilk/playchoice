@@ -48,7 +48,7 @@
 							<c:forEach items="${data }" var="dd" varStatus="no">
 								<tr>
 									<td>${no.index +1 }</td>
-									<td colspan="6"><a href="detail?id=${dd.a_id }">${dd.a_title }</a></td>
+									<td colspan="6"><a href="detail?a_id=${dd.a_id }">${dd.a_title }</a></td>
 									<td>${dd.m_code }</td>
 									<td>${dd.a_time }</td>
 									<td>${dd.a_solved }</td>

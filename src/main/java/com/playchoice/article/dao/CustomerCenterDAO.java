@@ -36,6 +36,7 @@ public class CustomerCenterDAO implements ArticleDAO {
 	@Override
 	public Object modifyOne(ArticleDTO dto) {
 		// TODO Auto-generated method stub
+		System.out.println("modifyOne" + dto);
 		return sqlSessionTemplate.update("article.modifyOne", dto);
 	}
 
