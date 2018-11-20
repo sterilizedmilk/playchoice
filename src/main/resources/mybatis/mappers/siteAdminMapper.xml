@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.playchoice.mappers.siteAdminMapper">
+
+	<select id="genreList" resultType="GenreDTO">
+		SELECT * FROM genre
+	</select>
+	
+	<insert id="genreInsert">
+		INSERT INTO genre
+		(g_name)
+		VALUES(#{g_name})
+	</insert>
+	
+	<delete id="genreDelete">
+		DELETE FROM genre
+		WHERE g_id = #{g_id}
+	</delete>
+	
+	
+	<select id="areaList" resultType="AreaDTO">
+		SELECT * FROM area
+	</select>
+	
+	<insert id="areaInsert">
+		INSERT INTO area
+		(a_name)
+		VALUES(#{a_name})
+	</insert>
+	
+	<delete id="areaDelete">
+		DELETE FROM area
+		WHERE a_id = #{a_id}
+	</delete>
+	
+</mapper>

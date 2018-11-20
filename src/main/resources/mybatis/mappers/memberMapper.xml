@@ -24,10 +24,11 @@
 		WHERE m_id=#{m_id}
 	</update>
 
-	<delete id="deleteMember">
-		DELETE FROM member
+	<update id="deleteMember">
+		UPDATE member
+		SET m_status=2
 		WHERE m_id=#{m_id}
-	</delete>
+	</update>
 
 	<select id="viewMember" resultType="MemberDTO">
 		SELECT *

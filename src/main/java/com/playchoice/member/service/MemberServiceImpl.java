@@ -28,6 +28,9 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO loginMember(LoginDTO dto) throws Exception {
 		MemberDTO memberDto = null;
 		memberDto = memberDao.loginMember(dto);
+		if(memberDto.getM_status() == 2) {
+			return null;
+		}
 		return memberDto;
 	}
 	

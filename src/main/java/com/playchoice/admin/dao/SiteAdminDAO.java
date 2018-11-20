@@ -2,13 +2,13 @@ package com.playchoice.admin.dao;
 
 import java.util.List;
 
+import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
-public interface AdminDAO {
+public interface SiteAdminDAO {
 
 	public List<MemberDTO> memberList(SearchPlayDTO search);
-
 	public int black(int m_id);
 
 	public int unBlack(int m_id);
@@ -21,5 +21,20 @@ public interface AdminDAO {
 
 	// 정산
 	public int settleMoney();
-
+	
+	
+	
+	// genre
+	public List<GenreDTO> genreList();
+	
+	public int genreInsert(String g_name);
+	
+	public int genreDelete(int g_id);
+	
+	
+	public List<GenreDTO> areaList();
+	
+	public int areaInsert(String a_name);
+	
+	public int areaDelete(int a_id);
 }
