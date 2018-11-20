@@ -81,6 +81,14 @@ public class ArticleController {
 			status.setMsg("삭제되었습니다.");
 			status.setUrl("list");
 			break;
+		// 댓글
+		case "comment":
+			res = dao.commentOne(dto);
+			System.out.println("dto : ================= " + dto);
+			status.setMsg("댓글이 입력되었습니다.");
+			status.setUrl("detail?a_id=" + dto.getA_id());
+			System.out.println("getA_comment" + dto.getA_comment());
+			break;
 		default:
 			break;
 		}
@@ -90,7 +98,7 @@ public class ArticleController {
 	@RequestMapping()
 	public String view(@PathVariable("Content") String content, @PathVariable("No") String no) {
 		String spath = "";
-		String[] arr = { "deleteReg", "modifyReg", "insertReg", "insertMurtiReg", "insertErrorReg" };
+		String[] arr = { "deleteReg", "modifyReg", "insertReg", "insertMurtiReg", "insertErrorReg", "comment" };
 
 		if (Arrays.asList(arr).contains(content) || Arrays.asList(arr).contains(no))
 			spath = "page/alert";

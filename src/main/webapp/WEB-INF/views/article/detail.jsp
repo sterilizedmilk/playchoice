@@ -54,8 +54,33 @@
 								<button type="button" class="btn btn-square btn-theme"
 									onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
 								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/list'">목록 전체보기</button></td>
+									onclick="location.href='${uuu }notice/list'">목록 전체보기 +
+									${data.a_comment }</button></td>
 						</tr>
+						<!-- 관리자일 경우에만 보여주기 -->
+					</table>
+				</form>
+				<form action="${uuu }notice/comment">
+					<table class="table table-bordered">
+						<c:choose>
+							<c:when test="${empty data.a_comment}">
+								<tr>
+									<td colspan="3"><input type="text" name="a_comment"
+										style="width: 98%; height: 100px"> <input
+										type="hidden" name="a_id" value="${data.a_id }" /></td>
+									<td><button type="submit" class="btn btn-square btn-theme"
+											style="width: 100%; height: 100px">댓글</button></td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<th colspan="5">관리자</th>
+								</tr>
+								<tr>
+									<th colspan="5" style="width: 98%; height: 100px">${data.a_comment }</th>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</form>
 			</div>

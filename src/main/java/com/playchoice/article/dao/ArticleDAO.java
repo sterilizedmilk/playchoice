@@ -14,4 +14,6 @@ public interface ArticleDAO {
 
 	public Object modifyOne(ArticleDTO dto);
 
+	public Object commentOne(ArticleDTO dto);
+
 }

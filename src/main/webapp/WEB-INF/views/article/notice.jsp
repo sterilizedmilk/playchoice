@@ -62,7 +62,6 @@
 									<!-- 일반 회원일 경우, -->
 									<td colspan="8">
 										<button type="button" class="btn btn-square btn-theme"
-											style="width: 100%"
 											onclick="location.href='${uuu }notice/insert'">글쓰기</button>
 									</td>
 								</c:otherwise>

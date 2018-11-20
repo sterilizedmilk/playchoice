@@ -46,4 +46,10 @@ public class CustomerCenterDAO implements ArticleDAO {
 		return sqlSessionTemplate.selectOne("article.selectOne", (Integer) a_id);
 	}
 
+	@Override
+	public Object commentOne(ArticleDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("article.commentOne", dto);
+	}
+
 }
