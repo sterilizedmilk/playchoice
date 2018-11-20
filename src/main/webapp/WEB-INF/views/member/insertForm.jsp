@@ -13,7 +13,7 @@
 			<div class="form-group">
 		  		<label for="m_id">아이디</label>
 		  		<input type="text" class="form-control" name="m_id" id="m_id" placeholder="아이디">
-		  		<button type="button" class="btn btn-default" id="confirmBtn">중복체크</button>
+		  		<button type="button" class="btn btn-primary" id="confirmBtn">중복체크</button>
 			</div>
 			<!-- 아이디 중복 경고창 -->
 			<div class="alert alert-danger" id="alert-dangerId" style="margin-bottom:5px;">이미 사용중인 아이디입니다.</div>
@@ -37,6 +37,7 @@
 		  	<div class="form-group">
 				<label for="m_mail">이메일</label>
 				<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일">
+				<button type="button" class="btn btn-primary" id="confirmMailBtn">중복체크</button>
 		  	</div>
 		  	<!-- 이메일 중복 경고창 -->
 			<div class="alert alert-danger" id="alert-dangerEmail" style="margin-bottom:5px;">이미 등록된 이메일입니다.</div>
@@ -61,6 +62,8 @@
 		$("#alert-dangerId").hide();
 		$("#alert-submitId").hide();
 		$("#alert-dangerPw").hide();
+		$("#alert-dangerEmail").hide();
+		$("#alert-submitEmail").hide();
 		
 		// 아이디 검사
 		$(document).ready(function(){
@@ -94,6 +97,33 @@
 					});
 				}
 			});
+		});
+
+		// 이메일 중복 검사
+		$("#confirmMailBtn").click(function(){
+			var m_mail = $("#m_mail").val();
+			if(m_mail == "") {
+				alert("이메일을 입력하세요");
+				$("#m_mail").focus();
+				return;
+			} else {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/member/duplicateMail/" + m_mail,
+					type : "POST",
+					success : function(data){
+						if(data == "DUPLICATED") { // 이메일 중복인 경우
+							$("#alert-submitEmail").hide();
+							$("#alert-dangerEmail").show();
+							$("#m_id").focus();
+							$("#submit").attr("disabled", "disabled");
+						} else { // 사용가능한 경우
+							$("#alert-dangerEmail").hide();
+							$("#alert-submitEmail").show();
+							$("#submit").removeAttr("disabled");
+						}
+					}
+				});
+			}
 		});
 		
 		// 비밀번호 일치 검사

@@ -181,12 +181,12 @@
 			<version>1.4</version>
 		</dependency>
 		
-      <!-- thumbnail -->
-      <dependency>
-         <groupId>net.coobird</groupId>
-         <artifactId>thumbnailator</artifactId>
-         <version>0.4.8</version>
-      </dependency>
+	    <!-- thumbnail -->
+	    <dependency>
+	       <groupId>net.coobird</groupId>
+	       <artifactId>thumbnailator</artifactId>
+	       <version>0.4.8</version>
+    	</dependency>
       
 	</dependencies>
 	<build>

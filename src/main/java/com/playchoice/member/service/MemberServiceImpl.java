@@ -2,6 +2,8 @@ package com.playchoice.member.service;
 
 import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,11 +98,41 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return false;
 	}
+	
+	// 이메일 중복체크
+	@Override
+	public boolean duplicateMail(String m_mail) throws Exception {
+		MemberDTO dto = null;
+		dto = memberDao.viewMemberByEmail(m_mail);
+		if(dto != null) {
+			return true;
+		}
+		return false;
+	}
 
 	// 회원 정보 수정 및 삭제를 위한 비밀번호 체크
 	@Override
 	public boolean checkPw(String m_id, String m_pw) throws Exception {
 		return memberDao.checkPw(m_id, m_pw);
 	}
+	
+	// 비밀번호 변경
+	@Override
+	public boolean updatePw(String m_id, String m_pw, String new_pw) throws Exception {
+		if (checkPw(m_id, m_pw)) {
+			int result = memberDao.updatePw(m_id, new_pw);
+			if (result == 1) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+
+
+
+
+
 
 }

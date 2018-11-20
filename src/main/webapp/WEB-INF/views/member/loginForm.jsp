@@ -18,6 +18,7 @@
 			<label for="m_pw" class="sr-only">비밀번호</label>
 			<input type="password" id="m_pw" name="m_pw" class="form-control" placeholder="비밀번호 입력" required>
 		</div>
+		<div style="color: red;">${msg }</div><!-- 비밀번호 불일치 문구 -->
 		<div class="button-group">
 			<button class="btn btn-lg btn-primary btn-block" id="submitBtn" type="submit">로그인</button>
 			<button class="btn btn-lg btn-default btn-block" onclick="history.go(-1)">취소</button>

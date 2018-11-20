@@ -10,24 +10,23 @@
 <div class="container">
 	<h2>비밀번호 변경</h2>
 	<form name="updatePwForm" method="post">
-		<input type="hidden" value="${login.m_id}" />
 		<div class="form-group">
-	  		<label for="m_oldpw">현재 비밀번호</label>
+	  		<label for="m_pw">현재 비밀번호</label>
 	  		<input type="password" class="form-control" name="m_pw" id="m_pw" placeholder="현재 비밀번호" required="required">
 		</div>
 	  	<div class="form-group">
-			<label for="m_newpw">새 비밀번호</label>
-			<input type="password" class="form-control" name="m_newpw" id="m_newpw" placeholder="새 비밀번호" required="required">
+			<label for="new_pw">새 비밀번호</label>
+			<input type="password" class="form-control" name="new_pw" id="new_pw" placeholder="새 비밀번호" required="required">
 	  	</div>
 	  	<div class="form-group">
-			<label for="m_newpwCheck">새 비밀번호 확인</label>
-			<input type="password" class="form-control" name="m_newpwCheck" id="m_newpwCheck" placeholder="새 비밀번호 확인" required="required">
+			<label for="new_pwCheck">새 비밀번호 확인</label>
+			<input type="password" class="form-control" name="new_pwCheck" id="new_pwCheck" placeholder="새 비밀번호 확인" required="required">
 	  	</div>
 	  	<!-- 비밀번호 불일치 경고창 -->
 		<div class="alert alert-danger" id="alert-dangerPw" style="margin-bottom:5px;">비밀번호가 일치하지 않습니다.</div>
 		<!-- //.비밀번호 불일치 경고창 -->
 	  	<div class="button-group">
-		  	<button type="submit" class="btn btn-success" id="updatePwBtn">확인</button>
+		  	<button type="button" class="btn btn-success" id="updatePwBtn">확인</button>
 		  	<button type="reset" class="btn btn-danger">취소</button>
 		</div>
 	</form>
@@ -40,10 +39,25 @@
 		// 경고창 숨김
 		$("#alert-dangerPw").hide();
 		
+		$(document).ready(function(){
+			$("#updatePwBtn").click(function(){
+				var m_pw = $("#m_pw").val();
+				if(m_pw == "") {
+					alert("비밀번호를 입력하세요");
+					$("#m_pw").focus();
+					return;
+				} else {
+					confirm("비밀번호를 변경하시겠습니까?");
+					document.updatePwForm.action = "${pageContext.request.contextPath}/member/updatePw";
+					document.updatePwForm.submit();
+				}
+			});
+		});
+		
 		// 비밀번호 일치 검사
 		$("input").keyup(function(){
-			var pw1 = $("#m_newpw").val();
-			var pw2 = $("#m_newpwCheck").val();
+			var pw1 = $("#new_pw").val();
+			var pw2 = $("#new_pwCheck").val();
 			if(pw1 != "" && pw2 != "") {
 				if(pw1 != pw2) { // 비밀번호 불일치하는 경우
 					$("#alert-dangerPw").show();
