@@ -1,8 +1,10 @@
 package com.playchoice.play.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.dto.PlayshowDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
 public interface PlayDAO {
@@ -21,5 +23,12 @@ public interface PlayDAO {
 
 	// 끝난 연극 내리기?
 	public int playDetach(int p_id);
+	
+	public List<Object> viewCal(HashMap<String,Object> param);
+	
+	public Object getSchedule(int p_id);
+	
+	public Object getReview(int p_id);
+	
 
 }

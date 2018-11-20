@@ -15,7 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.playchoice.actor.service.ActorService;
-import com.playchoice.actor.service.FileService;
+import com.playchoice.common.FileService;
+import com.playchoice.member.dto.MemberDTO;
 
 
 /**
@@ -57,6 +58,8 @@ public class ActorController {
 			,MultipartHttpServletRequest request
 			,Model model) throws IOException {
 		FileService fs = new FileService();
+		
+		if(fs.isImgCheck(file)) {
 		//파일 등록 유무 확인
 		if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")){
 			//파일업로드
@@ -69,13 +72,20 @@ public class ActorController {
 		service.insertActor(param);
 			
 		return "redirect:/actor/list";
+		}else {
+			System.out.println("이미지파일아님");
+			return "";
+		}
 	}
 	
-	//배우 찜하기
+	//배우 찜하기 아직못했음
 	@RequestMapping(value="mypick", method=RequestMethod.POST)
 	public void mypickActor(String a_id, HttpSession session) {
-		session.getAttribute("login");
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		System.out.println(dto.getM_code());
 		System.out.println(a_id);
+		
+		service.mypickActor(dto, a_id);
 	}
 	
 }

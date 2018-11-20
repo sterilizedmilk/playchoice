@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.actor.dto.SearchActorDTO;
+import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 
 public interface ActorDAO {
@@ -24,5 +25,7 @@ public interface ActorDAO {
 	public int addPreferActor(int m_id, int a_id);
 
 	public List<PlayDTO> getAppearedPlays(int a_id);
+
+	public int mypickActor(HashMap<String, Object> param);
 
 }

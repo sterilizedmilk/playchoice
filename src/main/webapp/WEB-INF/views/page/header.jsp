@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url value="http://localhost:8080/playChoice/play/" var="play" />
+
+
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+
 
 <!-- css -->
 <link
@@ -95,11 +99,14 @@
 								</c:when>
 								<c:otherwise>
 									<li><i class="icon-user"></i> ${login.m_id } 님</li>
-									<li><a href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
-									<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li class="dropdown"><a href="article/notice/list">고객센터 </a></li>
+							<li class="dropdown"><a href="article/notice/list">고객센터
+							</a></li>
 						</ul>
 					</div>
 				</div>
@@ -108,7 +115,7 @@
 				<div class="span3">
 					<div class="logo">
 						<h1>
-							<a href="main"><img
+							<a href="${pageContext.request.contextPath}"><img
 								src="${pageContext.request.contextPath}/resources/img/logo.png"
 								alt="" class="logo" /></a>
 						</h1>
@@ -169,8 +176,10 @@
 										</ul></li>
 									<li><a href="/playChoice/play/playlist">오늘(11/11)</a></li>
 									<li><a href="#">내일(11/12)</a></li>
-									<li><a href="mainlist">전체 일정</a></li>
-									<li><a href="${pageContext.request.contextPath}/actor/list">배우</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/
+									mainlist">전체 일정</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/actor/list">배우</a></li>
 									<li><a href="#">주간랭킹</a></li>
 								</ul>
 							</nav>

@@ -1,6 +1,5 @@
 package com.playchoice.article.dao;
 
-
 import com.playchoice.article.dto.ArticleDTO;
 
 public interface ArticleDAO {
@@ -9,9 +8,10 @@ public interface ArticleDAO {
 
 	public Object insertOne(ArticleDTO dto);
 
-	public Object selectOne(Object a_id);
+	public Object selectOne(Object sid);
 
 	public Object deleteOne(ArticleDTO dto);
 
 	public Object modifyOne(ArticleDTO dto);
+
 }

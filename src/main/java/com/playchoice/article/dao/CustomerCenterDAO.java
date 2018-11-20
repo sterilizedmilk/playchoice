@@ -28,12 +28,6 @@ public class CustomerCenterDAO implements ArticleDAO {
 	}
 
 	@Override
-	public Object selectOne(Object a_id) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("article.selectOne", a_id);
-	}
-
-	@Override
 	public Object deleteOne(ArticleDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.delete("article.deleteOne", dto);
@@ -42,7 +36,14 @@ public class CustomerCenterDAO implements ArticleDAO {
 	@Override
 	public Object modifyOne(ArticleDTO dto) {
 		// TODO Auto-generated method stub
+		System.out.println("modifyOne" + dto);
 		return sqlSessionTemplate.update("article.modifyOne", dto);
+	}
+
+	public Object selectOne(Object a_id) {
+		// TODO Auto-generated method stub
+		System.out.println("selectOne" + (Integer) a_id);
+		return sqlSessionTemplate.selectOne("article.selectOne", (Integer) a_id);
 	}
 
 }
