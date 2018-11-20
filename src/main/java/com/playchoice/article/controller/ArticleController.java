@@ -45,7 +45,8 @@ public class ArticleController {
 			System.out.println("list 정보 : " + res);
 			break;
 		case "detail":
-			res = dao.selectOne(dto);
+			res = dao.selectOne(dto.getA_id());
+			System.out.println("detail : " + res);
 			break;
 		// 글작성 화면 노출
 		case "insert":
