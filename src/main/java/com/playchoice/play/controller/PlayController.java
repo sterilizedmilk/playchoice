@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playchoice.play.dto.PlayDTO;
-import com.playchoice.play.dto.PlayshowDTO;
-import com.playchoice.play.service.PlayService;
 import com.playchoice.play.service.PlayServiceImpl;
 
 /**
@@ -41,8 +39,19 @@ public class PlayController {
 	}
 
 	@RequestMapping(value = "playdetail", method = RequestMethod.GET)
-	public void playDetail(@RequestParam("p_id") int p_id, Model model) throws Exception {
+	public String playDetail(@RequestParam("p_id") int p_id, Model model) throws Exception {
+		//play
 		model.addAttribute(service.playDetail(p_id));
+		
+		//schedule		
+		model.addAttribute("schedule",service.getSchedule(p_id));
+		
+		
+		//review
+//		service.getReview(p_id);
+		
+		return "play/playdetail";
+		
 	}
 
 	@RequestMapping("checkSchedule")
@@ -58,5 +67,17 @@ public class PlayController {
 
 		System.out.println(param.get("list"));
 		return param;
+	}
+	
+	@RequestMapping("bastket")
+	public void addBastket(@RequestParam HashMap<String, Object> param) {
+		// TODO 쿠키적용
+		System.out.println(param);
+	}
+	
+	@RequestMapping("payment")
+	public void directPay(@RequestParam HashMap<String, Object> param) {
+		// TODO 로그인여부 확인(인터셉터)
+		System.out.println(param);
 	}
 }

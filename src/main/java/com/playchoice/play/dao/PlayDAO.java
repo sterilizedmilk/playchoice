@@ -23,6 +23,12 @@ public interface PlayDAO {
 
 	// 끝난 연극 내리기?
 	public int playDetach(int p_id);
+	
 	public List<Object> viewCal(HashMap<String,Object> param);
+	
+	public Object getSchedule(int p_id);
+	
+	public Object getReview(int p_id);
+	
 
 }

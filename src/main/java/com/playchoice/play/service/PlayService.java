@@ -15,4 +15,8 @@ public interface PlayService {
 		public PlayDTO playDetail(int p_id) throws Exception;
 
 		public List<Object> viewCal(HashMap<String,Object> param);
+		
+		public Object getSchedule(int p_id);
+		
+		public Object getReview(int p_id);
 }

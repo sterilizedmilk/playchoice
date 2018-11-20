@@ -26,8 +26,8 @@
 	
 	<context:component-scan base-package="com.playchoice" />
 
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-	
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	 -->
 	<!-- LoginInterceptor -->
 	<beans:bean id="LoginInterceptor" class="com.playchoice.member.interceptor.LoginInterceptor"></beans:bean>
 	<interceptors>

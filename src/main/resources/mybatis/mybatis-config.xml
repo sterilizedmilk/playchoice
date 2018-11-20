@@ -8,7 +8,8 @@
         <package name="com.playchoice.article.dto"/>
         <package name="com.playchoice.member.dto"/>
         <package name="com.playchoice.play.dto"/>
-        <package name="com.playchoice.show.dto"/>
+        <package name="com.playchoice.schedule.dto"/>
+        <package name="com.playchoice.review.dto"/>
     </typeAliases>
 
 </configuration>
