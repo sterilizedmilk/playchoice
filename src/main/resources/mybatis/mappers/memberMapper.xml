@@ -11,10 +11,10 @@
 
 	<insert id="insertMember">
 		INSERT INTO member (m_id, m_pw, m_name, m_level,
-		m_mail, m_black, m_phone)
+		m_mail, m_status, m_phone)
 		VALUES (#{m_id}, #{m_pw}, #{m_name},
 		#{m_level},
-		#{m_mail}, #{m_black}, #{m_phone})
+		#{m_mail}, #{m_status}, #{m_phone})
 	</insert>
 
 	<update id="updateMember">
