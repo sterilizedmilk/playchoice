@@ -1,7 +1,6 @@
 package com.playchoice.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +60,11 @@ public class MemberController {
 	
 	// 로그인 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPOST(LoginDTO dto, HttpServletRequest request) throws Exception{
+	public String loginPOST(LoginDTO dto, HttpServletRequest request, RedirectAttributes rttr) throws Exception{
 		//System.out.println(dto.toString());
 		MemberDTO memberDto = memberService.loginMember(dto);
 		if(memberDto == null) {
-			System.out.println("로그인 실패");
+			rttr.addFlashAttribute("msg", "아이디 또는 비밀번호를 다시 확인하세요.");
 			return "redirect:/member/login";
 		}
 		memberDto.setM_pw(""); // 비밀번호 삭제
@@ -168,7 +167,7 @@ public class MemberController {
 	public String findPwGo(@ModelAttribute MemberDTO dto, Model model) {
 		String res = memberService.findPw(dto);
 		if (res.equals("fail")) {
-			model.addAttribute("msg", "아이디와 이메일을 확인하세요.");
+			model.addAttribute("msg", "아이디 또는 이메일을 다시 확인하세요.");
 			model.addAttribute("url", "login");
 			return "member/loginAlert";
 		} else {
@@ -206,7 +205,7 @@ public class MemberController {
 			session.setAttribute("login", dto);
 			return "redirect:/";
 		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 viewForm.jsp로 포워드
-			rttr.addFlashAttribute("msg", "비밀번호 불일치");
+			rttr.addFlashAttribute("msg", "비밀번호를 다시 입력하세요.");
 			return "redirect:/member/view";
 		}
 	}
@@ -219,15 +218,15 @@ public class MemberController {
 	
 	// 비밀번호 변경 처리
 	@RequestMapping(value = "/updatePw", method = RequestMethod.POST)
-	public String updatePwPOST(@ModelAttribute MemberDTO dto, HttpSession session, RedirectAttributes rttr) throws Exception {
-		boolean result = memberService.checkPw(dto.getM_id(), dto.getM_pw());
-		if(result) {
-			memberService.updateMember(dto);
-			dto.setM_pw("");
-			session.setAttribute("login", dto);
+	public String updatePwPOST(@RequestParam("m_pw") String m_pw, @RequestParam("new_pw") String new_pw, HttpSession session, RedirectAttributes rttr) throws Exception {
+		String m_id = ((MemberDTO) session.getAttribute("login")).getM_id();
+		boolean result = memberService.checkPw(m_id, m_pw);
+		// 비밀번호 체크
+		if(result) { // 비밀번호가 일치하면 수정 처리 후, 메인페이지로 리다이렉트
+			memberService.updatePw(m_id, m_pw, new_pw);
 			return "redirect:/";
-		} else {
-			rttr.addFlashAttribute("msg", "비밀번호 불일치");
+		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 viewForm.jsp로 포워드
+			rttr.addFlashAttribute("msg", "비밀번호를 다시 입력하세요.");
 			return "redirect:/member/view";
 		}
 	}
@@ -250,7 +249,7 @@ public class MemberController {
 			session.invalidate();
 			return "redirect:/";
 		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 deleteForm.jsp로 포워드
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
+			model.addAttribute("msg", "비밀번호를 다시 입력하세요.");
 			model.addAttribute("dto", memberService.viewMember(m_id));
 			return "member/deleteForm";
 		}
@@ -262,7 +261,25 @@ public class MemberController {
 	public ResponseEntity<String> duplicateId(@PathVariable("m_id") String m_id) throws Exception {
 		ResponseEntity<String> entity = null;
 		try {
-			if (memberService.duplicateId(m_id)) { // 아이디 중복 되는 경우
+			if (memberService.duplicateId(m_id)) { // 아이디 중복인 경우
+				entity = new ResponseEntity<String>("DUPLICATED", HttpStatus.OK);
+			} else { // 사용가능한 경우
+				entity = new ResponseEntity<String>("AVAILABLE", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	// 이메일 중복체크 AJAX 처리
+	@ResponseBody
+	@RequestMapping(value = "/duplicateMail/{m_mail}", method = RequestMethod.POST)
+	public ResponseEntity<String> duplicateMail(@PathVariable("m_mail") String m_mail) throws Exception {
+		ResponseEntity<String> entity = null;
+		try {
+			if(memberService.duplicateMail(m_mail)) { // 이메일 중복인 경우
 				entity = new ResponseEntity<String>("DUPLICATED", HttpStatus.OK);
 			} else { // 사용가능한 경우
 				entity = new ResponseEntity<String>("AVAILABLE", HttpStatus.OK);

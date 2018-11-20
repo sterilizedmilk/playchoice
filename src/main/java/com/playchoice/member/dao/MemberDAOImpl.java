@@ -28,13 +28,19 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberDTO viewMember(String m_id) throws Exception {
 		return sqlSession.selectOne(namespace + ".viewMember", m_id);
 	}
+	
+	// 이메일로 회원 정보 조회
+	@Override
+	public MemberDTO viewMemberByEmail(String m_mail) throws Exception {
+		return sqlSession.selectOne(namespace + ".viewMemberByEmail", m_mail);
+	}
 
 	// 회원 정보 수정
 	@Override
 	public void updateMember(MemberDTO dto) throws Exception {
 		sqlSession.update(namespace + ".updateMember", dto);
 	}
-
+	
 	// 회원 탈퇴
 	@Override
 	public void deleteMember(String m_id) throws Exception {
@@ -72,5 +78,14 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return result;
 	}
-	
+
+	// 비밀번호 변경
+	@Override
+	public int updatePw(String m_id, String new_pw) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("m_id", m_id);
+		map.put("m_pw", new_pw);
+		return sqlSession.update(namespace + ".updatePw", map);
+	}
+
 }

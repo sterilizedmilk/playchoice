@@ -34,7 +34,6 @@
 			  	<button type="button" class="btn btn-success" id="updateBtn">확인</button>
 			  	<button type="reset" class="btn btn-danger">취소</button>
 			  	<button onclick="history.go(-1)" class="btn btn-primary">뒤로</button>
-			  	<button type="button" class="btn btn-warning" id="updatePwBtn">비밀번호 변경</button>
 			</div>
 		</form>
 </div>
@@ -49,13 +48,11 @@
 				alert("비밀번호를 입력하세요");
 				$("#m_pw").focus();
 				return;
-			} else if(confirm("정보를 수정하시겠습니까?")){
+			} else {
+				confirm("정보를 수정하시겠습니까?");
 				document.updateForm.action = "${pageContext.request.contextPath}/member/update";
 				document.updateForm.submit();
 			}
-		});
-		$("#updatePwBtn").click(function(){
-			self.location = "${pageContext.request.contextPath}/member/updatePw";
 		});
 	});
 </script>

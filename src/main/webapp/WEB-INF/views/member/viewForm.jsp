@@ -33,6 +33,7 @@
 	  	<c:if test="${ (!empty login)}">
 			<button type="button" class="btn btn-primary" id="updateBtn">수정</button>
 			<button type="button" class="btn btn-primary" id="deleteBtn">탈퇴</button>
+			<button type="button" class="btn btn-primary" id="updatePwBtn">비밀번호 변경</button>
 		</c:if>
 	</div>
 </div>
@@ -46,6 +47,9 @@
 		});
 		$("#deleteBtn").click(function(){
 			self.location = "delete?m_id=${login.m_id}";
+		});
+		$("#updatePwBtn").click(function(){
+			self.location = "updatePw?m_id=${login.m_id}";
 		});
 	});
 </script>
