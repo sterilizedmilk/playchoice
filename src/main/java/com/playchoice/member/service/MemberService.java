@@ -23,7 +23,7 @@ public interface MemberService {
 	// 회원 정보 수정
 	public void updateMember(MemberDTO dto) throws Exception;
 	
-	// 회원 탈퇴
+	// 회원 탈퇴(m_status=2)
 	public void deleteMember(String m_id) throws Exception;
 	
 	// 아이디 중복 체크
