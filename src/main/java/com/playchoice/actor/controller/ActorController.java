@@ -78,7 +78,7 @@ public class ActorController {
 		}
 	}
 	
-	//배우 찜하기
+	//배우 찜하기 아직못했음
 	@RequestMapping(value="mypick", method=RequestMethod.POST)
 	public void mypickActor(String a_id, HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
