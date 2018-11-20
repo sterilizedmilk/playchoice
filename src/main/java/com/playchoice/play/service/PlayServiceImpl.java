@@ -34,5 +34,19 @@ public class PlayServiceImpl implements PlayService {
 		System.out.println("viewCal 서비스왓다");
 		return playDao.viewCal(param);
 	}
+	
+	@Override
+	public Object getSchedule(int p_id) {
+		
+		return playDao.getSchedule(p_id);
+
+		
+	}
+	
+	@Override
+	public Object getReview(int p_id) {
+		playDao.getReview(p_id);
+		return null;
+	}
 
 }

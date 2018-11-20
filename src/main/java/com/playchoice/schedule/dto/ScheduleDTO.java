@@ -1,8 +1,8 @@
-package com.playchoice.show.dto;
+package com.playchoice.schedule.dto;
 
 import java.sql.Timestamp;
 
-public class ShowDTO {
+public class ScheduleDTO {
 	private int s_id, p_id, s_ticket, s_price, a_id1, a_id2;
 	private Timestamp s_time;
 	private int s_canceled;

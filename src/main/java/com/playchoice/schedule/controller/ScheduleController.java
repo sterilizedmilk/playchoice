@@ -1,4 +1,4 @@
-package com.playchoice.show.controller;
+package com.playchoice.schedule.controller;
 
 import java.sql.Timestamp;
 import java.time.YearMonth;
@@ -8,32 +8,33 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.playchoice.show.dto.ShowDTO;
+import com.playchoice.schedule.dto.ScheduleDTO;
 
 @Controller
 @RequestMapping("show")
-public class ShowController {
+public class ScheduleController {
 
 	@SuppressWarnings("deprecation")
 	@RequestMapping("updateCalendar")
-	public @ResponseBody List<List<ShowDTO>> updateCalendarController(
+	public @ResponseBody List<List<ScheduleDTO>> updateCalendarController(
 									@RequestParam("year") int year,
 									@RequestParam("month") int month) throws Exception {
 		
 		YearMonth ym = YearMonth.of(year, month);
 		int lengthOfMonth = ym.lengthOfMonth();
 		
-		List<List<ShowDTO>> calendarInfo = new ArrayList<List<ShowDTO>>(lengthOfMonth);
+		List<List<ScheduleDTO>> calendarInfo = new ArrayList<List<ScheduleDTO>>(lengthOfMonth);
 		
 		for (int i = 0; i < lengthOfMonth; ++i)
-			calendarInfo.add(new ArrayList<ShowDTO>());
+			calendarInfo.add(new ArrayList<ScheduleDTO>());
 		
 		
 		// TODO: 임시, db에서 가져와야함
-		ShowDTO exam = new ShowDTO();
+		ScheduleDTO exam = new ScheduleDTO();
 		exam.setA_id1(1);
 		exam.setA_id2(2);
 		exam.setA_name1("홍길동");
@@ -45,5 +46,12 @@ public class ShowController {
 		
 		return calendarInfo;
 	}
+	
+	@RequestMapping(value="bastket", method=RequestMethod.POST)
+	String shoppingBastket() {
+		
+		return "";
+	}
+	
 	
 }

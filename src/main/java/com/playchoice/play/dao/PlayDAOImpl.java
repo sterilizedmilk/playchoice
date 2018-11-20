@@ -62,5 +62,19 @@ public class PlayDAOImpl implements PlayDAO {
 
 		return res;
 	}
+	
+	@Override
+	public Object getSchedule(int p_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".viewCal", p_id);
+	}
+	
+	@Override
+	public Object getReview(int p_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

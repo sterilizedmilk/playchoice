@@ -176,7 +176,8 @@
 										</ul></li>
 									<li><a href="/playChoice/play/playlist">오늘(11/11)</a></li>
 									<li><a href="#">내일(11/12)</a></li>
-									<li><a href="${play }mainlist">전체 일정</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/
+									mainlist">전체 일정</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/actor/list">배우</a></li>
 									<li><a href="#">주간랭킹</a></li>

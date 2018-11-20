@@ -1,8 +1,10 @@
-package com.playchoice.actor.service;
+package com.playchoice.common;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -52,6 +54,20 @@ public class FileService {
 		System.out.println(file);
 
 		return res;
+	}
+	
+	//이미지 파일 확인
+	public boolean isImgCheck(MultipartFile mf) {
+		// ext -> 파일 확장자명
+		String ext = mf.getOriginalFilename().toLowerCase().substring(
+				mf.getOriginalFilename().lastIndexOf(".")+1);
+		
+		// jpg, jpeg 파일만 허용
+		ArrayList<String> extList = new ArrayList<>();
+		extList.add("jpg");
+		extList.add("jpeg");
+		
+		return extList.contains(ext);		
 		
 	}
 	
