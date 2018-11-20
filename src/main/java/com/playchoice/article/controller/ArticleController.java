@@ -79,7 +79,7 @@ public class ArticleController {
 		case "deleteReg":
 			res = dao.deleteOne(dto);
 			status.setMsg("삭제되었습니다.");
-			status.setMsg("list");
+			status.setUrl("list");
 			break;
 		default:
 			break;
