@@ -1,9 +1,11 @@
 package com.playchoice.play.dto;
 
+import org.apache.ibatis.type.Alias;
+
 public class PlayDTO {
 	int p_id, t_id, p_score_total, g_id;
 	String p_name, p_info, p_refund_policy, p_location;
-
+	
 	// p_refund_policy : 반환정보
 
 	public int getP_id() {
@@ -76,5 +78,5 @@ public class PlayDTO {
 				+ ", p_name=" + p_name + ", p_info=" + p_info + ", p_refund_policy=" + p_refund_policy + ", p_location="
 				+ p_location + "]";
 	}
-
+	
 }
