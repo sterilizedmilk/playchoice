@@ -7,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playchoice.play.dao.PlayDAO;
+import com.playchoice.play.dao.PlayDAOImpl;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayshowDTO;
 
 @Service
-public class PlayServiceImpl implements PlayService{
+public class PlayServiceImpl implements PlayService {
 
 	@Autowired
-	private PlayDAO playDao;
-	
+	private PlayDAOImpl playDao;
+
 	@Override
 	public List<PlayDTO> playList() throws Exception {
 		System.out.println("servicelist start");
@@ -29,7 +30,7 @@ public class PlayServiceImpl implements PlayService{
 	}
 
 	@Override
-	public List<Object> viewCal(HashMap<String,Object> param) {
+	public List<Object> viewCal(HashMap<String, Object> param) {
 		System.out.println("viewCal 서비스왓다");
 		return playDao.viewCal(param);
 	}
