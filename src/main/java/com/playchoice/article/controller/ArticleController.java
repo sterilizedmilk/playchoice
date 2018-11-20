@@ -1,9 +1,13 @@
 package com.playchoice.article.controller;
 /*
-작업명 : 공지사항 작업
+ * 작업명 : 공지사항 작업
 작업자 : 추윤지
 작업 날짜 : 2018-11-16
 */
+
+import java.util.Arrays;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,72 +15,73 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.playchoice.article.dao.CustomerCenterDAO;
+import com.playchoice.article.dao.ArticleDAO;
+import com.playchoice.article.dto.ArticleDTO;
+import com.playchoice.article.dto.PageStatusDTO;
 
 @Controller
 @RequestMapping("/article/{Content}/{No}")
 public class ArticleController {
+	PageStatusDTO status = new PageStatusDTO();
+
 	@Autowired
-	CustomerCenterDAO dao;
+	ArticleDAO dao;
 
 	// a_target 1 = 공지사항 2 = FAQ 3 = 1:1문의
 	@ModelAttribute("data")
-	public Object Article(@PathVariable("Content") String content, @PathVariable("No") String no) {
+	public Object Article(@PathVariable("Content") String content, @PathVariable("No") String no, ArticleDTO dto,
+			HttpServletRequest request) {
 		Object res = null;
 		System.out.println(content + "/" + no);
-		switch (content) {
-		case "notice":
-			switch (no) {
-			case "list":
+		switch (no) {
+		case "list":
+			if (content.equals("notice"))
 				res = dao.list("1");
-				break;
-			case "detail":
-				break;
-			case "insert":
-				break;
-			case "modify":
-				break;
-			case "delete":
-				break;
-			default:
-				break;
-			}
-
-			break;
-		case "faq":
-			switch (no) {
-			case "list":
+			else if (content.equals("faq"))
 				res = dao.list("2");
-				break;
-			case "detail":
-				break;
-			case "insert":
-				break;
-			case "modify":
-				break;
-			case "delete":
-				break;
-			default:
-				break;
-			}
-
-			break;
-		case "contact":
-			switch (no) {
-			case "list":
+			else
 				res = dao.list("3");
-				break;
-			case "detail":
-				break;
-			case "insert":
-				break;
-			case "modify":
-				break;
-			case "delete":
-				break;
-			default:
-				break;
+
+			System.out.println("list 정보 : " + res);
+			break;
+		case "detail":
+			res = dao.selectOne(dto);
+			break;
+		// 글작성 화면 노출
+		case "insert":
+			// res = dao.insertOne(dto);
+			break;
+		// 수정 화면 노출
+		case "modify":
+			// res = dto;
+			break;
+		// 삽입 후 db 처리
+		case "insertReg":
+			if (request.getParameter("target").equals("notice"))
+				dto.setA_board("1");
+			else if (request.getParameter("target").equals("faq"))
+				dto.setA_board("2");
+			else
+				dto.setA_board("3");
+
+			System.out.println(dto);
+			res = dao.insertOne(dto);
+			status.setMsg("등록되었습니다.");
+			status.setUrl("list");
+			break;
+		// 수정 후 db처리
+		case "modifyReg":
+			res = dao.modifyOne(dto);
+			if ((Integer) dao.modifyOne(dto) >= 1) {
+				status.setMsg("수정되었습니다.");
+				status.setMsg("detail?a_id" + dto.getA_id());
 			}
+			break;
+		// 삭제는 기존에 ajax로 삭제할 것인지 물었기 떄문에 바로 삭제
+		case "deleteReg":
+			res = dao.deleteOne(dto);
+			status.setMsg("삭제되었습니다.");
+			status.setMsg("list");
 			break;
 		default:
 			break;
@@ -87,148 +92,22 @@ public class ArticleController {
 	@RequestMapping()
 	public String view(@PathVariable("Content") String content, @PathVariable("No") String no) {
 		String spath = "";
-		if (!no.equals("list"))
+		String[] arr = { "deleteReg", "modifyReg", "insertReg", "insertMurtiReg", "insertErrorReg" };
+
+		if (Arrays.asList(arr).contains(content) || Arrays.asList(arr).contains(no))
+			spath = "page/alert";
+		else if (!no.equals("list"))
 			spath = "article/" + no;
 		else
 			spath = "article/" + content;
 
-		System.out.println(spath);
+		System.out.println("spath : " + spath);
 		return spath;
 	}
 
-	// a_target 1 = 공지사항 2 = FAQ 3 = 1:1문의
-	// @RequestMapping("/article/{path}")
-	// @ModelAttribute("data")
-	// public Object Article(@PathVariable("path") String str) {
-	// Object res = null;
-	// System.out.println(str);
-	// switch (str) {
-	// case "notice":
-	// res = dao.list("1");
-	// break;
-	// case "faq":
-	// res = dao.list("2");
-	// break;
-	// case "contact":
-	// res = dao.list("3");
-	// break;
-	// default:
-	// break;
-	// }
-	// return res;
-	// }
-	//
-	// @RequestMapping()
-	// public String view(@PathVariable("path") String path) {
-	// String spath = "article/" + path;
-	// return spath;
-	// }
+	@ModelAttribute("status")
+	public Object statusGo() {
+		return status;
+	}
 
-	// @RequestMapping("/article/notice/{no}")
-	// public String Notice(@PathVariable("no") String path, ArticleDTO dto) {
-	// String str = "";
-	// System.out.println(path);
-	// switch (path) {
-	// case "detail":
-	// // str = (String) dao.insertOne(dto);
-	// break;
-	// case "insert":
-	// // str = (String) dao.selectOne(dto);
-	// break;
-	// case "modify":
-	// // str = (String) dao.modifyOne(dto);
-	// break;
-	// case "delete":
-	// // str = (String) dao.deleteOne(dto);
-	// break;
-	// default:
-	// break;
-	// }
-	// return str;
-	// }
-	//
-	// // 공지사항 view
-	// @RequestMapping("/article/notice/{no}")
-	// public String noticeView(@PathVariable("no") String path) {
-	// String spath = "article/notice/" + path;
-	// return spath;
-	// }
-
-	// @RequestMapping("/article/faq/{faq}")
-	// @ModelAttribute("data")
-	// public Object faq(@PathVariable("faq") String path) {
-	// Object res = null;
-	// System.out.println(path);
-	// switch (path) {
-	// case "detail":
-	// res = dao.list("3");
-	// break;
-	// case "insert":
-	// res = dao.list("1");
-	// break;
-	// case "modify":
-	// res = dao.list("2");
-	// break;
-	// case "delete":
-	// res = dao.list("3");
-	// break;
-	// default:
-	// break;
-	// }
-	// return res;
-	// }
-	//
-	// // faq view
-	// @RequestMapping()
-	// public String faqView(@PathVariable("faq") String path) {
-	// String spath = "article/faq/" + path;
-	// return spath;
-	// }
-	//
-	// @RequestMapping("/article/contact/{contact}")
-	// @ModelAttribute("data")
-	// public Object contact(@PathVariable("contact") String path) {
-	// Object res = null;
-	// System.out.println(path);
-	// switch (path) {
-	// case "detail":
-	// res = dao.list("3");
-	// break;
-	// case "insert":
-	// res = dao.list("1");
-	// break;
-	// case "modify":
-	// res = dao.list("2");
-	// break;
-	// case "delete":
-	// res = dao.list("3");
-	// break;
-	// default:
-	// break;
-	// }
-	// return res;
-	// }
-	//
-	// // contact view
-	// @RequestMapping()
-	// public String contactView(@PathVariable("contact") String path) {
-	// String spath = "article/contact/" + path;
-	// return spath;
-	// }
-
-	// // 정대
-	// @RequestMapping("notice/{no}")
-	// public String noticeDetailController(@PathVariable(name = "no") int no) {
-	// return "";
-	// }
-	//
-	// @RequestMapping("faq/{no}")
-	// public String FAQDetailController(@PathVariable(name = "no") int no) {
-	// return "";
-	// }
-	//
-	// @RequestMapping("contact/{no}")
-	// public String contactDetailController(@PathVariable(name = "no") int no) {
-	// return "";
-	// }
 }

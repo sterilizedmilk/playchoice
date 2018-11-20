@@ -10,51 +10,58 @@
 	</select>
 
 	<insert id="insertMember">
-		INSERT INTO member (m_id, m_pw, m_name, m_level, 
-							m_mail, m_black, m_phone)
-		VALUES (#{m_id}, #{m_pw}, #{m_name}, #{m_level}, 
-				#{m_mail}, #{m_black}, #{m_phone})
+		INSERT INTO member (m_id, m_pw, m_name, m_level,
+		m_mail, m_black, m_phone)
+		VALUES (#{m_id}, #{m_pw}, #{m_name},
+		#{m_level},
+		#{m_mail}, #{m_black}, #{m_phone})
 	</insert>
 
 	<update id="updateMember">
 		UPDATE member
-		SET m_name=#{m_name}, m_mail=#{m_mail}, m_phone=#{m_phone}
+		SET m_name=#{m_name}, m_mail=#{m_mail},
+		m_phone=#{m_phone}
 		WHERE m_id=#{m_id}
 	</update>
-	
+
 	<delete id="deleteMember">
 		DELETE FROM member
 		WHERE m_id=#{m_id}
 	</delete>
-	
+
 	<select id="viewMember" resultType="MemberDTO">
 		SELECT *
 		FROM member
-		WHERE m_id=#{m_id}
+		WHERE
+		m_id=#{m_id}
 	</select>
-	
+
 	<select id="loginMember" resultType="MemberDTO">
 		SELECT *
 		FROM member
-		WHERE m_id=#{m_id} and m_pw=#{m_pw}
+		WHERE
+		m_id=#{m_id} and m_pw=#{m_pw}
 	</select>
-	
+
 	<select id="findId" resultType="MemberDTO">
 		SELECT *
 		FROM member
-		WHERE m_name=#{m_name} AND m_mail=#{m_mail}
+		WHERE
+		m_name=#{m_name} AND m_mail=#{m_mail}
 	</select>
-	
+
 	<update id="findPw">
 		UPDATE member
 		SET m_pw = #{m_pw}
-		WHERE m_id=#{m_id} AND m_mail=#{m_mail}
+		WHERE m_id=#{m_id} AND
+		m_mail=#{m_mail}
 	</update>
-	
+
 	<select id="checkPw" resultType="int">
 		SELECT COUNT(*)
 		FROM member
-		WHERE m_id=#{m_id} AND m_pw=#{m_pw}
+		WHERE
+		m_id=#{m_id} AND m_pw=#{m_pw}
 	</select>
-	
+
 </mapper>

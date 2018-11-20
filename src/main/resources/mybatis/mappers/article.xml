@@ -6,6 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="article">
 	<select id="list" parameterType="java.lang.String"
 		resultType="aaaDTO">
-		select * from article where a_target = #{a_target}
+		select * from article where a_board = #{a_board}
 	</select>
+	<insert id="insertOne" parameterType="aaaDTO">
+		insert into article (
+		a_title,a_content,a_board)value
+		(#{a_title},#{a_content},#{a_board})
+	</insert>
 </mapper>

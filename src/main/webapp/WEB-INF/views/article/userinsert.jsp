@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
+
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
 <section id="inner-headline">
@@ -31,7 +33,7 @@
 			<div class="row">
 				<div class="span8">
 					<h4>1:1문의</h4>
-					<form action="page/customerprivatewrite" method="post">
+					<form action="${uuu }contact/insertReg" method="post">
 						<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -48,7 +50,8 @@
 										style="width: 95%"></td>
 								</tr>
 								<tr>
-									<td colspan="4"><input type="text" name="a_content"
+									<td colspan="4"><input type="hidden" name="target"
+										value="contact"> <input type="text" name="a_content"
 										style="width: 98%; height: 300px"></td>
 								</tr>
 								<tr>

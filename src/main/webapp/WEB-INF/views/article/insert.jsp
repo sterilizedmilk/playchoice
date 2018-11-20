@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
+
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
 <section id="inner-headline">
@@ -30,7 +32,7 @@
 		<div class="row">
 			<div class="span8">
 				<h4>관리자 고객센터 글 작성</h4>
-				<form action="page/customerprivatewrite" method="post">
+				<form action="${uuu }notice/insertReg">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -50,10 +52,8 @@
 									style="width: 98%; height: 300px"></td>
 							</tr>
 							<tr>
-								<td colspan="4">
-									<button type="submit" class="btn btn-square btn-theme"
-										style="width: 100%">등록</button>
-								</td>
+								<td colspan="4"><input type="submit"
+									class="btn btn-square btn-theme" style="width: 100%" value="등록" /></td>
 							</tr>
 						</tbody>
 					</table>
