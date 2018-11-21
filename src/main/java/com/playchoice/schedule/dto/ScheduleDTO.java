@@ -89,4 +89,11 @@ public class ScheduleDTO {
 		this.a_name2 = a_name2;
 	}
 
+	@Override
+	public String toString() {
+		return "ScheduleDTO [s_id=" + s_id + ", p_id=" + p_id + ", s_ticket=" + s_ticket + ", s_price=" + s_price
+				+ ", a_id1=" + a_id1 + ", a_id2=" + a_id2 + ", s_time=" + s_time + ", s_canceled=" + s_canceled
+				+ ", a_name1=" + a_name1 + ", a_name2=" + a_name2 + "]";
+	}
+	
 }

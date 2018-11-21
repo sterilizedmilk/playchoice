@@ -15,7 +15,7 @@
 <form role="form" method="post">
 	<input type="hidden" name="p_id" value="${playDTO.p_id }">
 </form>
-<div class="container" align="center">
+<%-- <div class="container" align="center">
 	<div class="row">
 		<table border="" width="100%" height="800px" align="center">
 			<tr height="20%">
@@ -30,7 +30,7 @@
 			</tr>
 		</table>
 	</div>
-</div>
+</div> --%>
 
 <div class="box-body">
 	<div class="form-group">
@@ -43,9 +43,16 @@
 	</div>
 	<div class="form-group">
 		<label for="exampleInputPassword1">글 내용</label>
-		<textarea rows="50" cols="50">${playDTO.p_info }</textarea>
+		<textarea rows="50" cols="50" readonly="readonly">${playDTO.p_info }</textarea>
 	</div>
-	
+	<div class="form-group">
+		<label for="exampleInputPassword1">환불 규정</label>
+		<textarea rows="50" cols="50" readonly="readonly">${playDTO.p_refund_policy }</textarea>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>
+		<input type="text" name="location" class="form-control" value="${playDTO.p_location }" readonly="readonly">
+	</div>
 	<div class="form-group">
 		<label for="exampleInputEmail1">관련 사진</label>
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_picture }">
@@ -60,6 +67,7 @@
 	<button type="submit" class="btn btn-danger">글 삭제</button>
 	<button type="submit" class="btn btn-flurry">글 게시</button>
 	<button type="submit" class="btn btn-primary">목록으로</button>
+	<button type="submit" class="btn btn-pslist">일정 보기</button>
 </div>
 
 
@@ -84,6 +92,10 @@
 		});
 		$(".btn-primary").on("click", function(){
 			self.location="/playChoice/admin/play/aplist";
+		});
+		$(".btn-pslist").on("click", function(){
+			
+			self.location="/playChoice/admin/play/pslist?p_id=${playDTO.p_id}";
 		});
 	});
 </script>

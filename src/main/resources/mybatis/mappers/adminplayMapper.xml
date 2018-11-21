@@ -16,12 +16,13 @@
     </select>
     
     <insert id="create" parameterType="java.util.HashMap">
-    	insert into play(p_name, p_info, p_picture)
-    	values(#{p_name}, #{p_info}, #{p_picture})
+    	insert into play(p_name, p_info, p_picture, g_id, a_id, p_location, p_refund_policy)
+    	values(#{p_name}, #{p_info}, #{p_picture}, #{g_id}, #{a_id}, #{p_location}, #{p_refund_policy})
     </insert>
     
     <update id="update" parameterType="java.util.HashMap">
-    	update play set p_name=#{p_name}, p_info=#{p_info}, p_picture=#{p_picture}
+    	update play set p_name=#{p_name}, p_info=#{p_info}, p_picture=#{p_picture}, g_id=#{g_id}, a_id=#{a_id},
+    	 p_location=#{p_location}, p_refund_policy=#{p_refund_policy}
     	where p_id=#{p_id}
     </update>
     
@@ -34,4 +35,16 @@
     	update play set p_status=1
     	where p_id=#{p_id}
     </update>
+    
+    <select id="psread" resultType="ScheduleDTO">
+    	select s_time, s_price, s_ticket, a_id1, a_id2
+    	from schedule
+    	where p_id = #{p_id}
+    </select>
+    
+    <insert id="pscreate" >
+    	insert into schedule(p_id, s_time, s_price, s_ticket, a_id1, a_id2)
+    	values(#{p_id}, #{s_time}, #{s_price}, #{s_ticket}, #{a_id1}, #{a_id2})
+    </insert>
+    
 </mapper>

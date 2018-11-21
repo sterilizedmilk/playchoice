@@ -19,7 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
+import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.schedule.dto.ScheduleDTO;
 
 
 /**
@@ -32,6 +34,9 @@ public class AdminPlayController {
 	
 	@Autowired
 	private AdminPlayService service;
+	
+	@Autowired
+	private SiteAdminService service2;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminPlayController.class);
@@ -54,6 +59,8 @@ public class AdminPlayController {
 	@RequestMapping(value="apregister", method=RequestMethod.GET)
 	public void registerGET(PlayDTO dto, Model model) throws Exception{
 		logger.info("register get.............");
+		service2.genreList();
+		service2.areaList();
 	}
 
 	@RequestMapping(value="apregister", method=RequestMethod.POST)
@@ -132,15 +139,33 @@ public class AdminPlayController {
 		return "redirect:/admin/play/aplist";
 	}
 	
-
-//	@RequestMapping("aplist") // 연극 관리자 연극 리스트 보기 호출
-//	public String apList(HttpSession ses, Model model) {
-//		Object a = ses.getAttribute("user_id"); //user_id 관련 들고 들어오다
-//		List<PlayDTO> plays = (List<PlayDTO>) session.selectList("queryurl", a); //mapper에 설정되어있다 -> list에 입력
-//		model.addAttribute("playList", plays); //playList 
-//		
-//		return "";
-//	}
+	//일정 조회
+	@RequestMapping(value="pslist", method=RequestMethod.GET)
+	public void psread(@RequestParam("p_id") int p_id, Model model) throws Exception{
+		logger.info("list psread show....................");
+		model.addAttribute("key", service.psread(p_id));
+		//key 값을 key로 만들어 service.psread(p_id) 내용을 사용
+		System.out.println(service.psread(p_id));
+	}
 	
+	//일정 생성
+	@RequestMapping(value="psregister", method=RequestMethod.GET)
+	public void psregisterGET(ScheduleDTO sdto, Model model) throws Exception{
+		logger.info("psregister get.............");
+		System.out.println(sdto);
+	}
+	@RequestMapping(value="psregister", method=RequestMethod.POST)
+	public String psregisterPOST(ScheduleDTO sdto, RedirectAttributes rttr) throws Exception{
+		logger.info("psregister post.............");
+		
+		System.out.println(sdto);
+		System.out.println(sdto.getP_id());
+		service.psregist(sdto);
+		rttr.addAttribute("msg", "success");
+		
+		return "redirect:pslist?p_id="+sdto.getP_id();
+		//pslist로 이동 ->  p_id에 대하여 sdto.getP_id() 로 이동
+	}
+
 	
 }

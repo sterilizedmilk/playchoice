@@ -28,15 +28,45 @@
 			<textarea class="form-control" name="p_info" rows="50" cols="50">${playDTO.p_info }</textarea>
 		</div>
 		<div class="form-group">
+			<label for="exampleInputPassword1">환불 규정</label>
+			<textarea class="form-control" name="p_refund_policy" rows="50" cols="50">${playDTO.p_refund_policy }</textarea>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">찾아오시는길(상세 주소)</label>
+			<input type="text" name="p_location" class="form-control" value="${playDTO.p_location }">
+		</div>
+		<div class="form-group">
 			<label for = "exampleInputEmail1">파일 변경</label>
-			<input type="file" name="p_picture" class="form-contorl">
+			<input type="file" name="p_picture" class="form-contorl" value="${playDTO.p_picture }">
+			<img src="/playChoice/resources/img/admin/play/${playDTO.p_picture }">
+		</div>
+		<div class="form-group">
+			<label>장르</label>
+			<select name="g_id">
+				<option value="1">로맨틱코미디</option>
+				<option value="2">공포/스릴러</option>
+				<option value="3">드라마</option>
+				<option value="4">코믹</option>
+				<option value="5">기타</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>지역</label>
+			<select name="a_id">
+				<option value="1">서울/대학로</option>
+				<option value="2">서울/기타</option>
+				<option value="3">경기</option>
+				<option value="4">대전/충청</option>
+				<option value="5">부산/대구/경상</option>
+				<option value="6">광주/전주/전라</option>
+			</select>
 		</div>
 	</div>
 </form>
 
 <div class="box-footer">
 	<button type="submit" class="btn btn-primary">변경</button>
-	<button type="submit" class="btn btn-warning">취소</button>
+	<input type="button" onclick="history.go(-1)" value="취소">
 </div>
 
 <script>
@@ -44,11 +74,7 @@
 		var formObj = $("form[role='form']");
 		
 		console.log(formObj);
-		
-		$(".btn-warning").on("click", function(){
-			self.location="/playChoice/admin/play/aplist";
-		});
-		
+				
 		$(".btn-primary").on("click", function(){
 			formObj.submit();
 		});
