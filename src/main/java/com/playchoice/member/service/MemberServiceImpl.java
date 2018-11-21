@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO loginMember(LoginDTO dto) throws Exception {
 		MemberDTO memberDto = null;
 		memberDto = memberDao.loginMember(dto);
-		if(memberDto.getM_status() == 2) {
+		if(memberDto.getM_status() == 1 || memberDto.getM_status() == 2) { // 블랙회원 또는 탈퇴회원인 경우
 			return null;
 		}
 		return memberDto;

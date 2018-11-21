@@ -49,10 +49,10 @@ public class PlayController {
 		
 		
 		//review
-		System.out.println(service.getReviewScore(p_id));
-		model.addAttribute("reviewScore",service.getReviewScore(p_id));
-		System.out.println(service.getReviewSmall(p_id));
-		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
+//		System.out.println(service.getReviewScore(p_id));
+//		model.addAttribute("reviewScore",service.getReviewScore(p_id));
+//		System.out.println(service.getReviewSmall(p_id));
+//		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
 		return "play/playdetail";
 		
 	}
