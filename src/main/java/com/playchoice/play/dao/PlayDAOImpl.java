@@ -70,9 +70,15 @@ public class PlayDAOImpl implements PlayDAO {
 	}
 	
 	@Override
-	public Object getReview(int p_id) {
+	public Object getReviewSmall(int p_id) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+".getReviewSmall", p_id);
+	}
+
+	@Override
+	public Object getReviewScore(int p_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".getReviewScore",p_id);
 	}
 
 	

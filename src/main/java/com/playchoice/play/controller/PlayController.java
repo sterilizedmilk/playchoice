@@ -37,23 +37,27 @@ public class PlayController {
 		model.addAttribute("list", dto);
 		return "play/playlist";
 	}
-
+	
+	// 연극 detail
 	@RequestMapping(value = "playdetail", method = RequestMethod.GET)
 	public String playDetail(@RequestParam("p_id") int p_id, Model model) throws Exception {
 		//play
-		model.addAttribute(service.playDetail(p_id));
+		model.addAttribute("playDTO",service.playDetail(p_id));
 		
 		//schedule		
 		model.addAttribute("schedule",service.getSchedule(p_id));
 		
 		
 		//review
-//		service.getReview(p_id);
-		
+		System.out.println(service.getReviewScore(p_id));
+		model.addAttribute("reviewScore",service.getReviewScore(p_id));
+		System.out.println(service.getReviewSmall(p_id));
+		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
 		return "play/playdetail";
 		
 	}
-
+	
+	//아작스 연습한거입니다.
 	@RequestMapping("checkSchedule")
 	@ResponseBody
 	public Object getSchedule(@RequestParam HashMap<String, Object> param) {
@@ -69,12 +73,14 @@ public class PlayController {
 		return param;
 	}
 	
+	//장바구니
 	@RequestMapping("bastket")
 	public void addBastket(@RequestParam HashMap<String, Object> param) {
 		// TODO 쿠키적용
 		System.out.println(param);
 	}
 	
+	//결제
 	@RequestMapping("payment")
 	public void directPay(@RequestParam HashMap<String, Object> param) {
 		// TODO 로그인여부 확인(인터셉터)

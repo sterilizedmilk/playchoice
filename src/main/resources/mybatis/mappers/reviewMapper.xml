@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.playchoice.mappers.reviewMapper">
+	<select id="getTotalReview" parameterType="Integer"
+	resultType="java.util.HashMap">
+		SELECT
+			member.m_id AS m_id, review.r_content AS r_content, review.r_register_time AS r_register_time
+			,review.r_play_score AS r_play_score
+		FROM
+			play, playshow, review, member
+		WHERE
+			review.s_id = playshow.s_id
+			AND playshow.p_id = '1'
+			AND review.m_code = member.m_code
+		LIMIT 20;
+	</select>
+</mapper>

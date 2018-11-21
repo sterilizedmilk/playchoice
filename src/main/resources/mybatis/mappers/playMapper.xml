@@ -24,4 +24,31 @@
 		order by s_time
 	</select>
 	
+	<select id="getReviewScore" parameterType="Integer"
+	 resultType="java.util.HashMap">
+		SELECT
+			count(*) AS cnt, round(avg(review.r_play_score),1) AS avgscore
+		FROM
+			play, playshow, review, member
+		WHERE
+			review.s_id = playshow.s_id
+			AND playshow.p_id = '1'
+			AND review.m_code = member.m_code;
+		
+	</select>
+	
+	<select id="getReviewSmall" parameterType="Integer"
+	resultType="java.util.HashMap">
+		SELECT
+			member.m_id AS m_id, review.r_content AS r_content, review.r_register_time AS r_register_time
+			,review.r_play_score AS r_play_score
+		FROM
+			play, playshow, review, member
+		WHERE
+			review.s_id = playshow.s_id
+			AND playshow.p_id = '1'
+			AND review.m_code = member.m_code
+		order by review.r_register_time desc
+		LIMIT 20;
+	</select>
 </mapper>

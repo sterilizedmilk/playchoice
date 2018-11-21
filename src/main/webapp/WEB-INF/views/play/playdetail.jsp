@@ -16,6 +16,9 @@ $(document).ready(function(){
 	var total; // 티켓 총합
 	var scheId; // 스케쥴 아이디
 	
+	$('#ticket').text(quantity); // 티켓 수 출력
+	
+	
 	//달력출력
 	$('#viewSchedule').click(function(){
 		$.ajax({
@@ -61,27 +64,29 @@ $(document).ready(function(){
 		
 	});
 	
-	//매표 수 증가처리
+	//매표 수 마이너스
 	$('#minus').click(function(){
 		//최저 매표 1
 		if($('#quantity').val() > 1){
 			quantity -=1;
 			total = price * quantity;
 			$('#quantity').val(quantity);
-			$('#ticket').text(quantity);
-			$("#totalCost").text(total);
+			$('#ticket').text(quantity); // 티켓 수 출력
+			$("#totalCost").text(total); // 총가격 출력
+			
 		}else{
 			quantity = 1;
 			$('#quantity').val(quantity);
 		}
 		
 	})
+	//매표 수 플러스
 	$('#plus').click(function(){
 		quantity +=1;
 		total = price * quantity;
 		$('#quantity').val(quantity);
-		$('#ticket').text(quantity);
-		$("#totalCost").text(total);
+		$('#ticket').text(quantity); // 티켓 수 출력
+		$("#totalCost").text(total); // 총가격 출력
 	})
 	
 	//장바구니
@@ -103,6 +108,55 @@ $(document).ready(function(){
 		frm.action="payment";
 		frm.submit();
 	});
+	
+	// Q & A 등록
+	$("#qsubmit").click(function(){
+		qfrm.action="../qna/insertQues";
+		qfrm.submit();
+		
+	})
+	
+	
+/* 	
+	<c:forEach items="${res.reviews }" var="list" varStatus="status">
+	<div style="border-bottom: 1px solid #eee;">
+		<p>
+			${list.r_play_score}
+		</p>
+		<p>
+			${list.r_content }
+		</p>
+		<p>
+			${list.m_id } <span style="font-size: 0.5ex">(${list.r_register_time })</span>
+		</p>
+	</div>
+</c:forEach> */
+
+
+	//리뷰 전체보기
+/* 	$("#review").click(function(){
+		$.ajax({
+			type  : "POST"
+			,url  : "../review/playtotalreview"
+			,data : {"p_id" : ${playDTO.p_id}}
+			,dataType : "json" 
+			,success : function(res){
+				console.log(res.reviews);
+				
+				for(var rr in res.reviews){
+					var new_item = $("<div style='border-bottom: 1px solid #eee;' />");
+					new_item.html('<p>'+res.reviews[rr]["r_play_score"]+' 점</p>');
+					new_item.html('<p>'+res.review[rr]["r_content"]+'</p>');
+					
+					var p_sec = $("<p>");
+					
+				
+					$("#reviews").append(new_item);
+				}
+			}
+			
+		});
+	}); */
 });
 </script>
 <!-- <script>
@@ -204,7 +258,8 @@ $(document).ready(function(){
 			</div>
 			<!-- 총 가격 -->
 			<div style="margin:0 10px; padding:15px 0px; text-align:right; border-top:1px solid #eee; font-size: 24px; color:#ed1c24;" >
-				<span id="totalCost"></span>
+				<span id="totalCost"> </span><span> 원</span>
+				
 			</div>
 			<!-- 총 가격 끝 -->
 		</div>
@@ -253,33 +308,29 @@ $(document).ready(function(){
 	</div>
 	<!-- 버튼 끝 -->
 	
-	<!-- 리뷰 정보 시작 -->
+	<!-- 최근 리뷰 정보 시작 -->
 	<div class="row">
 		<div>
 			<p style="font-size: 1.5em;">
-				예매자 평점 4.5 / 5.0 (3명)
+				예매자 평점 ${reviewScore.avgscore } / 5.0 (${reviewScore.cnt }명)
 			</p>
 		</div>
 		<div style="background-color: #FAF4C0; outline:1px solid #eee;">
+			<c:forEach items="${reviewSmall }" var="reviewList" begin="0" end="1">
 			<div style="padding:10px 10px; margin:15px 25px; border-bottom: 1px solid #BDBDBD;">
-				<p><b>사용자 아이디</b>(입력날짜)</p>
-				<p>리뷰 내용</p>
+				<p><b>${reviewList.m_id }</b>(${reviewList.r_register_time })</p>
+				<p>${reviewList.r_content }</p>
 			</div>
-			
-			<div style="padding:10px 10px; margin:15px 25px; border-bottom: 1px solid #BDBDBD;">
-				<p><b>사용자 아이디</b>(입력날짜)</p>
-				<p>리뷰 내용</p>
-			</div>
-			
+			</c:forEach>
 		</div>
 	</div>
-	<!-- 리뷰 정보 끝 -->
+	<!-- 최근 리뷰 정보 끝 -->
 	
 	<!-- 탭정보 출력 -->
 	<div class="row" style="align-content: center;">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#one" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;"><span style="font-size: 2em">안 내</span></a></li>
-			<li><a href="#two" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기</a></li>
+			<li><a href="#two" id="review" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기</a></li>
 			<li><a href="#three" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">Q & A</a></li>
 			<li><a href="#four" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">환불규정</a></li>
 		</ul>	
@@ -287,15 +338,58 @@ $(document).ready(function(){
 			<div class="tab-pane active" id="one">
 				<p>연극 안내 페이지</p>
 			</div>
+			<!-- 리뷰 탭 -->
 			<div class="tab-pane" id="two">
-				<p>후기 페이지</p>
+				<div align="center" style="padding:20px; margin:10px 30px; outline:1px solid #eee; align-content: center;">
+					<p >별점 <span style="font-size: 1.5em">${reviewScore.avgscore }</span>  점</p>
+					<p>별 그림</p>
+					<p>실제 관람객들 후기입니다.</p>
+				</div>
+				<div id="reviews" style="margin:10px 30px;">
+					<c:forEach items="${reviewSmall}" var="list" varStatus="status">
+						<div style="border-bottom: 1px solid #eee;">
+							<p>
+								${list.r_play_score}
+							</p>
+							<p>
+								${list.r_content }
+							</p>
+							<p>
+								${list.m_id } <span style="font-size: 0.5ex">(${list.r_register_time })</span>
+							</p>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
+			<!-- 리뷰 탭 종료 -->
+			<!-- Q & A 탭 -->
 			<div class="tab-pane" id="three">
-				<p>Q & A 페이지</p>
+				<div style="margin:20px;">
+					<p>연극에 대한 궁금증을 남겨주세요!</p>				
+					<div style="background-color:#FAF4C0; ">
+						<form id="qfrm" method="post">
+						<textarea id="q_content" name="q_content" style="margin:10px 30px 10px 10px; height:100px; width:80%;"></textarea>
+						<input type="hidden" name="p_id"  value="${playDTO.p_id }"/>
+						<input type="hidden" name="m_code" value="${login.m_code }"/>
+						<button id="qsubmit">등 록</button>
+						</form>
+					</div>
+					<div style="margin:70px 0 0 0; outline:1px solid #eee;">
+						<div style="padding: 10px; border-bottom: 1px solid #eee;">
+							<p>질문</p>
+						</div>
+						<div style="padding: 10px; background-color:#FAF4C0;">
+							<p>답변</p>
+						</div>
+					</div>
+				</div>
 			</div>
+			<!-- Q & A 탭 종료 -->
+			<!--  환불정책 탭 -->
 			<div class="tab-pane" id="four">
-				<p>환불 규정 페이지</p>
+				<p>${playDTO.p_refund_policy }</p>
 			</div>
+			<!--  환불정책 종료 -->
 		</div>
 		<!-- 탭 종료 -->
 	</div>
