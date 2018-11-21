@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playchoice.admin.dao.SiteAdminDAO;
+import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 
 @Service
@@ -30,7 +31,7 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	}
 
 	@Override
-	public List<GenreDTO> areaList() {
+	public List<AreaDTO> areaList() {
 		return dao.areaList();
 	}
 

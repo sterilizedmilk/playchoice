@@ -2,6 +2,7 @@ package com.playchoice.admin.dao;
 
 import java.util.List;
 
+import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
@@ -32,7 +33,7 @@ public interface SiteAdminDAO {
 	public int genreDelete(int g_id);
 	
 	
-	public List<GenreDTO> areaList();
+	public List<AreaDTO> areaList();
 	
 	public int areaInsert(String a_name);
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.service.SiteAdminService;
 
@@ -218,7 +219,7 @@ public class SiteAdminController {
 	
 	@RequestMapping("area")
 	public String areaListController(Model model) {
-		List<GenreDTO> areaList = adminService.areaList();
+		List<AreaDTO> areaList = adminService.areaList();
 		model.addAttribute("areaList", areaList);
 		return "admin/site/area";
 	}
