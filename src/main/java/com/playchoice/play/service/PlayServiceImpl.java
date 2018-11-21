@@ -50,8 +50,14 @@ public class PlayServiceImpl implements PlayService {
 
 	@Override
 	public Object getReviewScore(int p_id) {
-		// TODO Auto-generated method stub
+	
 		return playDao.getReviewScore(p_id);
+	}
+
+	@Override
+	public List<Object> getQnA(int p_id) {
+	
+		return playDao.getQnA(p_id);
 	}
 
 }

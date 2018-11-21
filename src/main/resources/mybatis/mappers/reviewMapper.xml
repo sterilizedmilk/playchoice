@@ -9,10 +9,10 @@
 			member.m_id AS m_id, review.r_content AS r_content, review.r_register_time AS r_register_time
 			,review.r_play_score AS r_play_score
 		FROM
-			play, playshow, review, member
+			play, schedule, review, member
 		WHERE
-			review.s_id = playshow.s_id
-			AND playshow.p_id = '1'
+			review.s_id = schedule.s_id
+			AND schedule.p_id = '1'
 			AND review.m_code = member.m_code
 		LIMIT 20;
 	</select>

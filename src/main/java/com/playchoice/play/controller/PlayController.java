@@ -46,18 +46,19 @@ public class PlayController {
 		
 		//schedule		
 		model.addAttribute("schedule",service.getSchedule(p_id));
-		
-		
+
 		//review
-//		System.out.println(service.getReviewScore(p_id));
-//		model.addAttribute("reviewScore",service.getReviewScore(p_id));
-//		System.out.println(service.getReviewSmall(p_id));
-//		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
+		model.addAttribute("reviewScore",service.getReviewScore(p_id));
+		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
+		
+		//Q & A 
+		System.out.println(service.getQnA(p_id));
+		model.addAttribute("qnaAll", service.getQnA(p_id));
 		return "play/playdetail";
 		
 	}
 	
-	//아작스 연습한거입니다.
+	//아작스 연습한거입니다. 무시해주세요
 	@RequestMapping("checkSchedule")
 	@ResponseBody
 	public Object getSchedule(@RequestParam HashMap<String, Object> param) {

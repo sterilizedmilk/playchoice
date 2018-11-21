@@ -26,11 +26,14 @@ public interface PlayDAO {
 	
 	public List<Object> viewCal(HashMap<String,Object> param);
 	
+	// detail 접근시 schedule 가져오기
 	public Object getSchedule(int p_id);
 	
 	public Object getReviewSmall(int p_id);
 	
 	public Object getReviewScore(int p_id);
+	
+	public List<Object> getQnA(int p_id);
 	
 
 }

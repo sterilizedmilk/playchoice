@@ -8,6 +8,21 @@
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
 <meta charset="UTF-8">
+<style type="text/css">
+.qna_question{
+
+
+
+}
+
+.qna_answer{
+	padding: 10px;
+	background-color:#FAF4C0;
+
+
+}
+
+</style>
 <script>
 $(document).ready(function(){
 	
@@ -47,7 +62,6 @@ $(document).ready(function(){
 			,error :function(){
 				console.log("에러");
 			}
-			
 		});
 		
 	});
@@ -95,7 +109,7 @@ $(document).ready(function(){
 		$("#frmPrice").val(total);
 		$("#frmQuantity").val(quantity);
 		
-		frm.action="bastket";
+		frm.action="../member/basket";
 		frm.submit();
 	});
 	
@@ -375,12 +389,26 @@ $(document).ready(function(){
 						</form>
 					</div>
 					<div style="margin:70px 0 0 0; outline:1px solid #eee;">
-						<div style="padding: 10px; border-bottom: 1px solid #eee;">
+						<c:forEach items="${qnaAll}" var="list">
+						<c:set var="className" value="qna_question" />
+							<c:if test="${list.q_id != list.q_target_id }">
+								<c:set var="className" value="qna_answer" />
+							</c:if>
+							<div class="${className }">
+								<p style="font-weight: bold;">${list.m_id } | ${list.q_time} <button class="deleteQuestion" value="${list.q_id }">삭제</button></p>
+								<p>${list.q_content }</p>
+							</div>
+						</c:forEach>
+					
+					
+					
+					
+						<!-- <div style="padding: 10px; border-bottom: 1px solid #eee;">
 							<p>질문</p>
 						</div>
 						<div style="padding: 10px; background-color:#FAF4C0;">
 							<p>답변</p>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

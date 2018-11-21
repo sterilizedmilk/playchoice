@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.playchoice.qna.service.QnaService;
-import com.playchoice.qna.dto.*;
 @Controller
 @RequestMapping("qna")
 public class QnaController {
@@ -18,13 +18,21 @@ public class QnaController {
 	QnaService service;
 	
 	@RequestMapping(value="insertQues", method=RequestMethod.POST)
-	String insertQues(@RequestParam HashMap<String, Object> res) {
+	String insertQues(@RequestParam HashMap<String, Object> res,
+			Model model) {
 		System.out.println(res);
 		System.out.println("큐앤에이 인써트 컨트롤러");
 		
-		service.insertQuset(res);
 		
-		return null;
+		if(service.insertQuset(res) != 1) {
+			model.addAttribute("msg", "등록실패");
+			model.addAttribute("url", "../play/playdetail?p_id="+res.get("p_id"));
+		}else {
+			model.addAttribute("msg", "등록완료");
+			model.addAttribute("url", "../play/playdetail?p_id="+res.get("p_id"));
+		}
+		return "qna/result";
 	}
-
+	
+	
 }

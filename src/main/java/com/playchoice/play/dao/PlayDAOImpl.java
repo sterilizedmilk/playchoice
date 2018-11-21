@@ -81,6 +81,12 @@ public class PlayDAOImpl implements PlayDAO {
 		return sqlSession.selectOne(namespace+".getReviewScore",p_id);
 	}
 
+	@Override
+	public List<Object> getQnA(int p_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".getQnA", p_id);
+	}
+
 	
 
 }
