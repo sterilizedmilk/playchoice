@@ -111,7 +111,7 @@ $(document).ready(function(){
 		$("#frmPrice").val(total);
 		$("#frmQuantity").val(quantity);
 		
-		frm.action="../member/basket";
+		frm.action="${pageContext.request.contextPath}/basket/insert";
 		frm.submit();
 	});
 	
