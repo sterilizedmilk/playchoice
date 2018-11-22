@@ -1,6 +1,8 @@
 package com.playchoice.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,17 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	public List<GenreDTO> genreList() {
 		return dao.genreList();
 	}
+	
+	@Override
+	public Map<Integer, String> genreMap() {
+		List<GenreDTO> list = dao.genreList();
+		Map<Integer, String> map = new HashMap<>();
+		
+		for (GenreDTO dto : list)
+			map.put(dto.getG_id(), dto.getG_name());
+		
+		return map;
+	}
 
 	@Override
 	public int genreInsert(String g_name) {
@@ -33,6 +46,17 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	@Override
 	public List<AreaDTO> areaList() {
 		return dao.areaList();
+	}
+	
+	@Override
+	public Map<Integer, String> areaMap() {
+		List<AreaDTO> list = dao.areaList();
+		Map<Integer, String> map = new HashMap<>();
+		
+		for (AreaDTO dto : list)
+			map.put(dto.getA_id(), dto.getA_name());
+		
+		return map;
 	}
 
 	@Override
