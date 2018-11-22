@@ -25,9 +25,10 @@ public class ShoppingBasketController {
 	
 	// 장바구니 추가
 	@RequestMapping(value = "/insert")
-	public String insert(@ModelAttribute ShoppingBasketDTO dto, HttpSession session) throws Exception {
+	public String insert(@ModelAttribute ShoppingBasketDTO dto, @RequestParam("p_id") int p_id, HttpSession session) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		dto.setM_code(m_code);
+		dto.setP_id(p_id);
 		// 장바구니에 기존 상품이 있는지 체크
 		int cnt = basketService.countBasket(dto.getP_id(), m_code);
 		if(cnt == 0) { // 없으면 장바구니에 추가
@@ -41,7 +42,6 @@ public class ShoppingBasketController {
 	public String list(HttpSession session, Model model) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code(); // session에 저장된 m_code
 		
-		/*int p_id = */
 		//Map<String, Object> map = new HashMap<String, Object>();
 		List<PlayDTO> list = basketService.ShoppingBasketList(m_code); // 장바구니 정보
 		
