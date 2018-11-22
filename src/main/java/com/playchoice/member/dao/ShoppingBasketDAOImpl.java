@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.playchoice.member.dto.ShoppingBasketDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 @Repository
 public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
@@ -19,14 +20,8 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
 
 	// 장바구니 목록
 	@Override
-	public List<ShoppingBasketDTO> ShoppingBasketList(int m_code) throws Exception {
+	public List<PlayDTO> ShoppingBasketList(int m_code) throws Exception {
 		return sqlSession.selectList(namespace + ".ShoppingBasketList", m_code);
-	}
-	
-	// 장바구니 조회
-	@Override
-	public ShoppingBasketDTO viewBasket(int m_code) throws Exception {
-		return sqlSession.selectOne(namespace + ".viewBasket", m_code);
 	}
 
 	// 장바구니 추가
@@ -46,14 +41,14 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
 	public void deleteBasket(int p_id) throws Exception {
 		sqlSession.delete(namespace + ".deleteBasket", p_id);
 	}
-
-	// 장바구니에 동일한 상품이 있는지 체크
+	
+	// 장바구니에 동일한 상품이 있는지 검사
 	@Override
-	public int checkBasket(int m_code, int p_id) throws Exception {
+	public int countBasket(int m_code, int p_id) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("m_code", m_code);
 		map.put("p_id", p_id);
-		return sqlSession.selectOne(namespace + ".checkBasket", map);
+		return sqlSession.selectOne(namespace + ".countBasket", map);
 	}
 
 }

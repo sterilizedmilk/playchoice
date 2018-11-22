@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.playchoice.member.dao.ShoppingBasketDAO;
 import com.playchoice.member.dto.ShoppingBasketDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 @Service
 public class ShoppingBasketServiceImpl implements ShoppingBasketService {
@@ -16,14 +17,8 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 
 	// 장바구니 목록
 	@Override
-	public List<ShoppingBasketDTO> ShoppingBasketList(int m_code) throws Exception {
+	public List<PlayDTO> ShoppingBasketList(int m_code) throws Exception {
 		return shoppingBasketDao.ShoppingBasketList(m_code);
-	}
-
-	// 장바구니 조회
-	@Override
-	public ShoppingBasketDTO viewBasket(int m_code) throws Exception {
-		return shoppingBasketDao.viewBasket(m_code);
 	}
 
 	// 장바구니 추가
@@ -43,11 +38,11 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 	public void deleteBasket(int p_id) throws Exception {
 		shoppingBasketDao.deleteBasket(p_id);
 	}
-
-	// 장바구니에 동일한 상품이 있는지 체크
+	
+	// 장바구니에 동일한 상품이 있는지 검사
 	@Override
-	public int checkBasket(int m_code, int p_id) throws Exception {
-		return shoppingBasketDao.checkBasket(m_code, p_id);
+	public int countBasket(int m_code, int p_id) throws Exception {
+		return shoppingBasketDao.countBasket(m_code, p_id);
 	}
 
 }

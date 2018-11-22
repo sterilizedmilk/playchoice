@@ -5,13 +5,11 @@
 <mapper namespace="com.playchoice.mapper.basketMapper">
 
 	<!-- 장바구니 목록 -->
-	<select id="ShoppingBasketList" resultType="ShoppingBasketDTO">
-		SELECT member.m_code AS '회원코드', member.m_name AS '회원명',
-			   play.p_id AS '연극코드', play.p_name AS '연극명'
-		FROM shopping_basket, member, play
-		WHERE member.m_code=shopping_basket.m_code
-		AND play.p_id=shopping_basket.p_id
-		AND member.m_code=#{m_code}
+	<select id="ShoppingBasketList" resultType="PlayDTO">
+		SELECT play.p_id, play.p_name
+		FROM shopping_basket, play
+		WHERE play.p_id=shopping_basket.p_id
+		AND shopping_basket.m_code=#{m_code}
 	</select>
 
 	<!-- 장바구니 추가 -->
@@ -42,7 +40,7 @@
 	</select>
 
 	<!-- 장바구니에 동일한 상품이 있는지 체크 -->
-	<select id="checkBasket" resultType="int">
+	<select id="countBasket" resultType="int">
 		SELECT COUNT(*)
 		FROM shopping_basket
 		WHERE m_code=#{m_code}

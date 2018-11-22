@@ -73,13 +73,14 @@ public class MemberController {
 		
 		switch(memberDto.getM_level()) {
 		case 0 : // 일반회원
+			System.out.println("일반회원 로그인");
 			return "redirect:/";
 		case 1 : // 연극 관리자
 			System.out.println("연극관리자 로그인");
-			return "";
+			return "redirect:/";
 		case 2 : // 사이트 관리자
 			System.out.println("사이트관리자 로그인");
-			return "";
+			return "redirect:/";
 		}
 		return "redirect:/"; // (수정필요)
 	}
