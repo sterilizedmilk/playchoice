@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.service.SiteAdminService;
+import com.playchoice.member.dto.MemberDTO;
 
 /**
  * 사이트 관리자 메뉴 사용자 관리, 배우 관리...
@@ -37,15 +36,8 @@ public class SiteAdminController {
 	// 멤버 전체 리스트 가져오기
 	@RequestMapping("member/common")
 	public String memberCommonController(Model model) {
-		System.out.println("ActorController()입성");
-		Object obj = null;
-		try {
-			obj = adminService.memberListAll();
-			System.out.println(obj);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Object obj = adminService.memberListAll();
+
 		model.addAttribute("memberlist", obj);
 		return "admin/site/member/common";
 	}
@@ -55,9 +47,26 @@ public class SiteAdminController {
 		return "admin_member";
 	}
 
-	@RequestMapping("member/{m_id}")
-	public String memberDetailController(@PathVariable("m_id") int m_id) {
-		return "";
+	@RequestMapping(value = "member/modify", method = RequestMethod.POST)
+	public String memberModifyController(MemberDTO dto, Model model) {
+		System.out.println(adminService.memberUpdate(dto));
+		return "redirect:/admin/site/member/common";
+	}
+
+	@RequestMapping(value = "member/delete", method = RequestMethod.POST)
+	public String memberDeleteController(MemberDTO dto, Model model) {
+		System.out.println(adminService.memberDelete(dto));
+		return "redirect:/admin/site/member/common";
+	}
+
+	@RequestMapping(value = "member/black", method = RequestMethod.POST)
+	public String memberBlackController(MemberDTO dto, Model model) {
+		if (dto.getM_status() == 1)
+			dto.setM_status(0);
+		else
+			dto.setM_status(1);
+		adminService.memberblack(dto);
+		return "redirect:/admin/site/member/common";
 	}
 
 	// ajax

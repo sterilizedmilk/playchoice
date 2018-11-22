@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.playchoice.admin.dao.SiteAdminDAO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.member.dto.MemberDTO;
 
 @Service
 public class SiteAdminServiceImpl implements SiteAdminService {
@@ -21,15 +22,15 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	public List<GenreDTO> genreList() {
 		return dao.genreList();
 	}
-	
+
 	@Override
 	public Map<Integer, String> genreMap() {
 		List<GenreDTO> list = dao.genreList();
 		Map<Integer, String> map = new HashMap<>();
-		
+
 		for (GenreDTO dto : list)
 			map.put(dto.getG_id(), dto.getG_name());
-		
+
 		return map;
 	}
 
@@ -47,15 +48,15 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	public List<AreaDTO> areaList() {
 		return dao.areaList();
 	}
-	
+
 	@Override
 	public Map<Integer, String> areaMap() {
 		List<AreaDTO> list = dao.areaList();
 		Map<Integer, String> map = new HashMap<>();
-		
+
 		for (AreaDTO dto : list)
 			map.put(dto.getA_id(), dto.getA_name());
-		
+
 		return map;
 	}
 
@@ -70,9 +71,29 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 		return dao.areaDelete(a_id);
 	}
 
+	// -----------멤버 관련
 	@Override
-	public Object memberListAll() throws Exception {
+	public Object memberListAll() {
 		// TODO Auto-generated method stub
 		return dao.memberManage();
 	}
+
+	@Override
+	public Object memberUpdate(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return dao.memberUpdate(memberDTO);
+	}
+
+	@Override
+	public Object memberDelete(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return dao.memberDelete(memberDTO);
+	}
+
+	@Override
+	public Object memberblack(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return dao.memberBlack(memberDTO);
+	}
+
 }

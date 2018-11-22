@@ -38,4 +38,26 @@
 	<select id="memberList" resultType="memberDTO">
 		SELECT * FROM member
 	</select>
+
+	<update id="memberUpdate" parameterType="memberDTO">
+		update member set 
+		m_id
+		= #{m_id}, m_pw = #{m_pw}, m_name = #{m_name}, m_mail =
+		#{m_mail},m_phone =
+		#{m_phone},m_level = #{m_level}, m_status =
+		#{m_status}
+		where m_code = #{m_code}
+	</update>
+	<delete id="memberDelete">
+		DELETE FROM member
+		WHERE m_code = #{m_code}
+	</delete>
+	<update id="memberBlack" parameterType="memberDTO">
+		update member set 
+		m_status =
+		#{m_status}
+		where m_code = #{m_code}
+	</update>
+	
+	
 </mapper>

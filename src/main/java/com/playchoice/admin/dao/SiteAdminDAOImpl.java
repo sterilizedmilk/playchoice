@@ -84,10 +84,31 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 		return sqlSession.delete(namespace + ".areaDelete", a_id);
 	}
 
+	// -----------------멤버 관련 -----------------
 	@Override
 	public Object memberManage() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".memberList");
+	}
+
+	@Override
+	public Object memberUpdate(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		System.out.println("memberUpdate-------" + memberDTO);
+		return sqlSession.update(namespace + ".memberUpdate", memberDTO);
+
+	}
+
+	@Override
+	public Object memberDelete(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + ".memberDelete", memberDTO);
+	}
+
+	@Override
+	public Object memberBlack(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".memberBlack", memberDTO);
 	}
 
 }

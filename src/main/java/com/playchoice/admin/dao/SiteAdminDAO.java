@@ -39,4 +39,10 @@ public interface SiteAdminDAO {
 
 	// 회원 관리
 	public Object memberManage();
+
+	public Object memberUpdate(MemberDTO memberDTO);
+
+	public Object memberDelete(MemberDTO memberDTO);
+
+	public Object memberBlack(MemberDTO memberDTO);
 }
