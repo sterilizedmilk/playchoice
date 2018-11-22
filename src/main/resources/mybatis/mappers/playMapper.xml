@@ -32,6 +32,7 @@
 			play, schedule, review, member
 		WHERE
 			review.s_id = schedule.s_id
+			AND review.r_deleted = '0'
 			AND schedule.p_id = #{p_id}
 			AND review.m_code = member.m_code;
 		
@@ -46,6 +47,7 @@
 			play, schedule, review, member
 		WHERE
 			review.s_id = schedule.s_id
+			AND review.r_deleted = '0'
 			AND schedule.p_id = #{p_id}
 			AND review.m_code = member.m_code
 		ORDER BY review.r_register_time desc
@@ -56,6 +58,8 @@
 	resultType="java.util.HashMap">
 		SELECT
 			member.m_id AS m_id
+			, member.m_code AS m_code
+			, question_answer.p_id AS p_id
 			, question_answer.q_time AS q_time
 			, question_answer.q_content AS q_content
 			, question_answer.q_id AS q_id
@@ -65,6 +69,7 @@
 		WHERE
 			question_answer.m_code = member.m_code
 			AND question_answer.p_id = #{p_id}
+			AND question_answer.q_deleted = '0'
 		ORDER BY
 			 q_target_id desc , q_id;
 	</select>
