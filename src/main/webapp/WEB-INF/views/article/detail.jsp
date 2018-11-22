@@ -54,10 +54,38 @@
 								<button type="button" class="btn btn-square btn-theme"
 									onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
 								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/list'">목록 전체보기</button></td>
+									onclick="location.href='${uuu }notice/list'">목록 전체보기 +
+									${data.a_comment }</button></td>
 						</tr>
+						<!-- 관리자일 경우에만 보여주기 -->
 					</table>
 				</form>
+				<c:if test="${data.a_board eq '3' }">
+					<form action="${uuu }notice/comment">
+						<table class="table table-bordered">
+							<tr>
+								<td colspan="4"><input type="text" name="a_comment"
+									style="width: 98%; height: 100px"> <input type="hidden"
+									name="a_id" value="${data.a_id }" /></td>
+								<td>
+									<button type="submit" class="btn btn-square btn-theme"
+										style="width: 100%; height: 100px">댓글</button>
+								</td>
+							</tr>
+							<c:if test="${!empty data.objReplay}">
+								<c:forEach items="${data.objReplay }" var="dd" varStatus="no">
+									<tr>
+										<th colspan="2">작성자 : 관리자</th>
+										<th colspan="3">작성 시간 : ${dd.a_time }</th>
+									</tr>
+									<tr>
+										<td colspan="5">${dd.a_comment }</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
+					</form>
+				</c:if>
 			</div>
 		</div>
 	</div>

@@ -59,18 +59,20 @@
 								</tr>
 							</c:forEach>
 							<tr>
+								<%-- <c:when test="${empty login }">
 								<c:choose>
-									<c:when test="${empty login }">
+									
 									</c:when>
-									<c:otherwise>
-										<!-- 관리자일 경우, -->
-										<td colspan="8">
-											<button type="button" class="btn btn-square btn-theme"
-												style="width: 100%"
-												onclick="location.href='${uuu }faq/insert'">글쓰기</button>
-										</td>
-									</c:otherwise>
+									<c:otherwise> --%>
+								<!-- 관리자일 경우, -->
+								<td colspan="8">
+									<button type="button" class="btn btn-square btn-theme"
+										style="width: 100%"
+										onclick="location.href='${uuu }faq/insert'">글쓰기</button>
+								</td>
+								<%-- </c:otherwise> 
 								</c:choose>
+ --%>
 							</tr>
 						</tbody>
 					</table>

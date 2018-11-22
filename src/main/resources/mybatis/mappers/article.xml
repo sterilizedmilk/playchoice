@@ -8,6 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="aaaDTO">
 		select * from article where a_board = #{a_board}
 	</select>
+
+	<select id="count" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(a_board) from article
+	</select>
+
 	<insert id="insertOne" parameterType="aaaDTO">
 		insert into article (
 		a_title,a_content,a_board)value
@@ -26,4 +32,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		article where
 		a_id = #{a_id}
 	</delete>
+	<insert id="commentOne" parameterType="aaaDTO">
+		insert into reply
+		(a_id,a_comment) values(#{a_id},#{a_comment})
+	</insert>
+	<update id="commentUpdate" parameterType="aaaDTO">
+		update article set
+		a_comment = 1 where a_id = #{a_id}
+	</update>
+	<select id="replylist" parameterType="aaaDTO"
+		resultType="replyDTO">
+		select * from reply where a_id = #{a_id}
+	</select>
 </mapper>

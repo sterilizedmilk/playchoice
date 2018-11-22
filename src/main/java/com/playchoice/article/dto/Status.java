@@ -1,6 +1,6 @@
 package com.playchoice.article.dto;
 
-public class PageStatusDTO {
+public class Status {
 	String msg, url;
 
 	public String getMsg() {

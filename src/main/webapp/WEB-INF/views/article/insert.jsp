@@ -31,7 +31,7 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>관리자 고객센터 글 작성</h4>
+				<h4>글 작성</h4>
 				<form action="${uuu }notice/insertReg">
 					<table class="table table-bordered">
 						<thead>

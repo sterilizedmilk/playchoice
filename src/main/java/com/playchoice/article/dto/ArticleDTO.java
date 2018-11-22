@@ -8,8 +8,26 @@ import org.apache.ibatis.type.Alias;
 @Alias("aaaDTO")
 public class ArticleDTO {
 	Integer a_id, m_code, a_target, a_solved;
+
+	public String getA_comment() {
+		return a_comment;
+	}
+
+	public void setA_comment(String a_comment) {
+		this.a_comment = a_comment;
+	}
+
 	Timestamp a_time;
-	String a_board, a_title, a_content;
+	String a_board, a_title, a_content, a_comment;
+	Object objReplay;
+
+	public Object getObjReplay() {
+		return objReplay;
+	}
+
+	public void setObjReplay(Object objReplay) {
+		this.objReplay = objReplay;
+	}
 
 	public Integer getA_id() {
 		return a_id;
@@ -19,7 +37,7 @@ public class ArticleDTO {
 	public String toString() {
 		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", a_target=" + a_target + ", a_solved=" + a_solved
 				+ ", a_time=" + a_time + ", a_board=" + a_board + ", a_title=" + a_title + ", a_content=" + a_content
-				+ "]";
+				+ ", a_comment=" + a_comment + ", objReplay=" + objReplay + "]";
 	}
 
 	public void setA_id(Integer a_id) {

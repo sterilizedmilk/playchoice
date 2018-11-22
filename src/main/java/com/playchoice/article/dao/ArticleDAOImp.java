@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.playchoice.article.dto.ArticleDTO;
+import com.playchoice.article.dto.Criteria;
 
 @Transactional
 @Service
-public class CustomerCenterDAO implements ArticleDAO {
+public class ArticleDAOImp implements ArticleDAO {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -17,8 +18,12 @@ public class CustomerCenterDAO implements ArticleDAO {
 	@Override
 	public Object list(String a_target) {
 		// TODO Auto-generated method stub
-		System.out.println(sqlSessionTemplate.selectList("article.list", a_target));
 		return sqlSessionTemplate.selectList("article.list", a_target);
+	}
+
+	public Object listCount(String a_target) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("article.count", a_target);
 	}
 
 	@Override
@@ -42,8 +47,27 @@ public class CustomerCenterDAO implements ArticleDAO {
 
 	public Object selectOne(Object a_id) {
 		// TODO Auto-generated method stub
-		System.out.println("selectOne" + (Integer) a_id);
-		return sqlSessionTemplate.selectOne("article.selectOne", (Integer) a_id);
+		ArticleDTO dto = sqlSessionTemplate.selectOne("article.selectOne", (Integer) a_id);
+		return dto;
 	}
 
+	@Override
+	public Object commentOne(ArticleDTO dto) {
+		// TODO Auto-generated method stub
+		Object obj = sqlSessionTemplate.insert("article.commentOne", dto);
+		sqlSessionTemplate.update("article.commentUpdate", dto);
+		return obj;
+	}
+
+	@Override
+	public Object Replylist(ArticleDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("article.replylist", dto);
+	}
+
+	// @Override
+	// public Object listCriteria(Criteria cri) throws Exception {
+	// // TODO Auto-generated method stub
+	// return sqlSessionTemplate.selectList("article.list", cri);
+	// }
 }
