@@ -18,5 +18,9 @@ public interface PlayService {
 		
 		public Object getSchedule(int p_id);
 		
-		public Object getReview(int p_id);
+		public Object getReviewSmall(int p_id);
+		
+		public Object getReviewScore(int p_id);
+		
+		public List<Object> getQnA(int p_id);
 }

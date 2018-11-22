@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
@@ -69,7 +70,7 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	}
 
 	@Override
-	public List<GenreDTO> areaList() {
+	public List<AreaDTO> areaList() {
 		return sqlSession.selectList(namespace + ".areaList");
 	}
 

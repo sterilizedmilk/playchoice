@@ -40,13 +40,24 @@ public class PlayServiceImpl implements PlayService {
 		
 		return playDao.getSchedule(p_id);
 
-		
 	}
 	
 	@Override
-	public Object getReview(int p_id) {
-		playDao.getReview(p_id);
-		return null;
+	public Object getReviewSmall(int p_id) {
+		
+		return playDao.getReviewSmall(p_id);
+	}
+
+	@Override
+	public Object getReviewScore(int p_id) {
+	
+		return playDao.getReviewScore(p_id);
+	}
+
+	@Override
+	public List<Object> getQnA(int p_id) {
+	
+		return playDao.getQnA(p_id);
 	}
 
 }

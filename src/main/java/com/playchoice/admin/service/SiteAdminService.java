@@ -2,6 +2,7 @@ package com.playchoice.admin.service;
 
 import java.util.List;
 
+import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 
 public interface SiteAdminService {
@@ -12,7 +13,7 @@ public interface SiteAdminService {
 
 	public int genreDelete(int g_id);
 
-	public List<GenreDTO> areaList();
+	public List<AreaDTO> areaList();
 	
 	public int areaInsert(String a_name);
 

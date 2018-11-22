@@ -34,8 +34,9 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `play`.`area` (
   `a_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `a_area` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`a_id`))
+  `a_name` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`a_id`),
+  UNIQUE INDEX `a_area_UNIQUE` (`a_name` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -46,7 +47,8 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `play`.`genre` (
   `g_id` INT(11) NOT NULL AUTO_INCREMENT,
   `g_name` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`g_id`))
+  PRIMARY KEY (`g_id`),
+  UNIQUE INDEX `g_name_UNIQUE` (`g_name` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -64,7 +66,8 @@ CREATE TABLE IF NOT EXISTS `play`.`member` (
   `m_phone` VARCHAR(20) NULL DEFAULT NULL,
   `m_status` TINYINT(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`m_code`),
-  UNIQUE INDEX `m_id_UNIQUE` (`m_id` ASC))
+  UNIQUE INDEX `m_id_UNIQUE` (`m_id` ASC),
+  UNIQUE INDEX `m_mail_UNIQUE` (`m_mail` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -190,6 +193,8 @@ CREATE TABLE IF NOT EXISTS `play`.`payment` (
   `p_id` INT NOT NULL AUTO_INCREMENT,
   `m_code` INT(11) NOT NULL,
   `s_id` INT(11) NOT NULL,
+  `p_price` INT NOT NULL,
+  `p_quantity` INT NOT NULL,
   `p_time` TIMESTAMP NOT NULL,
   `p_canceled` TINYINT NOT NULL DEFAULT 0,
   `p_cancel_target_id` INT NULL,
@@ -219,36 +224,18 @@ ENGINE = InnoDB;
 -- Table `play`.`play_appear`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `play`.`play_appear` (
-  `play_p_id` INT(11) NOT NULL,
-  `actor_a_id` INT(11) NOT NULL,
-  INDEX `fk_play_appear_play1_idx` (`play_p_id` ASC),
-  INDEX `fk_play_appear_actor1_idx` (`actor_a_id` ASC),
+  `p_id` INT(11) NOT NULL,
+  `a_id` INT(11) NOT NULL,
+  INDEX `fk_play_appear_play1_idx` (`p_id` ASC),
+  INDEX `fk_play_appear_actor1_idx` (`a_id` ASC),
   CONSTRAINT `fk_play_appear_play1`
-    FOREIGN KEY (`play_p_id`)
+    FOREIGN KEY (`p_id`)
     REFERENCES `play`.`play` (`p_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_play_appear_actor1`
-    FOREIGN KEY (`actor_a_id`)
+    FOREIGN KEY (`a_id`)
     REFERENCES `play`.`actor` (`a_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `play`.`reservation`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `play`.`reservation` (
-  `r_id` INT NOT NULL AUTO_INCREMENT,
-  `p_id` INT NOT NULL,
-  `r_price` INT NOT NULL,
-  `r_time` TIMESTAMP NOT NULL,
-  PRIMARY KEY (`r_id`),
-  INDEX `fk_reservation_payment1_idx` (`p_id` ASC),
-  CONSTRAINT `fk_reservation_payment1`
-    FOREIGN KEY (`p_id`)
-    REFERENCES `play`.`payment` (`p_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -320,18 +307,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `play`.`shopping_basket` (
   `m_code` INT(11) NOT NULL,
-  `s_id` INT(11) NOT NULL,
+  `p_id` INT(11) NOT NULL,
   INDEX `fk_shopping_basket_member1_idx` (`m_code` ASC),
-  INDEX `fk_shopping_basket_show1_idx` (`s_id` ASC),
-  PRIMARY KEY (`m_code`, `s_id`),
+  PRIMARY KEY (`m_code`, `p_id`),
+  INDEX `fk_shopping_basket_play1_idx` (`p_id` ASC),
   CONSTRAINT `fk_shopping_basket_member1`
     FOREIGN KEY (`m_code`)
     REFERENCES `play`.`member` (`m_code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_shopping_basket_show1`
-    FOREIGN KEY (`s_id`)
-    REFERENCES `play`.`schedule` (`s_id`)
+  CONSTRAINT `fk_shopping_basket_play1`
+    FOREIGN KEY (`p_id`)
+    REFERENCES `play`.`play` (`p_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

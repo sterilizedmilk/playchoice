@@ -21,7 +21,7 @@ import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.member.service.MemberService;
 
 @Controller
-@RequestMapping(value="/member")
+@RequestMapping(value = "/member")
 public class MemberController {
 
 	@Autowired
@@ -130,13 +130,6 @@ public class MemberController {
 		return "redirect:/"; // (수정필요) 보고있는 페이지를 새로고침 해줘야함
 	}
 	
-	/*// 로그아웃
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}*/
-	
 	// 아이디 찾기 페이지로 이동
 	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findId() {
@@ -239,7 +232,7 @@ public class MemberController {
 		return "/member/deleteForm";
 	}
 	
-	// 회원 탈퇴 처리
+	// 회원 탈퇴 처리 ==> 삭제x, m_status를 2로 변경해서 로그인 방지
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String deletePOST(@RequestParam("m_id") String m_id, @RequestParam("m_pw") String m_pw, HttpSession session, Model model) throws Exception {
 		// 비밀번호 체크

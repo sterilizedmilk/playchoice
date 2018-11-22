@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- com.playchoice.play.dto.PlayDTO --> 
+<mapper namespace="com.playchoice.mappers.adminplayMapper">
+									<!-- com.playchoice.play.dto.PlayDTO -->
+    <select id="listAll" resultType="PlayDTO">
+    	select * from play
+    </select>
+    
+    <select id="read" resultType="PlayDTO">
+    	select p_id, p_name, p_info, p_refund_policy, p_location, p_status, p_picture
+    	from play
+    	where p_id = #{p_id}
+    </select>
+    
+    <insert id="create" parameterType="java.util.HashMap">
+    	insert into play(p_name, p_info, p_picture, g_id, a_id, p_location, p_refund_policy)
+    	values(#{p_name}, #{p_info}, #{p_picture}, #{g_id}, #{a_id}, #{p_location}, #{p_refund_policy})
+    </insert>
+    
+    <update id="update" parameterType="java.util.HashMap">
+    	update play set p_name=#{p_name}, p_info=#{p_info}, p_picture=#{p_picture}, g_id=#{g_id}, a_id=#{a_id},
+    	 p_location=#{p_location}, p_refund_policy=#{p_refund_policy}
+    	where p_id=#{p_id}
+    </update>
+    
+    <update id="delete">
+    	update play set p_status=0
+    	where p_id=#{p_id}
+    </update>
+    
+    <update id="flurry">
+    	update play set p_status=1
+    	where p_id=#{p_id}
+    </update>
+    
+    <select id="psread" resultType="ScheduleDTO">
+    	select s_time, s_price, s_ticket, a_id1, a_id2
+    	from schedule
+    	where p_id = #{p_id}
+    </select>
+    
+    <insert id="pscreate" >
+    	insert into schedule(p_id, s_time, s_price, s_ticket, a_id1, a_id2)
+    	values(#{p_id}, #{s_time}, #{s_price}, #{s_ticket}, #{a_id1}, #{a_id2})
+    </insert>
+    
+</mapper>

@@ -19,9 +19,53 @@
 	<select id="viewCal" parameterType="Integer"
 		resultType="ScheduleDTO">
 		select *
-		from playshow
+		from schedule
 		where p_id = #{p_id}
 		order by s_time
 	</select>
 	
+	<select id="getReviewScore" parameterType="Integer"
+	 resultType="java.util.HashMap">
+		SELECT
+			count(*) AS cnt, round(avg(review.r_play_score),1) AS avgscore
+		FROM
+			play, schedule, review, member
+		WHERE
+			review.s_id = schedule.s_id
+			AND schedule.p_id = #{p_id}
+			AND review.m_code = member.m_code;
+		
+	</select>
+	
+	<select id="getReviewSmall" parameterType="Integer"
+	resultType="java.util.HashMap">
+		SELECT
+			member.m_id AS m_id, review.r_content AS r_content, review.r_register_time AS r_register_time
+			,review.r_play_score AS r_play_score
+		FROM
+			play, schedule, review, member
+		WHERE
+			review.s_id = schedule.s_id
+			AND schedule.p_id = #{p_id}
+			AND review.m_code = member.m_code
+		ORDER BY review.r_register_time desc
+		LIMIT 20;
+	</select>
+	
+	<select id="getQnA" parameterType="Integer"
+	resultType="java.util.HashMap">
+		SELECT
+			member.m_id AS m_id
+			, question_answer.q_time AS q_time
+			, question_answer.q_content AS q_content
+			, question_answer.q_id AS q_id
+			, question_answer.q_target_id AS q_target_id
+		FROM
+			question_answer, member
+		WHERE
+			question_answer.m_code = member.m_code
+			AND question_answer.p_id = #{p_id}
+		ORDER BY
+			 q_target_id desc , q_id;
+	</select>
 </mapper>
