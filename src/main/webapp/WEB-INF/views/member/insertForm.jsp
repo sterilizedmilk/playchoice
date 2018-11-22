@@ -70,7 +70,7 @@
 			$("#confirmBtn").click(function(){
 				var m_id = $("#m_id").val();
 				if(m_id == "") {
-					alert("아이디를 입력하세요")
+					alert("아이디를 입력하세요");
 					$("#m_id").focus();
 					return;
 				} else if((m_id < "0" || m_id > "9") && (m_id < "A" || m_id > "Z") && (m_id < "a" || m_id > "z")) {
@@ -140,9 +140,6 @@
 				}
 			}
 		});
-		
-		// 이메일 중복 검사
-		
 	});
 </script>
 <!-- /.JavaScript -->

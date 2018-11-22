@@ -11,7 +11,7 @@
 	<h2>장바구니 목록</h2>
 	<c:choose>
 		<c:when test="${fn:length(list) == 0 }">
-			장바구니가 비어있습니다.
+			<span>장바구니가 비어있습니다.</span>
 		</c:when>
 		<c:otherwise>
 			<form id="basketListForm" name="basketListForm" action="post">
@@ -27,21 +27,17 @@
 					<tbody>
 						<c:forEach var="result" items="${list }" varStatus="status">
 							<tr>
-								<td>${result.p_name }</td>
-								<td><c:out value="${result.g_id }"></c:out></td>
+								<td><a href="${pageContext.request.contextPath}/play/playdetail?p_id=${result.p_id}">${result.p_name }</a></td>
+								<td>${genreMap.get(result.g_id) }</td><!-- map.get 대신에 ${genreMap[result.g_id]} 도 가능 -->
 								<td>${result.p_info }</td>
 								<td><a href="${pageContext.request.contextPath}/basket/delete?p_id=${result.p_id}">삭제</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<div class="button-group">
-					<button type="button">button</button>
-				</div>
 			</form>
 		</c:otherwise>
 	</c:choose>
-	
 </div>
 
 <jsp:include page="../page/footer.jsp" />

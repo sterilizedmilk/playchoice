@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.member.dto.ShoppingBasketDTO;
 import com.playchoice.member.service.ShoppingBasketService;
@@ -23,6 +24,9 @@ public class ShoppingBasketController {
 	@Autowired
 	ShoppingBasketService basketService;
 	
+	@Autowired
+	SiteAdminService siteAdminService;
+	
 	// 장바구니 추가
 	@RequestMapping(value = "/insert")
 	public String insert(@ModelAttribute ShoppingBasketDTO dto, @RequestParam("p_id") int p_id, HttpSession session) throws Exception {
@@ -30,7 +34,7 @@ public class ShoppingBasketController {
 		dto.setM_code(m_code);
 		dto.setP_id(p_id);
 		// 장바구니에 기존 상품이 있는지 체크
-		int cnt = basketService.countBasket(dto.getP_id(), m_code);
+		int cnt = basketService.countBasket(m_code, dto.getP_id());
 		if(cnt == 0) { // 없으면 장바구니에 추가
 			basketService.insertBasket(dto);
 		}
@@ -45,6 +49,7 @@ public class ShoppingBasketController {
 		//Map<String, Object> map = new HashMap<String, Object>();
 		List<PlayDTO> list = basketService.ShoppingBasketList(m_code); // 장바구니 정보
 		
+		model.addAttribute("genreMap", siteAdminService.genreMap());
 		model.addAttribute("list", list);
 		return "basket/basketList";
 	}
