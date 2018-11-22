@@ -10,15 +10,17 @@
 <meta charset="UTF-8">
 <style type="text/css">
 .qna_question{
-
-
+	outline: 1px solid #eee;
+	padding : 10px;
+	margin: 30px 0 0 0;
 
 }
 
 .qna_answer{
+	outline: 1px solid #eee;
 	padding: 10px;
 	background-color:#FAF4C0;
-
+	margin : 0px 0px 30px 0px;
 
 }
 
@@ -109,7 +111,7 @@ $(document).ready(function(){
 		$("#frmPrice").val(total);
 		$("#frmQuantity").val(quantity);
 		
-		frm.action="${pageContext.request.contextPath}/basket/list";
+		frm.action="../member/basket";
 		frm.submit();
 	});
 	
@@ -129,6 +131,34 @@ $(document).ready(function(){
 		qfrm.submit();
 		
 	})
+	
+	// Q & A 삭제
+	$(".deleteQna").click(function(){
+		var m_code = $(this).attr("m_code");
+		var p_id = $(this).attr("p_id");
+		var q_id = $(this).attr("q_id");
+		
+		var q_info = {
+				"m_code" : m_code
+				,"p_id" : p_id
+				,"q_id" : q_id				
+		}
+		
+		$.ajax({
+			type : "post"
+			,url  : "../qna/delete"
+			,data : q_info
+			,success : function(data){
+				console.log("아작스 들어오기 성공")
+			}
+			,error : function(){
+				console.log("아작스 에러");
+			}
+		})
+		console.log(m_code);
+		console.log(p_id);
+	});
+	
 	
 	
 /* 	
@@ -355,7 +385,7 @@ $(document).ready(function(){
 			<!-- 리뷰 탭 -->
 			<div class="tab-pane" id="two">
 				<div align="center" style="padding:20px; margin:10px 30px; outline:1px solid #eee; align-content: center;">
-					<p >별점 <span style="font-size: 1.5em">${reviewScore.avgscore }</span>  점</p>
+					<p >평균 <span style="font-size: 1.5em">${reviewScore.avgscore }</span>  점</p>
 					<p>별 그림</p>
 					<p>실제 관람객들 후기입니다.</p>
 				</div>
@@ -363,7 +393,7 @@ $(document).ready(function(){
 					<c:forEach items="${reviewSmall}" var="list" varStatus="status">
 						<div style="border-bottom: 1px solid #eee;">
 							<p>
-								${list.r_play_score}
+								${list.r_play_score} 점 / 5 점
 							</p>
 							<p>
 								${list.r_content }
@@ -379,6 +409,7 @@ $(document).ready(function(){
 			<!-- Q & A 탭 -->
 			<div class="tab-pane" id="three">
 				<div style="margin:20px;">
+					<!-- 질문 작성 -->
 					<p>연극에 대한 궁금증을 남겨주세요!</p>				
 					<div style="background-color:#FAF4C0; ">
 						<form id="qfrm" method="post">
@@ -388,14 +419,17 @@ $(document).ready(function(){
 						<button id="qsubmit">등 록</button>
 						</form>
 					</div>
-					<div style="margin:70px 0 0 0; outline:1px solid #eee;">
+					<!-- 다른 질문 보기 -->
+					<div style="margin:70px 0 0 0;">
 						<c:forEach items="${qnaAll}" var="list">
 						<c:set var="className" value="qna_question" />
 							<c:if test="${list.q_id != list.q_target_id }">
 								<c:set var="className" value="qna_answer" />
 							</c:if>
 							<div class="${className }">
-								<p style="font-weight: bold;">${list.m_id } | ${list.q_time} <button class="deleteQuestion" value="${list.q_id }">삭제</button></p>
+								<p style="font-weight: bold;">${list.m_id } | ${list.q_time}
+									<a class="deleteQna" value="${list.q_id }" m_code="${list.m_code}" p_id="${list.p_id}"><i class="icon-remove-circle"></i></a>
+								</p>
 								<p>${list.q_content }</p>
 							</div>
 						</c:forEach>

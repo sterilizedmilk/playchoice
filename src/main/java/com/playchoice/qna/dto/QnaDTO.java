@@ -50,4 +50,12 @@ public class QnaDTO {
 	public void setQ_content(String q_content) {
 		this.q_content = q_content;
 	}
+	
+	@Override
+	public String toString() {
+		return "QnaDTO [q_id=" + q_id + ", m_code=" + m_code + ", p_id=" + p_id + ", q_target_id=" + q_target_id
+				+ ", q_deleted=" + q_deleted + ", q_time=" + q_time + ", q_content=" + q_content + "]";
+	}
+	
+	
 }
