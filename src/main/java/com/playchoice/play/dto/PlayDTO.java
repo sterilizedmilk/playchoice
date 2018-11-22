@@ -4,9 +4,9 @@ import org.apache.ibatis.type.Alias;
 
 public class PlayDTO {
 	int p_id, m_code, g_id, a_id;
-	String p_name, p_info, p_refund_policy, p_location , p_picture;
+	String p_name, p_info, p_refund_policy, p_location, p_picture;
 	boolean p_status;
-	
+
 	// p_refund_policy : 반환정보
 
 	public int getP_id() {
@@ -16,7 +16,6 @@ public class PlayDTO {
 	public void setP_id(int p_id) {
 		this.p_id = p_id;
 	}
-
 
 	public int getG_id() {
 		return g_id;
