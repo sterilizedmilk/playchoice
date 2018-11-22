@@ -6,7 +6,7 @@
 
 	<!-- 장바구니 목록 -->
 	<select id="ShoppingBasketList" resultType="PlayDTO">
-		SELECT play.p_id, play.p_name
+		SELECT play.p_id, play.p_name, play.p_info, play.g_id
 		FROM shopping_basket, play
 		WHERE play.p_id=shopping_basket.p_id
 		AND shopping_basket.m_code=#{m_code}

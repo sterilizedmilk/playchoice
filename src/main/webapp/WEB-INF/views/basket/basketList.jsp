@@ -20,14 +20,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<c:forEach var="result" items="${list }" varStatus="status">
+				<c:forEach var="result" items="${list }" varStatus="status">
+					<tr>
 						<td>${result.p_name }</td>
 						<td><c:out value="${result.g_id }"></c:out></td>
 						<td>${result.p_info }</td>
 						<td>${result.p_location }</td>
-					</c:forEach>
-				</tr>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="button-group">
