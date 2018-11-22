@@ -52,26 +52,9 @@ public class PlayController {
 		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
 		
 		//Q & A 
-		System.out.println(service.getQnA(p_id));
 		model.addAttribute("qnaAll", service.getQnA(p_id));
 		return "play/playdetail";
 		
-	}
-	
-	//아작스 연습한거입니다. 무시해주세요
-	@RequestMapping("checkSchedule")
-	@ResponseBody
-	public Object getSchedule(@RequestParam HashMap<String, Object> param) {
-		System.out.println("컨트롤 왓다");
-		List<Object> res = new ArrayList<Object>();
-		res = service.viewCal(param);
-
-		param.put("list", res);
-
-		param.put("msg", "컨트롤 왓다리갓다리");
-
-		System.out.println(param.get("list"));
-		return param;
 	}
 	
 	//장바구니

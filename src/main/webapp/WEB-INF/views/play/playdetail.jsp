@@ -33,40 +33,8 @@ $(document).ready(function(){
 	var total; // 티켓 총합
 	var scheId; // 스케쥴 아이디
 	
-	$('#ticket').text(quantity); // 티켓 수 출력
-	
-	
-	//달력출력
-	$('#viewSchedule').click(function(){
-		$.ajax({
-			type  : "POST"
-			,url  : "../show/checkSchedule"
-			,data : {"p_id" : ${playDTO.p_id}}
-			,dataType : "json"
-			,success : function(ppp){
-				var list = ppp.list;
-				/* var list = new Array();
-				for(var i in ppp.list){
-					list = ppp.list
-				} */
-				console.log(list[0]);
-				console.log("달력부르기 성공");
-				$('#viewSchedule').remove();
-	
-				console.log(ppp);
-				console.log(ppp.msg);
-				console.log(ppp.p_id);
-				console.log(ppp.list);
-				
-				frm.s_id.value=ppp.p_id;
-				
-			}
-			,error :function(){
-				console.log("에러");
-			}
-		});
-		
-	});
+	// 티켓 수 출력
+	$('#ticket').text(quantity); 
 	
 	//스케쥴 선택
 	$(".scheduleCho").click(function(){
@@ -135,72 +103,23 @@ $(document).ready(function(){
 	// Q & A 삭제
 	$(".deleteQna").click(function(){
 		var m_code = $(this).attr("m_code");
-		var p_id = $(this).attr("p_id");
 		var q_id = $(this).attr("q_id");
+		var p_id = $(this).attr("p_id");
 		
-		var q_info = {
-				"m_code" : m_code
-				,"p_id" : p_id
-				,"q_id" : q_id				
-		}
-		
-		$.ajax({
-			type : "post"
-			,url  : "../qna/delete"
-			,data : q_info
-			,success : function(data){
-				console.log("아작스 들어오기 성공")
-			}
-			,error : function(){
-				console.log("아작스 에러");
-			}
-		})
 		console.log(m_code);
+		console.log(q_id);
 		console.log(p_id);
-	});
-	
-	
-	
-/* 	
-	<c:forEach items="${res.reviews }" var="list" varStatus="status">
-	<div style="border-bottom: 1px solid #eee;">
-		<p>
-			${list.r_play_score}
-		</p>
-		<p>
-			${list.r_content }
-		</p>
-		<p>
-			${list.m_id } <span style="font-size: 0.5ex">(${list.r_register_time })</span>
-		</p>
-	</div>
-</c:forEach> */
-
-
-	//리뷰 전체보기
-/* 	$("#review").click(function(){
-		$.ajax({
-			type  : "POST"
-			,url  : "../review/playtotalreview"
-			,data : {"p_id" : ${playDTO.p_id}}
-			,dataType : "json" 
-			,success : function(res){
-				console.log(res.reviews);
-				
-				for(var rr in res.reviews){
-					var new_item = $("<div style='border-bottom: 1px solid #eee;' />");
-					new_item.html('<p>'+res.reviews[rr]["r_play_score"]+' 점</p>');
-					new_item.html('<p>'+res.review[rr]["r_content"]+'</p>');
-					
-					var p_sec = $("<p>");
-					
-				
-					$("#reviews").append(new_item);
-				}
-			}
+		
+		if(confirm("삭제하시겠습니까?")){
+			$("#delQnaId").val(q_id);
+			$("#delQnaCode").val(m_code);
+			$("#delQnaPid").val(p_id);
 			
-		});
-	}); */
+		
+			frmQna.action="../qna/delete";
+			$("#frmQna").submit();
+		}
+	});
 });
 </script>
 <!-- <script>
@@ -318,7 +237,7 @@ $(document).ready(function(){
           <!--   <table id="calendar" border="1">
             </table> -->
             <c:forEach items="${schedule }" var="list" varStatus="status">
-            	${list.s_id } <button class="scheduleCho" value="${list.s_id }" price="${list.s_price }">선택</button><br>
+            	${list.s_time } <button class="scheduleCho" value="${list.s_id }" price="${list.s_price }">선택</button><br>
             </c:forEach>
         </div>
 	</div>
@@ -428,21 +347,17 @@ $(document).ready(function(){
 							</c:if>
 							<div class="${className }">
 								<p style="font-weight: bold;">${list.m_id } | ${list.q_time}
-									<a class="deleteQna" value="${list.q_id }" m_code="${list.m_code}" p_id="${list.p_id}"><i class="icon-remove-circle"></i></a>
+									<a class="deleteQna" q_id="${list.q_id }" m_code="${list.m_code}" p_id="${list.p_id }"><i class="icon-remove-circle"></i></a>		
 								</p>
 								<p>${list.q_content }</p>
 							</div>
 						</c:forEach>
-					
-					
-					
-					
-						<!-- <div style="padding: 10px; border-bottom: 1px solid #eee;">
-							<p>질문</p>
-						</div>
-						<div style="padding: 10px; background-color:#FAF4C0;">
-							<p>답변</p>
-						</div> -->
+						<!-- 데이터 넘기기위한 폼 -->
+							<form id="frmQna">
+								<input type="hidden" id="delQnaId" name="q_id" value=""/>
+								<input type="hidden" id="delQnaCode" name="m_code" value=""/>
+								<input type="hidden" id="delQnaPid" name="p_id" value=""/>
+							</form>
 					</div>
 				</div>
 			</div>

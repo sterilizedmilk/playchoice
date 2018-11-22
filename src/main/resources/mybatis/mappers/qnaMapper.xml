@@ -13,4 +13,14 @@
 	VALUES
 		(#{q_content}, #{m_code}, #{p_id}, #{q_target_id});
 	</insert>
+	
+	<!-- 혹시 안되면 Mysql Safe Update 가 꺼져있는 지 확인하자 edit->SQL EDITOR->Other -->
+	<update id="deleteQna" parameterType="QnaDTO" >
+		UPDATE question_answer
+		SET 
+			q_deleted = '1'
+		WHERE
+			q_id = #{q_id}
+			OR q_target_id = #{q_id}
+	</update>
 </mapper>
