@@ -1,14 +1,23 @@
 package com.playchoice.actor.dto;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
+@Alias("actorDTO")
 @Component
 public class ActorDTO {
-	int a_id;
+	int a_id,a_deleted;
+	public int getA_deleted() {
+		return a_deleted;
+	}
+
+	public void setA_deleted(int a_deleted) {
+		this.a_deleted = a_deleted;
+	}
+
 	String a_name, a_homepage, a_picture;
 	Date a_birth;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
