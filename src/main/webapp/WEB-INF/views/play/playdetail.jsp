@@ -336,13 +336,13 @@ $(document).ready(function(){
 		<div style="float:rigth;">
 		<form name="frm" method="post">	
 		<input type="hidden" id="frmId" name="s_id" value="" />
-		 <%-- value="${showDTO.s_id}" /> --%>
+		<input type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" />
 		<input type="hidden" id="" name="m_code" value="${login.m_code }" />
-		<%-- value="${login.m_code }" /> --%>
+		
 		<input type="hidden" id="frmPrice" name="p_price" value="" />
-		<%-- value="${showDTO.s_price} x quantity" --%>
+		
 		<input type="hidden" id="frmQuantity" name="p_quantity" value="12000" />
-		<%-- value="${showDTO.s_price} x quantity" --%>
+		
 		<button id="cart" type="submit" class="btn btn-success btn-lg">장바구니</button>
 	</form>
 	</div>
