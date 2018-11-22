@@ -6,6 +6,8 @@
 	<select id="listActor" resultType="ActorDTO" >
 	SELECT *
 	FROM actor
+	WHERE
+		a_deleted = '0'
 	</select>
 	
 	<select id="listActorSeach" resultType="ActorDTO" >
