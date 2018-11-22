@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("aaaDTO")
 public class ArticleDTO {
-	Integer a_id, m_code, a_target, a_solved;
+	Integer a_id, m_code, a_solved;
 
 	public String getA_comment() {
 		return a_comment;
@@ -35,7 +35,7 @@ public class ArticleDTO {
 
 	@Override
 	public String toString() {
-		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", a_target=" + a_target + ", a_solved=" + a_solved
+		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", a_target="+ ", a_solved=" + a_solved
 				+ ", a_time=" + a_time + ", a_board=" + a_board + ", a_title=" + a_title + ", a_content=" + a_content
 				+ ", a_comment=" + a_comment + ", objReplay=" + objReplay + "]";
 	}
@@ -50,14 +50,6 @@ public class ArticleDTO {
 
 	public void setM_code(Integer m_code) {
 		this.m_code = m_code;
-	}
-
-	public Integer getA_target() {
-		return a_target;
-	}
-
-	public void setA_target(Integer a_target) {
-		this.a_target = a_target;
 	}
 
 	public Integer getA_solved() {

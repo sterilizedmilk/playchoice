@@ -112,6 +112,8 @@
 							<li><a
 								href="${pageContext.request.contextPath}/admin/play/aplist">연극
 									관리자</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/admin/management">관리자</a></li>
 						</ul>
 					</div>
 				</div>
