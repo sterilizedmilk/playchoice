@@ -54,8 +54,7 @@
 								<button type="button" class="btn btn-square btn-theme"
 									onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
 								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/list'">목록 전체보기 +
-									${data.a_comment }</button></td>
+									onclick="location.href='${uuu }notice/list'">목록 전체보기</button></td>
 						</tr>
 						<!-- 관리자일 경우에만 보여주기 -->
 					</table>
