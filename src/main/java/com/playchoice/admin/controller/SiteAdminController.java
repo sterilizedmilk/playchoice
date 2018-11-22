@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,13 +29,25 @@ public class SiteAdminController {
 
 	@RequestMapping("")
 	public String adminMainController() {
-		return "admin_main";
+		System.out.println("관리자 페이지 입성");
+		return "admin/site/integratedpage";
 	}
 
+	// -----------------------------멤버----------------------------------------
+	// 멤버 전체 리스트 가져오기
 	@RequestMapping("member/common")
-	public String memberCommonController() {
-
-		return "admin_member";
+	public String memberCommonController(Model model) {
+		System.out.println("ActorController()입성");
+		Object obj = null;
+		try {
+			obj = adminService.memberListAll();
+			System.out.println(obj);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("memberlist", obj);
+		return "admin/site/member/common";
 	}
 
 	@RequestMapping("member/playadmin")
@@ -59,6 +72,13 @@ public class SiteAdminController {
 	public ResponseEntity<String> memberUnBlackController(@RequestParam("id") int m_id) {
 
 		return null;
+	}
+
+	// -----------------------------배우----------------------------------------
+	// 배우 전체 리스트 가져오기
+	@RequestMapping("actor/common")
+	public String ActorController() {
+		return "";
 	}
 
 	@RequestMapping(value = "actor/add", method = RequestMethod.GET)
@@ -91,7 +111,8 @@ public class SiteAdminController {
 		return "";
 	}
 
-	@RequestMapping("play")
+	// -----------------------------연극----------------------------------------
+	@RequestMapping("play/common")
 	public String playListController() {
 		return "";
 	}
@@ -107,140 +128,74 @@ public class SiteAdminController {
 		return "";
 	}
 
-	@RequestMapping("notice")
-	public String noticeListController(@RequestParam(value = "page", defaultValue = "1") int page) {
-		return "";
-	}
-
-	@RequestMapping("notice/detail")
-	public String noticeDetailController(@RequestParam int no) {
-
-		return "";
-	}
-
-	@RequestMapping("notice/update")
-	public String noticeUpdateController(@RequestParam int no) {
-
-		return "";
-	}
-
-	@RequestMapping("notice/write")
-	public String noticeWriteController() {
-
-		return "";
-	}
-
-	@RequestMapping(value = "notice/delete", method = RequestMethod.POST) // post?
-	public String noticeDeleteController() {
-
-		return "";
-	}
-
-	@RequestMapping("FAQ")
-	public String FAQListController(@RequestParam(value = "page", defaultValue = "1") int page) {
-		return "";
-	}
-
-	@RequestMapping("FAQ/detail")
-	public String FAQDetailController(@RequestParam int no) {
-		return "";
-	}
-
-	@RequestMapping("FAQ/update")
-	public String FAQUpdateController(@RequestParam int no) {
-		return "";
-	}
-
-	@RequestMapping("FAQ/write")
-	public String FAQWriteController() {
-		return "";
-	}
-
-	@RequestMapping("FAQ/delete")
-	public String FAQDeleteController() {
-		return "";
-	}
-
-	@RequestMapping("contact")
-	public String contactListController(@RequestParam(value = "page", defaultValue = "1") int page) {
-		return "";
-	}
-
-	@RequestMapping("contact/detail")
-	public String contactDetailController(@RequestParam int no) {
-		return "";
-	}
-
-	@RequestMapping("contact/update")
-	public String contactUpdateController(@RequestParam int no) {
-		return "";
-	}
-
-	@RequestMapping("contact/answer")
-	public String contactWriteController(@RequestParam int no) {
-		return "";
-	}
-
-	@RequestMapping("contact/delete")
-	public String contactDeleteController() {
-		return "";
-	}
-	
+	/*
+	 * @RequestMapping("notice") public String
+	 * noticeListController(@RequestParam(value = "page", defaultValue = "1") int
+	 * page) { return ""; }
+	 * 
+	 * @RequestMapping("notice/detail") public String
+	 * noticeDetailController(@RequestParam int no) {
+	 * 
+	 * return ""; }
+	 * 
+	 * @RequestMapping("notice/update") public String
+	 * noticeUpdateController(@RequestParam int no) {
+	 * 
+	 * return ""; }
+	 * 
+	 * @RequestMapping("notice/write") public String noticeWriteController() {
+	 * 
+	 * return ""; }
+	 * 
+	 * @RequestMapping(value = "notice/delete", method = RequestMethod.POST) //
+	 * post? public String noticeDeleteController() {
+	 * 
+	 * return ""; }
+	 * 
+	 * @RequestMapping("FAQ") public String FAQListController(@RequestParam(value =
+	 * "page", defaultValue = "1") int page) { return ""; }
+	 * 
+	 * @RequestMapping("FAQ/detail") public String FAQDetailController(@RequestParam
+	 * int no) { return ""; }
+	 * 
+	 * @RequestMapping("FAQ/update") public String FAQUpdateController(@RequestParam
+	 * int no) { return ""; }
+	 * 
+	 * @RequestMapping("FAQ/write") public String FAQWriteController() { return "";
+	 * }
+	 * 
+	 * @RequestMapping("FAQ/delete") public String FAQDeleteController() { return
+	 * ""; }
+	 * 
+	 * @RequestMapping("contact") public String
+	 * contactListController(@RequestParam(value = "page", defaultValue = "1") int
+	 * page) { return ""; }
+	 * 
+	 * @RequestMapping("contact/detail") public String
+	 * contactDetailController(@RequestParam int no) { return ""; }
+	 * 
+	 * @RequestMapping("contact/update") public String
+	 * contactUpdateController(@RequestParam int no) { return ""; }
+	 * 
+	 * @RequestMapping("contact/answer") public String
+	 * contactWriteController(@RequestParam int no) { return ""; }
+	 * 
+	 * @RequestMapping("contact/delete") public String contactDeleteController() {
+	 * return ""; }
+	 */
+	// -----------------------------장르----------------------------------------
 	@RequestMapping("genre")
 	public String genreListController(Model model) {
 		List<GenreDTO> genreList = adminService.genreList();
 		model.addAttribute("genreList", genreList);
 		return "admin/site/genre";
 	}
-	
+
 	@RequestMapping(value = "genre/add", method = RequestMethod.POST)
 	public ResponseEntity<String> genreAddController(@RequestParam String g_name) {
-		ResponseEntity<String>  entity = new ResponseEntity<String>(HttpStatus.OK);
+		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
 		int result = adminService.genreInsert(g_name);
-		
-		if (result == 1)
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		else
-			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
-		return entity;
-	}
-	
-	@RequestMapping(value = "genre/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> genreDeleteController(@RequestParam int g_id) {
-		ResponseEntity<String>  entity = new ResponseEntity<String>(HttpStatus.OK);
-		int result = adminService.genreDelete(g_id);
-		
-		if (result == 1)
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		else
-			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
-		return entity;
-	}
-	
-	@RequestMapping("area")
-	public String areaListController(Model model) {
-		List<AreaDTO> areaList = adminService.areaList();
-		model.addAttribute("areaList", areaList);
-		return "admin/site/area";
-	}
-	
-	@RequestMapping(value = "area/add", method = RequestMethod.POST)
-	public ResponseEntity<String> areaAddController(@RequestParam String a_name) {
-		ResponseEntity<String>  entity = new ResponseEntity<String>(HttpStatus.OK);
-		int result = adminService.areaInsert(a_name);
-		
-		if (result == 1)
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		else
-			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
-		return entity;
-	}
-	
-	@RequestMapping(value = "area/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> areaDeleteController(@RequestParam int a_id) {
-		ResponseEntity<String>  entity = new ResponseEntity<String>(HttpStatus.OK);
-		int result = adminService.areaDelete(a_id);
-		
+
 		if (result == 1)
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		else
@@ -248,7 +203,48 @@ public class SiteAdminController {
 		return entity;
 	}
 
-	
-	
+	@RequestMapping(value = "genre/delete", method = RequestMethod.POST)
+	public ResponseEntity<String> genreDeleteController(@RequestParam int g_id) {
+		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
+		int result = adminService.genreDelete(g_id);
+
+		if (result == 1)
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		else
+			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
+		return entity;
+	}
+
+	// -----------------------------지역----------------------------------------
+	@RequestMapping("area")
+	public String areaListController(Model model) {
+		List<AreaDTO> areaList = adminService.areaList();
+		model.addAttribute("areaList", areaList);
+		return "admin/site/area";
+	}
+
+	@RequestMapping(value = "area/add", method = RequestMethod.POST)
+	public ResponseEntity<String> areaAddController(@RequestParam String a_name) {
+		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
+		int result = adminService.areaInsert(a_name);
+
+		if (result == 1)
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		else
+			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
+		return entity;
+	}
+
+	@RequestMapping(value = "area/delete", method = RequestMethod.POST)
+	public ResponseEntity<String> areaDeleteController(@RequestParam int a_id) {
+		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
+		int result = adminService.areaDelete(a_id);
+
+		if (result == 1)
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		else
+			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
+		return entity;
+	}
 
 }

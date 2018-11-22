@@ -13,7 +13,7 @@ import com.playchoice.play.dto.SearchPlayDTO;
 
 @Repository
 public class SiteAdminDAOImpl implements SiteAdminDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	private static final String namespace = "com.playchoice.mappers.siteAdminMapper";
@@ -82,6 +82,12 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	@Override
 	public int areaDelete(int a_id) {
 		return sqlSession.delete(namespace + ".areaDelete", a_id);
+	}
+
+	@Override
+	public Object memberManage() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".memberList");
 	}
 
 }

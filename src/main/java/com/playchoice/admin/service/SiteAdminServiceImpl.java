@@ -14,7 +14,7 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 
 	@Autowired
 	private SiteAdminDAO dao;
-	
+
 	@Override
 	public List<GenreDTO> genreList() {
 		return dao.genreList();
@@ -46,4 +46,9 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 		return dao.areaDelete(a_id);
 	}
 
+	@Override
+	public Object memberListAll() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.memberManage();
+	}
 }
