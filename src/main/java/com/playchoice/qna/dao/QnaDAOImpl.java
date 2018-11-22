@@ -22,4 +22,10 @@ public class QnaDAOImpl implements QnaDAO{
 		return session.insert(namespace+".insertQuset", res);
 	}
 
+	@Override
+	public int deleteQna(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return session.update(namespace+".deleteQna", dto);
+	}
+
 }

@@ -7,5 +7,7 @@ import com.playchoice.qna.dto.QnaDTO;
 public interface QnaDAO {
 	
 	int insertQuset(HashMap<String, Object> res);
+	
+	int deleteQna(QnaDTO dto);
 
 }
