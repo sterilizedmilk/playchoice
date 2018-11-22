@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.playchoice.article.dto.ArticleDTO;
-import com.playchoice.article.dto.Criteria;
 
 @Transactional
 @Service

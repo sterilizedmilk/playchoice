@@ -1,7 +1,6 @@
 package com.playchoice.article.dao;
 
 import com.playchoice.article.dto.ArticleDTO;
-import com.playchoice.article.dto.Criteria;
 
 public interface ArticleDAO {
 

@@ -6,9 +6,7 @@ package com.playchoice.article.controller;
 */
 
 import java.util.Arrays;
-import java.util.List;
 
-import javax.activation.CommandMap;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.playchoice.article.dao.ArticleDAO;
 import com.playchoice.article.dto.ArticleDTO;
-import com.playchoice.article.dto.Criteria;
-import com.playchoice.article.dto.PageMaker;
 import com.playchoice.article.dto.Status;
 
 @Controller
@@ -34,7 +30,8 @@ public class ArticleController {
 	// a_target 1 = 공지사항 2 = FAQ 3 = 1:1문의
 	@ModelAttribute("data")
 	public Object Article(@PathVariable("Content") String content, @PathVariable("No") String no, ArticleDTO dto,
-			HttpServletRequest request, @ModelAttribute("cri") Criteria cri) {
+			HttpServletRequest request) {
+		// , @ModelAttribute("cri") Criteria cri
 		Object res = null;
 		System.out.println(content + "/" + no);
 		// 전체 리스트 개수

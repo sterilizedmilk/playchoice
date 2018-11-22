@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="http://localhost:8080/playChoice/play/" var="play" />
+<c:url value="http://http://localhost:8080/playChoice/member/article/"
+	var="article" />
 
 
 <!DOCTYPE html>
@@ -105,9 +107,11 @@
 										href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li class="dropdown"><a href="article/notice/list">고객센터
+							<li class="dropdown"><a href="	${article }notice/list">고객센터
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/play/aplist">연극 관리자</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/admin/play/aplist">연극
+									관리자</a></li>
 						</ul>
 					</div>
 				</div>
@@ -177,8 +181,10 @@
 										</ul></li>
 									<li><a href="/playChoice/play/playlist">오늘(11/11)</a></li>
 									<li><a href="#">내일(11/12)</a></li>
-									<li><a href="${pageContext.request.contextPath}/play/
-									mainlist">전체 일정</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/play/
+									mainlist">전체
+											일정</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/actor/list">배우</a></li>
 									<li><a href="#">주간랭킹</a></li>
