@@ -31,7 +31,7 @@
 			</tbody>
 		</table>
 		<div class="button-group">
-			<button>ddd</button>
+			<button type="button">삭제</button>
 		</div>
 	</form>
 </div>

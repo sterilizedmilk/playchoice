@@ -140,7 +140,12 @@ INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `
 -- Table `play`.`shopping_basket`
 -- -----------------------------------------------------
 INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('1', '1');
+INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('1', '5');
 INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('2', '2');
+INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('2', '1');
 INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('3', '3');
+INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('3', '4');
 INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('4', '4');
+INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('4', '2');
 INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('5', '5');
+INSERT INTO `play`.`shopping_basket` (`m_code`, `p_id`) VALUES ('5', '3');
