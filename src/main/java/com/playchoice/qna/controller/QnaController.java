@@ -26,7 +26,7 @@ public class QnaController {
 	@RequestMapping(value="insertQues", method=RequestMethod.POST)
 	String insertQues(@RequestParam HashMap<String, Object> res,
 			Model model) {
-		//TODO <br>로 변환하기
+		
 		if(res.get("m_code") != null && res.get("m_code") != "") { //로그인 여부 검사
 			if(service.insertQuset(res) != 1) { // INSERT 결과 확인
 				model.addAttribute("msg", "등록실패");

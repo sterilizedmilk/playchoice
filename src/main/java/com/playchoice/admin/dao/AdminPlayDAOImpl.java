@@ -17,6 +17,7 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 	@Autowired
 	private SqlSessionTemplate session;
 	private static String namespace = "com.playchoice.mappers.adminplayMapper";
+	private static String namespace2 = "com.playchoice.mappers.qnaMapper"; //Qna매퍼
 	
 	//연극 리스트 보기
 	@Override
@@ -78,7 +79,25 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 	@Override
 	public List<QnaDTO> getQna(int m_code) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectList(namespace2+".getQna", m_code);
+	}
+
+	@Override
+	public List<QnaDTO> getDetail(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace2+".getDetail", dto);
+	}
+
+	@Override
+	public int replyWri(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return session.insert(namespace2+".replyWri",dto);
+	}
+
+	@Override
+	public int replyModi(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return session.update(namespace2+".replyModi",dto);
 	}
 
 }

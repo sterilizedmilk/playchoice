@@ -27,4 +27,10 @@ public interface AdminPlayDAO {
 	public void pscreate(ScheduleDTO sdto) throws Exception;
 	
 	public List<QnaDTO> getQna(int m_code);
+	
+	public List<QnaDTO> getDetail(QnaDTO dto);
+	
+	public int replyWri(QnaDTO dto);
+	
+	public int replyModi(QnaDTO dto);
 }

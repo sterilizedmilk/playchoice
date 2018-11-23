@@ -23,4 +23,52 @@
 			q_id = #{q_id}
 			OR q_target_id = #{q_id}
 	</update>
+	
+	<select id="getQna" parameterType="Integer" resultType="QnaDTO">
+		SELECT play.p_id,play.p_name
+			, q_id
+			, question_answer.q_content
+			, question_answer.q_time
+			, member.m_id
+			,count(q_id) AS replychk
+		FROM play, question_answer,member
+		WHERE play.m_code = #{m_code}
+			AND question_answer.m_code = member.m_code
+			AND play.p_id = question_answer.p_id
+			AND question_answer.q_deleted = '0'
+		GROUP BY q_target_id
+		ORDER BY q_time desc;
+	</select>
+	
+	<select id="seleciveQnaList" parameterType="Integer" resultType="QnaDTO">
+		SELECT play.p_id,play.p_name
+			, q_id
+			, question_answer.q_content
+			, question_answer.q_time
+			, member.m_id
+			,count(q_id) AS replychk
+		FROM play, question_answer,member
+		WHERE play.m_code = #{m_code}
+			AND question_answer.m_code = member.m_code
+			AND play.p_id = question_answer.p_id
+			AND play.p_id = '1'
+			AND question_answer.q_deleted = '0'
+		GROUP BY q_target_id
+		ORDER BY q_time desc
+	</select>
+	
+	<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
+		select * 
+		from question_answer
+		where q_target_id = #{q_id}
+	</select>
+	
+	<insert id="replyWri" parameterType="QnaDTO">
+		insert into question_answer(m_code,p_id,q_target_id)
+		values (#{m_code}, #{p_id}, #{q_target_id})
+	</insert>
+	
+	<update id="replyModi" parameterType="QnaDTO">
+	
+	</update>
 </mapper>

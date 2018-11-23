@@ -77,6 +77,21 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	@Override
 	public List<QnaDTO> getQna(int m_code) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getQna(m_code);
+	}
+	@Override
+	public List<QnaDTO> getDetail(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.getDetail(dto);
+	}
+	@Override
+	public int replyWri(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.replyWri(dto);
+	}
+	@Override
+	public int replyModi(QnaDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.replyModi(dto);
 	}
 }

@@ -4,10 +4,18 @@ import java.sql.Timestamp;
 
 public class QnaDTO {
 	
-	int q_id, m_code, p_id, q_target_id, q_deleted;
+	int q_id, m_code, p_id, q_target_id, q_deleted, replychk;
 	Timestamp q_time;
 	String q_content, m_id, p_name;
 	
+	
+	
+	public int getReplychk() {
+		return replychk;
+	}
+	public void setReplychk(int replychk) {
+		this.replychk = replychk;
+	}
 	public int getQ_id() {
 		return q_id;
 	}
