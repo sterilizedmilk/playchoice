@@ -1,5 +1,6 @@
 package com.playchoice.actor.dto;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,6 +23,21 @@ public class ActorDTO {
 	Date a_birth;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 	
+	
+	
+	public String getA_birthStr() {
+		return  sdf.format(a_birth);
+	}
+
+	public void setA_birthStr(String a_birthStr) {
+		try {
+			this.a_birth = sdf.parse(a_birthStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	//날짜 형식 변경 
 	public String getSdf() {
 		String res = sdf.format(a_birth);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.service.SiteAdminService;
@@ -83,41 +84,43 @@ public class SiteAdminController {
 		return null;
 	}
 
+	//
+
 	// -----------------------------배우----------------------------------------
 	// 배우 전체 리스트 가져오기
 	@RequestMapping("actor/common")
-	public String ActorController() {
-		return "";
+	public String ActorController(Model model) {
+		Object obj = adminService.actorListAll();
+
+		model.addAttribute("actorlist", obj);
+		return "admin/site/actor/common";
 	}
 
-	@RequestMapping(value = "actor/add", method = RequestMethod.GET)
-	public String addActorFormController() {
-
-		return "";
-	}
-
-	@RequestMapping(value = "actor/add", method = RequestMethod.POST)
-	public String addActorActionController() {
-
-		return "";
-	}
-
-	@RequestMapping(value = "actor/update", method = RequestMethod.GET)
-	public String updateActorFormController() {
-
-		return "";
-	}
+	// @RequestMapping(value = "actor/add", method = RequestMethod.GET)
+	// public String addActorFormController() {
+	//
+	// return "";
+	// }
+	//
+	// @RequestMapping(value = "actor/add", method = RequestMethod.POST)
+	// public String addActorActionController() {
+	// return "";
+	// }
 
 	@RequestMapping(value = "actor/update", method = RequestMethod.POST)
-	public String updateActorActionController() {
-
-		return "";
+	public String updateActorActionController(ActorDTO dto, Model model) {
+		System.out.println(adminService.actorUpdate(dto));
+		return "redirect:/admin/site/actor/common";
 	}
 
 	@RequestMapping(value = "actor/delete", method = RequestMethod.POST)
-	public String deleteActorActionController() {
-
-		return "";
+	public String deleteActorActionController(ActorDTO dto, Model model) {
+		if (dto.getA_deleted() == 1)
+			dto.setA_deleted(0);
+		else
+			dto.setA_deleted(1);
+		adminService.actorDelete(dto);
+		return "redirect:/admin/site/actor/common";
 	}
 
 	// -----------------------------연극----------------------------------------

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.member.dto.MemberDTO;
@@ -109,6 +110,25 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	public Object memberBlack(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + ".memberBlack", memberDTO);
+	}
+
+	// -----------------배우 관련 -----------------
+	@Override
+	public Object actorManage() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".actorList");
+	}
+
+	@Override
+	public Object actorUpdate(ActorDTO actorDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".actorUpdate", actorDTO);
+	}
+
+	@Override
+	public Object actorDelete(ActorDTO actorDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + ".actorDelete", actorDTO);
 	}
 
 }

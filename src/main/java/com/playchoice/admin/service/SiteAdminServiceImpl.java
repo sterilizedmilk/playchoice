@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dao.SiteAdminDAO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
@@ -96,4 +97,21 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 		return dao.memberBlack(memberDTO);
 	}
 
+	@Override
+	public Object actorListAll() {
+		// TODO Auto-generated method stub
+		return dao.actorManage();
+	}
+
+	@Override
+	public Object actorUpdate(ActorDTO actorDTO) {
+		// TODO Auto-generated method stub
+		return dao.actorUpdate(actorDTO);
+	}
+
+	@Override
+	public Object actorDelete(ActorDTO actorDTO) {
+		// TODO Auto-generated method stub
+		return dao.actorDelete(actorDTO);
+	}
 }

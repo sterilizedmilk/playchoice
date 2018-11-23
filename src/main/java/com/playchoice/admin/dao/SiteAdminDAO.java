@@ -2,6 +2,7 @@ package com.playchoice.admin.dao;
 
 import java.util.List;
 
+import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.member.dto.MemberDTO;
@@ -45,4 +46,11 @@ public interface SiteAdminDAO {
 	public Object memberDelete(MemberDTO memberDTO);
 
 	public Object memberBlack(MemberDTO memberDTO);
+
+	// 배우 관리
+	public Object actorManage();
+
+	public Object actorUpdate(ActorDTO actorDTO);
+
+	public Object actorDelete(ActorDTO actorDTO);
 }

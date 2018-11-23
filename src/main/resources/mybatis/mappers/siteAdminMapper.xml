@@ -40,9 +40,10 @@
 	</select>
 
 	<update id="memberUpdate" parameterType="memberDTO">
-		update member set 
+		update member set
 		m_id
-		= #{m_id}, m_pw = #{m_pw}, m_name = #{m_name}, m_mail =
+		=
+		#{m_id}, m_pw = #{m_pw}, m_name = #{m_name}, m_mail =
 		#{m_mail},m_phone =
 		#{m_phone},m_level = #{m_level}, m_status =
 		#{m_status}
@@ -53,11 +54,25 @@
 		WHERE m_code = #{m_code}
 	</delete>
 	<update id="memberBlack" parameterType="memberDTO">
-		update member set 
+		update member set
 		m_status =
 		#{m_status}
 		where m_code = #{m_code}
 	</update>
-	
-	
+
+	<!-- 배우 관리 -->
+	<select id="actorList" resultType="actorDTO">
+		SELECT * FROM actor
+	</select>
+
+	<update id="actorUpdate" parameterType="actorDTO">
+		update actor set a_name =
+		#{a_name}, a_birth = #{a_birth}, a_homepage = #{a_homepage}, a_picture
+		= #{a_picture}
+		where a_id = #{a_id}
+	</update>
+	<update id="actorDelete" parameterType="actorDTO">
+		update actor set
+		a_deleted = #{a_deleted} where a_id = #{a_id}
+	</update>
 </mapper>

@@ -3,6 +3,7 @@ package com.playchoice.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.member.dto.MemberDTO;
@@ -33,5 +34,12 @@ public interface SiteAdminService {
 	public Object memberDelete(MemberDTO memberDTO);
 
 	public Object memberblack(MemberDTO memberDTO);
+
+	// 배우 관련
+	public Object actorListAll();
+
+	public Object actorUpdate(ActorDTO actorDTO);
+
+	public Object actorDelete(ActorDTO actorDTO);
 
 }
