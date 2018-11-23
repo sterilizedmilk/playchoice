@@ -100,7 +100,7 @@ public class FileService {
 	public String setThumb( String res) throws IOException {
 		System.out.println("setThumb() Run");
 
-		Thumbnails.of(path+res).size(260,260).toFile(path+"thumb_"+res);
+		Thumbnails.of(path+res).size(180,257).toFile(path+"thumb_"+res);
 		return "thumb_"+res;
 	}
 }
