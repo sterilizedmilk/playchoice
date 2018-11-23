@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="span6">
 			<div class="navbar navbar-static-top">
-				<div class="navigation" style="background-color:  black">
+				<div class="navigation">
 					<nav>
 						<ul class="nav topnav">
 							<li><a href="${pageContext.request.contextPath}/member/view">정보
@@ -17,9 +17,14 @@
 									연극</a></li>
 							<li><a href="${pageContext.request.contextPath}/prefer/list">찜한
 									배우</a></li>
-							<li><a href="${pageContext.request.contextPath}/member/paymentList?m_code=${login.m_code}">결제 내역</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/member/paymentList?m_code=${login.m_code}">결제
+									내역</a></li>
 						</ul>
 					</nav>
+					<div class="span12">
+						<div class="solidline"></div>
+					</div>
 				</div>
 			</div>
 		</div>

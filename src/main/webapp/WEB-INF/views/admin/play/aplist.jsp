@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-
 <meta charset="UTF-8">
+<jsp:include page="../../page/header.jsp" />
+<jsp:include page="adminheader.jsp" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <h2 align="center">연극 리스트</h2>
 <div class="container" align="center">
