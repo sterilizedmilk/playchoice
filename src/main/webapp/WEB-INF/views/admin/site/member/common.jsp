@@ -35,7 +35,6 @@
 						<tr>
 							<th>번호</th>
 							<th>아이디</th>
-							<th>비밀번호</th>
 							<th>이름</th>
 							<th>레벨</th>
 							<th>이메일</th>
@@ -53,7 +52,6 @@
 									<td><input type="text" value="${dd.m_code }" name="m_code"
 										readonly="readonly"></td>
 									<td><input type="text" value="${dd.m_id }" name="m_id"></td>
-									<td><input type="text" value="${dd.m_pw }" name="m_pw"></td>
 									<td><input type="text" value="${dd.m_name }" name="m_name"></td>
 									<td><input type="text" value="${dd.m_level }"
 										name="m_level"></td>

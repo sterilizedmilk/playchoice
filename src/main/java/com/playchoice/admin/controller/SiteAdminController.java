@@ -50,13 +50,14 @@ public class SiteAdminController {
 
 	@RequestMapping(value = "member/modify", method = RequestMethod.POST)
 	public String memberModifyController(MemberDTO dto, Model model) {
-		System.out.println(adminService.memberUpdate(dto));
+		adminService.memberUpdate(dto);
 		return "redirect:/admin/site/member/common";
 	}
 
 	@RequestMapping(value = "member/delete", method = RequestMethod.POST)
 	public String memberDeleteController(MemberDTO dto, Model model) {
-		System.out.println(adminService.memberDelete(dto));
+		adminService.memberDelete(dto);
+		dto.setM_status(3);
 		return "redirect:/admin/site/member/common";
 	}
 
@@ -64,8 +65,9 @@ public class SiteAdminController {
 	public String memberBlackController(MemberDTO dto, Model model) {
 		if (dto.getM_status() == 1)
 			dto.setM_status(0);
-		else
+		else if(dto.getM_status() == 0)
 			dto.setM_status(1);
+				
 		adminService.memberblack(dto);
 		return "redirect:/admin/site/member/common";
 	}

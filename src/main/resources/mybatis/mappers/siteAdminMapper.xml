@@ -50,8 +50,10 @@
 		where m_code = #{m_code}
 	</update>
 	<delete id="memberDelete">
-		DELETE FROM member
-		WHERE m_code = #{m_code}
+		update member set
+		m_status =
+		#{m_status}
+		where m_code = #{m_code}
 	</delete>
 	<update id="memberBlack" parameterType="memberDTO">
 		update member set

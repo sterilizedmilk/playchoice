@@ -103,7 +103,7 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	@Override
 	public Object memberDelete(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete(namespace + ".memberDelete", memberDTO);
+		return sqlSession.update(namespace + ".memberDelete", memberDTO);
 	}
 
 	@Override

@@ -37,14 +37,14 @@
 %>
 <form name="calendarFrm" id="calendarFrm" action="" method="post">
 	<!--날짜 네비게이션  -->
-	<table width = "650px" bgcolor="#F3F9D7" style="border: 1px solid #CED99C">
+	<table width="650px" height="600px" bgcolor="#F3F9D7" style="border: 1px solid #CED99C">
 		<thead>
-			<tr >
+			<tr>
 				<td colspan="7" align="center">
 					<%
 						if (month > 0) {
 					%>
-					<a href="<c:url value='/CalendarExam2.jsp' />?year=<%=year%>&amp;month=<%=month - 1%>" target="_self">
+					<a href="playcal.jsp?year=<%=year%>&amp;month=<%=month - 1%>" target="_self">
 						<b>&lt;</b>
 						<!-- 이전달 -->
 					</a>
@@ -61,7 +61,7 @@
 					<%
 						if (month < 11) {
 					%>
-					<a href="<c:url value='/CalendarExam2.jsp' />?year=<%=year%>&amp;month=<%=month + 1%>" target="_self">
+					<a href="playcal.jsp?year=<%=year%>&amp;month=<%=month + 1%>" target="_self">
 						<!-- 다음달 -->
 						<b>&gt;</b>
 					</a>
