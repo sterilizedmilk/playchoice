@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
 
@@ -35,16 +34,19 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th colspan="4"><a href="detail?id=${board.id }"> Q.
-										티켓은 어떻게 사용하죠?</a></th>
+								<th colspan="4">
+									<a href="detail?id=${board.id }"> Q. 티켓은 어떻게 사용하죠?</a>
+								</th>
 							</tr>
 							<tr>
-								<th colspan="4"><a href="detail?id=${board.id }"> Q. 환불
-										및 취소는 어떻게 하나요?</a></th>
+								<th colspan="4">
+									<a href="detail?id=${board.id }"> Q. 환불 및 취소는 어떻게 하나요?</a>
+								</th>
 							</tr>
 							<tr>
-								<th colspan="4"><a href="detail?id=${board.id }"> Q. 구매
-										후 영수증은 어떻게 발급받나요?</a></th>
+								<th colspan="4">
+									<a href="detail?id=${board.id }"> Q. 구매 후 영수증은 어떻게 발급받나요?</a>
+								</th>
 							</tr>
 							<tr>
 								<th>글 번호</th>
@@ -55,25 +57,18 @@
 							<c:forEach items="${data }" var="dd" varStatus="no">
 								<tr>
 									<td>${no.index +1}</td>
-									<td colspan="2"><a href="detail?id=${dd.a_id }">${dd.a_title }</a></td>
+									<td colspan="2">
+										<a href="detail?id=${dd.a_id }">${dd.a_title }</a>
+									</td>
 								</tr>
 							</c:forEach>
-							<tr>
-								<%-- <c:when test="${empty login }">
-								<c:choose>
-									
-									</c:when>
-									<c:otherwise> --%>
-								<!-- 관리자일 경우, -->
-								<td colspan="8">
-									<button type="button" class="btn btn-square btn-theme"
-										style="width: 100%"
-										onclick="location.href='${uuu }faq/insert'">글쓰기</button>
-								</td>
-								<%-- </c:otherwise> 
-								</c:choose>
- --%>
-							</tr>
+							<c:if test="${login.m_level eq 2}">
+								<tr>
+									<td colspan="8">
+										<button type="button" class="btn btn-square btn-theme" style="width: 100%" onclick="location.href='${uuu }faq/insert'">글쓰기</button>
+									</td>
+								</tr>
+							</c:if>
 						</tbody>
 					</table>
 				</div>

@@ -6,6 +6,8 @@ public interface ArticleDAO {
 
 	public Object list(String a_target);
 
+	public Object list(ArticleDTO dto);
+
 	public Object insertOne(ArticleDTO dto);
 
 	public Object selectOne(Object sid);
@@ -24,4 +26,5 @@ public interface ArticleDAO {
 
 	// 게시판 댓글 리스트 불러오는 거 만들기
 	public Object Replylist(ArticleDTO dto);
+
 }

@@ -31,30 +31,30 @@ public class ArticleController {
 	@ModelAttribute("data")
 	public Object Article(@PathVariable("Content") String content, @PathVariable("No") String no, ArticleDTO dto,
 			HttpServletRequest request) {
-		// , @ModelAttribute("cri") Criteria cri
 		Object res = null;
 		System.out.println(content + "/" + no);
 		// 전체 리스트 개수
-		// PageDTO pagedto = new PageDTO();
 		int totalCount = 0;
 		String contentType = "";
 
 		switch (no) {
 		case "list":
-			if (content.equals("notice"))
-				contentType = "1";
-			else if (content.equals("faq"))
-				contentType = "2";
-			else
+			System.out.println(content);
+			if (content.equals("contact")) {
 				contentType = "3";
-
-			res = dao.list(contentType);
-			// DB에서 리스트를 가져옴
-			// // 페이징 관련 -----------------------------------------------------------
-			// PageMaker pageMaker = new PageMaker();
-			// pageMaker.setCri(cri);
-			// Integer totalNum = (Integer) dao.listCount(contentType);
-			// pageMaker.setTotalCount(totalNum);
+				res = dao.list(dto);
+			} else {
+				if (content.equals("notice"))
+					contentType = "1";
+				else if (content.equals("faq"))
+					contentType = "2";
+				res = dao.list(contentType);
+			} // DB에서 리스트를 가져옴
+				// // 페이징 관련 -----------------------------------------------------------
+				// PageMaker pageMaker = new PageMaker();
+				// pageMaker.setCri(cri);
+				// Integer totalNum = (Integer) dao.listCount(contentType);
+				// pageMaker.setTotalCount(totalNum);
 
 			break;
 		case "detail":
@@ -66,7 +66,6 @@ public class ArticleController {
 				System.out.println(obj);
 				dto.setObjReplay(dao.Replylist(dto));
 			}
-			System.out.println("detail 댓글 리스트 가져온 부분 :" + dto);
 			break;
 		// 글작성 화면 노출
 		case "insert":
@@ -84,6 +83,7 @@ public class ArticleController {
 			else
 				dto.setA_board("3");
 
+			System.out.println("글작성 오류 : " + dto);
 			res = dao.insertOne(dto);
 			status.setMsg("등록되었습니다.");
 			status.setUrl("list");
@@ -111,6 +111,7 @@ public class ArticleController {
 			break;
 		}
 		return res;
+
 	}
 
 	@RequestMapping()

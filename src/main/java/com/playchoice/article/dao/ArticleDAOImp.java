@@ -20,6 +20,12 @@ public class ArticleDAOImp implements ArticleDAO {
 		return sqlSessionTemplate.selectList("article.list", a_target);
 	}
 
+	@Override
+	public Object list(ArticleDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("article.userlist", dto);
+	}
+
 	public Object listCount(String a_target) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("article.count", a_target);

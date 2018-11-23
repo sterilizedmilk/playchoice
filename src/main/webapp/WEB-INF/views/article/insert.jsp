@@ -36,7 +36,8 @@
 						<thead>
 							<tr>
 								<td>
-									제목<input type="text" name="a_title" style="width: 95%"><input type="hidden" name="m_code" value="${login.m_code }" />
+									제목<input type="text" name="a_title" style="width: 95%" />
+									<input type="hidden" name="m_code" value="${login.m_code }" />
 								</td>
 							</tr>
 						</thead>
