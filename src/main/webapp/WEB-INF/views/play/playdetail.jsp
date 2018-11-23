@@ -75,16 +75,14 @@
 						})
 
 						//장바구니
-						$('#cart')
-								.click(
-										function() {
-											$("#frmId").val(scheId);
-											$("#frmPrice").val(total);
-											$("#frmQuantity").val(quantity);
+						$('#cart').click(function() {
+							$("#frmId").val(scheId);
+							$("#frmPrice").val(total);
+							$("#frmQuantity").val(quantity);
 
-											frm.action = "${pageContext.request.contextPath}/basket/insert";
-											frm.submit();
-										});
+							frm.action = "${pageContext.request.contextPath}/basket/insert";
+							frm.submit();
+						});
 
 						//결제
 						$('#charge').click(function() {

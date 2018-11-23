@@ -14,6 +14,7 @@ public interface ActorDAO {
 	
 	public List<ActorDTO> seachActor(String keyword);
 
+	// a_id
 	public ActorDTO getActor(int a_id);
 	
 	public List<ActorDTO> searchActor(SearchActorDTO search);

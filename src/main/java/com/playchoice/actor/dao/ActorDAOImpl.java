@@ -30,8 +30,7 @@ public class ActorDAOImpl implements ActorDAO {
 	
 	@Override
 	public ActorDTO getActor(int a_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne(namespace + ".getActor", a_id);
 	}
 
 	@Override

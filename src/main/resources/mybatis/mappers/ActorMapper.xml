@@ -26,4 +26,10 @@
 	VALUES(#{m_code},#{a_id});
 	</insert>
 	
+	<select id="getActor" resultType="ActorDTO">
+		SELECT *
+		FROM actor
+		WHERE a_id=#{a_id}
+	</select>
+	
 </mapper>

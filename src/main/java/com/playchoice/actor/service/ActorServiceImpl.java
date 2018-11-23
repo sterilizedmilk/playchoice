@@ -45,4 +45,9 @@ public class ActorServiceImpl implements ActorService {
 		return dao.mypickActor(param);
 	}
 
+	@Override
+	public ActorDTO getActor(int a_id) throws Exception {
+		return dao.getActor(a_id);
+	}
+
 }

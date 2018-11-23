@@ -29,6 +29,7 @@ public class PreferActorController {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		dto.setM_code(m_code);
 		dto.setA_id(a_id);
+		System.out.println(a_id);
 		
 		// 선호배우 목록에 동일한 배우가 있는지 검사
 		int cnt = preferService.countPrefer(m_code, dto.getA_id());

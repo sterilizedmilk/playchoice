@@ -30,16 +30,16 @@ public class ActorController {
 
 	// 배우 목록/검색
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String actorListController(@RequestParam(required = false) String keyword, Model model) {
+	public String actorListController(@RequestParam(required = false) String keyword, Model model) throws Exception {
 		model.addAttribute("actorList", service.listActor(keyword));
-
 		return "actor/actorList";
 	}
 
 	// 배우 정보
 	@RequestMapping("detail")
-	public String actordetailController() {
-		return "";
+	public String actordetailController(@RequestParam("a_id") int a_id, Model model) throws Exception {
+		model.addAttribute("actorDTO", service.getActor(a_id));
+		return "actor/actorDetail";
 	}
 
 	// 배우등록 페이지이동

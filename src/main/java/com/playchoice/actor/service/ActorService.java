@@ -16,4 +16,6 @@ public interface ActorService {
 
 	public int mypickActor(MemberDTO dto, String a_id);
 	
+	public ActorDTO getActor(int a_id) throws Exception;
+	
 }
