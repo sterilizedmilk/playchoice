@@ -3,6 +3,7 @@ package com.playchoice.admin.dao;
 import java.util.List;
 
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface AdminPlayDAO {
@@ -24,4 +25,6 @@ public interface AdminPlayDAO {
 	public List<ScheduleDTO> psread(int p_id) throws Exception;
 	
 	public void pscreate(ScheduleDTO sdto) throws Exception;
+	
+	public List<QnaDTO> getQna(int m_code);
 }

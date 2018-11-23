@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 @Repository
@@ -71,6 +72,13 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 	public void pscreate(ScheduleDTO sdto) throws Exception {
 		System.out.println("create dao start"+sdto);
 		session.insert(namespace + ".pscreate", sdto);
+	}
+	
+	//QnA 가져오기
+	@Override
+	public List<QnaDTO> getQna(int m_code) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

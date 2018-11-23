@@ -23,11 +23,12 @@
 		return false;
 	}
 	
-	function deleteGenre(g_id) {
+	function updateGenre(g_id) {
+		var newName = prompt("change to what?");
 		$.ajax({
-			url: "${pageContext.request.contextPath}/admin/site/genre/delete",
+			url: "${pageContext.request.contextPath}/admin/site/genre/edit",
 			type: "post",
-			data: {"g_id" : g_id},
+			data: {"g_id" : g_id, "g_name" : newName},
 			success: function(data) {
 				alert("success : " + data);
 			},
@@ -37,11 +38,6 @@
 		})
 	}
 
-
-	$(function(){
-		
-		
-	});
 </script>
 
 </head>
@@ -62,7 +58,7 @@
 			<tr>
 				<td>${genre.g_id}</td>
 				<td>${genre.g_name}</td>
-				<td><button onclick="deleteGenre(${genre.g_id})">X</button></td>
+				<td><button onclick="updateGenre(${genre.g_id})">수정</button></td>
 			</tr>
 		</c:forEach>
 	</table>

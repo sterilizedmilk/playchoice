@@ -66,8 +66,8 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	}
 
 	@Override
-	public int genreDelete(int g_id) {
-		return sqlSession.delete(namespace + ".genreDelete", g_id);
+	public int genreUpdate(GenreDTO dto) {
+		return sqlSession.update(namespace + ".genreUpdate", dto);
 	}
 
 	@Override
@@ -78,6 +78,11 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	@Override
 	public int areaInsert(String a_name) {
 		return sqlSession.insert(namespace + ".areaInsert", a_name);
+	}
+	
+	@Override
+	public int areaUpdate(AreaDTO dto) {
+		return sqlSession.update(namespace + ".areaUpdate", dto);
 	}
 
 	@Override
@@ -97,7 +102,6 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 		// TODO Auto-generated method stub
 		System.out.println("memberUpdate-------" + memberDTO);
 		return sqlSession.update(namespace + ".memberUpdate", memberDTO);
-
 	}
 
 	@Override

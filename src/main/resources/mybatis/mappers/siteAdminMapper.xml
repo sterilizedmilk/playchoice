@@ -12,11 +12,11 @@
 		VALUES(#{g_name})
 	</insert>
 
-	<delete id="genreDelete">
-		DELETE FROM genre
+	<update id="genreUpdate">
+		UPDATE genre
+		SET g_name = #{g_name}
 		WHERE g_id = #{g_id}
-	</delete>
-
+	</update>
 
 	<select id="areaList" resultType="AreaDTO">
 		SELECT * FROM area
@@ -28,11 +28,11 @@
 		VALUES(#{a_name})
 	</insert>
 
-	<delete id="areaDelete">
-		DELETE FROM area
+	<update id="areaUpdate">
+		UPDATE area
+		SET a_name = #{a_name}
 		WHERE a_id = #{a_id}
-	</delete>
-
+	</update>
 
 	<!-- 멤버 관리 -->
 	<select id="memberList" resultType="memberDTO">

@@ -30,11 +30,13 @@ public interface SiteAdminDAO {
 
 	public int genreInsert(String g_name);
 
-	public int genreDelete(int g_id);
+	public int genreUpdate(GenreDTO dto);
 
 	public List<AreaDTO> areaList();
-
+	
 	public int areaInsert(String a_name);
+
+	public int areaUpdate(AreaDTO dto);
 
 	public int areaDelete(int a_id);
 

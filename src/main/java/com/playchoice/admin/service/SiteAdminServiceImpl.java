@@ -41,8 +41,8 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	}
 
 	@Override
-	public int genreDelete(int g_id) {
-		return dao.genreDelete(g_id);
+	public int genreUpdate(GenreDTO dto) {
+		return dao.genreUpdate(dto);
 	}
 
 	@Override
@@ -64,6 +64,11 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	@Override
 	public int areaInsert(String a_name) {
 		return dao.areaInsert(a_name);
+	}
+	
+	@Override
+	public int areaUpdate(AreaDTO dto) {
+		return dao.areaUpdate(dto);
 	}
 
 	@Override

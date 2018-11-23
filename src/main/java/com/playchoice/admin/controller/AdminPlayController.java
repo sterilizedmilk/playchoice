@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 
@@ -187,11 +188,6 @@ public class AdminPlayController {
 		//pslist로 이동 ->  p_id에 대하여 sdto.getP_id() 로 이동
 	}
 	
-	//Q & A 리스트
-	@RequestMapping("qnalist")
-	public void qnaList() {
-		
 
-	}
 
 }

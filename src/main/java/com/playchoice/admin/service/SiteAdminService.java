@@ -16,13 +16,15 @@ public interface SiteAdminService {
 
 	public int genreInsert(String g_name);
 
-	public int genreDelete(int g_id);
+	public int genreUpdate(GenreDTO dto);
 
 	public List<AreaDTO> areaList();
 
 	public Map<Integer, String> areaMap();
 
 	public int areaInsert(String a_name);
+	
+	public int areaUpdate(AreaDTO dto);
 
 	public int areaDelete(int a_id);
 
