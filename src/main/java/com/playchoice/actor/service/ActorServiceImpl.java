@@ -47,7 +47,8 @@ public class ActorServiceImpl implements ActorService {
 
 	@Override
 	public ActorDTO getActor(int a_id) throws Exception {
-		return dao.getActor(a_id);
+		ActorDTO dto = dao.getActor(a_id); 
+		return dto;
 	}
 
 }

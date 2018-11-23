@@ -29,7 +29,7 @@
 						<c:forEach var="result" items="${list }" varStatus="status">
 							<tr>
 								<td>${result.a_picture }</td>
-								<td>${result.a_name }</td>
+								<td><a href="${pageContext.request.contextPath}/actor/detail?a_id=${result.a_id}">${result.a_name }</a></td>
 								<td><fmt:formatDate value="${result.a_birth }" pattern="yyyy-MM-dd"/></td>
 								<td>${result.a_homepage }</td>
 								<td><a href="${pageContext.request.contextPath}/prefer/delete?a_id=${result.a_id}">삭제</a></td>
