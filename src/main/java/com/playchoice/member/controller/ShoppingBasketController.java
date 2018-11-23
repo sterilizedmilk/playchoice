@@ -27,22 +27,22 @@ public class ShoppingBasketController {
 	@Autowired
 	SiteAdminService siteAdminService;
 	
-	// 장바구니 추가
+	// 찜한 연극 추가
 	@RequestMapping(value = "/insert")
 	public String insert(@ModelAttribute ShoppingBasketDTO dto, @RequestParam("p_id") int p_id, HttpSession session) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		dto.setM_code(m_code);
 		dto.setP_id(p_id);
 		
-		// 장바구니에 기존 상품이 있는지 체크
+		// 찜한 연극 목록에 동일 연극이 있는지 체크
 		int cnt = basketService.countBasket(m_code, dto.getP_id());
-		if(cnt == 0) { // 없으면 장바구니에 추가
+		if(cnt == 0) { // 없으면 찜한 연극 목록에 추가
 			basketService.insertBasket(dto);
 		}
 		return "redirect:/basket/list";
 	}
 	
-	// 장바구니 목록
+	// 찜한 연극  목록
 	@RequestMapping(value = "/list")
 	public String list(HttpSession session, Model model) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code(); // session에 저장된 m_code
@@ -54,7 +54,7 @@ public class ShoppingBasketController {
 		return "basket/basketList";
 	}
 	
-	// 장바구니 삭제
+	// 찜한 연극  삭제
 	@RequestMapping(value = "/delete")
 	public String delete(@RequestParam("p_id") int p_id) throws Exception {
 		basketService.deleteBasket(p_id);

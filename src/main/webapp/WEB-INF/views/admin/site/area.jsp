@@ -40,7 +40,8 @@
 </script>
 
 </head>
-<body>
+
+<jsp:include page="integratedheader.jsp" />
 	<h2>Area Management</h2>
 
 

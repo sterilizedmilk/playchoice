@@ -189,7 +189,7 @@
 		<div class="col-md-7" style="margin: 0px 10px; float: left; ">
 			<jsp:include page="playcal.jsp" />
 
-			<%-- <button id="viewSchedule">달력보기</button>
+			<button id="viewSchedule">달력보기</button>
 			<div>
 				<!--   <table id="calendar" border="1">
             </table> -->
@@ -197,7 +197,7 @@
             	${list.s_time } <button class="scheduleCho" value="${list.s_id }" price="${list.s_price }">선택</button>
 					<br>
 				</c:forEach>
-			</div> --%>
+			</div>
 		</div>
 	</div>
 	<!-------- 우측 정보영역 끝 -------->

@@ -6,6 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="../page/header.jsp" />
+<jsp:include page="viewheader.jsp" />
 
 <div class="container">
 	<h2>마이페이지</h2>

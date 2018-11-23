@@ -14,7 +14,7 @@
 			<td><button name="member" value=""
 					onclick="location.href='${pageContext.request.contextPath}/admin/site/member/common'">멤버관리</button></td>
 			<td><button name="member" value=""
-					onclick="location.href='${pageContext.request.contextPath}/admin/site/sitemember/common'">사이트관리자 관리</button></td>
+					onclick="location.href='${pageContext.request.contextPath}/admin/site/sitemember/common'">연극관리자 관리</button></td>
 			<td><button name="member" value=""
 					onclick="location.href='${pageContext.request.contextPath}/admin/site/play/common'">연극관리</button></td>
 			<td><button name="member" value=""
@@ -26,5 +26,3 @@
 
 		</tr>
 	</table>
-</body>
-</html>

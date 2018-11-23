@@ -137,6 +137,8 @@
 				<%
 					out.println("<BR>");
 						out.println("zzzzzzz");
+			
+
 						// 여기가 날짜 나오는
 						out.println("<BR>");
 						//기능 제거 

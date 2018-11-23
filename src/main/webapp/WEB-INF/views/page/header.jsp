@@ -100,21 +100,21 @@
 									<li><i class="icon-user"></i> ${login.m_id } 님</li>
 									<li><a
 										href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
-									<li><a
+									<%--<li><a
 										href="${pageContext.request.contextPath}/basket/list">찜한 연극</a></li>
 									<li><a
-										href="${pageContext.request.contextPath}/prefer/list">찜한 배우</a></li>
+										href="${pageContext.request.contextPath}/prefer/list">찜한 배우</a></li> --%>
 									<li><a
 										href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li class="dropdown"><a href="${pageContext.request.contextPath}/article/notice/list">고객센터
+							<li class="dropdown"><a
+								href="${pageContext.request.contextPath}/article/notice/list">고객센터
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/admin/play/aplist">연극
 									관리자</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/admin/site">관리자</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/site">관리자</a></li>
 						</ul>
 					</div>
 				</div>
@@ -154,7 +154,7 @@
 													<li><a href="index-alt2.html">내일티켓</a></li>
 													<li><a href="index-alt3.html">타임세일</a></li>
 												</ul></li>
-											<li class="dropdown"><a href="#">분류별 공연<i
+											<li class="dropdown"><a href="#">장르<i
 													class="icon-angle-right"></i></a>
 												<ul class="dropdown-menu sub-menu-level1">
 													<li><a href="index.html">연극</a></li>
@@ -173,13 +173,6 @@
 													<li><a href="index-alt3.html">부산/대구/경상</a></li>
 													<li><a href="index-alt3.html">광주/전주/전라</a></li>
 													<li><a href="index-alt3.html">기타지역</a></li>
-												</ul></li>
-											<li class="dropdown"><a href="#">문화정보<i
-													class="icon-angle-right"></i></a>
-												<ul class="dropdown-menu sub-menu-level1">
-													<li><a href="index.html">예매순위</a></li>
-													<li><a href="index-alt2.html">티켓리뷰</a></li>
-													<li><a href="index-alt3.html">이벤트</a></li>
 												</ul></li>
 										</ul></li>
 									<li><a href="/playChoice/play/playlist">오늘(11/11)</a></li>

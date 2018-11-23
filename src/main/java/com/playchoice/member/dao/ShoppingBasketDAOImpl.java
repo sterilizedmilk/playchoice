@@ -18,31 +18,31 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
 	private SqlSessionTemplate sqlSession;
 	private static final String namespace = "com.playchoice.mapper.basketMapper";
 
-	// 장바구니 목록
+	// 찜한 연극  목록
 	@Override
 	public List<PlayDTO> shoppingBasketList(int m_code) throws Exception {
 		return sqlSession.selectList(namespace + ".shoppingBasketList", m_code);
 	}
 
-	// 장바구니 추가
+	// 찜한 연극 추가
 	@Override
 	public void insertBasket(ShoppingBasketDTO dto) throws Exception {
 		sqlSession.insert(namespace + ".insertBasket", dto);
 	}
 
-	// 장바구니 수정
+	// 장바구니 수정(필요없음)
 	@Override
 	public void updateBasket(ShoppingBasketDTO dto) throws Exception {
 		sqlSession.update(namespace + ".updateBasket", dto);
 	}
 
-	// 장바구니 삭제
+	// 찜한 연극  삭제
 	@Override
 	public void deleteBasket(int p_id) throws Exception {
 		sqlSession.delete(namespace + ".deleteBasket", p_id);
 	}
 	
-	// 장바구니에 동일한 상품이 있는지 검사
+	// 찜한 연극 목록에 동일 연극이 있는지 체크
 	@Override
 	public int countBasket(int m_code, int p_id) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();

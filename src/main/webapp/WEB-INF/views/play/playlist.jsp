@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 
 <jsp:include page="../page/header.jsp" />
+<jsp:include page="../page/menu.jsp" />
 <meta charset="UTF-8">
 
 <h2 align="center">연극 리스트</h2>
@@ -16,7 +17,8 @@
 			<c:forEach items="${list}" var="li" varStatus="status">
 				<div style="outline:1px solid #8C8C8C; float:left; margin:15px; width: 180px; height: 320px;">
 					<div>
-						<a href="playdetail?p_id=${li.p_id }"><img src="/playChoice/resources/img/play/${li.p_image0 }"></a>
+						<a href="playdetail?p_id=${li.p_id }">
+						<img src="${pageContext.request.contextPath}/resources/img/play/${li.p_image0 }"></a>
 					</div>
 					<div>
 						<p> <a href="playdetail?p_id=${li.p_id }">${li.p_name }</a> </p>
