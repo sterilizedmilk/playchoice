@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertOne" parameterType="aaaDTO">
 		insert into article (
-		a_title,a_content,a_board)value
-		(#{a_title},#{a_content},#{a_board})
+		a_title,a_content,a_board,m_code )value
+		(#{a_title},#{a_content},#{a_board}, #{m_code})
 	</insert>
 	<select id="selectOne" parameterType="java.lang.Integer"
 		resultType="aaaDTO">

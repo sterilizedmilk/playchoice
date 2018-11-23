@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
 
@@ -15,10 +14,10 @@
 			</div>
 			<div class="span8">
 				<ul class="breadcrumb">
-					<li><a href="#"><i class="icon-home"></i></a><i
-						class="icon-angle-right"></i></li>
-					<li><a href="customergongi">고객센터</a><i
-						class="icon-angle-right"></i></li>
+					<li><a href="#">
+							<i class="icon-home"></i>
+						</a><i class="icon-angle-right"></i></li>
+					<li><a href="customergongi">고객센터</a><i class="icon-angle-right"></i></li>
 					<li class="active">1:1문의</li>
 				</ul>
 			</div>
@@ -36,24 +35,30 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<td>제목<input type="text" name="a_title" style="width: 95%"></td>
+								<td>
+									제목<input type="text" name="a_title" style="width: 95%"><input type="hidden" name="m_code" value="${login.m_code }" />
+								</td>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="4"><select name="target">
+								<td colspan="4">
+									<select name="target">
 										<option value="">타입 선택</option>
 										<option value="notice" selected="selected">공지사항</option>
 										<option value="faq">FAQ</option>
-								</select></td>
+									</select>
+								</td>
 							</tr>
 							<tr>
-								<td colspan="4"><input type="text" name="a_content"
-									style="width: 98%; height: 300px"></td>
+								<td colspan="4">
+									<input type="text" name="a_content" style="width: 98%; height: 300px">
+								</td>
 							</tr>
 							<tr>
-								<td colspan="4"><input type="submit"
-									class="btn btn-square btn-theme" style="width: 100%" value="등록" /></td>
+								<td colspan="4">
+									<input type="submit" class="btn btn-square btn-theme" style="width: 100%" value="등록" />
+								</td>
 							</tr>
 						</tbody>
 					</table>

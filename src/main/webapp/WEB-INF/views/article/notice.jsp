@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
 
@@ -44,27 +43,21 @@
 							<c:forEach items="${data }" var="dd" varStatus="no">
 								<tr>
 									<td>${no.index +1 }</td>
-									<td colspan="2"><a href="detail?a_id=${dd.a_id }">${dd.a_title }</a></td>
+									<td colspan="2">
+										<a href="detail?a_id=${dd.a_id }">${dd.a_title }</a>
+									</td>
 									<td>${dd.a_time }</td>
 								</tr>
 
 							</c:forEach>
 							<c:choose>
-								<c:when test="${empty login }">
+								<c:when test="${login.m_level eq 2}">
 									<!-- 관리자일 경우, -->
 									<td colspan="8">
-										<button type="button" class="btn btn-square btn-theme"
-											style="width: 100%"
-											onclick="location.href='${uuu }notice/insert'">글쓰기</button>
+										<button type="button" class="btn btn-square btn-theme" style="width: 100%" onclick="location.href='${uuu }notice/insert'">글쓰기</button>
 									</td>
 								</c:when>
 								<c:otherwise>
-									<!-- 일반 회원일 경우, -->
-									<td colspan="8">
-										<button type="button" class="btn btn-square btn-theme"
-											style="width: 100%"
-											onclick="location.href='${uuu }notice/insert'">글쓰기</button>
-									</td>
 								</c:otherwise>
 							</c:choose>
 						</tbody>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
 
@@ -15,10 +14,10 @@
 			</div>
 			<div class="span8">
 				<ul class="breadcrumb">
-					<li><a href="#"><i class="icon-home"></i></a><i
-						class="icon-angle-right"></i></li>
-					<li><a href="customergongi">고객센터</a><i
-						class="icon-angle-right"></i></li>
+					<li><a href="#">
+							<i class="icon-home"></i>
+						</a><i class="icon-angle-right"></i></li>
+					<li><a href="customergongi">고객센터</a><i class="icon-angle-right"></i></li>
 					<li class="active">1:1문의</li>
 				</ul>
 			</div>
@@ -48,13 +47,14 @@
 							<th colspan="5" style="width: 98%; height: 300px">${data.a_content }</th>
 						</tr>
 						<tr>
-							<td colspan="5"><input type="hidden" value="${data.a_id }" />
-								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/modify?a_id=${data.a_id }'">수정</button>
-								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
-								<button type="button" class="btn btn-square btn-theme"
-									onclick="location.href='${uuu }notice/list'">목록 전체보기</button></td>
+							<td colspan="5">
+								<c:if test="${login.m_level eq 2}">
+									<input type="hidden" value="${data.a_id }" />
+									<button type="button" class="btn btn-square btn-theme" onclick="location.href='${uuu }notice/modify?a_id=${data.a_id }'">수정</button>
+									<button type="button" class="btn btn-square btn-theme" onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
+								</c:if>
+								<button type="button" class="btn btn-square btn-theme" onclick="location.href='${uuu }notice/list'">목록 전체보기</button>
+							</td>
 						</tr>
 						<!-- 관리자일 경우에만 보여주기 -->
 					</table>
@@ -63,12 +63,11 @@
 					<form action="${uuu }notice/comment">
 						<table class="table table-bordered">
 							<tr>
-								<td colspan="4"><input type="text" name="a_comment"
-									style="width: 98%; height: 100px"> <input type="hidden"
-									name="a_id" value="${data.a_id }" /></td>
+								<td colspan="4">
+									<input type="text" name="a_comment" style="width: 98%; height: 100px"> <input type="hidden" name="a_id" value="${data.a_id }" /> <input type="hidden" name="m_code" value="${login.m_code }" />
+								</td>
 								<td>
-									<button type="submit" class="btn btn-square btn-theme"
-										style="width: 100%; height: 100px">댓글</button>
+									<button type="submit" class="btn btn-square btn-theme" style="width: 100%; height: 100px">댓글</button>
 								</td>
 							</tr>
 							<c:if test="${!empty data.objReplay}">
