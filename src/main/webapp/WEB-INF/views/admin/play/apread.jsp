@@ -56,19 +56,19 @@
 	<div><label for="exampleInputEmail1">대표 포스터</label>
 	</div>
 	<div class="form-group">		
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image0 }">
+		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image0 }">
 		
 	</div>
 	<div><label>메인 썸네일 포스터</label></div>
 	<div>
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image1 }">
+		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image1 }">
 	</div>
 	<div><label for="exampleInputEmail1">내용 포스터</label>
 	</div>
 	<div>
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image2 }">
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image3 }">
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image4 }">
+		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image2 }"><br/>
+		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image3 }"><br/>
+		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image4 }">
 	</div>
 </div>
 <div class="box-footer">
@@ -87,24 +87,24 @@
 		console.log(formObj);
 		
 		$(".btn-warning").on("click", function(){
-			formObj.attr("action", "/playChoice/admin/play/modify");
+			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/modify");
 			formObj.attr("method", "get");
 			formObj.submit();
 		});
 		$(".btn-danger").on("click", function(){
-			formObj.attr("action", "/playChoice/admin/play/remove");
+			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/remove");
 			formObj.submit();
 		});
 		$(".btn-flurry").on("click", function(){
-			formObj.attr("action", "/playChoice/admin/play/flurry");
+			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/flurry");
 			formObj.submit();
 		});
 		$(".btn-primary").on("click", function(){
-			self.location="/playChoice/admin/play/aplist";
+			self.location="${pageContext.request.contextPath}/admin/play/aplist";
 		});
 		$(".btn-pslist").on("click", function(){
 			
-			self.location="/playChoice/admin/play/pslist?p_id=${playDTO.p_id}";
+			self.location="${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}";
 		});
 	});
 </script>

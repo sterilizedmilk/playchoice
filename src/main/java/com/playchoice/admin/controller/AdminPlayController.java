@@ -59,6 +59,7 @@ public class AdminPlayController {
 		FileService fs = new FileService(request);
 		//이미지 생성 및 이미지 체크
 		
+		//이름부분을 th 라는 String 변수 입력
 		String th = fs.imageUpload(dto.getP_image().get(0));
 		dto.setP_image0(th);
 		dto.setP_image1(fs.imageUpload(dto.getP_image().get(1)));
@@ -70,9 +71,9 @@ public class AdminPlayController {
 		//DB insert
 		service.regist(dto);
 		
-		
-		
+		//th변수(image0)의 크기를 조절하는 썸네일을 만든다
 		fs.setThumb(th);
+		
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/play/aplist";
 			
