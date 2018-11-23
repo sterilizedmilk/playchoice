@@ -6,11 +6,12 @@
 <mapper namespace="com.playchoice.mappers.playMapper">
 	<!-- com.playchoice.play.dto.PlayDTO -->
 	<select id="playList" resultType="PlayDTO">
-		SELECT play.*, min(`schedule`.s_price) AS lowest_price
+		SELECT play.*,
+		min(`schedule`.s_price) AS lowest_price
 		FROM play, `schedule`
-		WHERE 
-			play.p_id = `schedule`.p_id
-			AND play.p_status = '1'
+		WHERE
+		play.p_id = `schedule`.p_id
+		AND play.p_status = '1'
 		GROUP BY play.p_id
 	</select>
 
@@ -28,56 +29,57 @@
 		where p_id = #{p_id}
 		order by s_time
 	</select>
-	
+
 	<select id="getReviewScore" parameterType="Integer"
-	 resultType="java.util.HashMap">
+		resultType="java.util.HashMap">
 		SELECT
-			count(*) AS cnt, round(avg(review.r_play_score),1) AS avgscore
+		count(*) AS cnt, round(avg(review.r_play_score),1) AS avgscore
 		FROM
-			play, schedule, review, member
+		play, schedule, review, member
 		WHERE
-			review.s_id = schedule.s_id
-			AND review.r_deleted = '0'
-			AND schedule.p_id = #{p_id}
-			AND review.m_code = member.m_code;
-		
+		review.s_id = schedule.s_id
+		AND review.r_deleted = '0'
+		AND schedule.p_id = #{p_id}
+		AND review.m_code = member.m_code;
+
 	</select>
-	
+
 	<select id="getReviewSmall" parameterType="Integer"
-	resultType="java.util.HashMap">
+		resultType="java.util.HashMap">
 		SELECT
-			member.m_id AS m_id, review.r_content AS r_content, review.r_register_time AS r_register_time
-			,review.r_play_score AS r_play_score
+		member.m_id AS m_id, review.r_content AS r_content, review.r_register_time AS
+		r_register_time
+		,review.r_play_score AS r_play_score
 		FROM
-			play, schedule, review, member
+		play, schedule, review, member
 		WHERE
-			review.s_id = schedule.s_id
-			AND review.r_deleted = '0'
-			AND schedule.p_id = #{p_id}
-			AND review.m_code = member.m_code
+		review.s_id = schedule.s_id
+		AND review.r_deleted = '0'
+		AND schedule.p_id = #{p_id}
+		AND review.m_code = member.m_code
 		ORDER BY review.r_register_time desc
 		LIMIT 20;
 	</select>
-	
+
 	<!-- 아이디를 가져올떄 마지막 2문자를 **로 처리하여 가져옴 -->
 	<select id="getQnA" parameterType="Integer"
-	resultType="java.util.HashMap">
+		resultType="java.util.HashMap">
 		SELECT
-			replace(member.m_id,right(member.m_id,2),'**') AS m_id
-			, member.m_code AS m_code
-			, member.m_level AS m_level
-			, question_answer.p_id AS p_id
-			, question_answer.q_time AS q_time
-			, question_answer.q_content AS q_content
-			, question_answer.q_id AS q_id
-			, question_answer.q_target_id AS q_target_id
+		replace(member.m_id,right(member.m_id,2),'**') AS m_id
+		, member.m_code AS m_code
+		, member.m_level AS m_level
+		, question_answer.p_id AS p_id
+		, question_answer.q_time AS q_time
+		, question_answer.q_content AS q_content
+		, question_answer.q_id AS q_id
+		, question_answer.q_target_id AS q_target_id
 		FROM
-			question_answer, member
+		question_answer, member
 		WHERE
-			question_answer.m_code = member.m_code
-			AND question_answer.p_id = #{p_id}
-			AND question_answer.q_deleted = '0'
+		question_answer.m_code = member.m_code
+		AND question_answer.p_id = #{p_id}
+		AND question_answer.q_deleted = '0'
 		ORDER BY
-			 q_target_id desc , q_id;
+		q_target_id desc , q_id;
 	</select>
 </mapper>

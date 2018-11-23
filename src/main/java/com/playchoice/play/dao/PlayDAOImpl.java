@@ -27,7 +27,7 @@ public class PlayDAOImpl implements PlayDAO {
 
 	@Override
 	public PlayDTO playDetail(int p_id) { // detail
-	
+
 		return sqlSession.selectOne(namespace + ".playDetail", p_id);
 	}
 
@@ -61,31 +61,37 @@ public class PlayDAOImpl implements PlayDAO {
 
 		return res;
 	}
-	
+
 	@Override
 	public Object getSchedule(int p_id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+".viewCal", p_id);
+		return sqlSession.selectList(namespace + ".viewCal", p_id);
 	}
-	
+
 	@Override
 	public Object getReviewSmall(int p_id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+".getReviewSmall", p_id);
+		return sqlSession.selectList(namespace + ".getReviewSmall", p_id);
 	}
 
 	@Override
 	public Object getReviewScore(int p_id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+".getReviewScore",p_id);
+		return sqlSession.selectOne(namespace + ".getReviewScore", p_id);
 	}
 
 	@Override
 	public List<Object> getQnA(int p_id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+".getQnA", p_id);
+		return sqlSession.selectList(namespace + ".getQnA", p_id);
 	}
 
-	
+	@Override
+	public Object getPlayRank() {
+		// TODO Auto-generated method stub
+		// DB 값 처리 안함
+		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playRankList");
+		return dto;
+	}
 
 }

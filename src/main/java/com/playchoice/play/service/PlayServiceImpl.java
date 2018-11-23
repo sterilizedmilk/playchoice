@@ -74,4 +74,9 @@ public class PlayServiceImpl implements PlayService {
 		return list;
 	}
 
+	@Override
+	public Object RankList() {
+		// TODO Auto-generated method stub
+		return playDao.playList();
+	}
 }

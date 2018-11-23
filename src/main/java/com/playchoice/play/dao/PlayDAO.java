@@ -35,5 +35,6 @@ public interface PlayDAO {
 	
 	public List<Object> getQnA(int p_id);
 	
+	public Object getPlayRank();
 
 }
