@@ -186,5 +186,12 @@ public class AdminPlayController {
 		return "redirect:pslist?p_id="+sdto.getP_id();
 		//pslist로 이동 ->  p_id에 대하여 sdto.getP_id() 로 이동
 	}
+	
+	//Q & A 리스트
+	@RequestMapping("qnalist")
+	public void qnaList() {
+		
+
+	}
 
 }
