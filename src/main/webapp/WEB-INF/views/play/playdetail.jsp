@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -134,29 +133,23 @@
 <div class="container">
 	<div class="row">
 		<!-- 좌측 정보 -->
-		<div class="col-md-5"
-			style="float: left; position: relative; margin-right: 15px; background: #fff;">
+		<div class="col-md-5" style="float: left; position: relative; margin-right: 15px; background: #fff;">
 			<!-- 이미지 -->
-			<img src="/playChoice/resources/img/play/oktap.jpg"
-				style="width: 480px; padding: 10px 10px 7px 10px; outline: 1px solid #eee;">
+			<img src="/playChoice/resources/img/play/oktap.jpg" style="width: 480px; padding: 10px 10px 7px 10px; outline: 1px solid #eee;">
 			<!--  이미지 끝 -->
 
 			<!-- 연극 제목 및 가격정보 -->
 			<div>
 				<!-- 제목 -->
 				<div style="text-align: center; padding: 15px 10px">
-					<span
-						style="margin-left: 2px; font-size: 20px; font-weight: 500; color: #000;">${playDTO.p_name }</span>
+					<span style="margin-left: 2px; font-size: 20px; font-weight: 500; color: #000;">${playDTO.p_name }</span>
 				</div>
 				<!-- 제목 끝 -->
 
 				<!-- 정가 가격  -->
-				<div
-					style="margin: 0 10px; padding: 15px 0 0px 0; font-size: 12px; font-weight: 300; color: #8b8b8b; border-top: 1px solid #eee;">
-				</div>
+				<div style="margin: 0 10px; padding: 15px 0 0px 0; font-size: 12px; font-weight: 300; color: #8b8b8b; border-top: 1px solid #eee;"></div>
 				<!-- 할인 가격 -->
-				<div class="row"
-					style="margin: 0 10px; font-size: 18px; color: #ed1c24; font-weight: 400;">
+				<div class="row" style="margin: 0 10px; font-size: 18px; color: #ed1c24; font-weight: 400;">
 					<div style="float: left;">
 						<span id="scheText"></span>
 					</div>
@@ -172,8 +165,7 @@
 						<button id="minus">
 							<i class=" icon-minus"></i>
 						</button>
-						<input type="text" id="quantity" name="quantity" value="1"
-							style="width: 30px;" min="1" />매
+						<input type="text" id="quantity" name="quantity" value="1" style="width: 30px;" min="1" />매
 						<button id="plus">
 							<i class=" icon-plus"></i>
 						</button>
@@ -185,8 +177,7 @@
 					</div>
 				</div>
 				<!-- 총 가격 -->
-				<div
-					style="margin: 0 10px; padding: 15px 0px; text-align: right; border-top: 1px solid #eee; font-size: 24px; color: #ed1c24;">
+				<div style="margin: 0 10px; padding: 15px 0px; text-align: right; border-top: 1px solid #eee; font-size: 24px; color: #ed1c24;">
 					<span id="totalCost"> </span><span> 원</span>
 
 				</div>
@@ -197,20 +188,19 @@
 		<!--  좌측정보 끝 -->
 
 		<!-- 우측 상단 정보영역 시작 / 달력 -->
-		<jsp:include page="playcal.jsp" />
-		<%-- <div class="col-md-7"
-			style="margin: 0px 10px; float: left; border: 1px solid blue">
-			<button id="viewSchedule">달력보기</button>
+		<div class="col-md-7" style="margin: 0px 10px; float: left; ">
+			<jsp:include page="playcal.jsp" />
+
+			<%-- <button id="viewSchedule">달력보기</button>
 			<div>
 				<!--   <table id="calendar" border="1">
             </table> -->
 				<c:forEach items="${schedule }" var="list" varStatus="status">
-            	${list.s_time } <button class="scheduleCho"
-						value="${list.s_id }" price="${list.s_price }">선택</button>
+            	${list.s_time } <button class="scheduleCho" value="${list.s_id }" price="${list.s_price }">선택</button>
 					<br>
 				</c:forEach>
-			</div>
-		</div> --%>
+			</div> --%>
+		</div>
 	</div>
 	<!-------- 우측 정보영역 끝 -------->
 	<!-- divider -->
@@ -224,12 +214,7 @@
 	<div class="row" align="right" style="outline: 1px solid blue;">
 		<div style="float: rigth;">
 			<form name="frm" method="post">
-				<input type="hidden" id="frmId" name="s_id" value="" /> <input
-					type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" />
-				<input type="hidden" id="" name="m_code" value="${login.m_code }" />
-
-				<input type="hidden" id="frmPrice" name="p_price" value="" /> <input
-					type="hidden" id="frmQuantity" name="p_quantity" value="12000" />
+				<input type="hidden" id="frmId" name="s_id" value="" /> <input type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" /> <input type="hidden" id="" name="m_code" value="${login.m_code }" /> <input type="hidden" id="frmPrice" name="p_price" value="" /> <input type="hidden" id="frmQuantity" name="p_quantity" value="12000" />
 
 				<button id="cart" type="submit" class="btn btn-success btn-lg">장바구니</button>
 			</form>
@@ -243,13 +228,11 @@
 	<!-- 최근 리뷰 정보 시작 -->
 	<div class="row">
 		<div>
-			<p style="font-size: 1.5em;">예매자 평점 ${reviewScore.avgscore } /
-				5.0 (${reviewScore.cnt }명)</p>
+			<p style="font-size: 1.5em;">예매자 평점 ${reviewScore.avgscore } / 5.0 (${reviewScore.cnt }명)</p>
 		</div>
 		<div style="background-color: #FAF4C0; outline: 1px solid #eee;">
 			<c:forEach items="${reviewSmall }" var="reviewList" begin="0" end="1">
-				<div
-					style="padding: 10px 10px; margin: 15px 25px; border-bottom: 1px solid #BDBDBD;">
+				<div style="padding: 10px 10px; margin: 15px 25px; border-bottom: 1px solid #BDBDBD;">
 					<p>
 						<b>${reviewList.m_id }</b>(${reviewList.r_register_time })
 					</p>
@@ -263,15 +246,12 @@
 	<!-- 탭정보 출력 -->
 	<div class="row" style="align-content: center;">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#one" data-toggle="tab"
-				style="padding-left: 100px; padding-right: 100px;"><span
-					style="font-size: 2em">안 내</span></a></li>
-			<li><a href="#two" id="review" data-toggle="tab"
-				style="padding-left: 100px; padding-right: 100px;">후 기</a></li>
-			<li><a href="#three" data-toggle="tab"
-				style="padding-left: 100px; padding-right: 100px;">Q & A</a></li>
-			<li><a href="#four" data-toggle="tab"
-				style="padding-left: 100px; padding-right: 100px;">환불규정</a></li>
+			<li class="active"><a href="#one" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">
+					<span style="font-size: 2em">안 내</span>
+				</a></li>
+			<li><a href="#two" id="review" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기</a></li>
+			<li><a href="#three" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">Q & A</a></li>
+			<li><a href="#four" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">환불규정</a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="one">
@@ -279,11 +259,9 @@
 			</div>
 			<!-- 리뷰 탭 -->
 			<div class="tab-pane" id="two">
-				<div align="center"
-					style="padding: 20px; margin: 10px 30px; outline: 1px solid #eee; align-content: center;">
+				<div align="center" style="padding: 20px; margin: 10px 30px; outline: 1px solid #eee; align-content: center;">
 					<p>
-						평균 <span style="font-size: 1.5em">${reviewScore.avgscore }</span>
-						점
+						평균 <span style="font-size: 1.5em">${reviewScore.avgscore }</span> 점
 					</p>
 					<p>별 그림</p>
 					<p>실제 관람객들 후기입니다.</p>
@@ -291,7 +269,7 @@
 				<div id="reviews" style="margin: 10px 30px;">
 					<c:forEach items="${reviewSmall}" var="list" varStatus="status">
 						<div style="border-bottom: 1px solid #eee;">
-							<p>${list.r_play_score}점 / 5 점</p>
+							<p>${list.r_play_score}점/5점</p>
 							<p>${list.r_content }</p>
 							<p>
 								${list.m_id } <span style="font-size: 0.5ex">(${list.r_register_time })</span>
@@ -308,10 +286,8 @@
 					<p>연극에 대한 궁금증을 남겨주세요!</p>
 					<div style="background-color: #FAF4C0;">
 						<form id="qfrm" method="post">
-							<textarea id="q_content" name="q_content"
-								style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;"></textarea>
-							<input type="hidden" name="p_id" value="${playDTO.p_id }" /> <input
-								type="hidden" name="m_code" value="${login.m_code }" />
+							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;"></textarea>
+							<input type="hidden" name="p_id" value="${playDTO.p_id }" /> <input type="hidden" name="m_code" value="${login.m_code }" />
 							<button id="qsubmit">등 록</button>
 						</form>
 					</div>
@@ -324,18 +300,17 @@
 							</c:if>
 							<div class="${className }">
 								<p style="font-weight: bold;">${list.m_id }
-									| ${list.q_time} <a class="deleteQna" q_id="${list.q_id }"
-										m_code="${list.m_code}" p_id="${list.p_id }"><i
-										class="icon-remove-circle"></i></a>
+									| ${list.q_time}
+									<a class="deleteQna" q_id="${list.q_id }" m_code="${list.m_code}" p_id="${list.p_id }">
+										<i class="icon-remove-circle"></i>
+									</a>
 								</p>
 								<p>${list.q_content }</p>
 							</div>
 						</c:forEach>
 						<!-- 데이터 넘기기위한 폼 -->
 						<form id="frmQna">
-							<input type="hidden" id="delQnaId" name="q_id" value="" /> <input
-								type="hidden" id="delQnaCode" name="m_code" value="" /> <input
-								type="hidden" id="delQnaPid" name="p_id" value="" />
+							<input type="hidden" id="delQnaId" name="q_id" value="" /> <input type="hidden" id="delQnaCode" name="m_code" value="" /> <input type="hidden" id="delQnaPid" name="p_id" value="" />
 						</form>
 					</div>
 				</div>
