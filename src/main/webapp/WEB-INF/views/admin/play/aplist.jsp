@@ -31,11 +31,6 @@
 				</tr>				
 			</tbody>
 		</table>
-		<div>
-			<a href="apregister"><button type="submit">글쓰기</button></a>
-			<a href="/playChoice"><button type="submit">메인으로</button></a>
-			<a href="qnalist"><button>QnA 관리하러가기</button></a>
-		</div>
 	</div>
 </div>
 
