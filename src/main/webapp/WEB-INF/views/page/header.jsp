@@ -143,7 +143,7 @@
 						<div class="navigation">
 							<nav>
 								<ul class="nav topnav">
-									<li><a href="main">Home</a></li>
+									<li><a href="${pageContext.request.contextPath}">Home</a></li>
 									<li class="dropdown"><a href="#">카테고리 <i
 											class="icon-angle-down"></i></a>
 										<ul class="dropdown-menu">
