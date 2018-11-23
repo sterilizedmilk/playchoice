@@ -104,7 +104,9 @@
 									<li><a
 										href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
 									<li><a
-										href="${pageContext.request.contextPath}/basket/list">장바구니</a></li>
+										href="${pageContext.request.contextPath}/basket/list">찜한 연극</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/prefer/list">찜한 배우</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>

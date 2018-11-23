@@ -8,7 +8,7 @@ import com.playchoice.play.dto.PlayDTO;
 public interface ShoppingBasketDAO {
 
 	// 장바구니 목록
-	public List<PlayDTO> ShoppingBasketList(int m_code) throws Exception;
+	public List<PlayDTO> shoppingBasketList(int m_code) throws Exception;
 	
 	// 장바구니 추가
 	public void insertBasket(ShoppingBasketDTO dto) throws Exception;

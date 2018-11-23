@@ -40,7 +40,7 @@
 	<select id="viewMemberByEmail" resultType="MemberDTO">
 		SELECT *
 		FROM member
-		WHERE m_mail=#{m_mail}
+		WHERE m_mail LIKE CONCAT(#{m_mail},'%')
 	</select>
 
 	<select id="loginMember" resultType="MemberDTO">

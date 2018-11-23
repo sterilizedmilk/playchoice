@@ -8,29 +8,31 @@
 <jsp:include page="../page/header.jsp" />
 
 <div class="container">
-	<h2>찜한 연극 목록</h2>
+	<h2>찜한 배우 목록</h2>
 	<c:choose>
 		<c:when test="${fn:length(list) == 0 }">
-			<span>찜한 연극 목록이 비어있습니다.</span>
+			<span>찜한 배우 목록이 비어있습니다.</span>
 		</c:when>
 		<c:otherwise>
-			<form id="basketListForm" name="basketListForm" action="post">
+			<form id="preferListForm" name="preferListForm" action="post">
 				<table class="table table-striped rable-hover">
 					<thead>
 						<tr>
-							<th>연극명</th>
-							<th>장르</th>
-							<th>연극정보</th>
+							<th>사진</th>
+							<th>성명</th>
+							<th>생년월일</th>
+							<th>사이트</th>
 							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="result" items="${list }" varStatus="status">
 							<tr>
-								<td><a href="${pageContext.request.contextPath}/play/playdetail?p_id=${result.p_id}">${result.p_name }</a></td>
-								<td>${genreMap.get(result.g_id) }</td><!-- map.get()대신에 ${genreMap[result.g_id]}으로도 가능 -->
-								<td>${result.p_info }</td>
-								<td><a href="${pageContext.request.contextPath}/basket/delete?p_id=${result.p_id}">삭제</a></td>
+								<td>${result.a_picture }</td>
+								<td>${result.a_name }</td>
+								<td><fmt:formatDate value="${result.a_birth }" pattern="yyyy-MM-dd"/></td>
+								<td>${result.a_homepage }</td>
+								<td><a href="${pageContext.request.contextPath}/prefer/delete?a_id=${result.a_id}">삭제</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

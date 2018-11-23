@@ -17,8 +17,8 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 
 	// 장바구니 목록
 	@Override
-	public List<PlayDTO> ShoppingBasketList(int m_code) throws Exception {
-		return shoppingBasketDao.ShoppingBasketList(m_code);
+	public List<PlayDTO> shoppingBasketList(int m_code) throws Exception {
+		return shoppingBasketDao.shoppingBasketList(m_code);
 	}
 
 	// 장바구니 추가

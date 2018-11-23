@@ -33,6 +33,7 @@ public class ShoppingBasketController {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		dto.setM_code(m_code);
 		dto.setP_id(p_id);
+		
 		// 장바구니에 기존 상품이 있는지 체크
 		int cnt = basketService.countBasket(m_code, dto.getP_id());
 		if(cnt == 0) { // 없으면 장바구니에 추가
@@ -45,9 +46,8 @@ public class ShoppingBasketController {
 	@RequestMapping(value = "/list")
 	public String list(HttpSession session, Model model) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code(); // session에 저장된 m_code
-		
-		//Map<String, Object> map = new HashMap<String, Object>();
-		List<PlayDTO> list = basketService.ShoppingBasketList(m_code); // 장바구니 정보
+
+		List<PlayDTO> list = basketService.shoppingBasketList(m_code); // 장바구니 정보
 		
 		model.addAttribute("genreMap", siteAdminService.genreMap());
 		model.addAttribute("list", list);

@@ -20,8 +20,8 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
 
 	// 장바구니 목록
 	@Override
-	public List<PlayDTO> ShoppingBasketList(int m_code) throws Exception {
-		return sqlSession.selectList(namespace + ".ShoppingBasketList", m_code);
+	public List<PlayDTO> shoppingBasketList(int m_code) throws Exception {
+		return sqlSession.selectList(namespace + ".shoppingBasketList", m_code);
 	}
 
 	// 장바구니 추가

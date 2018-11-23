@@ -28,6 +28,9 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO loginMember(LoginDTO dto) throws Exception {
 		MemberDTO memberDto = null;
 		memberDto = memberDao.loginMember(dto);
+		if(memberDto == null) { // 로그인 실패시
+			return null; // null 리턴
+		}
 		if(memberDto.getM_status() == 1 || memberDto.getM_status() == 2) { // 블랙회원 또는 탈퇴회원인 경우
 			return null;
 		}
@@ -106,7 +109,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean duplicateMail(String m_mail) throws Exception {
 		MemberDTO dto = null;
+		System.out.println("m_mail: "+ m_mail);
 		dto = memberDao.viewMemberByEmail(m_mail);
+		System.out.println(dto);
 		if(dto != null) {
 			return true;
 		}

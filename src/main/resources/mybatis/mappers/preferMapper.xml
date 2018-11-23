@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.playchoice.mapper.preferMapper">
+
+	<!-- 선호 배우 목록 -->
+	<select id="preferActorList" resultType="ActorDTO">
+		SELECT actor.a_id, actor.a_name, actor.a_birth, actor.a_homepage, actor.a_picture
+		FROM prefer_actor, actor
+		WHERE actor.a_id=prefer_actor.a_id
+		AND prefer_actor.m_code=#{m_code}
+	</select>
+
+	<!-- 선호 배우 추가 -->
+	<insert id="insertPrefer">
+		INSERT INTO prefer_actor (m_code, a_id)
+		VALUES (#{m_code}, #{a_id})
+	</insert>
+
+	<!-- 선호 배우 삭제 -->
+	<delete id="deletePrefer">
+		DELETE
+		FROM prefer_actor
+		WHERE a_id=#{a_id}
+	</delete>
+
+	<!-- 선호배우 목록에 동일한 배우가 있는지 검사 -->
+	<select id="countPrefer" resultType="int">
+		SELECT COUNT(*)
+		FROM prefer_actor
+		WHERE m_code=#{m_code}
+		AND a_id=#{a_id}
+	</select>
+
+</mapper>

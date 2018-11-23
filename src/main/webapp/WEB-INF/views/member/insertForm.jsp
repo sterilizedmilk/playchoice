@@ -97,33 +97,34 @@
 					});
 				}
 			});
-		});
-
-		// 이메일 중복 검사
-		$("#confirmMailBtn").click(function(){
-			var m_mail = $("#m_mail").val();
-			if(m_mail == "") {
-				alert("이메일을 입력하세요");
-				$("#m_mail").focus();
-				return;
-			} else {
-				$.ajax({
-					url : "${pageContext.request.contextPath}/member/duplicateMail/" + m_mail,
-					type : "POST",
-					success : function(data){
-						if(data == "DUPLICATED") { // 이메일 중복인 경우
-							$("#alert-submitEmail").hide();
-							$("#alert-dangerEmail").show();
-							$("#m_id").focus();
-							$("#submit").attr("disabled", "disabled");
-						} else { // 사용가능한 경우
-							$("#alert-dangerEmail").hide();
-							$("#alert-submitEmail").show();
-							$("#submit").removeAttr("disabled");
+			
+			// 이메일 중복 검사
+			$("#confirmMailBtn").click(function(){
+				var m_mail = $("#m_mail").val();
+				if(m_mail == "") {
+					alert("이메일을 입력하세요");
+					$("#m_mail").focus();
+					return;
+				} else {
+					console.log(m_mail);
+					$.ajax({
+						url : "${pageContext.request.contextPath}/member/duplicateMail/" + m_mail,
+						type : "POST",
+						success : function(data){
+							if(data == "DUPLICATED") { // 이메일 중복인 경우
+								$("#alert-submitEmail").hide();
+								$("#alert-dangerEmail").show();
+								$("#m_mail").focus();
+								$("#submit").attr("disabled", "disabled");
+							} else { // 사용가능한 경우
+								$("#alert-dangerEmail").hide();
+								$("#alert-submitEmail").show();
+								$("#submit").removeAttr("disabled");
+							}
 						}
-					}
-				});
-			}
+					});
+				}
+			});
 		});
 		
 		// 비밀번호 일치 검사

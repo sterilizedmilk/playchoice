@@ -254,6 +254,8 @@ public class MemberController {
 	@RequestMapping(value = "/duplicate/{m_id}", method = RequestMethod.POST)
 	public ResponseEntity<String> duplicateId(@PathVariable("m_id") String m_id) throws Exception {
 		ResponseEntity<String> entity = null;
+		
+		System.out.println("아이디:"+m_id);
 		try {
 			if (memberService.duplicateId(m_id)) { // 아이디 중복인 경우
 				entity = new ResponseEntity<String>("DUPLICATED", HttpStatus.OK);
@@ -272,6 +274,8 @@ public class MemberController {
 	@RequestMapping(value = "/duplicateMail/{m_mail}", method = RequestMethod.POST)
 	public ResponseEntity<String> duplicateMail(@PathVariable("m_mail") String m_mail) throws Exception {
 		ResponseEntity<String> entity = null;
+		
+		System.out.println("컨트롤 메일 : "+ m_mail);
 		try {
 			if(memberService.duplicateMail(m_mail)) { // 이메일 중복인 경우
 				entity = new ResponseEntity<String>("DUPLICATED", HttpStatus.OK);
