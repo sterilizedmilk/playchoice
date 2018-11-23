@@ -1,6 +1,7 @@
 package com.playchoice.article.dao;
 
 import com.playchoice.article.dto.ArticleDTO;
+import com.playchoice.article.dto.ReplyDTO;
 
 public interface ArticleDAO {
 
@@ -16,7 +17,7 @@ public interface ArticleDAO {
 
 	public Object modifyOne(ArticleDTO dto);
 
-	public Object commentOne(ArticleDTO dto);
+	public Object commentOne(ReplyDTO dto);
 
 	// 게시글 수 구하기
 	public Object listCount(String a_target);

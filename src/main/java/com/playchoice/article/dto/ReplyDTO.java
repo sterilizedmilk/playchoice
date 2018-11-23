@@ -1,20 +1,29 @@
 package com.playchoice.article.dto;
 
-import java.security.Timestamp;
 import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
 @Alias("replyDTO")
 public class ReplyDTO {
+
 	@Override
 	public String toString() {
-		return "ReplyDTO [a_id=" + a_id + ", re_id=" + re_id + ", a_comment=" + a_comment + ", a_time=" + a_time + "]";
+		return "ReplyDTO [a_id=" + a_id + ", re_id=" + re_id + ", re_comment=" + re_comment + ", re_time=" + re_time
+				+ "]";
 	}
 
 	int a_id, re_id;
-	String a_comment;
-	Date a_time;
+	String re_comment;
+	Date re_time;
+
+	public Date getRe_time() {
+		return re_time;
+	}
+
+	public void setRe_time(Date re_time) {
+		this.re_time = re_time;
+	}
 
 	public int getA_id() {
 		return a_id;
@@ -32,20 +41,12 @@ public class ReplyDTO {
 		this.re_id = re_id;
 	}
 
-	public String getA_comment() {
-		return a_comment;
+	public String getRe_comment() {
+		return re_comment;
 	}
 
-	public void setA_comment(String a_comment) {
-		this.a_comment = a_comment;
-	}
-
-	public Date getA_time() {
-		return a_time;
-	}
-
-	public void setA_time(Date a_time) {
-		this.a_time = a_time;
+	public void setRe_comment(String re_comment) {
+		this.re_comment = re_comment;
 	}
 
 }

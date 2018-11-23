@@ -74,10 +74,10 @@
 								<c:forEach items="${data.objReplay }" var="dd" varStatus="no">
 									<tr>
 										<th colspan="2">작성자 : 관리자</th>
-										<th colspan="3">작성 시간 : ${dd.a_time }</th>
+										<th colspan="3">작성 시간 : ${dd.re_time }</th>
 									</tr>
 									<tr>
-										<td colspan="5">${dd.a_comment }</td>
+										<td colspan="5">${dd.re_comment }</td>
 									</tr>
 								</c:forEach>
 							</c:if>

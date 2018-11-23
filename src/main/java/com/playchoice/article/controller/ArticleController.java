@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.playchoice.article.dao.ArticleDAO;
 import com.playchoice.article.dto.ArticleDTO;
+import com.playchoice.article.dto.ReplyDTO;
 import com.playchoice.article.dto.Status;
 
 @Controller
@@ -43,6 +44,8 @@ public class ArticleController {
 			if (content.equals("contact")) {
 				contentType = "3";
 				res = dao.list(dto);
+				System.out.println("contact dto" + dto);
+				System.out.println("contact" + res);
 			} else {
 				if (content.equals("notice"))
 					contentType = "1";
@@ -102,7 +105,11 @@ public class ArticleController {
 			break;
 		// 댓글
 		case "comment":
-			res = dao.commentOne(dto);
+			ReplyDTO reDto = new ReplyDTO();
+			reDto.setA_id(dto.getA_id());
+			reDto.setRe_comment(dto.getA_comment());
+
+			res = dao.commentOne(reDto);
 			status.setMsg("댓글이 입력되었습니다.");
 			status.setUrl("detail?a_id=" + dto.getA_id());
 			System.out.println("getA_comment" + dto.getA_comment());

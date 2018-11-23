@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.playchoice.article.dto.ArticleDTO;
+import com.playchoice.article.dto.ReplyDTO;
 
 @Transactional
 @Service
@@ -57,7 +58,7 @@ public class ArticleDAOImp implements ArticleDAO {
 	}
 
 	@Override
-	public Object commentOne(ArticleDTO dto) {
+	public Object commentOne(ReplyDTO dto) {
 		// TODO Auto-generated method stub
 		Object obj = sqlSessionTemplate.insert("article.commentOne", dto);
 		sqlSessionTemplate.update("article.commentUpdate", dto);

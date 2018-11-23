@@ -36,9 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		article where
 		a_id = #{a_id}
 	</delete>
-	<insert id="commentOne" parameterType="aaaDTO">
+	<insert id="commentOne" parameterType="replyDTO">
 		insert into reply
-		(a_id,a_comment) values(#{a_id},#{a_comment})
+		(a_id,re_comment) values(#{a_id},#{re_comment})
 	</insert>
 	<update id="commentUpdate" parameterType="aaaDTO">
 		update article set

@@ -52,7 +52,7 @@
 									<td colspan="4">
 										<input type="hidden" name="target" value="contact">
 										<input type="hidden" name="m_code" value="${login.m_code }" />
-										<input type="text" name="a_content" style="width: 98%; height: 300px">
+										<input type="text" name="re_comment" style="width: 98%; height: 300px">
 									</td>
 								</tr>
 								<tr>
