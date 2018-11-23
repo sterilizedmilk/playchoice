@@ -9,15 +9,20 @@
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <h2 align="center">연극 일정 보기</h2>
+<h3 align="center">연극 번호 : ${param.p_id }</h3>
 <div class="container" align="center">
 	<div class="row">
 		<table border="">
 			<tbody>
-			<tr><td>글 번호</td>
-			<td colspan="3">${param.p_id }</td></tr>
+			<tr>
+			<td>연극 시작시간</td>
+			<td>연극 가격</td>
+			<td>연극 총 매수</td>
+			<td>배우 1</td>
+			<td>배우 2</td>
+			</tr>
 			<c:forEach items="${key}" var="ke">
 				<tr>
-					<td>일정</td>
 					<td>${ke.s_time }</td>
 					<td>${ke.s_price }</td>
 					<td>${ke.s_ticket }</td>

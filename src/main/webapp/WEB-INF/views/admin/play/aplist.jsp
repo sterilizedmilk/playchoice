@@ -15,6 +15,13 @@
 		<table border="" >
 			<tbody>
 				<tr>
+					<td>연극 번호</td>
+					<td>연극 제목</td>
+					<td>장르</td>
+					<td>지역</td>
+					<td>글 게시 상태</td>
+				</tr>
+				<tr>
 			<c:forEach items="${list}" var="li">
 					<td>${li.p_id }</td>
 					<td> <a href="apread?p_id=${li.p_id }">${li.p_name }</a>
