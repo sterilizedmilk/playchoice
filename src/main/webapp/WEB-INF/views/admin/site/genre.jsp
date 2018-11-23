@@ -45,7 +45,8 @@
 </script>
 
 </head>
-<body>
+
+<jsp:include page="integratedheader.jsp" />
 	<h2>Genre Management</h2>
 
 
