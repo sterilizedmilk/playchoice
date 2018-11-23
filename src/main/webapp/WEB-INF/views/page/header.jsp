@@ -154,7 +154,7 @@
 													<li><a href="index-alt2.html">내일티켓</a></li>
 													<li><a href="index-alt3.html">타임세일</a></li>
 												</ul></li>
-											<li class="dropdown"><a href="#">분류별 공연<i
+											<li class="dropdown"><a href="#">장르<i
 													class="icon-angle-right"></i></a>
 												<ul class="dropdown-menu sub-menu-level1">
 													<li><a href="index.html">연극</a></li>
@@ -173,13 +173,6 @@
 													<li><a href="index-alt3.html">부산/대구/경상</a></li>
 													<li><a href="index-alt3.html">광주/전주/전라</a></li>
 													<li><a href="index-alt3.html">기타지역</a></li>
-												</ul></li>
-											<li class="dropdown"><a href="#">문화정보<i
-													class="icon-angle-right"></i></a>
-												<ul class="dropdown-menu sub-menu-level1">
-													<li><a href="index.html">예매순위</a></li>
-													<li><a href="index-alt2.html">티켓리뷰</a></li>
-													<li><a href="index-alt3.html">이벤트</a></li>
 												</ul></li>
 										</ul></li>
 									<li><a href="/playChoice/play/playlist">오늘(11/11)</a></li>
