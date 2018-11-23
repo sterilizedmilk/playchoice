@@ -24,9 +24,12 @@
 				0으로 하면 처음번째가 0이므로 처음에 줄바꿈이 생긴다	
 					 -->
 			<c:forEach items="${list}" var="li" varStatus="status" >
-					<td> <a href="playdetail?p_id=${li.p_id }">${li.p_name }</a>
+					<td><a href="playdetail?p_id=${li.p_id }">
+					<img src="/playChoice/resources/img/admin/play/thumb_${li.p_image0 }"><br/>
+					${li.p_name }</a>
 					</td>
 					<c:if test="${status.index % 5 == 4}">
+					
 					</tr>
 					<tr>
 					</c:if>

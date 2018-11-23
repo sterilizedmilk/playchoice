@@ -138,7 +138,11 @@
 			<input type="file" name="p_picture[0]" class="form-contorl">
 		</div> -->
 		<div class="form-group" id="fileDiv">
-			<label for = "exampleInputEmail1">대문 포스터 추가</label>
+			<label for = "exampleInputEmail1">대표 포스터 추가</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">메인 썸네일 포스터 추가</label>
 			<input type="file" name="p_image">
 		</div>
 		<div class="form-group" id="fileDiv">
@@ -151,10 +155,6 @@
 		</div>
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">내용 포스터 추가 3</label>
-			<input type="file" name="p_image">
-		</div>
-		<div class="form-group" id="fileDiv">
-			<label for = "exampleInputEmail1">내용 포스터 추가 4</label>
 			<input type="file" name="p_image">
 		</div>
 		<div class="form-group">

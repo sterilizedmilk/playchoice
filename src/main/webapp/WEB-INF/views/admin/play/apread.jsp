@@ -53,18 +53,19 @@
 		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>
 		<input type="text" name="location" class="form-control" value="${playDTO.p_location }" readonly="readonly">
 	</div>
-	<div><label for="exampleInputEmail1">대문 포스트</label>
+	<div><label for="exampleInputEmail1">대표 포스터</label>
 	</div>
 	<div class="form-group">		
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image0 }">
 		
 	</div>
-	<div><label for="exampleInputEmail1">내용 포스트</label>
+	<div><label>메인 썸네일 포스터</label></div>
+	<div>
+		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image1 }">
+	</div>
+	<div><label for="exampleInputEmail1">내용 포스터</label>
 	</div>
 	<div>
-	<c:if test="">
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image1 }">
-	</c:if>
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image2 }">
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image3 }">
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image4 }">
