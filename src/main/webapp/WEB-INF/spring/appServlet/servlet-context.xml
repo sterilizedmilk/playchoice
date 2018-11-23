@@ -29,13 +29,13 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	<!-- LoginInterceptor -->
-	<beans:bean id="LoginInterceptor" class="com.playchoice.member.interceptor.LoginInterceptor"></beans:bean>
+	<!-- <beans:bean id="LoginInterceptor" class="com.playchoice.member.interceptor.LoginInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
-			<mapping path="/member/logout"/><!-- 인터셉터 매핑 url -->
+			<mapping path="/member/logout"/>인터셉터 매핑 url
 			<mapping path="/member/mypage"/>
-			<beans:ref bean="LoginInterceptor"/><!-- 참조할 bean -->
+			<beans:ref bean="LoginInterceptor"/>참조할 bean
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
 </beans:beans>
