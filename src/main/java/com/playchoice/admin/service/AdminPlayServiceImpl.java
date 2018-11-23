@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.playchoice.admin.dao.AdminPlayDAO;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 @Service
@@ -71,5 +72,11 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	public void psregist(ScheduleDTO sdto) throws Exception {
 		System.out.println("psmodify service start");
 		dao.pscreate(sdto);
+	}
+	//QnA 가져오기
+	@Override
+	public List<QnaDTO> getQna(int m_code) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

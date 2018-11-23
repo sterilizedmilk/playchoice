@@ -1,9 +1,9 @@
 package com.playchoice.admin.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface AdminPlayService {
@@ -23,5 +23,7 @@ public interface AdminPlayService {
 	public List<ScheduleDTO> psread(int p_id) throws Exception;
 	
 	public void psregist(ScheduleDTO sdto) throws Exception;
+	
+	public List<QnaDTO> getQna(int m_code);
 
 }
