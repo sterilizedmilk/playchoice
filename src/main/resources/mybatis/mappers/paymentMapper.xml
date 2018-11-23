@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.playchoice.mappers.paymentMapper">
+	
+	<select id="searchPayment" resultType="PaymentDTO" parameterType="PaymentSearchDTO">
+		SELECT payment.p_id, payment.m_code, payment.s_id,
+		payment.p_price, payment.p_quantity, payment.p_cancel_target_id,
+		payment.p_time, payment.p_canceled
+		FROM payment, schedule, play
+		<where>
+			play.p_id = schedule.p_id
+			AND schedule.s_id = payment.s_id
+			<if test="member != null">
+				AND payment.m_code = #{member}
+			</if>
+			<if test="play != null">
+				AND play.p_id = #{play}
+			</if>
+			<if test="schedule != null">
+				AND schedule.s_id = #{schedule}
+			</if>
+			<if test="playAdmin != null">
+				AND play.m_code = #{playAdmin}
+			</if>
+			<if test="from != null">
+				AND payment.p_time >= #{from}
+			</if> 
+			<if test="until != null">
+		<![CDATA[AND payment.p_time <= #{until} ]]>
+			</if>
+		</where>
+		ORDER BY payment.p_time
+		LIMIT #{start}, 10
+	</select>
+
+	<select id="getPayment" resultType="PaymentDTO">
+		SELECT * FROM payment
+		WHERE p_id = #{p_id}
+	</select>
+	
+	<select id="paymentListByMember">
+		SELECT * FROM payment
+		WHERE m_code = #{m_code}
+	</select>
+<!-- 검색 dto? -->
+	<select id="paymentListBySchedule">
+		SELECT * FROM payment
+		WHERE s_id = #{s_id}
+	</select>
+	
+	<select id="isCanceled">
+		SELECT p_canceled
+		FROM payment
+		WHERE p_id = #{p_id}
+	</select>
+	
+	<insert id="insertPayment" parameterType="PaymentDTO">
+		INSERT INTO payment
+		(m_code, s_id, p_price, p_quantity, p_canceled, p_cancel_target_id)
+		VALUES(#{m_code}, #{s_id}, #{p_price}, #{p_quantity}, 0, NULL)
+	</insert>
+	
+	<insert id="insertCancel">
+		INSERT INTO payment
+		(m_code, s_id, p_price, p_quantity, p_canceled, p_cancel_target_id)
+		VALUES(#{m_code}, #{s_id}, #{p_price}, #{p_quantity}, 0, #{p_cancel_target_id})
+	</insert>
+	
+	<update id="updateCanceled">
+		UPDATE payment
+		SET p_canceled = 1
+		WHERE p_id = #{p_id}
+	</update>
+	
+	
+	
+	
+	
+</mapper>

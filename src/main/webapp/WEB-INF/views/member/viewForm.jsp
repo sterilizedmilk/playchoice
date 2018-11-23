@@ -34,6 +34,7 @@
 			<button type="button" class="btn btn-primary" id="updateBtn">수정</button>
 			<button type="button" class="btn btn-primary" id="deleteBtn">탈퇴</button>
 			<button type="button" class="btn btn-primary" id="updatePwBtn">비밀번호 변경</button>
+			<button type="button" class="btn btn-primary" id="payment">결제 내역</button>
 		</c:if>
 	</div>
 </div>
@@ -50,6 +51,9 @@
 		});
 		$("#updatePwBtn").click(function(){
 			self.location = "updatePw?m_id=${login.m_id}";
+		});
+		$("#payment").click(function() {
+			self.location = "paymentList?m_code=${login.m_code}";
 		});
 	});
 </script>

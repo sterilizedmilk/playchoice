@@ -11,6 +11,7 @@
         <package name="com.playchoice.schedule.dto"/>
         <package name="com.playchoice.review.dto"/>
         <package name="com.playchoice.qna.dto"/>
+        <package name="com.playchoice.payment.dto"/>
     </typeAliases>
 
 </configuration>
