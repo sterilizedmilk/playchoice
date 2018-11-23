@@ -6,9 +6,9 @@
 				<div class="navigation">
 					<nav>
 						<ul class="nav topnav">
-							<li><a href="${pageContext.request.contextPath}/member/view">연극 관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/play/apregister">연극 글쓰기</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/qna/qnalist">Q&A관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/prefer/list">정산 관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/#">정산 관리</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/member/paymentList?m_code=${login.m_code}">결제
 									내역</a></li>

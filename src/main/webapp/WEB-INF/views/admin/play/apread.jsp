@@ -15,22 +15,6 @@
 <form role="form" method="post">
 	<input type="hidden" name="p_id" value="${playDTO.p_id }">
 </form>
-<%-- <div class="container" align="center">
-	<div class="row">
-		<table border="" width="100%" height="800px" align="center">
-			<tr height="20%">
-				<td>${playDTO.p_id }</td>
-				<td colspan="2">${playDTO.p_name }</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-				<textarea rows="50%" cols="100%">${playDTO.p_info }</textarea>
-				<img src="/playChoice/resources/img/admin/play/${playDTO.p_picture }">
-				</td>
-			</tr>
-		</table>
-	</div>
-</div> --%>
 
 <div class="box-body">
 	<div class="form-group">
@@ -73,8 +57,7 @@
 </div>
 <div class="box-footer">
 	<button type="submit" class="btn btn-warning">글 수정</button>
-	<button type="submit" class="btn btn-danger">글 삭제</button>
-	<button type="submit" class="btn btn-flurry">글 게시</button>
+	<button type="submit" class="btn btn-danger">글 삭제</button>	
 	<button type="submit" class="btn btn-primary">목록으로</button>
 	<button type="submit" class="btn btn-pslist">일정 보기</button>
 </div>
@@ -94,11 +77,7 @@
 		$(".btn-danger").on("click", function(){
 			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/remove");
 			formObj.submit();
-		});
-		$(".btn-flurry").on("click", function(){
-			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/flurry");
-			formObj.submit();
-		});
+		});		
 		$(".btn-primary").on("click", function(){
 			self.location="${pageContext.request.contextPath}/admin/play/aplist";
 		});

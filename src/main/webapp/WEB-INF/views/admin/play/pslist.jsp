@@ -8,7 +8,11 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+
 <h2 align="center">연극 일정 보기</h2>
+<form role="form" method="post">
+	<input type="hidden" name="p_id" value="${param.p_id }">
+</form>
 <h3 align="center">연극 번호 : ${param.p_id }</h3>
 <div class="container" align="center">
 	<div class="row">
@@ -36,6 +40,7 @@
 </div>
 <div class="box-footer" align="center">
 	<button type="submit" class="btn btn-primary">일정 추가 생성</button>
+	<button type="submit" class="btn btn-flurry">연극 올리기</button>
 	<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
 </div>
 
@@ -52,10 +57,14 @@
 		console.log(formObj);
 		
 		$(".btn-primary").on("click", function(){			
-			self.location="/playChoice/admin/play/psregister?p_id=${param.p_id}";
+			self.location="${pageContext.request.contextPath}/admin/play/psregister?p_id=${param.p_id}";
 		});
 		$(".btn-danger").on("click", function(){			
-			self.location="/playChoice/admin/play/apread?p_id=${param.p_id}";
+			self.location="${pageContext.request.contextPath}/admin/play/apread?p_id=${param.p_id}";
+		});
+		$(".btn-flurry").on("click", function(){
+			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/flurry");
+			formObj.submit();
 		});
 	});
 </script>
