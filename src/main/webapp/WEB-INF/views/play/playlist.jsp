@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 
 <jsp:include page="../page/header.jsp" />
+<jsp:include page="../page/menu.jsp" />
 <meta charset="UTF-8">
 
 <h2 align="center">연극 리스트</h2>
