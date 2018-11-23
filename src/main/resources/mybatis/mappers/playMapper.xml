@@ -10,6 +10,7 @@
 		FROM play, `schedule`
 		WHERE 
 			play.p_id = `schedule`.p_id
+			AND play.p_status = '1'
 		GROUP BY play.p_id
 	</select>
 

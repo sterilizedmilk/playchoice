@@ -27,38 +27,6 @@
 					</div>
 				</div>
 			</c:forEach>
-		
-	
-	
-	
-		<%-- <table width="100%" height="800px">
-			<tbody>
-				<tr>
-				<!-- <c:if test="${status.index % 5 == 4}">
-					</tr>
-					<tr>
-					</c:if>
-				반복문 status.index가 나머지가 4일때마다 줄바꿈을 하겠다는것
-				0으로 하면 처음번째가 0이므로 처음에 줄바꿈이 생긴다	
-					 -->
-			<c:forEach items="${list}" var="li" varStatus="status" >
-					<td width="20%" height="300px" style="border:1px solid #eee;">
-						<p style="background-color: blue;">
-						<a href="playdetail?p_id=${li.p_id }">
-					<img src="/playChoice/resources/img/admin/play/thumb_${li.p_image0 }" align="top"></a><br/>
-					<img src="/playChoice/resources/img/play/${li.p_image0 }"></a>
-					</p>
-					${li.p_name }
-					</td>
-					<c:if test="${status.index % 5 == 4}">
-					
-					</tr>
-					<tr>
-					</c:if>
-			</c:forEach>
-				</tr>
-			</tbody>
-		</table> --%>
 	</div>
 </div>
 
