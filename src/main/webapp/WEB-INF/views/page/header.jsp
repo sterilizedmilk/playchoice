@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:url value="http://localhost:8080/playChoice/play/" var="play" />
-<c:url value="http://http://localhost:8080/playChoice/member/article/"
-	var="article" />
 
 
 <!DOCTYPE html>
@@ -111,7 +108,7 @@
 										href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li class="dropdown"><a href="	${article }notice/list">고객센터
+							<li class="dropdown"><a href="${pageContext.request.contextPath}/article/notice/list">고객센터
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/admin/play/aplist">연극
