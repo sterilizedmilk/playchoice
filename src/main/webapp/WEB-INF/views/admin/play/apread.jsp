@@ -62,7 +62,9 @@
 	<div><label for="exampleInputEmail1">내용 포스트</label>
 	</div>
 	<div>
+	<c:if test="">
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image1 }">
+	</c:if>
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image2 }">
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image3 }">
 		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image4 }">

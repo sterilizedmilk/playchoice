@@ -2,6 +2,7 @@ package com.playchoice.admin.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,23 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Service
 public class FileService {
 	
 	String path;
+	
+	
+	public FileService(HttpServletRequest request) {
+//		path = request.getRealPath("/resources/img/admin/play")+"/"; //배포할때 사용
+		path = "D:\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\admin\\play/"; //작업할때 사용
+	}
+
 	//imageUpload 메소드를 이용, imgchk와 fileupload를 구현
 	public String imageUpload(MultipartFile mf) {
 		if (!isImgChk(mf))
 			return null;
 		
-		return fileUpload(mf, null);		
+		return fileUpload(mf);		
 	}
 	 
-	public String fileUpload(MultipartFile mf, HttpServletRequest request) {
+	public String fileUpload(MultipartFile mf) {
 		//파일을 새로 갱신해야함
 		
-//		path = request.getRealPath("/resources/img/admin/play")+"/"; //배포할때 사용
-		path = "D:\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\admin\\play/"; //작업할때 사용
+
 		
 		String res = fileNamePolicy(mf);
 		//새로운 파일명이 나왔을시
@@ -85,5 +94,13 @@ public class FileService {
 		
 		return Arrays.asList("jpg,jpeg,bmp,gif,png".split(",")).contains(ext);
 		//확장자 명에 대한 스플릿 리턴
+	}
+	
+	//썸네일 생성(170px X 170px)
+	public String setThumb( String res) throws IOException {
+		System.out.println("setThumb() Run");
+
+		Thumbnails.of(path+res).size(170,170).toFile(path+"thumb_"+res);
+		return "thumb_"+res;
 	}
 }

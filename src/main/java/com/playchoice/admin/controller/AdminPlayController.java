@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
-import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
@@ -28,10 +27,6 @@ public class AdminPlayController {
 	
 	@Autowired
 	private AdminPlayService service;
-	
-	@Autowired
-	private SiteAdminService service2;
-	
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminPlayController.class);
 	
@@ -53,8 +48,6 @@ public class AdminPlayController {
 	@RequestMapping(value="apregister", method=RequestMethod.GET)
 	public void registerGET(PlayDTO dto, Model model) throws Exception{
 		logger.info("register get.............");
-		service2.genreList();
-		service2.areaList();
 	}
 
 	@RequestMapping(value="apregister", method=RequestMethod.POST)
@@ -63,9 +56,11 @@ public class AdminPlayController {
 		logger.info("apregister............");
 		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
 		
-		FileService fs = new FileService();
+		FileService fs = new FileService(request);
 		//이미지 생성 및 이미지 체크
-		dto.setP_image0(fs.imageUpload(dto.getP_image().get(0)));
+		
+		String th = fs.imageUpload(dto.getP_image().get(0));
+		dto.setP_image0(th);
 		dto.setP_image1(fs.imageUpload(dto.getP_image().get(1)));
 		dto.setP_image2(fs.imageUpload(dto.getP_image().get(2)));
 		dto.setP_image3(fs.imageUpload(dto.getP_image().get(3)));
@@ -75,6 +70,9 @@ public class AdminPlayController {
 		//DB insert
 		service.regist(dto);
 		
+		
+		
+		fs.setThumb(th);
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/play/aplist";
 			
@@ -108,7 +106,7 @@ public class AdminPlayController {
 			MultipartHttpServletRequest request, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post............");
 		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
-		FileService fs = new FileService();
+		FileService fs = new FileService(request);
 		
 		//이미지 생성 및 이미지 체크
 		dto.setP_image0(fs.imageUpload(dto.getP_image().get(0)));
