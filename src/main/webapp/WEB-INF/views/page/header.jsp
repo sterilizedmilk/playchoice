@@ -100,21 +100,21 @@
 									<li><i class="icon-user"></i> ${login.m_id } 님</li>
 									<li><a
 										href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
-									<li><a
+									<%--<li><a
 										href="${pageContext.request.contextPath}/basket/list">찜한 연극</a></li>
 									<li><a
-										href="${pageContext.request.contextPath}/prefer/list">찜한 배우</a></li>
+										href="${pageContext.request.contextPath}/prefer/list">찜한 배우</a></li> --%>
 									<li><a
 										href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li class="dropdown"><a href="${pageContext.request.contextPath}/article/notice/list">고객센터
+							<li class="dropdown"><a
+								href="${pageContext.request.contextPath}/article/notice/list">고객센터
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/admin/play/aplist">연극
 									관리자</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/admin/site">관리자</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/site">관리자</a></li>
 						</ul>
 					</div>
 				</div>
