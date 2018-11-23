@@ -24,11 +24,12 @@
 		return false;
 	}
 	
-	function deleteArea(a_id) {
+	function updateArea(a_id) {
+		var newName = prompt("change to what?");
 		$.ajax({
-			url: "${pageContext.request.contextPath}/admin/site/area/delete",
+			url: "${pageContext.request.contextPath}/admin/site/area/edit",
 			type: "post",
-			data: {"a_id" : a_id},
+			data: {"a_id" : a_id, "a_name" : newName},
 			success: function(data) {
 				alert("success : " + data);
 			},
@@ -58,12 +59,13 @@
 				<tr>
 					<td>${area.a_id}</td>
 					<td>${area.a_name}</td>
-					<td><button onclick="deleteArea(${area.a_id})">X</button></td>
+					<td><button onclick="updateArea(${area.a_id})">수정</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	새 지역
+	<p> 새 지역</p>
+	
 	<form id="addArea" onsubmit="return addArea();">
 		<input type="text" name="a_name">
 		<input type="submit">

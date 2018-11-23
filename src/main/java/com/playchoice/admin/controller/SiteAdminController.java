@@ -214,11 +214,11 @@ public class SiteAdminController {
 			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
 		return entity;
 	}
-
-	@RequestMapping(value = "genre/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> genreDeleteController(@RequestParam int g_id) {
+	
+	@RequestMapping(value = "genre/edit", method = RequestMethod.POST)
+	public ResponseEntity<String> genreEditController(GenreDTO dto) {
 		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
-		int result = adminService.genreDelete(g_id);
+		int result = adminService.genreUpdate(dto);
 
 		if (result == 1)
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
@@ -246,11 +246,11 @@ public class SiteAdminController {
 			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
 		return entity;
 	}
-
-	@RequestMapping(value = "area/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> areaDeleteController(@RequestParam int a_id) {
+	
+	@RequestMapping(value = "area/edit", method = RequestMethod.POST)
+	public ResponseEntity<String> areaEditController(AreaDTO dto) {
 		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
-		int result = adminService.areaDelete(a_id);
+		int result = adminService.areaUpdate(dto);
 
 		if (result == 1)
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
@@ -258,5 +258,8 @@ public class SiteAdminController {
 			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
 		return entity;
 	}
+
+	
+	
 
 }
