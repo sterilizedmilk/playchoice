@@ -12,8 +12,28 @@
 
 <h2 align="center">연극 리스트</h2>
 <div class="container" align="center">
-	<div class="row">
-		<table border="" width="100%" height="800px">
+	<div class="row" style="outline: 1px solid black;">
+		<div style="outline: 1px solid #eee;">
+			<c:forEach items="${list}" var="li" varStatus="status">
+				<div style="background-color:yellow; outline:1px solid #eee; float:left; margin:15px; width: 180px; height: 320px;">
+					<div>
+						<a href="playdetail?p_id=${li.p_id }"><img src="/playChoice/resources/img/play/${li.p_image0 }"></a>
+					</div>
+					<div style="background-color: pink;">
+						<p> <a href="playdetail?p_id=${li.p_id }">${li.p_name }</a> </p>
+						<p style="float:left;">
+							최저 가격
+						</p>
+						<p align="right"> 3000원 ~ </p>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		
+	
+	
+	
+		<%-- <table width="100%" height="800px">
 			<tbody>
 				<tr>
 				<!-- <c:if test="${status.index % 5 == 4}">
@@ -24,9 +44,13 @@
 				0으로 하면 처음번째가 0이므로 처음에 줄바꿈이 생긴다	
 					 -->
 			<c:forEach items="${list}" var="li" varStatus="status" >
-					<td><a href="playdetail?p_id=${li.p_id }">
-					<img src="/playChoice/resources/img/admin/play/thumb_${li.p_image0 }"><br/>
-					${li.p_name }</a>
+					<td width="20%" height="300px" style="border:1px solid #eee;">
+						<p style="background-color: blue;">
+						<a href="playdetail?p_id=${li.p_id }">
+					<img src="/playChoice/resources/img/admin/play/thumb_${li.p_image0 }" align="top"></a><br/>
+					<img src="/playChoice/resources/img/play/${li.p_image0 }"></a>
+					</p>
+					${li.p_name }
 					</td>
 					<c:if test="${status.index % 5 == 4}">
 					
@@ -36,7 +60,7 @@
 			</c:forEach>
 				</tr>
 			</tbody>
-		</table>
+		</table> --%>
 	</div>
 </div>
 

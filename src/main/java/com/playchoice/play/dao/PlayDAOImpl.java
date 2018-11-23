@@ -21,14 +21,13 @@ public class PlayDAOImpl implements PlayDAO {
 
 	@Override
 	public List<PlayDTO> playList() {
-		System.out.println("daoList start");
 		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playList");
 		return dto;
 	}
 
 	@Override
 	public PlayDTO playDetail(int p_id) { // detail
-		System.out.println("daoDetail start");
+	
 		return sqlSession.selectOne(namespace + ".playDetail", p_id);
 	}
 
