@@ -24,6 +24,7 @@ public class PreferActorController {
 	@Autowired
 	PreferActorService preferService;
 
+	// 찜한 배우 추가
 	@RequestMapping(value = "/insert")
 	public String insert(@ModelAttribute PreferActorDTO dto, @RequestParam("a_id") int a_id, HttpSession session) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
@@ -31,14 +32,15 @@ public class PreferActorController {
 		dto.setA_id(a_id);
 		System.out.println(a_id);
 		
-		// 선호배우 목록에 동일한 배우가 있는지 검사
+		// 찜한 배우 목록에 동일 배우가 있는지 체크
 		int cnt = preferService.countPrefer(m_code, dto.getA_id());
-		if(cnt == 0) { // 없으면 선호배우 목록에 추가
+		if(cnt == 0) { // 없으면 찜한 배우 목록에 추가
 			preferService.insertPrefer(dto);
 		}
 		return "redirect:/prefer/list"; // 선호배우 목록으로 리다이렉트
 	}
 	
+	// 찜한 배우 목록
 	@RequestMapping(value = "/list")
 	public String list(HttpSession session, Model model) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
@@ -49,6 +51,7 @@ public class PreferActorController {
 		return "prefer/preferList";
 	}
 	
+	// 찜한 배우 삭제
 	@RequestMapping(value = "/delete")
 	public String delete(@RequestParam("a_id") int a_id) throws Exception {
 		preferService.deletePrefer(a_id);
