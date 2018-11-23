@@ -87,22 +87,6 @@ CREATE TABLE `genre` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `image`
---
-
-DROP TABLE IF EXISTS `image`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `image` (
-  `p_id` int(11) NOT NULL,
-  `i_path` varchar(60) NOT NULL,
-  `i_tag` varchar(45) NOT NULL,
-  KEY `fk_image_play1_idx` (`p_id`),
-  CONSTRAINT `fk_image_play1` FOREIGN KEY (`p_id`) REFERENCES `play` (`p_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `member`
 --
 
@@ -167,6 +151,11 @@ CREATE TABLE `play` (
   `g_id` int(11) NOT NULL,
   `a_id` int(11) NOT NULL,
   `p_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 : 관리자만 볼 수 있음\n1 : 일반 사용자도 볼 수 있음',
+  `p_image0` varchar(60) NOT NULL,
+  `p_image1` varchar(60) DEFAULT NULL,
+  `p_image2` varchar(60) DEFAULT NULL,
+  `p_image3` varchar(60) DEFAULT NULL,
+  `p_image4` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`p_id`),
   KEY `fk_play_genre1_idx` (`g_id`),
   KEY `fk_play_area1_idx` (`a_id`),
