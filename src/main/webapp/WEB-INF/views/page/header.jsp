@@ -153,7 +153,7 @@
 									<li><a href="${pageContext.request.contextPath}/play/
 									mainlist">전체 일정</a></li>
 									<li><a href="${pageContext.request.contextPath}/actor/list">배우</a></li>
-									<li><a href="#">주간랭킹</a></li>
+									<li><a href="${pageContext.request.contextPath}/rank">주간랭킹</a></li>
 								</ul>
 							</nav>
 						</div>

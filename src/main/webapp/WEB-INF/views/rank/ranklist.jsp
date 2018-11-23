@@ -20,7 +20,7 @@
 		<div class="row">
 			<!-- Default table -->
 			<h4>예매 순위 Best 10</h4>
-			<c:forEach items="${list}" var="li" varStatus="status">
+			<%-- <c:forEach items="${list}" var="li" varStatus="status">
 				<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 180px; height: 320px;">
 					<div>
 						<a href="playdetail?p_id=${li.p_id }">
@@ -37,7 +37,7 @@
 						</p>
 					</div>
 				</div>
-			</c:forEach>
+			</c:forEach> --%>
 		</div>
 		<!-- divider -->
 		<div class="row">
