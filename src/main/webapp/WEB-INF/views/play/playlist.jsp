@@ -12,23 +12,21 @@
 
 <h2 align="center">연극 리스트</h2>
 <div class="container" align="center">
-	<div class="row" style="outline: 1px solid black;">
-		<div style="outline: 1px solid #eee;">
+	<div class="row">
 			<c:forEach items="${list}" var="li" varStatus="status">
-				<div style="background-color:yellow; outline:1px solid #eee; float:left; margin:15px; width: 180px; height: 320px;">
+				<div style="outline:1px solid #8C8C8C; float:left; margin:15px; width: 180px; height: 320px;">
 					<div>
 						<a href="playdetail?p_id=${li.p_id }"><img src="/playChoice/resources/img/play/${li.p_image0 }"></a>
 					</div>
-					<div style="background-color: pink;">
+					<div>
 						<p> <a href="playdetail?p_id=${li.p_id }">${li.p_name }</a> </p>
-						<p style="float:left;">
+						<p style="float:left; font-style: italic;">
 							최저 가격
 						</p>
-						<p align="right"> 3000원 ~ </p>
+						<p align="right"> <span style="font-size: 20px;  color: #FF5E00">${li.lowest_price}</span> 원 ~ </p>
 					</div>
 				</div>
 			</c:forEach>
-		</div>
 		
 	
 	

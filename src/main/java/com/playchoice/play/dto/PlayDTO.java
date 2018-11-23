@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PlayDTO {
-	int p_id, m_code, g_id, a_id;
+	int p_id, m_code, g_id, a_id, lowest_price;
 	String p_name, p_info, p_refund_policy, p_location;
 	//파일받는 1회용 용도
 	List<MultipartFile> p_image;
@@ -136,4 +136,13 @@ public class PlayDTO {
 		this.p_image4 = p_image4;
 	}
 
+	public int getLowest_price() {
+		return lowest_price;
+	}
+
+	public void setLowest_price(int lowest_price) {
+		this.lowest_price = lowest_price;
+	}
+	
+	
 }

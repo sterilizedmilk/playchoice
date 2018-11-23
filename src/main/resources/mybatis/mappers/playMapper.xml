@@ -6,8 +6,11 @@
 <mapper namespace="com.playchoice.mappers.playMapper">
 	<!-- com.playchoice.play.dto.PlayDTO -->
 	<select id="playList" resultType="PlayDTO">
-		select * from play
-		where p_status=1
+		SELECT play.*, min(`schedule`.s_price) AS lowest_price
+		FROM play, `schedule`
+		WHERE 
+			play.p_id = `schedule`.p_id
+		GROUP BY play.p_id
 	</select>
 
 	<select id="playDetail" resultType="PlayDTO">
