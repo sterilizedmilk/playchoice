@@ -59,7 +59,7 @@
 
 	<update id="findPw">
 		UPDATE member
-		SET m_pw = #{m_pw}
+		SET m_pw=#{m_pw}
 		WHERE m_id=#{m_id} AND
 		m_mail=#{m_mail}
 	</update>
@@ -70,5 +70,11 @@
 		WHERE
 		m_id=#{m_id} AND m_pw=#{m_pw}
 	</select>
+	
+	<update id="updatePw">
+		UPDATE member
+		SET m_pw=#{m_pw}
+		WHERE m_id=#{m_id}
+	</update>
 
 </mapper>
