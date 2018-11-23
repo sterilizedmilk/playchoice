@@ -1,15 +1,15 @@
 package com.playchoice.play.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.playchoice.play.dao.PlayDAO;
 import com.playchoice.play.dao.PlayDAOImpl;
 import com.playchoice.play.dto.PlayDTO;
-import com.playchoice.play.dto.PlayshowDTO;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -56,8 +56,13 @@ public class PlayServiceImpl implements PlayService {
 
 	@Override
 	public List<Object> getQnA(int p_id) {
-	
-		return playDao.getQnA(p_id);
+		List<Object> list = new ArrayList<>();
+		list = (ArrayList) playDao.getQnA(p_id);
+		
+
+		
+		
+		return list;
 	}
 
 }

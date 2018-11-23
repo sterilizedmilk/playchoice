@@ -54,11 +54,13 @@
 		LIMIT 20;
 	</select>
 	
+	<!-- 아이디를 가져올떄 마지막 2문자를 **로 처리하여 가져옴 -->
 	<select id="getQnA" parameterType="Integer"
 	resultType="java.util.HashMap">
 		SELECT
-			member.m_id AS m_id
+			replace(member.m_id,right(member.m_id,2),'**') AS m_id
 			, member.m_code AS m_code
+			, member.m_level AS m_level
 			, question_answer.p_id AS p_id
 			, question_answer.q_time AS q_time
 			, question_answer.q_content AS q_content
