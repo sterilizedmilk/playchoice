@@ -82,7 +82,7 @@ public class MemberController {
 			System.out.println("사이트관리자 로그인");
 			return "redirect:/";
 		}
-		return "redirect:/"; // (수정필요)
+		return "redirect:/"; // (수정필요) 보고있는 페이지로 가야함
 	}
 
 	/*// 로그인
