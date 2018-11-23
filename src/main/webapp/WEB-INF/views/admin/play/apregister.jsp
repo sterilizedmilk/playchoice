@@ -7,13 +7,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <%-- <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet" /> --%>
 
 <title>Insert title here</title>
+<%-- <form name="fileForm" action="requestupload2" method="post" enctype="multipart/form-data">
+	<input multiple="multiple" type="file" name="file" />
+	<input type="text" name="src" />
+	<input type="submit" value="전송" />
+</form> --%>
 
 <h2 align="center">연극 정보 입력</h2>
 <form role="form" method="post" enctype="multipart/form-data">
@@ -133,8 +138,24 @@
 			<input type="file" name="p_picture[0]" class="form-contorl">
 		</div> -->
 		<div class="form-group" id="fileDiv">
-			<label for = "exampleInputEmail1">파일 추가</label>
-			<input type="file" name="p_picture" class="form-contorl">
+			<label for = "exampleInputEmail1">대문 포스터 추가</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 추가 1</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 추가 2</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 추가 3</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 추가 4</label>
+			<input type="file" name="p_image">
 		</div>
 		<div class="form-group">
 			<label>장르</label>

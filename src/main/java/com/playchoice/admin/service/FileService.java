@@ -13,7 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService {
 	
 	String path;
-	
+	//imageUpload 메소드를 이용, imgchk와 fileupload를 구현
+	public String imageUpload(MultipartFile mf) {
+		if (!isImgChk(mf))
+			return null;
+		
+		return fileUpload(mf, null);		
+	}
+	 
 	public String fileUpload(MultipartFile mf, HttpServletRequest request) {
 		//파일을 새로 갱신해야함
 		

@@ -35,10 +35,25 @@
 			<label for="exampleInputEmail1">찾아오시는길(상세 주소)</label>
 			<input type="text" name="p_location" class="form-control" value="${playDTO.p_location }">
 		</div>
-		<div class="form-group">
-			<label for = "exampleInputEmail1">파일 변경</label>
-			<input type="file" name="p_picture" class="form-contorl" value="${playDTO.p_picture }">
-			<img src="/playChoice/resources/img/admin/play/${playDTO.p_picture }">
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">대문 포스터 변경</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 변경 1</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 변경 2</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 변경 3</label>
+			<input type="file" name="p_image">
+		</div>
+		<div class="form-group" id="fileDiv">
+			<label for = "exampleInputEmail1">내용 포스터 변경 4</label>
+			<input type="file" name="p_image">
 		</div>
 		<div class="form-group">
 			<label>장르</label>

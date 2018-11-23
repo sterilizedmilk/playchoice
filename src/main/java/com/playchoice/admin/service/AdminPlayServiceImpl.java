@@ -16,6 +16,7 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	
 	@Autowired
 	private AdminPlayDAO dao;
+	
 		
 	//연극 리스트 보기
 	@Override
@@ -29,30 +30,21 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		System.out.println("read service start");
 		return dao.read(p_id);
 	}
-
-//	@Override
-//	public void regist(PlayDTO dto) throws Exception {
-//		System.out.println("insert service start");
-//		dao.create(dto);
-//	}
+	
 	//연극 생성
 	@Override
-	public int regist(HashMap<String, Object> param) throws Exception {
+	public void regist(PlayDTO dto) throws Exception {
 		System.out.println("insert service start");
-		return dao.create(param);
+		dao.create(dto);
 	}
-	
-//	@Override
-//	public void modify(PlayDTO dto) throws Exception {
-//		System.out.println("modify service start");
-//		dao.update(dto);
-//	}
+
 	//연극 내용 수정
 	@Override
-	public int modify(HashMap<String, Object> param) throws Exception {
+	public void modify(PlayDTO dto) throws Exception {
 		System.out.println("modify service start");
-		return dao.update(param);
-	}
+		dao.update(dto);
+	}	
+
 	//연극 삭제 -> status=0으로 변경
 	@Override
 	public void remove(int p_id) throws Exception {

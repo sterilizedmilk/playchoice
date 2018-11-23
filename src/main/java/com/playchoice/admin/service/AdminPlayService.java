@@ -12,11 +12,9 @@ public interface AdminPlayService {
 	
 	public PlayDTO read(int p_id) throws Exception;
 	
-//	public void regist(PlayDTO dto) throws Exception;
-	public int regist(HashMap<String, Object> param) throws Exception;
+	public void regist(PlayDTO dto) throws Exception;
 	
-//	public void modify(PlayDTO dto) throws Exception;
-	public int modify(HashMap<String, Object> param) throws Exception;
+	public void modify(PlayDTO dto) throws Exception;
 	
 	public void remove(int p_id) throws Exception;
 	
@@ -25,4 +23,5 @@ public interface AdminPlayService {
 	public List<ScheduleDTO> psread(int p_id) throws Exception;
 	
 	public void psregist(ScheduleDTO sdto) throws Exception;
+
 }

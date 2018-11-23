@@ -31,7 +31,7 @@
 </div>
 <div class="box-footer" align="center">
 	<button type="submit" class="btn btn-primary">일정 추가 생성</button>
-	<input type="button" onclick="history.go(-1)" value="뒤로 돌아가기"/>
+	<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
 </div>
 
 <script>
@@ -48,6 +48,9 @@
 		
 		$(".btn-primary").on("click", function(){			
 			self.location="/playChoice/admin/play/psregister?p_id=${param.p_id}";
+		});
+		$(".btn-danger").on("click", function(){			
+			self.location="/playChoice/admin/play/apread?p_id=${param.p_id}";
 		});
 	});
 </script>

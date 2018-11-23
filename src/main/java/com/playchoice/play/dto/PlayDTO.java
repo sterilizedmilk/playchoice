@@ -1,16 +1,31 @@
 package com.playchoice.play.dto;
 
-import org.apache.ibatis.type.Alias;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class PlayDTO {
 	int p_id, m_code, g_id, a_id;
-	String p_name, p_info, p_refund_policy, p_location, p_picture;
+	String p_name, p_info, p_refund_policy, p_location;
+	//파일받는 1회용 용도
+	List<MultipartFile> p_image;
+	//image 5개 받을 곳
+	String p_image0, p_image1, p_image2, p_image3, p_image4;
+	//글 게시 상태
 	boolean p_status;
 
 	// p_refund_policy : 반환정보
 
 	public int getP_id() {
 		return p_id;
+	}
+
+	public List<MultipartFile> getP_image() {
+		return p_image;
+	}
+
+	public void setP_image(List<MultipartFile> p_image) {
+		this.p_image = p_image;
 	}
 
 	public void setP_id(int p_id) {
@@ -81,18 +96,44 @@ public class PlayDTO {
 		this.p_status = p_status;
 	}
 
-	public String getP_picture() {
-		return p_picture;
+	public String getP_image0() {
+		return p_image0;
 	}
 
-	public void setP_picture(String p_picture) {
-		this.p_picture = p_picture;
+	public void setP_image0(String p_image0) {
+		this.p_image0 = p_image0;
 	}
 
-	@Override
-	public String toString() {
-		return "PlayDTO [p_id=" + p_id + ", m_code=" + m_code + ", g_id=" + g_id + ", a_id=" + a_id + ", p_name="
-				+ p_name + ", p_info=" + p_info + ", p_refund_policy=" + p_refund_policy + ", p_location=" + p_location
-				+ ", p_picture=" + p_picture + ", p_status=" + p_status + "]";
+	public String getP_image1() {
+		return p_image1;
 	}
+
+	public void setP_image1(String p_image1) {
+		this.p_image1 = p_image1;
+	}
+
+	public String getP_image2() {
+		return p_image2;
+	}
+
+	public void setP_image2(String p_image2) {
+		this.p_image2 = p_image2;
+	}
+
+	public String getP_image3() {
+		return p_image3;
+	}
+
+	public void setP_image3(String p_image3) {
+		this.p_image3 = p_image3;
+	}
+
+	public String getP_image4() {
+		return p_image4;
+	}
+
+	public void setP_image4(String p_image4) {
+		this.p_image4 = p_image4;
+	}
+
 }

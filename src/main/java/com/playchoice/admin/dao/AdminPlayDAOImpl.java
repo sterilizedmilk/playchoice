@@ -3,7 +3,6 @@ package com.playchoice.admin.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,30 +30,19 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		System.out.println("read dao start");
 		return session.selectOne(namespace + ".read",p_id);
 	}
-
-//	@Override
-//	public void create(PlayDTO dto) throws Exception {
-//		System.out.println("create dao start"+dto);
-//		session.insert(namespace + ".create", dto);
-//	}
 	// 연극 생성
 	@Override
-	public int create(HashMap<String, Object> param) throws Exception {
-		System.out.println("create dao start"+ param);
-		return session.insert(namespace+".create", param);
-	}
-
-//	@Override
-//	public void update(PlayDTO dto) throws Exception {
-//		System.out.println("update read dao start");
-//		session.update(namespace + ".update", dto);
-//	}
+	public void create(PlayDTO dto) throws Exception {
+		System.out.println("create dao start"+dto);
+		session.insert(namespace + ".create", dto);
+	}	
+	
 	//연극 내용 변경
 	@Override
-	public int update(HashMap<String, Object> param) throws Exception {
-		System.out.println("update read dao start" + param);
-		return session.update(namespace + ".update", param);
-	}
+	public void update(PlayDTO dto) throws Exception {
+		System.out.println("update read dao start");
+		session.update(namespace + ".update", dto);
+	}	
 
 	//연극 삭제-> status=0으로 변경
 	@Override

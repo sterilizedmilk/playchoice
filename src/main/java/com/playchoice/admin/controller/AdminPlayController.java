@@ -1,8 +1,10 @@
 package com.playchoice.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.playchoice.admin.dto.ImageDTO;
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
 import com.playchoice.admin.service.SiteAdminService;
@@ -64,28 +66,44 @@ public class AdminPlayController {
 	}
 
 	@RequestMapping(value="apregister", method=RequestMethod.POST)
-	public String register(@RequestParam HashMap<String, Object> param,
-			@RequestParam("p_picture") MultipartFile file,
+	public String registerPOST(PlayDTO dto,
 			MultipartHttpServletRequest request, RedirectAttributes rttr) throws Exception{
-		FileService fs = new FileService();
+		logger.info("apregister............");
+		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
 		
-		if(fs.isImgChk(file)) {
-			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-				//파일업로드
-				param.put("p_picture", fs.fileUpload(file, request));
-			}else {
-				//기본 프로필 사진으로 DB 저장
-				param.put("p_picture", "default.png");
-			}
-			//DB insert
-			service.regist(param);
+		FileService fs = new FileService();
+		//이미지 생성 및 이미지 체크
+		dto.setP_image0(fs.imageUpload(dto.getP_image().get(0)));
+		dto.setP_image1(fs.imageUpload(dto.getP_image().get(1)));
+		dto.setP_image2(fs.imageUpload(dto.getP_image().get(2)));
+		dto.setP_image3(fs.imageUpload(dto.getP_image().get(3)));
+		dto.setP_image4(fs.imageUpload(dto.getP_image().get(4)));
+		
+		
+		//DB insert
+		service.regist(dto);
+		
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/admin/play/aplist";
 			
-			rttr.addFlashAttribute("msg", "success");
-			return "redirect:/admin/play/aplist";
-		}else {
-			System.out.println("이미지 파일 오류");
-			return "";
-		}
+//		if(fs.isImgChk(file0)) {
+//			if(file0.getOriginalFilename() != null && !file0.getOriginalFilename().equals("")) {
+//				//파일업로드
+//				param.put("p_image0", fs.fileUpload(file0, request));
+//			}else {
+//				//기본 프로필 사진으로 DB 저장
+//				param.put("p_image0", "default.png");
+//			}
+//			//DB insert
+//			service.regist(param);
+//			
+//			rttr.addFlashAttribute("msg", "success");
+//			return "redirect:/admin/play/aplist";
+//		}else {
+//			System.out.println("이미지 파일 오류");
+//			return "";
+//		}
+		
 	}
 
 	//수정
@@ -94,28 +112,39 @@ public class AdminPlayController {
 		model.addAttribute(service.read(p_id));
 	}
 	@RequestMapping(value="modify", method=RequestMethod.POST)
-	public String modifyPOST(@RequestParam HashMap<String, Object> param,
-			@RequestParam("p_picture") MultipartFile file,
+	public String modifyPOST(PlayDTO dto,
 			MultipartHttpServletRequest request, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post............");
+		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
 		FileService fs = new FileService();
 		
-		if(fs.isImgChk(file)) {
-			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-				//파일업로드
-				param.put("p_picture", fs.fileUpload(file, request));
-			}else {
-				//기본 프로필 사진으로 DB 저장
-				param.put("p_picture", "default.png");
-			}
-			//DB insert
-			service.modify(param);
-			rttr.addFlashAttribute("msg", "success");
-			return "redirect:/admin/play/aplist";
-		}else {
-			System.out.println("이미지 파일 오류");
-			return "";
-		}
+		//이미지 생성 및 이미지 체크
+		dto.setP_image0(fs.imageUpload(dto.getP_image().get(0)));
+		dto.setP_image1(fs.imageUpload(dto.getP_image().get(1)));
+		dto.setP_image2(fs.imageUpload(dto.getP_image().get(2)));
+		dto.setP_image3(fs.imageUpload(dto.getP_image().get(3)));
+		dto.setP_image4(fs.imageUpload(dto.getP_image().get(4)));
+		
+		
+		service.modify(dto);
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/admin/play/aplist";
+//		if(fs.isImgChk(file)) {
+//			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+//				//파일업로드
+//				param.put("p_picture", fs.fileUpload(file, request));
+//			}else {
+//				//기본 프로필 사진으로 DB 저장
+//				param.put("p_picture", "default.png");
+//			}
+//			//DB insert
+//			service.modify(param);
+//			rttr.addFlashAttribute("msg", "success");
+//			return "redirect:/admin/play/aplist";
+//		}else {
+//			System.out.println("이미지 파일 오류");
+//			return "";
+//		}
 	}
 	
 	
@@ -167,5 +196,4 @@ public class AdminPlayController {
 		//pslist로 이동 ->  p_id에 대하여 sdto.getP_id() 로 이동
 	}
 
-	
 }

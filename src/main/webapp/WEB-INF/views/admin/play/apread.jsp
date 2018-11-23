@@ -53,13 +53,19 @@
 		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>
 		<input type="text" name="location" class="form-control" value="${playDTO.p_location }" readonly="readonly">
 	</div>
-	<div class="form-group">
-		<label for="exampleInputEmail1">관련 사진</label>
-		<img src="/playChoice/resources/img/admin/play/${playDTO.p_picture }">
+	<div><label for="exampleInputEmail1">대문 포스트</label>
 	</div>
-	<div class="form-group">
-		<label for="exampleInputEmail1">관련 사진 이름</label>
-		<input type="text" name="p_picture" class="form-contorl" value="${playDTO.p_picture }" readonly="readonly">
+	<div class="form-group">		
+		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image0 }">
+		
+	</div>
+	<div><label for="exampleInputEmail1">내용 포스트</label>
+	</div>
+	<div>
+		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image1 }">
+		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image2 }">
+		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image3 }">
+		<img src="/playChoice/resources/img/admin/play/${playDTO.p_image4 }">
 	</div>
 </div>
 <div class="box-footer">
