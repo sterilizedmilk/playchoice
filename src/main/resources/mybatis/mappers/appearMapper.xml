@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.playchoice.mapper.appearMapper">
+
+	<!-- 장바구니 목록 -->
+	<select id="appearList" resultType="PlayAppearDTO">
+		SELECT *
+		FROM play_appear, play
+		WHERE play.p_id=play_appear.p_id
+		AND play_appear.a_id=#{a_id}
+	</select>
+
+</mapper>

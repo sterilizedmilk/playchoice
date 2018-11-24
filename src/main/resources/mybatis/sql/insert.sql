@@ -7,6 +7,12 @@ INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('3', '노진원
 INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('4', '민선경', '1990-02-04');
 INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('5', '장우진', '1981-02-05');
 INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('6', '최정원', '1969-08-02');
+INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('7', '이건명', '1972-04-03');
+INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('8', '오만석', '1975-01-30');
+INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('9', '유준상', '1969-11-28');
+INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('10', '이항나', '1970-02-22');
+INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('11', '이현수', '1984-06-13');
+INSERT INTO `play`.`actor` (`a_id`, `a_name`, `a_birth`) VALUES ('12', '김사홍', '1985-11-06');
 
 -- -----------------------------------------------------
 -- Table `play`.`area`
@@ -53,6 +59,8 @@ INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUE
 INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUES ('3', 'sejong', '1234', '킹세종', 'ksejong@gmail.com');
 INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUES ('4', 'jeongjo', '1234', '정조', 'jeongjo@gmail.com');
 INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUES ('5', 'sejo', '1234', '세조', 'sejo@gmail.com');
+INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUES ('6', 'leejune', '1234', '함이준', 'needs_ham@naver.com');
+INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUES ('7', 'cr7', '1234', '호날두', 'cr7@naver.com');
 
 -- -----------------------------------------------------
 -- Table `play`.`payment`
@@ -66,29 +74,39 @@ INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUE
 -- -----------------------------------------------------
 -- Table `play`.`play`
 -- -----------------------------------------------------
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('1', '1', '발칙한 로맨스', '섹시 발랄 코미디 연극', '환불불가', 'JTN 아트홀 2관', '4', '1');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('1', '1', '발칙한 로맨스', '섹시 발랄 코미디 연극', '환불가능', 'JTN 아트홀 2관', '4', '1');
 INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('2', '2', '오마이갓', '세상종말 로맨스', '환불불가', '봄날 아트홀 2관', '2', '1');
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('3', '2', '메리골드', '치유받을 수 있는 소확행 뮤지컬', '환불불가', '대학로 열린극장', '3', '1');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('3', '2', '메리골드', '치유받을 수 있는 소확행 뮤지컬', '환불가능', '대학로 열린극장', '3', '1');
 INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('4', '3', '뷰티풀 라이프', '따뜻한 공감을 부르는 우리네 사랑이야기', '환불불가', 'JTN 아트홀 4관', '3', '1');
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('5', '4', '와일드 패밀리', '가족코믹극', '환불불가', '미마지아트센터 풀빛극장', '4', '1');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('5', '4', '와일드 패밀리', '가족코믹극', '환불가능', '미마지아트센터 풀빛극장', '4', '1');
 
 -- -----------------------------------------------------
 -- Table `play`.`play_appear`
 -- -----------------------------------------------------
-
-
-
-
-
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('1', '1');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('1', '2');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('2', '3');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('2', '4');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('3', '5');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('3', '6');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('4', '7');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('4', '8');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('5', '9');
+INSERT INTO `play`.`play_appear` (`p_id`, `a_id`) VALUES ('5', '10');
 
 -- -----------------------------------------------------
 -- Table `play`.`prefer_actor`
 -- -----------------------------------------------------
-
-
-
-
-
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('1', '1');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('1', '2');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('2', '3');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('2', '4');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('3', '5');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('3', '6');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('4', '7');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('4', '8');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('5', '9');
+INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('5', '10');
 
 -- -----------------------------------------------------
 -- Table `play`.`question_answer`
@@ -125,16 +143,16 @@ INSERT INTO `play`.`schedule` (`s_id`, `p_id`, `s_ticket`, `s_price`, `s_time`, 
 -- -----------------------------------------------------
 -- Table `play`.`review`
 -- -----------------------------------------------------
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('1', '1', now(), '존잼', '3');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('2', '2', now(), '노잼', '1');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('3', '3', now(), '존잼', '3');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('4', '4', now(), '노잼', '1');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('5', '5', now(), '존잼', '3');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('1', '6', now(), '노잼', '1');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('2', '7', now(), '존잼', '3');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('3', '8', now(), '노잼', '1');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('4', '9', now(), '존잼', '3');
-INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('5', '10', now(), '노잼', '1');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('1', '1', NOW(), '존잼', '5');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('2', '2', now(), '핵노잼', '1');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('3', '3', NOW(), '노잼', '2');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('4', '4', NOW(), '평범', '3');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('5', '5', NOW(), '핵노잼', '1');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('1', '6', NOW(), '노잼', '2');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('2', '7', NOW(), '존잼', '5');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('3', '8', NOW(), '평범', '3');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('4', '9', NOW(), '노잼', '2');
+INSERT INTO `play`.`review` (`m_code`, `s_id`, `r_register_time`, `r_content`, `r_play_score`) VALUES ('5', '10', NOW(), '존잼', '5');
 
 -- -----------------------------------------------------
 -- Table `play`.`shopping_basket`

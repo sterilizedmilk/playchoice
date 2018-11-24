@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.playchoice.actor.dto.PlayAppearDTO;
 import com.playchoice.actor.service.ActorService;
+import com.playchoice.actor.service.PlayAppearService;
 import com.playchoice.common.ActorFileService;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
@@ -29,24 +31,27 @@ import com.playchoice.play.service.PlayService;
 public class ActorController {
 
 	@Autowired
-	ActorService service;
+	ActorService actorService;
 	
 	@Autowired
 	PlayService playService;
+	
+	@Autowired
+	PlayAppearService appearService;
 
 	// 배우 목록/검색
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String actorListController(@RequestParam(required = false) String keyword, Model model) throws Exception {
-		model.addAttribute("actorList", service.listActor(keyword));
+		model.addAttribute("actorList", actorService.listActor(keyword));
 		return "actor/actorList";
 	}
 
-	// 배우 정보
+	// 배우 정보 조회 (+ 출연 작품 목록)
 	@RequestMapping(value = "/detail")
 	public String actordetailController(@RequestParam("a_id") int a_id, Model model) throws Exception {
-		List<PlayDTO> playDTO = playService.playList();
-		model.addAttribute("playDTO", playDTO);
-		model.addAttribute("actorDTO", service.getActor(a_id));
+		List<PlayAppearDTO> appearDTO = appearService.appearList(a_id);
+		model.addAttribute("actorDTO", actorService.getActor(a_id));
+		model.addAttribute("appearDTO", appearDTO);
 		return "actor/actorDetail";
 	}
 
@@ -59,7 +64,7 @@ public class ActorController {
 		System.out.println(dto.getM_code());
 		System.out.println(a_id);
 
-		service.mypickActor(dto, a_id);
+		actorService.mypickActor(dto, a_id);
 	}
 
 }
