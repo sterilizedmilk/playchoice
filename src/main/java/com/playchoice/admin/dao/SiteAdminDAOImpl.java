@@ -1,5 +1,6 @@
 package com.playchoice.admin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -133,6 +134,13 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	public Object actorDelete(ActorDTO actorDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + ".actorDelete", actorDTO);
+	}
+	
+	//배우등록
+	@Override
+	public int insertActor(HashMap<String, Object> param) {
+	
+		return sqlSession.insert(namespace+".insertActor", param);
 	}
 
 }

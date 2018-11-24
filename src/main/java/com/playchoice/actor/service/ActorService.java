@@ -10,10 +10,7 @@ import com.playchoice.member.dto.MemberDTO;
 public interface ActorService {
 	
 	public List<ActorDTO> listActor (String keyword); 
-//	public List<ActorDTO> listActor(SearchActorDTO search);
 	
-	public int insertActor(HashMap<String, Object> param);
-
 	public int mypickActor(MemberDTO dto, String a_id);
 	
 	public ActorDTO getActor(int a_id) throws Exception;

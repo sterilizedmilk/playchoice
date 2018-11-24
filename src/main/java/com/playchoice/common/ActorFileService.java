@@ -11,18 +11,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import net.coobird.thumbnailator.Thumbnails;
 /*
+ * 액터
  * 파일 업로드 서비스
  */
 
-public class FileService {
+public class ActorFileService {
 		
 	public String fileUpload(MultipartHttpServletRequest request,
 			MultipartFile mf) throws IOException {
 		
 		System.out.println("FileService : "+mf.getOriginalFilename());
 		
-//		String path = request.getRealPath("resources/img/actor"+"/");
-		String path = "C:\\bg\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\actor/";
+		String path = request.getRealPath("resources/img/actor"+"/");
+//		String path = "C:\\bg\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\actor/";
 		String res = fileNamePolicy(mf, path);
 		System.out.println("경로 : "+path+res);
 		

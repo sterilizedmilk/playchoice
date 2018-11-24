@@ -1,5 +1,6 @@
 package com.playchoice.admin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.playchoice.actor.dto.ActorDTO;
@@ -55,4 +56,6 @@ public interface SiteAdminDAO {
 	public Object actorUpdate(ActorDTO actorDTO);
 
 	public Object actorDelete(ActorDTO actorDTO);
+
+	int insertActor(HashMap<String, Object> param);
 }

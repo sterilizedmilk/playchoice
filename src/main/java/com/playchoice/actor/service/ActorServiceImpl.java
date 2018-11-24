@@ -27,14 +27,6 @@ public class ActorServiceImpl implements ActorService {
 		}
 	}
 
-	@Override
-	public int insertActor(HashMap<String, Object> param) {
-		//생년월일이 null값이면 SQL 등록 오류가 나서 null일시 기본값 넣어줌
-		if(param.get("a_birth") == null || param.get("a_birth").equals(""))
-			param.put("a_birth", "1900-01-01");
-		return dao.insertActor(param);
-	}
-
 	//배우 찜하기
 	@Override
 	public int mypickActor(MemberDTO dto, String a_id) {

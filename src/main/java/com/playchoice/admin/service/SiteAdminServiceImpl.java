@@ -119,4 +119,15 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 		// TODO Auto-generated method stub
 		return dao.actorDelete(actorDTO);
 	}
+	
+	// 배우 등록
+	@Override
+	public int insertActor(HashMap<String, Object> param) {
+		//연도 + 월 + 일을 합쳐서 넣어줌
+		String a_birth = param.get("year")+"-"+param.get("month")+"-"+param.get("day");
+		param.put("a_birth", a_birth);
+		
+		return dao.insertActor(param);
+	}
+
 }

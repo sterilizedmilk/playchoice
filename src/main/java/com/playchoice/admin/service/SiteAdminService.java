@@ -1,5 +1,6 @@
 package com.playchoice.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +44,7 @@ public interface SiteAdminService {
 	public Object actorUpdate(ActorDTO actorDTO);
 
 	public Object actorDelete(ActorDTO actorDTO);
+
+	int insertActor(HashMap<String, Object> param);
 
 }

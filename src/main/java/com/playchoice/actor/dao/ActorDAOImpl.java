@@ -39,17 +39,6 @@ public class ActorDAOImpl implements ActorDAO {
 		return null;
 	}
 
-	@Override
-	public int insertActor(HashMap<String, Object> param) {
-	
-		return session.insert(namespace+".insertActor", param);
-	}
-
-	@Override
-	public int updateActor(ActorDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int addPreferActor(int m_id, int a_id) {

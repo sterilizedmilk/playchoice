@@ -71,9 +71,7 @@
 			</c:forEach>
 			</tbody>
 	</table>
-	<!-- <div class="button-group">
-		<a href="insertActor">배우등록해버리기</a>
-	</div> -->
+
 </div>
 
 <jsp:include page="../page/footer.jsp"></jsp:include>

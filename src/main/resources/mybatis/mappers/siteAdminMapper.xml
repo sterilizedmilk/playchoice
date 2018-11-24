@@ -77,4 +77,10 @@
 		update actor set
 		a_deleted = #{a_deleted} where a_id = #{a_id}
 	</update>
+	
+	<insert id="insertActor" parameterType="java.util.HashMap">
+		INSERT INTO actor(a_name,a_birth,a_homepage,a_picture)
+		VALUES(#{a_name},#{a_birth},#{a_homepage},#{a_picture})
+	</insert>
+	
 </mapper>

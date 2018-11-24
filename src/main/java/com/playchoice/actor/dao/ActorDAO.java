@@ -19,10 +19,6 @@ public interface ActorDAO {
 	
 	public List<ActorDTO> searchActor(SearchActorDTO search);
 
-	public int insertActor(HashMap<String, Object> param);
-
-	public int updateActor(ActorDTO dto);
-
 	public int addPreferActor(int m_id, int a_id);
 
 	public List<PlayDTO> getAppearedPlays(int a_id);
