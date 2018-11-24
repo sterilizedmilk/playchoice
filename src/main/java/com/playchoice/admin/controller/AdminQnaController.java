@@ -1,13 +1,12 @@
 package com.playchoice.admin.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.playchoice.admin.service.AdminPlayService;
@@ -51,16 +50,9 @@ public class AdminQnaController {
 	}
 	
 	@RequestMapping("write")
-	public String replyWri(
-			HashMap<String, Object> map
-//			QnaDTO dto
-			, Model model) {
-		System.out.println("롸이트");
-		
-		System.out.println(map);
-//		System.out.println(dto);
-//		service.replyWri(dto);
-		
+	public String replyWri(QnaDTO dto, Model model) {
+		//내용 빈칸 체크 , 디자인 , 뉴/답변완료 체크 , 연극별로 보여주기, detail페이지에 m_code 고정되어있음
+		service.replyWri(dto);
 		
 		return "redirect:/admin/qna/qnalist";
 	}
@@ -71,7 +63,7 @@ public class AdminQnaController {
 		service.replyModi(dto);
 		
 		
-		return "admin/qna/qnalist";
+		return "redirect:/admin/qna/qnalist";
 	}
 	
 }

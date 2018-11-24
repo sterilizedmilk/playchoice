@@ -13,11 +13,21 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	/* 답변달기 */
 	$("#write").click(function(){
 		
-		console.log("${list[0].q_id}");
+		
 		
 		frm.action="write";
+		frm.submit();
+		
+	});
+	
+	/* 수정하기 */
+	$("#modify").click(function(){
+			
+		frm.action="modify";
 		frm.submit();
 		
 	});
@@ -32,13 +42,12 @@ $(document).ready(function(){
 		</div>
 		
 		<div>
-			<form name="frm" method="post">
+			<form name="frm" method="POST">
 				<textarea rows="" cols="" name="q_content">${list[1].q_content }</textarea>
 				<input type="hidden" name="q_target_id" value="${list[0].q_id}" />
 				<input type="hidden" name="p_id" value="${list[0].p_id}" />
-				<input type="hidden" name="q_id" value="${list[1].q_id}" />
 				<input type="hidden" name="m_code" value="1" />
-				<%-- 			<input type="hidden" name="m_code" value="${login.m_code }" /> --%>
+				<%-- <input type="hidden" name="m_code" value="${login.m_code }" /> --%>
 			<c:choose>
 				<c:when test="${list[1] == null }">
 					<button id="write" type="submit">작성</button>

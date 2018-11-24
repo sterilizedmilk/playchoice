@@ -64,11 +64,16 @@
 	</select>
 	
 	<insert id="replyWri" parameterType="QnaDTO">
-		insert into question_answer(m_code,p_id,q_target_id)
-		values (#{m_code}, #{p_id}, #{q_target_id})
+		insert into question_answer(m_code,p_id,q_target_id, q_content)
+		values (#{m_code}, #{p_id}, #{q_target_id}, #{q_content})
 	</insert>
 	
 	<update id="replyModi" parameterType="QnaDTO">
-	
+		update question_answer
+		set 
+			q_content = #{q_content}
+		where
+			q_target_id = #{q_target_id}
+		    AND q_id != #{q_target_id};
 	</update>
 </mapper>
