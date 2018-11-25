@@ -34,16 +34,21 @@
 				<div>이름 : ${sessionScope.login.m_name}</div>
 				<div>전화번호 : ${sessionScope.login.m_phone}</div>
 			</div>
-
+			<br>
 			<div>
 				<c:choose>
+					<c:when test="${scheduleEnded}">
+						<h4>리뷰 작성하러 가기</h4>
+						<!-- TODO: 주소 수정 필요 -->
+						<button onclick="href.location='${pageContext.request.contextPath}/play/review/write';">리뷰작성</button>
+					</c:when>
 					<c:when test="${payment.p_canceled == 0}">
-						<h4>취소</h4>
+						<h4>취소하기</h4>
 						<div>환불 금액 : ${refund}</div>
 						<form action="${pageContext.request.contextPath}/payment/cancel" method="post">
-						<input type="hidden" name="p_id" value="${payment.p_id}">
-						<button>결제</button>
-					</form>
+							<input type="hidden" name="p_id" value="${payment.p_id}">
+							<button>결제</button>
+						</form>
 					</c:when>
 					<c:otherwise>
 						<h4>취소됨</h4>

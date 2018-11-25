@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:url value="http://localhost:8080/playChoice/admin/site/member/"
-	var="member" />
+<c:url value="http://localhost:8080/playChoice/admin/site/member/" var="member" />
 <!DOCTYPE html >
+<jsp:include page="../../../page/header.jsp" />
 <jsp:include page="../integratedheader.jsp" />
 
 <script>
 	function modifyGo(fff){
-		fff.action="${member }modify";
+		fff.action="${member}modify";
 		fff.submit();
 	}
 	function deleteGo(fff){
-		fff.action="${member }delete";
+		fff.action="${member}delete";
 		fff.submit();
 	}
 	function blackGo(fff){
-		fff.action="${member }black";
+		fff.action="${member}black";
 		fff.submit();
 }
 
@@ -40,40 +40,23 @@
 							<th>이메일</th>
 							<th>전화번호</th>
 							<th>상태</th>
-							<th>수정</th>
-							<th>삭제</th>
-							<th>블랙리스트</th>
+							<th>상세보기</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${memberlist }" var="dd" varStatus="no">
-							<form name="frn${no.index }" action="" method="post">
+						<c:forEach items="${memberlist}" var="dd" varStatus="no">
+							<form name="frn${no.index}" action="" method="post">
 								<tr>
-									<td><input type="text" value="${dd.m_code }" name="m_code"
-										readonly="readonly"></td>
-									<td><input type="text" value="${dd.m_id }" name="m_id"></td>
-									<td><input type="text" value="${dd.m_name }" name="m_name"></td>
-									<td><input type="text" value="${dd.m_level }"
-										name="m_level"></td>
-									<td><input type="text" value="${dd.m_mail }" name="m_mail"></td>
-									<td><input type="text" value="${dd.m_phone }"
-										name="m_phone"></td>
-									<td><input type="text" value="${dd.m_status }"
-										name="m_status" readonly="readonly"></td>
-									<td><button type="button"
-											onClick="modifyGo(frn${no.index })">수정</button></td>
-									<td><button type="button"
-											onClick="deleteGo(frn${no.index })">삭제</button></td>
-									<td><button type="button"
-											onClick="blackGo(frn${no.index })">
-											<c:choose>
-												<c:when test="${0 eq dd.m_status }">
-										블랙설정
-										</c:when>
-												<c:otherwise>
-										블랙해제</c:otherwise>
-											</c:choose>
-										</button></td>
+									<td>${dd.m_code}</td>
+									<td>${dd.m_id}</td>
+									<td>${dd.m_name}</td>
+									<td>${dd.m_level}</td>
+									<td>${dd.m_mail}</td>
+									<td>${dd.m_phone}</td>
+									<td>${dd.m_status}</td>
+									<td>
+									<button onclick="href.location='${pageContext.request.contextPath}/admin/site/member/detail?m_code=${dd.m_code}'">상세
+									</button></td>
 								</tr>
 							</form>
 						</c:forEach>
@@ -84,5 +67,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>

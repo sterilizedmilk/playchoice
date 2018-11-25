@@ -23,6 +23,8 @@
 				from<input type="date" name="from" value="${param.from}"><br>
 				until<input type="date" name="until" value="${param.until}"><br>
 				
+				watched<input type="checkbox" name="watched" value="true"><br>
+				
 				page<input type="number" name="page" value="${param.page}"><br>
 				<button>검색</button>
 			</form>

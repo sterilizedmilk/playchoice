@@ -14,6 +14,9 @@ public class PaymentSearchDTO {
 
 	Timestamp from = null;
 	Timestamp until = null;
+	
+	Integer canceled = null;
+	Integer scheduleEnded = null;
 
 	Integer start = 0;
 
@@ -82,9 +85,25 @@ public class PaymentSearchDTO {
 			e.printStackTrace();
 		}
 	}
+	
+	public Integer getCanceled() {
+		return canceled;
+	}
+
+	public void setCanceled(Integer canceled) {
+		this.canceled = canceled;
+	}
 
 	public Integer getStart() {
 		return start;
+	}
+	
+	public Integer getScheduleEnded() {
+		return scheduleEnded;
+	}
+
+	public void setScheduleEnded(Integer scheduleEnded) {
+		this.scheduleEnded = scheduleEnded;
 	}
 
 	public void setStart(Integer start) {

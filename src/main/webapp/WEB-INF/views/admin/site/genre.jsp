@@ -2,11 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <title>Genre Management</title>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<jsp:include page="../../page/header.jsp" />
 <script>
 	function addGenre() {
 		$.ajax({
@@ -25,6 +23,8 @@
 	
 	function updateGenre(g_id) {
 		var newName = prompt("change to what?");
+		if (newName === null)
+			return;
 		$.ajax({
 			url: "${pageContext.request.contextPath}/admin/site/genre/edit",
 			type: "post",
@@ -67,7 +67,3 @@
 		<input type="text" name="g_name">
 		<input type="submit">
 	</form>
-
-
-</body>
-</html>

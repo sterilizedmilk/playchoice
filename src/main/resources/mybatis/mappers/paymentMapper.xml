@@ -27,7 +27,13 @@
 				AND payment.p_time >= #{from}
 			</if> 
 			<if test="until != null">
-		<![CDATA[AND payment.p_time <= #{until} ]]>
+<![CDATA[		AND payment.p_time <= #{until}	]]>
+			</if>
+			<if test="canceled != null">
+				AND payment.p_canceled = #{canceled}
+			</if>
+			<if test="scheduleEnded != null and scheduleEnded == 1">
+<![CDATA[		AND schedule.s_time <= NOW()	]]>
 			</if>
 		</where>
 		ORDER BY payment.p_time
@@ -55,7 +61,7 @@
 		WHERE p_id = #{p_id}
 	</select>
 	
-	<insert id="insertPayment" parameterType="PaymentDTO">
+	<insert id="insertPayment" parameterType="PaymentDTO" useGeneratedKeys="true" keyProperty="p_id">
 		INSERT INTO payment
 		(m_code, s_id, p_price, p_quantity, p_canceled, p_cancel_target_id)
 		VALUES(#{m_code}, #{s_id}, #{p_price}, #{p_quantity}, 0, NULL)

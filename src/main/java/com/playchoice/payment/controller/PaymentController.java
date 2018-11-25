@@ -1,5 +1,7 @@
 package com.playchoice.payment.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +58,7 @@ public class PaymentController {
 								@RequestParam String validityMonth) throws Exception {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		
-		System.out.println("cardno : " + cardno	+ "validity : " + validityYear + "/" + validityMonth);
+//		System.out.println("cardno : " + cardno	+ "validity : " + validityYear + "/" + validityMonth);
 		ScheduleDTO schedule = scheduleService.getSchedule(s_id);
 		
 		PaymentDTO payment = new PaymentDTO();
@@ -64,19 +66,25 @@ public class PaymentController {
 		payment.setP_quantity(p_quantity);
 		payment.setM_code(user.getM_code());
 		payment.setP_price(scheduleService.discountedPrice(schedule) * p_quantity);
-		
+
 		service.insertPayment(payment);
 		
-		return "redirect:/member/paymentList";
+		return "redirect:/payment/info?p_id=" + payment.getP_id();
 	}
 	
 // TODO: MemberController로 옮기기
 	@RequestMapping("member/paymentList")
-	public String memberPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto) {
+	public String memberPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto, boolean watched) {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		
 		dto.setMember(user.getM_code());
 		dto.setPlayAdmin(null);
+		System.out.println(watched);
+		// 취소 안된 연극중 끝난 연극 검색
+		if (watched) {
+			dto.setCanceled(0);
+			dto.setScheduleEnded(1);
+		}
 		
 		model.addAttribute("paymentList", service.searchPayment(dto));
 		
@@ -126,6 +134,7 @@ public class PaymentController {
 		model.addAttribute("play", play);
 		model.addAttribute("payment", payment);
 		model.addAttribute("refund", -service.refund(payment));
+		model.addAttribute("scheduleEnded", schedule.getS_time().compareTo(new Date()) <= 0);
 		
 		return "payment/info";
 	}
