@@ -43,8 +43,10 @@ public interface SiteAdminDAO {
 
 	// 회원 관리
 	public Object memberManage();
+	
+	public MemberDTO getMember(int m_code);
 
-	public Object memberUpdate(MemberDTO memberDTO);
+	public int memberUpdate(MemberDTO memberDTO);
 
 	public Object memberDelete(MemberDTO memberDTO);
 
@@ -58,4 +60,5 @@ public interface SiteAdminDAO {
 	public Object actorDelete(ActorDTO actorDTO);
 
 	int insertActor(HashMap<String, Object> param);
+
 }

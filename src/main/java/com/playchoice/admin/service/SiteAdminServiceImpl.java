@@ -78,6 +78,8 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	}
 
 	// -----------멤버 관련
+	
+	
 	@Override
 	public Object memberListAll() {
 		// TODO Auto-generated method stub
@@ -85,7 +87,12 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	}
 
 	@Override
-	public Object memberUpdate(MemberDTO memberDTO) {
+	public MemberDTO getMember(int m_code) {
+		return dao.getMember(m_code);
+	}
+
+	@Override
+	public int memberUpdate(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return dao.memberUpdate(memberDTO);
 	}

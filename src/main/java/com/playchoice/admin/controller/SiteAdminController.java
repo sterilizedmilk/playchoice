@@ -31,6 +31,7 @@ public class SiteAdminController {
 
 	@Autowired
 	SiteAdminService adminService;
+	
 
 	@RequestMapping("")
 	public String adminMainController() {
@@ -47,6 +48,14 @@ public class SiteAdminController {
 		model.addAttribute("memberlist", obj);
 		return "admin/site/member/common";
 	}
+	
+	@RequestMapping("member/detail")
+	public String memberDetailController(Model model, @RequestParam int m_code) throws Exception {
+		MemberDTO member = adminService.getMember(m_code);
+		
+		model.addAttribute("mem", member);
+		return "admin/site/member/detail";
+	}
 
 	@RequestMapping("member/playadmin")
 	public String memberPlayAdminController() {
@@ -54,9 +63,15 @@ public class SiteAdminController {
 	}
 
 	@RequestMapping(value = "member/modify", method = RequestMethod.POST)
-	public String memberModifyController(MemberDTO dto, Model model) {
-		adminService.memberUpdate(dto);
-		return "redirect:/admin/site/member/common";
+	public ResponseEntity<String> memberModifyController(Model model, MemberDTO mem) {
+		ResponseEntity<String> entity = new ResponseEntity<String>(HttpStatus.OK);
+		int result = adminService.memberUpdate(mem);
+		System.out.println(result);
+		if (result == 1)
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		else
+			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
+		return entity;
 	}
 
 	@RequestMapping(value = "member/delete", method = RequestMethod.POST)

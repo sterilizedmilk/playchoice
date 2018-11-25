@@ -99,7 +99,12 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	}
 
 	@Override
-	public Object memberUpdate(MemberDTO memberDTO) {
+	public MemberDTO getMember(int m_code) {
+		return sqlSession.selectOne(namespace + ".getMember", m_code);
+	}
+
+	@Override
+	public int memberUpdate(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		System.out.println("memberUpdate-------" + memberDTO);
 		return sqlSession.update(namespace + ".memberUpdate", memberDTO);

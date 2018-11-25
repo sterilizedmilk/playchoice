@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:url value="http://localhost:8080/playChoice/admin/site/actor/"
-	var="actor" />
 <!DOCTYPE html >
-<jsp:include page="../integratedheader.jsp" />
-
+<jsp:include page="../../../page/header.jsp" />
 
 <script>
 	function modifyGo(fff){
-		fff.action="${actor }update";
+		fff.action="${actor}update";
 		fff.submit();
-		alert("${actor }update");
+		alert("${actor}update");
 	}
 	function deleteGo(fff){
-		fff.action="${actor }delete";
+		fff.action="${actor}delete";
 		fff.submit();
 	}
 </script>
 
+<jsp:include page="../integratedheader.jsp" />
 <div class="container">
 	<div class="row">
 		<!-- Default table -->
@@ -36,30 +34,20 @@
 							<th>사진</th>
 							<th>삭제 여부</th>
 							<th>수정</th>
-							<th>삭제</th>
 						</tr>
 					</thead>
 					
-						<c:forEach items="${actorlist }" var="dd" varStatus="no">
-							<form name="frn${no.index }"  method="post">
+						<c:forEach items="${actorlist}" var="dd" varStatus="no">
 								<tr>
-									<td><input type="text" value="${dd.a_id }" name="a_id"
-										readonly="readonly"></td>
-									<td><input type="text" value="${dd.a_name }" name="a_name"></td>
-									<td><input type="text" value="${dd.a_birthStr }"
-										name="a_birthStr"></td>
-									<td><input type="text" value="${dd.a_homepage }"
-										name="a_homepage"></td>
-									<td><input type="text" value="${dd.a_picture }"
-										name="a_picture" readonly="readonly"></td>
-									<td><input type="text" value="${dd.a_deleted }"
-										name="a_deleted" readonly="readonly"></td>
-									<td><button type="button"
-											onClick="modifyGo(frn${no.index })">수정</button></td>
-									<td><button type="button"
-											onClick="deleteGo(frn${no.index })">삭제</button></td>
+									<td>${dd.a_id}</td>
+									<td>${dd.a_name}</td>
+									<td>${dd.a_birthStr}</td>
+									<td>${dd.a_homepage}</td>
+									<td>${dd.a_picture}</td>
+									<td>${dd.a_deleted}</td>
+									<td><button onclick="href.location='${pageContext.request.contextPath}/admin/site/member/detail?m_code=${dd.m_code}'">상세</button></td>
+
 								</tr>
-							</form>
 						</c:forEach>
 					
 				</table>
@@ -68,5 +56,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>

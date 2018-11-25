@@ -32,7 +32,9 @@ public interface SiteAdminService {
 	// 멤버 관련
 	public Object memberListAll();
 
-	public Object memberUpdate(MemberDTO memberDTO);
+	public MemberDTO getMember(int m_code);
+
+	public int memberUpdate(MemberDTO memberDTO);
 
 	public Object memberDelete(MemberDTO memberDTO);
 
@@ -46,5 +48,6 @@ public interface SiteAdminService {
 	public Object actorDelete(ActorDTO actorDTO);
 
 	int insertActor(HashMap<String, Object> param);
+
 
 }
