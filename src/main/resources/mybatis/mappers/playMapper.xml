@@ -82,4 +82,12 @@
 		ORDER BY
 		q_target_id desc , q_id;
 	</select>
+	
+	<select id="playTodayList" parameterType="java.lang.String" resultType="PlayDTO">
+		select min(`schedule`.s_price) as lowest_price,play.p_name,play.p_image0
+		from `schedule`,play
+		where date_format(`schedule`.s_time,"%Y-%m-%d") =#{date}
+			AND play.p_id= `schedule`.p_id
+		group by (`schedule`.p_id);
+	</select>
 </mapper>

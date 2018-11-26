@@ -1,8 +1,13 @@
 package com.playchoice.play.controller;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.service.PlayServiceImpl;
@@ -35,6 +39,44 @@ public class PlayController {
 		logger.info("list get............");
 		List<PlayDTO> dto = service.playList();
 		model.addAttribute("list", dto);
+		return "play/playlist";
+	}
+	
+	//오늘일정
+	@RequestMapping("todaylist")
+	public String playTodaylist(HttpServletRequest request, Model model) throws Exception {
+		HttpSession session = request.getSession();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		if(session.getAttribute("date") instanceof Date) {
+			Date date = (Date)session.getAttribute("date");
+			
+			String res = sdf.format(date);
+			
+			List<PlayDTO> dto = service.playTodayList(res);
+			model.addAttribute("list", dto);
+		}
+		return "play/playlist";
+	}
+	
+	//내일일정
+	@RequestMapping("tomorrowlist")
+	public String playTomorrowlist(HttpServletRequest request, Model model) throws Exception {
+		HttpSession session = request.getSession();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+
+		if(session.getAttribute("date") instanceof Date) {
+			
+			Date date = (Date)session.getAttribute("date");
+			
+			cal.setTime(date);
+			cal.add(Calendar.DATE, 1);
+			
+			String res = sdf.format(cal.getTime());
+			List<PlayDTO> dto = service.playTodayList(res);
+			model.addAttribute("list", dto);
+		}
 		return "play/playlist";
 	}
 	

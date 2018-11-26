@@ -35,6 +35,9 @@ public interface PlayDAO {
 	
 	public List<Object> getQnA(int p_id);
 	
+	//오늘,내일 연극
+	public List<PlayDTO> playTodayList(String date);
+	
 	public Object getPlayRank();
 
 }

@@ -79,4 +79,12 @@ public class PlayServiceImpl implements PlayService {
 		// TODO Auto-generated method stub
 		return playDao.playList();
 	}
+	
+	//오늘,내일 리스트
+	@Override
+	public List<PlayDTO> playTodayList(String date) {
+		// TODO Auto-generated method stub
+		return playDao.playTodayList(date);
+	}
+	
 }

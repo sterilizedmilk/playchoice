@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 
 
 <!DOCTYPE html>
@@ -50,6 +52,11 @@
 
 <!-- Template Custom JavaScript File -->
 <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+
+<%
+	Date date = new Date();
+%>
+<c:set var="date" value="<%=date %>" scope="session" />
 
 </head>
 <body>
@@ -147,11 +154,10 @@
 													<li><a href="index-alt3.html">광주/전주/전라</a></li>
 													<li><a href="index-alt3.html">기타지역</a></li>
 												</ul></li>
-										</ul></li>
-									<li><a href="/playChoice/play/playlist">오늘(11/11)</a></li>
-									<li><a href="#">내일(11/12)</a></li>
-									<li><a href="${pageContext.request.contextPath}/play/
-									mainlist">전체 일정</a></li>
+										</ul></li>									
+									<li><a href="${pageContext.request.contextPath}/play/todaylist">오늘(11/11)</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/tomorrowlist"">내일(11/12)</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/mainlist">전체 일정</a></li>
 									<li><a href="${pageContext.request.contextPath}/actor/list">배우</a></li>
 									<li><a href="${pageContext.request.contextPath}/rank">주간랭킹</a></li>
 								</ul>

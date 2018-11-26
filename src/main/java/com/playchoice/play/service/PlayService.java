@@ -22,6 +22,9 @@ public interface PlayService {
 	public Object getReviewScore(int p_id);
 
 	public List<Object> getQnA(int p_id);
+	
+	//오늘연극
+	public List<PlayDTO> playTodayList(String date);
 
 	// 연극 주간 랭킹
 	public Object RankList();
