@@ -33,33 +33,12 @@
 					<h4>자주 묻는 질문</h4>
 					<table class="table table-striped">
 						<thead>
-							<tr>
-								<th colspan="4">
-									<a href="detail?id=${board.id }"> Q. 티켓은 어떻게 사용하죠?</a>
-								</th>
-							</tr>
-							<tr>
-								<th colspan="4">
-									<a href="detail?id=${board.id }"> Q. 환불 및 취소는 어떻게 하나요?</a>
-								</th>
-							</tr>
-							<tr>
-								<th colspan="4">
-									<a href="detail?id=${board.id }"> Q. 구매 후 영수증은 어떻게 발급받나요?</a>
-								</th>
-							</tr>
-							<tr>
-								<th>글 번호</th>
-								<th colspan="3">제목</th>
-							</tr>
-						</thead>
-						<tbody>
 							<c:forEach items="${data }" var="dd" varStatus="no">
+
 								<tr>
-									<td>${no.index +1}</td>
-									<td colspan="2">
-										<a href="detail?id=${dd.a_id }">${dd.a_title }</a>
-									</td>
+									<th colspan="4">
+										<a href="detail?id=${dd.a_id }">Q. ${dd.a_title }</a>
+									</th>
 								</tr>
 							</c:forEach>
 							<c:if test="${login.m_level eq 2}">
@@ -69,7 +48,7 @@
 									</td>
 								</tr>
 							</c:if>
-						</tbody>
+						</thead>
 					</table>
 				</div>
 			</div>
