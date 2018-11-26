@@ -30,8 +30,7 @@
 	</select>
 
 	<select id="playDetail" resultType="PlayDTO">
-		select p_id, p_name, p_info,
-		p_refund_policy, p_location
+		select *
 		from play
 		where p_id = #{p_id}
 	</select>

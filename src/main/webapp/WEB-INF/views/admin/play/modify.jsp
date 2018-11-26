@@ -15,7 +15,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<form role="form" method="post" enctype="multipart/form-data">
+<h2 align="center">글 수정</h2>
+<div class="container" align="center">
+	<div class="row">
+		<form role="form" method="post" enctype="multipart/form-data">
 	<div class="box-body">
 		<div class="form-group">
 			<label for="exampleInputEmail1">연극 번호</label>
@@ -27,16 +30,13 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">연극 내용</label>
-			<textarea class="form-control" name="p_info" rows="50" cols="50">${playDTO.p_info }</textarea>
+			<textarea class="form-control" name="p_info" style="width: 50%; height: 300px">${playDTO.p_info }</textarea>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">환불 규정</label>
-			<textarea class="form-control" name="p_refund_policy" rows="50" cols="50">${playDTO.p_refund_policy }</textarea>
+			<textarea class="form-control" name="p_refund_policy" style="width: 50%; height: 300px">${playDTO.p_refund_policy }</textarea>
 		</div>
-		<div class="form-group">
-			<label for="exampleInputEmail1">찾아오시는길(상세 주소)</label>
-			<input type="text" name="p_location" class="form-control" value="${playDTO.p_location }">
-		</div>
+		
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">대문 포스터 변경</label>
 			<input type="file" name="p_image" value="${playDTO.p_image0 }">
@@ -78,6 +78,10 @@
 				<option value="6">광주/전주/전라</option>
 			</select>
 		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">찾아오시는길(상세 주소)</label>
+			<input type="text" name="p_location" class="form-control" value="${playDTO.p_location }">
+		</div>
 	</div>
 </form>
 
@@ -85,6 +89,10 @@
 	<button type="submit" class="btn btn-primary">변경</button>
 	<input type="button" onclick="history.go(-1)" value="취소">
 </div>
+		
+	</div>
+</div>
+
 
 <script>
 	$(document).ready(function(){

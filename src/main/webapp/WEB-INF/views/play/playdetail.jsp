@@ -133,7 +133,7 @@
 		<!-- 좌측 정보 -->
 		<div class="col-md-5" style="float: left; position: relative; margin-right: 15px; background: #fff;">
 			<!-- 이미지 -->
-			<img src="/playChoice/resources/img/play/oktap.jpg" style="width: 480px; padding: 10px 10px 7px 10px; outline: 1px solid #eee;">
+			<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image1 }" style="width: 480px; padding: 10px 10px 7px 10px; outline: 1px solid #eee;">
 			<!--  이미지 끝 -->
 
 			<!-- 연극 제목 및 가격정보 -->
