@@ -109,7 +109,7 @@ public class PlayDTO {
 	}
 
 	public void setP_image0(String p_image0) {
-		this.p_image0 = p_image0;
+		this.p_image0 = "1895_00.jpg";
 	}
 
 	public String getP_image1() {

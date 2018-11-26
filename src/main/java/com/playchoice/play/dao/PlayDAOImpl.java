@@ -90,7 +90,6 @@ public class PlayDAOImpl implements PlayDAO {
 	public Object getPlayRank() {
 		// TODO Auto-generated method stub
 		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playRankList");
-		System.out.println("db처리 완료 : " + dto);
 		return dto;
 	}
 
