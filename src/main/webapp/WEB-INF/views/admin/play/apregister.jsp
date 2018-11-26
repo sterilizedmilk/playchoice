@@ -14,7 +14,7 @@
 	rel="stylesheet" /> --%>
 
 <jsp:include page="../../page/header.jsp" />
-
+<jsp:include page="adminheader.jsp" />
 <title>Insert title here</title>
 <%-- <form name="fileForm" action="requestupload2" method="post" enctype="multipart/form-data">
 	<input multiple="multiple" type="file" name="file" />

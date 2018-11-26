@@ -92,12 +92,14 @@ public class AdminPlayController {
 		
 		//이름부분을 th 라는 String 변수 입력
 		String th = fs.imageUpload(dto.getP_image().get(0));
+		System.out.println("th:"+th);
 		dto.setP_image0(th);
+		
 		dto.setP_image1(fs.imageUpload(dto.getP_image().get(1)));
 		dto.setP_image2(fs.imageUpload(dto.getP_image().get(2)));
 		dto.setP_image3(fs.imageUpload(dto.getP_image().get(3)));
 		dto.setP_image4(fs.imageUpload(dto.getP_image().get(4)));
-		
+		System.out.println(dto);
 		
 		//DB insert
 		service.regist(dto);

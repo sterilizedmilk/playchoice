@@ -45,19 +45,19 @@
 	<div><label for="exampleInputEmail1">대표 포스터</label>
 	</div>
 	<div class="form-group">		
-		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image0 }">
+		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image0 }">
 		
 	</div>
 	<div><label>메인 썸네일 포스터</label></div>
 	<div>
-		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image1 }">
+		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image1 }">
 	</div>
 	<div><label for="exampleInputEmail1">내용 포스터</label>
 	</div>
 	<div>
-		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image2 }"><br/>
-		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image3 }"><br/>
-		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image4 }">
+		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }"><br/>
+		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image3 }"><br/>
+		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image4 }">
 	</div>
 	<div class="form-group">
 		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>

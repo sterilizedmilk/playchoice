@@ -97,11 +97,11 @@ public class FileService {
 		//확장자 명에 대한 스플릿 리턴
 	}
 	
-	//썸네일 생성(170px X 170px)
+	//썸네일 생성(200px X 250px)
 	public String setThumb( String res) throws IOException {
 		System.out.println("setThumb() Run");
 
-		Thumbnails.of(path+res).size(180,257).toFile(path+"thumb_"+res);
+		Thumbnails.of(path+res).size(200,250).toFile(path+"thumb_"+res);
 		return "thumb_"+res;
 	}
 }
