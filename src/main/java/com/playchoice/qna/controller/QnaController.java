@@ -55,7 +55,7 @@ public class QnaController {
 		
 		MemberDTO res = (MemberDTO)session.getAttribute("login");
 		if(res != null) { //세션 체크
-			if(res.getM_code() == dto.getM_code() || res.getM_level() == 3) { // 작성자 일치 / 관리자인지 확인
+			if(res.getM_code() == dto.getM_code() || res.getM_level() == 2) { // 작성자 일치 / 관리자인지 확인
 				if(service.deleteQna(dto)>=1){ // 삭제
 					model.addAttribute("msg", "삭제성공");
 				}

@@ -35,5 +35,10 @@ public class ReviewController {
 		return res;
 		
 	}
+	
+	@RequestMapping("reviewReg")
+	public String reviewReg() {
+		return "payment/reviewReg";
+	}
 
 }
