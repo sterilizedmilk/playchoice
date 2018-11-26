@@ -9,10 +9,19 @@
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 
+<jsp:include page="../../page/header.jsp" />
+
 <h2 align="center">연극 일정 보기</h2>
 <form role="form" method="post">
 	<input type="hidden" name="p_id" value="${param.p_id }">
 </form>
+
+<div class="box-footer" align="center">
+	<button type="submit" class="btn btn-primary">일정 추가 생성</button>
+	<button type="submit" class="btn btn-flurry">연극 올리기</button>
+	<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
+</div>
+
 <h3 align="center">연극 번호 : ${param.p_id }</h3>
 <div class="container" align="center">
 	<div class="row">
@@ -37,11 +46,6 @@
 			</tbody>
 		</table>
 	</div>
-</div>
-<div class="box-footer" align="center">
-	<button type="submit" class="btn btn-primary">일정 추가 생성</button>
-	<button type="submit" class="btn btn-flurry">연극 올리기</button>
-	<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
 </div>
 
 <script>

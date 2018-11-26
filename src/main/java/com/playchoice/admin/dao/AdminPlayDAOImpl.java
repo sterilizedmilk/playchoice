@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
@@ -21,9 +22,9 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 	
 	//연극 리스트 보기
 	@Override
-	public List<PlayDTO> listAll() throws Exception {
+	public List<PlayDTO> listAll(MemberDTO user) throws Exception {
 		System.out.println("list dao start");
-		return session.selectList(namespace +".listAll");
+		return session.selectList(namespace +".listAll", user);
 	}
 
 	//연극 자세히 보기

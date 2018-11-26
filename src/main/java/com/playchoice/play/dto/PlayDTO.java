@@ -13,7 +13,6 @@ public class PlayDTO {
 	String p_image0, p_image1, p_image2, p_image3, p_image4;
 	//글 게시 상태
 	boolean p_status;
-
 	// p_refund_policy : 반환정보
 
 	public int getP_id() {

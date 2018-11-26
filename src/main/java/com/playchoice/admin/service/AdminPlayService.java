@@ -2,13 +2,14 @@ package com.playchoice.admin.service;
 
 import java.util.List;
 
+import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface AdminPlayService {
 	
-	public List<PlayDTO> listAll() throws Exception;
+	public List<PlayDTO> listAll(MemberDTO user) throws Exception;
 	
 	public PlayDTO read(int p_id) throws Exception;
 	

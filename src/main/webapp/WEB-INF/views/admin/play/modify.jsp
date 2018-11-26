@@ -10,6 +10,8 @@
 <!DOCTYPE html>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 
+<jsp:include page="../../page/header.jsp" />
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -37,23 +39,23 @@
 		</div>
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">대문 포스터 변경</label>
-			<input type="file" name="p_image">
+			<input type="file" name="p_image" value="${playDTO.p_image0 }">
 		</div>
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">내용 포스터 변경 1</label>
-			<input type="file" name="p_image">
+			<input type="file" name="p_image" value="${playDTO.p_image1 }">
 		</div>
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">내용 포스터 변경 2</label>
-			<input type="file" name="p_image">
+			<input type="file" name="p_image" value="${playDTO.p_image2 }">
 		</div>
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">내용 포스터 변경 3</label>
-			<input type="file" name="p_image">
+			<input type="file" name="p_image" value="${playDTO.p_image3 }">
 		</div>
 		<div class="form-group" id="fileDiv">
 			<label for = "exampleInputEmail1">내용 포스터 변경 4</label>
-			<input type="file" name="p_image">
+			<input type="file" name="p_image" value="${playDTO.p_image4 }">
 		</div>
 		<div class="form-group">
 			<label>장르</label>

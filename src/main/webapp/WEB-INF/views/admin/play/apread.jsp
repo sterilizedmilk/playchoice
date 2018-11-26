@@ -6,6 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<jsp:include page="../../page/header.jsp" />
+
 <!DOCTYPE html>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <meta charset="UTF-8">
@@ -15,6 +17,13 @@
 <form role="form" method="post">
 	<input type="hidden" name="p_id" value="${playDTO.p_id }">
 </form>
+
+<div class="box-footer">
+	<button type="submit" class="btn btn-warning">글 수정</button>
+	<button type="submit" class="btn btn-danger">글 삭제</button>	
+	<button type="submit" class="btn btn-primary">목록으로</button>
+	<button type="submit" class="btn btn-pslist">일정 보기</button>
+</div>
 
 <div class="box-body">
 	<div class="form-group">
@@ -55,13 +64,6 @@
 		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image4 }">
 	</div>
 </div>
-<div class="box-footer">
-	<button type="submit" class="btn btn-warning">글 수정</button>
-	<button type="submit" class="btn btn-danger">글 삭제</button>	
-	<button type="submit" class="btn btn-primary">목록으로</button>
-	<button type="submit" class="btn btn-pslist">일정 보기</button>
-</div>
-
 
 <script>
 	$(document).ready(function(){

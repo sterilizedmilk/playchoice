@@ -5,8 +5,8 @@
     <!-- com.playchoice.play.dto.PlayDTO --> 
 <mapper namespace="com.playchoice.mappers.adminplayMapper">
 									<!-- com.playchoice.play.dto.PlayDTO -->
-    <select id="listAll" resultType="PlayDTO">
-    	select * from play
+    <select id="listAll" resultType="PlayDTO" parameterType="memberDTO">
+    	select * from play where m_code = #{m_code}
     </select>
     
     <select id="read" resultType="PlayDTO">
@@ -16,15 +16,19 @@
     </select>
     
     <insert id="create" parameterType="PlayDTO">        	
-    	insert into play(p_name, p_info, g_id, a_id, p_location, p_refund_policy, p_image0, p_image1, p_image2, p_image3, p_image4)
-    	values(#{p_name}, #{p_info}, #{g_id}, #{a_id}, #{p_location}, #{p_refund_policy},
+    	insert into play(p_name, m_code, p_info, g_id, a_id, p_location, p_refund_policy, p_image0, p_image1, p_image2, p_image3, p_image4)
+    	values(#{p_name}, #{m_code}, #{p_info}, #{g_id}, #{a_id}, #{p_location}, #{p_refund_policy},
     	 #{p_image0}, #{p_image1}, #{p_image2}, #{p_image3}, #{p_image4})    	
     </insert>
     
     <update id="update" parameterType="java.util.HashMap">
     	update play set p_name=#{p_name}, p_info=#{p_info}, g_id=#{g_id}, a_id=#{a_id},
-    	 p_location=#{p_location}, p_refund_policy=#{p_refund_policy},
-    	 p_image0=#{p_image0}, p_image1=#{p_image1}, p_image2=#{p_image2}, p_image3=#{p_image4}, p_image4=#{p_image4}
+    	 p_location=#{p_location}, p_refund_policy=#{p_refund_policy}
+    	<if test="p_image0 != null">, p_image0=#{p_image0}</if>
+    	<if test="p_image1 != null">, p_image1=#{p_image1}</if> 
+		<if test="p_image2 != null">, p_image2=#{p_image2}</if>
+		<if test="p_image3 != null">, p_image3=#{p_image3}</if>
+		<if test="p_image4 != null">, p_image4=#{p_image4}</if>
     	where p_id=#{p_id}
     </update>
     

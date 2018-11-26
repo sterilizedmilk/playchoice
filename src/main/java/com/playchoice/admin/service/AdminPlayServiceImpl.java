@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playchoice.admin.dao.AdminPlayDAO;
+import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
@@ -21,9 +22,9 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		
 	//연극 리스트 보기
 	@Override
-	public List<PlayDTO> listAll() throws Exception {
+	public List<PlayDTO> listAll(MemberDTO user) throws Exception {
 		System.out.println("list service start");
-		return dao.listAll();
+		return dao.listAll(user);
 	}
 	//연극 내용 자세히 보기
 	@Override

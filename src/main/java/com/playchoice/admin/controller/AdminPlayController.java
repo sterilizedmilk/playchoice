@@ -1,5 +1,7 @@
 package com.playchoice.admin.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.playchoice.actor.dao.ActorDAOImpl;
+import com.playchoice.actor.service.ActorService;
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
+import com.playchoice.admin.service.SiteAdminService;
+import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.payment.dto.PaymentDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
@@ -29,13 +36,28 @@ public class AdminPlayController {
 	@Autowired
 	private AdminPlayService service;
 	
+	@Autowired
+	private SiteAdminService sservice;
+	
+	@Autowired
+	private ActorService aservice;
+	
+	@Autowired
+	private ActorDAOImpl adao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(AdminPlayController.class);
 	
 	//리스트
 	@RequestMapping(value="aplist", method=RequestMethod.GET)
-	public void listAll(Model model) throws Exception{
+	public void listAll(Model model, HttpSession session) throws Exception{
 		logger.info("list all show....................");
-		model.addAttribute("list", service.listAll());
+		
+		//session login 정보 가져옴 / list로 불러온것을 객체 res에 저장
+		MemberDTO user = (MemberDTO) session.getAttribute("login");
+		Object res = service.listAll(user);
+		
+		System.out.println(res);
+		model.addAttribute("list", res);
 	}
 	
 	//조회
@@ -43,19 +65,29 @@ public class AdminPlayController {
 	public void read(@RequestParam("p_id") int p_id, Model model) throws Exception{
 		logger.info("list read show....................");
 		model.addAttribute(service.read(p_id));
+
 	}
+		
 	
 	//생성
 	@RequestMapping(value="apregister", method=RequestMethod.GET)
 	public void registerGET(PlayDTO dto, Model model) throws Exception{
 		logger.info("register get.............");
+		model.addAttribute("glist",sservice.genreList());
+		model.addAttribute("alist",sservice.areaList());
+		
 	}
 
 	@RequestMapping(value="apregister", method=RequestMethod.POST)
 	public String registerPOST(PlayDTO dto,
-			MultipartHttpServletRequest request, RedirectAttributes rttr) throws Exception{
+			MultipartHttpServletRequest request, RedirectAttributes rttr, HttpSession session) throws Exception{
 		logger.info("apregister............");
 		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
+		
+		//session -> login 설정 / dto로 저장
+		MemberDTO user = (MemberDTO) session.getAttribute("login");		
+		dto.setM_code(user.getM_code());
+		
 		
 		FileService fs = new FileService(request);
 		//이미지 생성 및 이미지 체크
@@ -77,25 +109,7 @@ public class AdminPlayController {
 		
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/play/aplist";
-			
-//		if(fs.isImgChk(file0)) {
-//			if(file0.getOriginalFilename() != null && !file0.getOriginalFilename().equals("")) {
-//				//파일업로드
-//				param.put("p_image0", fs.fileUpload(file0, request));
-//			}else {
-//				//기본 프로필 사진으로 DB 저장
-//				param.put("p_image0", "default.png");
-//			}
-//			//DB insert
-//			service.regist(param);
-//			
-//			rttr.addFlashAttribute("msg", "success");
-//			return "redirect:/admin/play/aplist";
-//		}else {
-//			System.out.println("이미지 파일 오류");
-//			return "";
-//		}
-		
+					
 	}
 
 	//수정
@@ -121,22 +135,6 @@ public class AdminPlayController {
 		service.modify(dto);
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/play/aplist";
-//		if(fs.isImgChk(file)) {
-//			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-//				//파일업로드
-//				param.put("p_picture", fs.fileUpload(file, request));
-//			}else {
-//				//기본 프로필 사진으로 DB 저장
-//				param.put("p_picture", "default.png");
-//			}
-//			//DB insert
-//			service.modify(param);
-//			rttr.addFlashAttribute("msg", "success");
-//			return "redirect:/admin/play/aplist";
-//		}else {
-//			System.out.println("이미지 파일 오류");
-//			return "";
-//		}
 	}
 	
 	
@@ -174,6 +172,8 @@ public class AdminPlayController {
 	public void psregisterGET(ScheduleDTO sdto, Model model) throws Exception{
 		logger.info("psregister get.............");
 		System.out.println(sdto);
+		model.addAttribute("actorlist", adao.listActor());
+		
 	}
 	@RequestMapping(value="psregister", method=RequestMethod.POST)
 	public String psregisterPOST(ScheduleDTO sdto, RedirectAttributes rttr) throws Exception{

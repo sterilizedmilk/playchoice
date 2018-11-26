@@ -13,12 +13,16 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet" /> --%>
 
+<jsp:include page="../../page/header.jsp" />
+
 <title>Insert title here</title>
 <%-- <form name="fileForm" action="requestupload2" method="post" enctype="multipart/form-data">
 	<input multiple="multiple" type="file" name="file" />
 	<input type="text" name="src" />
 	<input type="submit" value="전송" />
 </form> --%>
+
+<input type="hidden" name="m_code" value="${login.m_code }" />
 
 <h2 align="center">연극 정보 입력</h2>
 <form role="form" method="post" enctype="multipart/form-data">
@@ -157,27 +161,24 @@
 			<label for = "exampleInputEmail1">내용 포스터 추가 3</label>
 			<input type="file" name="p_image">
 		</div>
-		<div class="form-group">
-			<label>장르</label>
-			<select name="g_id">
-				<option value="1">로맨틱코미디</option>
-				<option value="2">공포/스릴러</option>
-				<option value="3">드라마</option>
-				<option value="4">코믹</option>
-				<option value="5">기타</option>
-			</select>
+		
+		<div>
+		<label>장르</label>
+		<select name="g_id">
+		<c:forEach items="${glist }" var="gl">
+			<option value="${gl.g_id }">${gl.g_name }</option>
+		</c:forEach>
+		</select>
 		</div>
-		<div class="form-group">
-			<label>지역</label>
-			<select name="a_id">
-				<option value="1">서울/대학로</option>
-				<option value="2">서울/기타</option>
-				<option value="3">경기</option>
-				<option value="4">대전/충청</option>
-				<option value="5">부산/대구/경상</option>
-				<option value="6">광주/전주/전라</option>
-			</select>
+		<div>
+		<label>지역</label>
+		<select name="a_id">
+		<c:forEach items="${alist }" var="al">
+			<option value="${al.a_id }">${al.a_name }</option>
+		</c:forEach>
+		</select>
 		</div>
+		
 	</div>
 	<div class="box-footer">
 		<button type="submit" class="btn btn-primary">완료</button>

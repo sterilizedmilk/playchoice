@@ -7,6 +7,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 
+<jsp:include page="../../page/header.jsp" />
+
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <%-- <link
@@ -31,14 +33,33 @@
 			<label for = "exampleInputEmail1">최대 티켓 수</label>
 			<input type="text" name = "s_ticket" class="form-contorl" placeholder="Enter ticket">
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label for = "exampleInputEmail1">배우1</label>
 			<input type="text" name = "a_id1" class="form-contorl" placeholder="Enter acter number1">
 		</div>
 		<div class="form-group">
 			<label for = "exampleInputEmail1">배우2</label>
 			<input type="text" name = "a_id2" class="form-contorl" placeholder="Enter acter number2">
+		</div> -->
+		
+		<div>
+		<label>배우 1</label>
+		<select name="a_id1">
+		<c:forEach items="${actorlist }" var="acl">
+			<option value="${acl.a_id }">${acl.a_name }</option>
+		</c:forEach>
+		</select>
 		</div>
+		<div>
+		<label>배우 2</label>
+		<select name="a_id2">
+		<c:forEach items="${actorlist }" var="acl">
+			<option value="${acl.a_id }">${acl.a_name }</option>
+		</c:forEach>
+		</select>
+		</div>
+		<div>
+		
 	</div>
 	<div class="box-footer">
 		<button type="submit" class="btn btn-primary">일정 추가</button>
