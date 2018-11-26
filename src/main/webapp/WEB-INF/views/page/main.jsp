@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <jsp:include page="header.jsp"></jsp:include>
+<%@ page import="java.util.*, java.text.*"%>
 <div id="wrapper">
 	<!-- end header -->
 	<section id="featured">
@@ -66,11 +67,7 @@
 							</h3>
 						</div>
 						<div class="cta floatright">
-							<a class="btn btn-large btn-theme btn-rounded" href="play/playlist">
-								예매하러
-								<!-- href="#" -->
-								가기
-							</a>
+							<a class="btn btn-large btn-theme btn-rounded" href="${pageContext.request.contextPath}/play/mainlist">> 예매하러 가기 </a>
 						</div>
 					</div>
 				</div>
@@ -82,6 +79,12 @@
 			<div class="row">
 				<div class="span12">
 					<div class="row">
+						<%
+							Date date = new Date();
+							SimpleDateFormat simpleDate = new SimpleDateFormat("MM-dd");
+							String strdate = simpleDate.format(date);
+							Calendar cal = Calendar.getInstance();
+						%>
 						<div class="span6">
 							<div class="box aligncenter">
 								<div class="aligncenter icon">
@@ -89,13 +92,14 @@
 								</div>
 								<div class="text">
 									<h3>
-										<strong>오늘 티켓(11/11)</strong>
+										<strong>오늘 티켓(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
+										</strong>
 									</h3>
 									<p>
 										오늘 당장 저렴하게 이용할 수 있는<br>
 									</p>
 									<p>마감 임박 할인 오늘 티켓</p>
-									<a href="${pageContext.request.contextPath}/play/mainlist">예매하러 가기</a>
+									<a href="${pageContext.request.contextPath}/play/todaylist">예매하러 가기</a>
 								</div>
 							</div>
 						</div>
@@ -106,13 +110,14 @@
 								</div>
 								<div class="text">
 									<h3>
-										<strong>타임 세일</strong>
+										<strong>내일 티켓(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
+										</strong>
 									</h3>
 									<p>
 										한정된 기간, 한정된 수량으로 판매되는<br>
 									</p>
 									<p>우주 최저가 타임 세일 티켓</p>
-									<a href="#">예매하러 가기</a>
+									<a href="${pageContext.request.contextPath}/play/tomorrowlist">예매하러 가기</a>
 								</div>
 							</div>
 						</div>

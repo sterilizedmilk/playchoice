@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
 
 
 <!DOCTYPE html>
@@ -53,10 +53,15 @@
 <!-- Template Custom JavaScript File -->
 <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
 
+<%@ page import="java.util.*, java.text.*"%>
 <%
 	Date date = new Date();
+	SimpleDateFormat simpleDate = new SimpleDateFormat("MM-dd");
+	String strdate = simpleDate.format(date);
+	Calendar cal = Calendar.getInstance();
 %>
-<c:set var="date" value="<%=date %>" scope="session" />
+
+<c:set var="date" value="<%=date%>" scope="session" />
 
 </head>
 <body>
@@ -120,42 +125,12 @@
 							<nav>
 								<ul class="nav topnav">
 									<li><a href="${pageContext.request.contextPath}">Home</a></li>
-									<!-- <li class="dropdown"><a href="#">
-											카테고리 <i class="icon-angle-down"></i>
-										</a>
-										<ul class="dropdown-menu">
-											<li class="dropdown"><a href="#">
-													타임커머스<i class="icon-angle-right"></i>
-												</a>
-												<ul class="dropdown-menu sub-menu-level1">
-													<li><a href="/playChoice/play/playlist">오늘티켓</a></li>
-													<li><a href="index-alt2.html">내일티켓</a></li>
-												</ul></li>
-											<li class="dropdown"><a href="#">
-													장르<i class="icon-angle-right"></i>
-												</a>
-												<ul class="dropdown-menu sub-menu-level1">
-													<li><a href="index.html">연극</a></li>
-													<li><a href="index-alt2.html">뮤지컬</a></li>
-													<li><a href="index-alt3.html">콘서트</a></li>
-													<li><a href="index-alt3.html">아동극</a></li>
-												</ul></li>
-											<li class="dropdown"><a href="#">
-													지역별 공연<i class="icon-angle-right"></i>
-												</a>
-												<ul class="dropdown-menu sub-menu-level1">
-													<li><a href="index.html">서울</a></li>
-													<li><a href="index-alt2.html">서울 &gt; 대학로</a></li>
-													<li><a href="index-alt3.html">서울 &gt; 기타</a></li>
-													<li><a href="index-alt3.html">경기</a></li>
-													<li><a href="index-alt3.html">대전/충청</a></li>
-													<li><a href="index-alt3.html">부산/대구/경상</a></li>
-													<li><a href="index-alt3.html">광주/전주/전라</a></li>
-													<li><a href="index-alt3.html">기타지역</a></li>
-												</ul></li>
-										</ul></li>		 -->
-									<li><a href="${pageContext.request.contextPath}/play/todaylist">오늘(11/11)</a></li>
-									<li><a href="${pageContext.request.contextPath}/play/tomorrowlist"">내일(11/12)</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/todaylist">
+											오늘(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
+										</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/tomorrowlist">
+											내일(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
+										</a></li>
 									<li><a href="${pageContext.request.contextPath}/play/mainlist">전체 일정</a></li>
 									<li><a href="${pageContext.request.contextPath}/actor/list">배우</a></li>
 									<li><a href="${pageContext.request.contextPath}/rank">주간랭킹</a></li>
