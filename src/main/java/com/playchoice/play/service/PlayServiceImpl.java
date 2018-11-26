@@ -13,6 +13,14 @@ import com.playchoice.play.dto.PlayDTO;
 
 @Service
 public class PlayServiceImpl implements PlayService {
+	
+	
+	
+	
+
+	public PlayServiceImpl() {
+		System.out.println("PlayServiceImpl 생성자닷!!!");
+	}
 
 	@Autowired
 	private PlayDAOImpl playDao;
