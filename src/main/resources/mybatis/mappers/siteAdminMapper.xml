@@ -3,7 +3,9 @@
 <mapper namespace="com.playchoice.mappers.siteAdminMapper">
 
 	<select id="genreList" resultType="GenreDTO">
-		SELECT * FROM genre
+		SELECT *
+		FROM genre
+		ORDER BY g_id
 	</select>
 
 	<insert id="genreInsert">
@@ -19,7 +21,9 @@
 	</update>
 
 	<select id="areaList" resultType="AreaDTO">
-		SELECT * FROM area
+		SELECT *
+		FROM area
+		ORDER BY a_id
 	</select>
 
 	<insert id="areaInsert">
@@ -92,13 +96,16 @@
 	<select id="actorList" resultType="actorDTO">
 		SELECT * FROM actor
 	</select>
+	
 
 	<update id="actorUpdate" parameterType="actorDTO">
 		update actor
 		set a_name = #{a_name},
 		a_birth = #{a_birth},
-		a_homepage = #{a_homepage},
-		a_picture = #{a_picture}
+		a_homepage = #{a_homepage}
+		<if test="a_picture != null">
+		, a_picture = #{a_picture}
+		</if>
 		where a_id = #{a_id}
 	</update>
 	
