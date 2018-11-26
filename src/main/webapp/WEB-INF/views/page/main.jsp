@@ -95,7 +95,7 @@
 										오늘 당장 저렴하게 이용할 수 있는<br>
 									</p>
 									<p>마감 임박 할인 오늘 티켓</p>
-									<a href="play/playlist">예매하러 가기</a>
+									<a href="${pageContext.request.contextPath}/play/mainlist">예매하러 가기</a>
 								</div>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 					<section id="projects">
 						<ul id="thumbs" class="portfolio">
 							<c:forEach items="${list}" var="li" varStatus="status">
-								<li style="width: 200px; height: 200px;" class="item-thumbs span3 design" data-id="id-0" data-type="graphic"><a class="hover-wrap fancybox" data-fancybox-group="gallery" href="${pageContext.request.contextPath}/play/playdetail?p_id=${li.p_id }">
+								<li style="width: 200px; height: 250px;" class="item-thumbs span3 design" data-id="id-0" data-type="graphic"><a class="hover-wrap fancybox" data-fancybox-group="gallery" href="${pageContext.request.contextPath}/play/playdetail?p_id=${li.p_id }">
 										<span class="overlay-img"></span> <span class="overlay-img-thumb font-icon-plus"></span>
 									</a> <img src="${pageContext.request.contextPath}/resources/img/play/${li.p_image0 }">
 									<div>

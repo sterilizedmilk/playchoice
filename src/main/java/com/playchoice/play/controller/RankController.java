@@ -22,10 +22,7 @@ public class RankController {
 
 	@RequestMapping("/rank")
 	public String RankList(Model model) {
-		System.out.println("RankList()");
-		System.out.println("service:" +service);
 		Object obj = service.RankList();
-		
 		model.addAttribute("list", obj);
 		return "rank/ranklist";
 	}

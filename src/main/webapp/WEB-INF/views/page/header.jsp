@@ -120,7 +120,7 @@
 							<nav>
 								<ul class="nav topnav">
 									<li><a href="${pageContext.request.contextPath}">Home</a></li>
-									<li class="dropdown"><a href="#">
+									<!-- <li class="dropdown"><a href="#">
 											카테고리 <i class="icon-angle-down"></i>
 										</a>
 										<ul class="dropdown-menu">
@@ -130,7 +130,6 @@
 												<ul class="dropdown-menu sub-menu-level1">
 													<li><a href="/playChoice/play/playlist">오늘티켓</a></li>
 													<li><a href="index-alt2.html">내일티켓</a></li>
-													<li><a href="index-alt3.html">타임세일</a></li>
 												</ul></li>
 											<li class="dropdown"><a href="#">
 													장르<i class="icon-angle-right"></i>
@@ -154,7 +153,7 @@
 													<li><a href="index-alt3.html">광주/전주/전라</a></li>
 													<li><a href="index-alt3.html">기타지역</a></li>
 												</ul></li>
-										</ul></li>									
+										</ul></li>		 -->
 									<li><a href="${pageContext.request.contextPath}/play/todaylist">오늘(11/11)</a></li>
 									<li><a href="${pageContext.request.contextPath}/play/tomorrowlist"">내일(11/12)</a></li>
 									<li><a href="${pageContext.request.contextPath}/play/mainlist">전체 일정</a></li>

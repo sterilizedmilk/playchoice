@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.playchoice.play.controller.RankController;
 import com.playchoice.play.service.PlayServiceImpl;
 
 @Controller

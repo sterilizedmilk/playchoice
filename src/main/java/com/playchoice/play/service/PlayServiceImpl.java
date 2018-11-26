@@ -13,13 +13,8 @@ import com.playchoice.play.dto.PlayDTO;
 
 @Service
 public class PlayServiceImpl implements PlayService {
-	
-	
-	
-	
 
 	public PlayServiceImpl() {
-		System.out.println("PlayServiceImpl 생성자닷!!!");
 	}
 
 	@Autowired
@@ -40,7 +35,6 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public List<Object> viewCal(HashMap<String, Object> param) {
 		// TODO 안쓰면 삭제해야함
-		System.out.println("viewCal 서비스왓다");
 		return playDao.viewCal(param);
 	}
 
