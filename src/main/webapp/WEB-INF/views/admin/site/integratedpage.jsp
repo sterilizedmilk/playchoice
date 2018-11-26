@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<jsp:include page="../../page/header.jsp" />
 <title>Area Management</title>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+
 <jsp:include page="integratedheader.jsp" />
 </body>
 </html>

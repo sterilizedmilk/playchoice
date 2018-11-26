@@ -45,7 +45,6 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${memberlist}" var="dd" varStatus="no">
-							<form name="frn${no.index}" action="" method="post">
 								<tr>
 									<td>${dd.m_code}</td>
 									<td>${dd.m_id}</td>
@@ -55,14 +54,25 @@
 									<td>${dd.m_phone}</td>
 									<td>${dd.m_status}</td>
 									<td>
-									<button onclick="href.location='${pageContext.request.contextPath}/admin/site/member/detail?m_code=${dd.m_code}'">상세
+									<button class="btn btn-primary btn-small" title="상세보기"
+									onclick="location.href='${pageContext.request.contextPath}/admin/site/member/detail?m_code=${dd.m_code}'">상세
 									</button></td>
 								</tr>
-							</form>
 						</c:forEach>
 					</tbody>
 				</table>
-
+				<div>
+					<form action="search">
+						<button class="btn btn-primary btn-small">상세 검색</button><br>
+						m_code<input type="number" name="code" value="${param.code}"><br>
+						m_level<input type="number" name="level" value="${param.level}"><br>
+						m_status<input type="number" name="status" value="${param.status}"><br>
+						m_id<input type="text" name="id" value="${param.id}"><br>
+						m_name<input type="text" name="name" value="${param.name}"><br>
+						page<input type="number" name="page" value="${param.page}">
+					</form>
+				</div>
+				
 			</div>
 		</div>
 	</div>

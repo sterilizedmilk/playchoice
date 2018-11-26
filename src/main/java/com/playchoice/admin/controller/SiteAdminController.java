@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.common.ActorFileService;
 import com.playchoice.member.dto.MemberDTO;
@@ -44,6 +45,14 @@ public class SiteAdminController {
 	@RequestMapping("member/common")
 	public String memberCommonController(Model model) {
 		Object obj = adminService.memberListAll();
+
+		model.addAttribute("memberlist", obj);
+		return "admin/site/member/common";
+	}
+	
+	@RequestMapping("member/search")
+	public String memberSearchController(Model model, MemberSearchDTO search) {
+		Object obj = adminService.searchMember(search);
 
 		model.addAttribute("memberlist", obj);
 		return "admin/site/member/common";

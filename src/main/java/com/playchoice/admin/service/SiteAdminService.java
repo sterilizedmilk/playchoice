@@ -7,6 +7,7 @@ import java.util.Map;
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
 
 public interface SiteAdminService {
@@ -31,6 +32,8 @@ public interface SiteAdminService {
 
 	// 멤버 관련
 	public Object memberListAll();
+	
+	public List<MemberDTO> searchMember(MemberSearchDTO search);
 
 	public MemberDTO getMember(int m_code);
 

@@ -39,6 +39,29 @@
 		SELECT m_code, m_id, m_name, m_level, m_mail, m_status, m_phone
 		FROM member
 	</select>
+
+	<select id="memberSearch" resultType="MemberDTO" parameterType="MemberSearchDTO">
+		SELECT m_code, m_id, m_name, m_level, m_mail, m_status, m_phone
+		FROM member
+		<where>
+			<if test="level != null">
+				m_level = #{level}
+			</if>
+			<if test="code != null">
+				AND m_code = #{code}
+			</if>
+			<if test="status != null">
+				AND m_status = #{status}
+			</if>
+			<if test="id != null and id != ''">
+				AND m_id LIKE CONCAT('%', #{id}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				AND m_name LIKE CONCAT('%', #{name}, '%')
+			</if>
+		</where>
+		LIMIT #{start}, 20
+	</select>
 	
 	<select id="getMember" resultType="memberDTO">
 		SELECT m_code, m_id, m_name, m_level, m_mail, m_status, m_phone
