@@ -74,6 +74,7 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		System.out.println("psmodify service start");
 		dao.pscreate(sdto);
 	}
+	
 	//QnA 가져오기
 	@Override
 	public List<QnaDTO> getQna(int m_code) {
@@ -94,5 +95,15 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	public int replyModi(QnaDTO dto) {
 		// TODO Auto-generated method stub
 		return dao.replyModi(dto);
+	}
+	@Override
+	public List<PlayDTO> myPlay(int m_code) {
+		// TODO Auto-generated method stub
+		return dao.myPlay(m_code);
+	}
+	@Override
+	public List<QnaDTO> getQnaAsPlay(int p_id) {
+		// TODO Auto-generated method stub
+		return dao.getQnaAsPlay(p_id);
 	}
 }

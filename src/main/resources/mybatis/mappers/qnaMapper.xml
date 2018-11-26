@@ -24,6 +24,14 @@
 			OR q_target_id = #{q_id}
 	</update>
 	
+	<!-- 연극제목 가져오기 -->
+	<select id="myPlaylist" parameterType="Integer" resultType="PlayDTO">
+		SELECT p_id, p_name
+		FROM play
+		WHERE m_code = #{m_code};
+	</select>
+	
+	<!-- 전체 QnA 불러오기 -->
 	<select id="getQna" parameterType="Integer" resultType="QnaDTO">
 		SELECT play.p_id,play.p_name
 			, q_id
@@ -40,7 +48,8 @@
 		ORDER BY q_time desc;
 	</select>
 	
-	<select id="seleciveQnaList" parameterType="Integer" resultType="QnaDTO">
+	<!-- QnA As Play -->
+	<select id="getQnaAsPlay" parameterType="Integer" resultType="QnaDTO">
 		SELECT play.p_id,play.p_name
 			, q_id
 			, question_answer.q_content
@@ -48,10 +57,9 @@
 			, member.m_id
 			,count(q_id) AS replychk
 		FROM play, question_answer,member
-		WHERE play.m_code = #{m_code}
+		WHERE play.p_id = #{p_id}
 			AND question_answer.m_code = member.m_code
 			AND play.p_id = question_answer.p_id
-			AND play.p_id = '1'
 			AND question_answer.q_deleted = '0'
 		GROUP BY q_target_id
 		ORDER BY q_time desc

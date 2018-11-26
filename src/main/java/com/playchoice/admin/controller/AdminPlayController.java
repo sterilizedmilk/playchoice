@@ -54,7 +54,7 @@ public class AdminPlayController {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		Object res = service.listAll(user);
 		
-		System.out.println(res);
+//		System.out.println(res);
 		model.addAttribute("list", res); //res 와 list 보냄
 	}
 	

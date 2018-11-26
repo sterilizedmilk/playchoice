@@ -34,4 +34,8 @@ public interface AdminPlayDAO {
 	public int replyWri(QnaDTO dto);
 	
 	public int replyModi(QnaDTO dto);
+	
+	public List<PlayDTO> myPlay(int m_code);
+	
+	public List<QnaDTO> getQnaAsPlay(int p_id);
 }

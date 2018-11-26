@@ -16,16 +16,6 @@
 		location.href="../../";
 	}
 </script>
-<script>
-$(document).ready(function(){
-	$(".btn-reply").click(function(){
-		console.log("dfdf")
-		alert("ahk");
-		
-	})
-		
-})
-</script>
 <style type="text/css">
 table{
 	width: 90%;
@@ -43,13 +33,17 @@ td{
 }
 </style>
 <div class="container">
-	<div class="row" style="outline:1px solid black;">
+	<div class="row">
 		<div align="left" style="padding:50px; border-bottom: 1px solid #eee;">
-			<select name="" id="">
-				<option value>전체보기</option>
-				<option value>코딩지옥</option>
-				<option value>혼돈의 프로그래머</option>
+			<form action="qnalist_asplay" method="get">
+			<select name="p_id" id="myplay">
+				<option value=0>전체보기</option>
+				<c:forEach items="${myPlayList }" var="list"> 
+					<option ${param.p_id == list.p_id ? 'selected' : ''} value="${list.p_id }">${list.p_name }</option>
+				</c:forEach>
 			</select>
+			<button class="btn btn-success" id="btn-sel">검색</button>
+			</form>
 		</div>
 		<div align="center" style="padding: 10px 0px">
 		<table>
@@ -60,11 +54,13 @@ td{
 			<tr>
 				<td align="center">${list.m_id}</td>
 				<td>
-					<c:if test="${list.replychk==1} ">
-						(new)
+					<c:if test="${list.replychk==1}">
 						<i class="icon-lightbulb"></i>
+						<span style="font-size: 0.5em; font-style: oblique; color: #BD24A9;">NEW</span>
 					</c:if>
-					${list.replychk}
+					<c:if test="${list.replychk==2}">
+						<span style="font-size: 0.5em; font-style: oblique; color: #BD24A9;">답변완료</span>
+					</c:if>
 					<a href="qnadetail?q_id=${list.q_id }">${list.q_content }</a>
 				</td>
 				<td width="30%">

@@ -101,4 +101,16 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		return session.update(namespace2+".replyModi",dto);
 	}
 
+	@Override
+	public List<PlayDTO> myPlay(int m_code) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace2+".myPlaylist", m_code);
+	}
+
+	@Override
+	public List<QnaDTO> getQnaAsPlay(int p_id) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace2+".getQnaAsPlay", p_id);
+	}
+
 }
