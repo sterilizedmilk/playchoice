@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.playchoice.actor.dto.ActorDTO;
+import com.playchoice.actor.service.ActorService;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
@@ -32,6 +33,9 @@ public class SiteAdminController {
 
 	@Autowired
 	SiteAdminService adminService;
+	
+	@Autowired
+	ActorService actorService;
 	
 
 	@RequestMapping("")
@@ -137,9 +141,32 @@ public class SiteAdminController {
 	// public String addActorActionController() {
 	// return "";
 	// }
-
+	
+	@RequestMapping(value = "actor/detail", method = RequestMethod.GET)
+	public String actorDetailController(Model model, @RequestParam int a_id) throws Exception {
+		model.addAttribute("actor", actorService.getActor(a_id));
+		return "admin/site/actor/detail";
+	}
+	
+	@RequestMapping(value = "actor/update", method = RequestMethod.GET)
+	public String updateActorController(Model model, @RequestParam int a_id) throws Exception {
+		model.addAttribute("actor", actorService.getActor(a_id));
+		return "admin/site/actor/updateForm";
+	}
+	
 	@RequestMapping(value = "actor/update", method = RequestMethod.POST)
-	public String updateActorActionController(ActorDTO dto, Model model) {
+	public String updateActorActionController(Model model, MultipartHttpServletRequest request,
+			@RequestParam("a_file") MultipartFile file, ActorDTO dto) throws IOException {
+		ActorFileService fs = new ActorFileService();
+		if (fs.isImgCheck(file)) {
+			// 파일 등록 유무 확인
+			if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+				// 파일업로드
+				dto.setA_picture(fs.fileUpload(request, file));
+			} else {
+				dto.setA_picture(null);
+			}
+		}
 		System.out.println(adminService.actorUpdate(dto));
 		return "redirect:/admin/site/actor/common";
 	}

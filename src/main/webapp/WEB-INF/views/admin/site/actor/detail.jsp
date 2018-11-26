@@ -16,31 +16,34 @@
 					<thead>
 						<tr>
 							<th>번호</th>
+							<td>${actor.a_id}</td>
+						</tr>
+						<tr>
 							<th>이름</th>
+							<td>${actor.a_name}</td>
+						</tr>
+						<tr>
 							<th>생년월일</th>
+							<td>${actor.a_birthStr}</td>
+						</tr>
+						<tr>
 							<th>홈페이지</th>
+							<td>${actor.a_homepage}</td>
+						</tr>
+						<tr>
 							<th>사진</th>
+							<td><img alt="${dd.a_name}" src="${pageContext.request.contextPath}/resources/img/actor/${actor.a_picture}"></td>
+						</tr>
+						<tr>
 							<th>삭제 여부</th>
-							<th>수정</th>
+							<td>${actor.a_deleted}</td>
 						</tr>
 					</thead>
-					
-					<c:forEach items="${actorlist}" var="dd" varStatus="no">
-						<tr>
-							<td>${dd.a_id}</td>
-							<td>${dd.a_name}</td>
-							<td>${dd.a_birthStr}</td>
-							<td>${dd.a_homepage}</td>
-							<td><img alt="${dd.a_name}" src="${pageContext.request.contextPath}/resources/img/actor/${dd.a_picture}"></td>
-							<td>${dd.a_deleted}</td>
-							<td><button class="btn btn-primary btn-small" title="상세보기"
-								onclick="location.href='${pageContext.request.contextPath}/admin/site/actor/detail?a_id=${dd.a_id}'">상세
-							</button></td>
-
-						</tr>
-					</c:forEach>
-					
 				</table>
+				<button class="btn btn-primary btn-small"
+					onclick="location.href='${pageContext.request.contextPath}/admin/site/actor/update?a_id=${actor.a_id}'">
+					수정
+				</button>
 
 			</div>
 		</div>
