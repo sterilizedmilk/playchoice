@@ -38,9 +38,7 @@ public class AdminPlayController {
 	
 	@Autowired
 	private SiteAdminService sservice;
-	
-	@Autowired
-	private ActorService aservice;
+
 	
 	@Autowired
 	private ActorDAOImpl adao;
@@ -57,7 +55,7 @@ public class AdminPlayController {
 		Object res = service.listAll(user);
 		
 		System.out.println(res);
-		model.addAttribute("list", res);
+		model.addAttribute("list", res); //res 와 list 보냄
 	}
 	
 	//조회
@@ -73,8 +71,8 @@ public class AdminPlayController {
 	@RequestMapping(value="apregister", method=RequestMethod.GET)
 	public void registerGET(PlayDTO dto, Model model) throws Exception{
 		logger.info("register get.............");
-		model.addAttribute("glist",sservice.genreList());
-		model.addAttribute("alist",sservice.areaList());
+		model.addAttribute("glist",sservice.genreList()); //장르 리스트 가져오기
+		model.addAttribute("alist",sservice.areaList()); //지역 리스트 가져오기
 		
 	}
 
@@ -172,7 +170,7 @@ public class AdminPlayController {
 	public void psregisterGET(ScheduleDTO sdto, Model model) throws Exception{
 		logger.info("psregister get.............");
 		System.out.println(sdto);
-		model.addAttribute("actorlist", adao.listActor());
+		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
 		
 	}
 	@RequestMapping(value="psregister", method=RequestMethod.POST)
