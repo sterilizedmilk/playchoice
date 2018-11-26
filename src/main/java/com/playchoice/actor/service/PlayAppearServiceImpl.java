@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playchoice.actor.dao.PlayAppearDAO;
-import com.playchoice.actor.dto.PlayAppearDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 @Service
 public class PlayAppearServiceImpl implements PlayAppearService {
@@ -15,7 +15,7 @@ public class PlayAppearServiceImpl implements PlayAppearService {
 	private PlayAppearDAO playAppearDao;
 	
 	@Override
-	public List<PlayAppearDTO> appearList(int a_id) throws Exception {
+	public List<PlayDTO> appearList(int a_id) throws Exception {
 		return playAppearDao.appearList(a_id);
 	}
 

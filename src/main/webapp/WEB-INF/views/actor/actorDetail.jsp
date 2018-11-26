@@ -39,19 +39,17 @@
 			<c:forEach items="${appearDTO}" var="appear" varStatus="status">
 			<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 180px; height: 320px;">
 				<div>
-					<a href="playdetail?p_id=${appear.p_id }">
-						<%-- <img src="${pageContext.request.contextPath}/resources/img/play/${appear.p_image0 }"> --%>
+					<a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">
+						<img src="${pageContext.request.contextPath}/resources/img/play/${appear.p_image0 }">
 					</a>
 				</div>
 				<div>
-					<p><a href="playdetail?p_id=${appear.p_id }">${appear.p_id }</a></p>
-					<p style="float: left; font-style: italic;">최저 가격</p>
+					<p><a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">${appear.p_name }</a></p>
 				</div>
 			</div>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
-	
 </div>
 <!-- /.container -->
 
