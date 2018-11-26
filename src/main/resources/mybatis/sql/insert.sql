@@ -25,15 +25,6 @@ INSERT INTO `play`.`area` (`a_id`, `a_name`) VALUES ('5', '부산/대구/경상'
 INSERT INTO `play`.`area` (`a_id`, `a_name`) VALUES ('6', '광주/전주/전라');
 
 -- -----------------------------------------------------
--- Table `play`.`article`
--- -----------------------------------------------------
-
-
-
-
-
-
--- -----------------------------------------------------
 -- Table `play`.`genre`
 -- -----------------------------------------------------
 INSERT INTO `play`.`genre` (`g_id`, `g_name`) VALUES ('1', '로맨틱코미디');
@@ -41,15 +32,6 @@ INSERT INTO `play`.`genre` (`g_id`, `g_name`) VALUES ('2', '공포/스릴러');
 INSERT INTO `play`.`genre` (`g_id`, `g_name`) VALUES ('3', '드라마');
 INSERT INTO `play`.`genre` (`g_id`, `g_name`) VALUES ('4', '코믹');
 INSERT INTO `play`.`genre` (`g_id`, `g_name`) VALUES ('5', '기타');
-
--- -----------------------------------------------------
--- Table `play`.`image`
--- -----------------------------------------------------
-
-
-
-
-
 
 -- -----------------------------------------------------
 -- Table `play`.`member`
@@ -63,6 +45,19 @@ INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUE
 INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUES ('7', 'cr7', '1234', '호날두', 'cr7@naver.com');
 
 -- -----------------------------------------------------
+-- Table `play`.`article`
+-- -----------------------------------------------------
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '1', '회원가입 관련 사항', '회원 가입은 이러한 방식으로 진행하면 됩니다!', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '2', 'FAQ 티켓은 어떻게 사용하죠?','티켓 사용법은 아래와 같습니다.', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '2', 'FAQ 환불 및 취소는 어떻게 하나요?','환불 및 취소는 어떻게 하나요?', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '2', 'FAQ. 구매 후 영수증은 어떻게 발급받나요?','Q. 구매 후 영수증은 어떻게 발급받나요?', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '2', '질문 있어요!','대답해주세요', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '3', '질문 있어요!','대답해주세요', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '3', '질문 있어요!','대답해주세요', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '3', '질문 있어요!','대답해주세요', '2018-11-26', '0');
+INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_time`, `a_comment`) VALUES ('1', '3', '질문 있어요!','대답해주세요', '2018-11-26', '0');
+
+-- -----------------------------------------------------
 -- Table `play`.`payment`
 -- -----------------------------------------------------
 
@@ -74,11 +69,11 @@ INSERT INTO `play`.`member` (`m_code`, `m_id`, `m_pw`, `m_name`, `m_mail`) VALUE
 -- -----------------------------------------------------
 -- Table `play`.`play`
 -- -----------------------------------------------------
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('1', '1', '발칙한 로맨스', '섹시 발랄 코미디 연극', '환불가능', 'JTN 아트홀 2관', '4', '1');
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('2', '2', '오마이갓', '세상종말 로맨스', '환불불가', '봄날 아트홀 2관', '2', '1');
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('3', '2', '메리골드', '치유받을 수 있는 소확행 뮤지컬', '환불가능', '대학로 열린극장', '3', '1');
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('4', '3', '뷰티풀 라이프', '따뜻한 공감을 부르는 우리네 사랑이야기', '환불불가', 'JTN 아트홀 4관', '3', '1');
-INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`) VALUES ('5', '4', '와일드 패밀리', '가족코믹극', '환불가능', '미마지아트센터 풀빛극장', '4', '1');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`, `p_status`, `p_image0`) VALUES ('1', '1', '발칙한 로맨스', '섹시 발랄 코미디 연극', '환불가능', 'JTN 아트홀 2관', '4', '1','0','p_image0');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`, `p_status`, `p_image0`) VALUES ('2', '2', '오마이갓', '세상종말 로맨스', '환불불가', '봄날 아트홀 2관', '2', '1','0','p_image0');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`, `p_status`, `p_image0`) VALUES ('3', '2', '메리골드', '치유받을 수 있는 소확행 뮤지컬', '환불가능', '대학로 열린극장', '3', '1','0','p_image0');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`, `p_status`, `p_image0`) VALUES ('4', '3', '뷰티풀 라이프', '따뜻한 공감을 부르는 우리네 사랑이야기', '환불불가', 'JTN 아트홀 4관', '3', '1','0','p_image0');
+INSERT INTO `play`.`play` (`p_id`, `m_code`, `p_name`, `p_info`, `p_refund_policy`, `p_location`, `g_id`, `a_id`, `p_status`, `p_image0`) VALUES ('5', '4', '와일드 패밀리', '가족코믹극', '환불가능', '미마지아트센터 풀빛극장', '4', '1','0','p_image0');
 
 -- -----------------------------------------------------
 -- Table `play`.`play_appear`
@@ -112,19 +107,6 @@ INSERT INTO `play`.`prefer_actor` (`m_code`, `a_id`) VALUES ('5', '10');
 -- Table `play`.`question_answer`
 -- -----------------------------------------------------
 INSERT INTO `question_answer` VALUES (1,'2018-11-21 09:42:09','재밌나요?',1,1,1,0),(2,'2018-11-21 09:45:09','이름이 뭔가요?',2,1,2,0),(3,'2018-11-21 09:50:09','재밌습니다',3,1,1,0);
-
-
-
-
-
--- -----------------------------------------------------
--- Table `play`.`reservation`
--- -----------------------------------------------------
-
-
-
-
-
 
 -- -----------------------------------------------------
 -- Table `play`.`schedule`

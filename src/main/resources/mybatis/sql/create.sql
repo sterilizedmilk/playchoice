@@ -29,7 +29,7 @@ CREATE TABLE `actor` (
   `a_name` varchar(20) NOT NULL,
   `a_birth` date NOT NULL,
   `a_homepage` varchar(60) DEFAULT NULL,
-  `a_picture` varchar(45) DEFAULT NULL,
+  `a_picture` varchar(45) DEFAULT 'default.jpg',
   `a_deleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 : 삭제됨',
   PRIMARY KEY (`a_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -151,8 +151,8 @@ CREATE TABLE `play` (
   `g_id` int(11) NOT NULL,
   `a_id` int(11) NOT NULL,
   `p_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 : 관리자만 볼 수 있음\n1 : 일반 사용자도 볼 수 있음',
-  `p_image0` varchar(60) NOT NULL,
-  `p_image1` varchar(60) DEFAULT NULL,
+  `p_image0` varchar(60) NOT NULL DEFAULT 'default.png',
+  `p_image1` varchar(60) DEFAULT 'default.png',
   `p_image2` varchar(60) DEFAULT NULL,
   `p_image3` varchar(60) DEFAULT NULL,
   `p_image4` varchar(60) DEFAULT NULL,
