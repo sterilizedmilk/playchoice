@@ -3,7 +3,9 @@
 <mapper namespace="com.playchoice.mappers.siteAdminMapper">
 
 	<select id="genreList" resultType="GenreDTO">
-		SELECT * FROM genre
+		SELECT *
+		FROM genre
+		ORDER BY g_id
 	</select>
 
 	<insert id="genreInsert">
@@ -19,7 +21,9 @@
 	</update>
 
 	<select id="areaList" resultType="AreaDTO">
-		SELECT * FROM area
+		SELECT *
+		FROM area
+		ORDER BY a_id
 	</select>
 
 	<insert id="areaInsert">
@@ -38,6 +42,29 @@
 	<select id="memberList" resultType="memberDTO">
 		SELECT m_code, m_id, m_name, m_level, m_mail, m_status, m_phone
 		FROM member
+	</select>
+
+	<select id="memberSearch" resultType="MemberDTO" parameterType="MemberSearchDTO">
+		SELECT m_code, m_id, m_name, m_level, m_mail, m_status, m_phone
+		FROM member
+		<where>
+			<if test="level != null">
+				m_level = #{level}
+			</if>
+			<if test="code != null">
+				AND m_code = #{code}
+			</if>
+			<if test="status != null">
+				AND m_status = #{status}
+			</if>
+			<if test="id != null and id != ''">
+				AND m_id LIKE CONCAT('%', #{id}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				AND m_name LIKE CONCAT('%', #{name}, '%')
+			</if>
+		</where>
+		LIMIT #{start}, 20
 	</select>
 	
 	<select id="getMember" resultType="memberDTO">
@@ -69,13 +96,16 @@
 	<select id="actorList" resultType="actorDTO">
 		SELECT * FROM actor
 	</select>
+	
 
 	<update id="actorUpdate" parameterType="actorDTO">
 		update actor
 		set a_name = #{a_name},
 		a_birth = #{a_birth},
-		a_homepage = #{a_homepage},
-		a_picture = #{a_picture}
+		a_homepage = #{a_homepage}
+		<if test="a_picture != null">
+		, a_picture = #{a_picture}
+		</if>
 		where a_id = #{a_id}
 	</update>
 	

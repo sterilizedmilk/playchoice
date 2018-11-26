@@ -6,6 +6,7 @@ import java.util.List;
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
@@ -43,6 +44,8 @@ public interface SiteAdminDAO {
 
 	// 회원 관리
 	public Object memberManage();
+	
+	public List<MemberDTO> searchMember(MemberSearchDTO search);
 	
 	public MemberDTO getMember(int m_code);
 

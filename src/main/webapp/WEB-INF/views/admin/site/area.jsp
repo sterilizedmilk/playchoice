@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <jsp:include page="../../page/header.jsp" />
+
 <script>
 	function addArea() {
 		console.log($("#addArea").serialize());
@@ -39,33 +40,39 @@
 	}
 </script>
 
+<div class="container">
+	<div class="row">
+		<div class="row">
+			<div class="span8">
 
+				<jsp:include page="integratedheader.jsp" />
+				<h2>Area Management</h2>
 
-<jsp:include page="integratedheader.jsp" />
-	<h2>Area Management</h2>
+				<table class="table table-striped" border="1">
+					<thead>
+						<tr>
+							<th>area id</th>
+							<th>name</th>
+							<th>delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="area" items="${areaList}">
+							<tr>
+								<td>${area.a_id}</td>
+								<td>${area.a_name}</td>
+								<td><button class="btn btn-primary btn-small" onclick="updateArea(${area.a_id})">수정</button></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<p>새 지역</p>
 
-	<table border="1">
-		<thead>
-			<tr>
-				<th>area id</th>
-				<th>name</th>
-				<th>delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="area" items="${areaList}">
-				<tr>
-					<td>${area.a_id}</td>
-					<td>${area.a_name}</td>
-					<td><button onclick="updateArea(${area.a_id})">수정</button></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<p> 새 지역</p>
-	
-	<form id="addArea" onsubmit="return addArea();">
-		<input type="text" name="a_name">
-		<input type="submit">
-	</form>
+				<form id="addArea" onsubmit="return addArea();">
+					<input type="text" name="a_name"> <input class="btn btn-primary btn-small" type="submit">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 

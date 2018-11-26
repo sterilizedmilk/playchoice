@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
@@ -96,6 +97,11 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	public Object memberManage() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".memberList");
+	}
+	
+	@Override
+	public List<MemberDTO> searchMember(MemberSearchDTO search) {
+		return sqlSession.selectList(namespace + ".memberSearch", search);
 	}
 
 	@Override

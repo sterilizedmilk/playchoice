@@ -11,6 +11,7 @@ import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.admin.dao.SiteAdminDAO;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
 
 @Service
@@ -84,6 +85,11 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	public Object memberListAll() {
 		// TODO Auto-generated method stub
 		return dao.memberManage();
+	}
+	
+	@Override
+	public List<MemberDTO> searchMember(MemberSearchDTO search) {
+		return dao.searchMember(search);
 	}
 
 	@Override
