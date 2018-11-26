@@ -55,8 +55,7 @@
 								</tr>
 								<tr>
 									<td colspan="4">
-										<input type="hidden" name="target" value="contact">
-										<input type="hidden" name="m_code" value="${login.m_code }" />
+										<input type="hidden" name="target" value="contact"> <input type="hidden" name="m_code" value="${login.m_code }" />
 									</td>
 								</tr>
 								<tr>

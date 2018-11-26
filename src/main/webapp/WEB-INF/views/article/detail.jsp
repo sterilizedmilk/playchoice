@@ -30,7 +30,7 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>${data.a_solved}</h4>
+				<h4>data.a_boardTemp</h4>
 				<form>
 					<table class="table table-bordered">
 						<tr>
@@ -64,7 +64,7 @@
 						<table class="table table-bordered">
 							<tr>
 								<td colspan="4">
-									<input type="text" name="a_comment" style="width: 98%; height: 100px"> <input type="hidden" name="a_id" value="${data.a_id }" /> <input type="hidden" name="m_code" value="${login.m_code }" />
+									<input type="text" name="a_comment" style="width: 98%; height: 100px"> <input type="hidden" name="a_id" value="${data.a_id }" /> <input type="hidden" name="m_code" value="${data.m_code }" /> <input type="hidden" name="m_level" value="${login.m_level}" />
 								</td>
 								<td>
 									<button type="submit" class="btn btn-square btn-theme" style="width: 100%; height: 100px">댓글</button>

@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("aaaDTO")
 public class ArticleDTO {
-	Integer a_id, m_code, a_solved, m_level;
+	Integer a_id, m_code, m_level;
 
 	public Integer getM_level() {
 		return m_level;
@@ -17,16 +17,8 @@ public class ArticleDTO {
 		this.m_level = m_level;
 	}
 
-	public String getA_comment() {
-		return a_comment;
-	}
-
-	public void setA_comment(String a_comment) {
-		this.a_comment = a_comment;
-	}
-
 	Timestamp a_time;
-	String a_board, a_title, a_content, a_comment;
+	String a_board, a_title, a_content, a_comment, a_boardTemp;
 	Object objReplay;
 
 	public Object getObjReplay() {
@@ -43,9 +35,9 @@ public class ArticleDTO {
 
 	@Override
 	public String toString() {
-		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", a_target="+ ", a_solved=" + a_solved
-				+ ", a_time=" + a_time + ", a_board=" + a_board + ", a_title=" + a_title + ", a_content=" + a_content
-				+ ", a_comment=" + a_comment + ", objReplay=" + objReplay + "]";
+		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", m_level=" + m_level + ", a_time=" + a_time
+				+ ", a_board=" + a_board + ", a_title=" + a_title + ", a_content=" + a_content + ", a_comment="
+				+ a_comment + ", objReplay=" + objReplay + "]";
 	}
 
 	public void setA_id(Integer a_id) {
@@ -60,12 +52,12 @@ public class ArticleDTO {
 		this.m_code = m_code;
 	}
 
-	public Integer getA_solved() {
-		return a_solved;
+	public String getA_comment() {
+		return a_comment;
 	}
 
-	public void setA_solved(Integer a_solved) {
-		this.a_solved = a_solved;
+	public void setA_comment(String a_comment) {
+		this.a_comment = a_comment;
 	}
 
 	public Date getA_time() {
@@ -100,4 +92,12 @@ public class ArticleDTO {
 		this.a_content = a_content;
 	}
 
+	public String getA_boardTemp() {
+		if (this.a_board.equals("1"))
+			return "공지사항";
+		else if (this.a_board.equals("2"))
+			return "FAQ";
+		else
+			return "1:1 문의";
+	}
 }

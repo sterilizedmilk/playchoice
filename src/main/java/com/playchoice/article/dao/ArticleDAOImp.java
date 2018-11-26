@@ -26,7 +26,7 @@ public class ArticleDAOImp implements ArticleDAO {
 	public Object list(ArticleDTO dto) {
 		// TODO Auto-generated method stub
 		Object obj;
-		if (dto.getM_level().equals("2"))
+		if (dto.getM_level() != null && dto.getM_level().equals(2))
 			obj = sqlSessionTemplate.selectList("article.contactAlllist", dto);
 		else
 			obj = sqlSessionTemplate.selectList("article.userlist", dto);
@@ -64,14 +64,6 @@ public class ArticleDAOImp implements ArticleDAO {
 	}
 
 	@Override
-	public Object commentOne(ReplyDTO dto) {
-		// TODO Auto-generated method stub
-		Object obj = sqlSessionTemplate.insert("article.commentOne", dto);
-		sqlSessionTemplate.update("article.commentUpdate", dto);
-		return obj;
-	}
-
-	@Override
 	public Object Replylist(ArticleDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("article.replylist", dto);
@@ -82,6 +74,15 @@ public class ArticleDAOImp implements ArticleDAO {
 		// TODO Auto-generated method stub
 
 		return sqlSessionTemplate.selectList("article.contactAlllist", a_target);
+	}
+
+	@Override
+	public Object commentOne(ReplyDTO redto, ArticleDTO dto) {
+		// TODO Auto-generated method stub
+		Object obj = sqlSessionTemplate.insert("article.commentOne", redto);
+		System.out.println(dto.getA_id() + "아이디 있냐");
+		sqlSessionTemplate.update("article.commentUpdate", dto);
+		return obj;
 	}
 
 	// @Override

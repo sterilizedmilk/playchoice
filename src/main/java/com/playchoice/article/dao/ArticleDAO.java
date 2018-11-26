@@ -19,7 +19,7 @@ public interface ArticleDAO {
 
 	public Object modifyOne(ArticleDTO dto);
 
-	public Object commentOne(ReplyDTO dto);
+	public Object commentOne(ReplyDTO redto, ArticleDTO dto);
 
 	// 게시글 수 구하기
 	public Object listCount(String a_target);

@@ -40,7 +40,6 @@ public class ArticleController {
 
 		switch (no) {
 		case "list":
-			System.out.println(content);
 			if (content.equals("contact")) {
 				contentType = "3";
 				res = dao.list(dto);
@@ -53,15 +52,11 @@ public class ArticleController {
 			}
 			break;
 		case "detail":
-			System.out.println("dto : " + dto);
-			System.out.println("dto.getA_id() : " + dto.getA_id());
 			dto = (ArticleDTO) dao.selectOne(dto.getA_id());
-			System.out.println(res);
-			if (dto.getA_comment() != null && dto.getA_comment() != "0") {
-				System.out.println("dto.getA_comment()" + dto.getA_comment());
-				if (dto.getA_comment().equals("1")) {
-					dto.setObjReplay(dao.Replylist(dto));
-				}
+
+			if (dto.getA_comment() != null) {
+				// if (dto.getA_comment().equals("1"))
+				dto.setObjReplay(dao.Replylist(dto));
 			}
 			res = dto;
 			break;
@@ -107,13 +102,18 @@ public class ArticleController {
 		// 댓글
 		case "comment":
 			ReplyDTO reDto = new ReplyDTO();
+			if (dto.getM_level().equals(2))
+				dto.setA_comment("1");
+			else
+				dto.setA_comment("0");
+
 			reDto.setA_id(dto.getA_id());
 			reDto.setRe_comment(dto.getA_comment());
 
-			res = dao.commentOne(reDto);
+			res = dao.commentOne(reDto, dto);
 			status.setMsg("댓글이 입력되었습니다.");
 			status.setUrl("detail?a_id=" + dto.getA_id());
-			System.out.println("getA_comment" + dto.getA_comment());
+			System.out.println("getA_comment" + res);
 			break;
 		default:
 			break;
@@ -134,6 +134,7 @@ public class ArticleController {
 		else
 			spath = "article/" + content;
 
+		System.out.println(spath + "==================");
 		return spath;
 	}
 

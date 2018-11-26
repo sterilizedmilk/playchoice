@@ -10,12 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="contactAlllist" parameterType="java.lang.String"
 		resultType="aaaDTO">
-		select * from article where a_board = "2"
+		select * from article where a_board = "3"
 	</select>
 
 	<select id="userlist" parameterType="aaaDTO" resultType="aaaDTO">
 		select *
-		from article where m_code = #{m_code}
+		from article where m_code = #{m_code} and a_board = "3"
 	</select>
 
 	<select id="count" parameterType="java.lang.String"
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<update id="commentUpdate" parameterType="aaaDTO">
 		update article set
-		a_comment = 1 where a_id = #{a_id}
+		a_comment = #{a_comment} where a_id = #{a_id}
 	</update>
 	<select id="replylist" parameterType="aaaDTO"
 		resultType="replyDTO">

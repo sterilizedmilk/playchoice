@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
@@ -16,7 +15,7 @@
 			</div>
 			<div class="span8">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><i class="icon-home"></i> </a><i class="icon-angle-right"></i></li>
 					<li>고객센터<i class="icon-angle-right"></i></li>
 					<li class="active">1:1문의</li>
 				</ul>
@@ -48,17 +47,24 @@
 							<c:forEach items="${data }" var="dd" varStatus="no">
 								<tr>
 									<td>${no.index +1 }</td>
-									<td colspan="6"><a href="detail?a_id=${dd.a_id }">${dd.a_title }</a></td>
+									<td colspan="6">
+										<a href="detail?a_id=${dd.a_id }">${dd.a_title }</a>
+									</td>
 									<td>${login.m_id }</td>
 									<td>${dd.a_time }</td>
-									<td>${dd.a_solved }</td>
+									<c:choose>
+										<c:when test="${dd.a_comment eq 1}">
+											<td>답변 완료</td>
+										</c:when>
+										<c:otherwise>
+											<td>답변 미완료</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 							<tr>
 								<td colspan="10">
-									<button type="button" class="btn btn-square btn-theme"
-										style="width: 100%"
-										onclick="location.href='${uuu }contact/userinsert'">글쓰기</button>
+									<button type="button" class="btn btn-square btn-theme" style="width: 100%" onclick="location.href='${uuu }contact/userinsert'">글쓰기</button>
 								</td>
 							</tr>
 						</tbody>
