@@ -8,9 +8,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="aaaDTO">
 		select * from article where a_board = #{a_board}
 	</select>
-	<select id="userlist" parameterType="aaaDTO"
+	<select id="contactAlllist" parameterType="java.lang.String"
 		resultType="aaaDTO">
-		select * from article where m_code = #{m_code}
+		select * from article where a_board = "2"
+	</select>
+
+	<select id="userlist" parameterType="aaaDTO" resultType="aaaDTO">
+		select *
+		from article where m_code = #{m_code}
 	</select>
 
 	<select id="count" parameterType="java.lang.String"

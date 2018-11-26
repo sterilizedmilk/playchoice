@@ -44,31 +44,26 @@ public class ArticleController {
 			if (content.equals("contact")) {
 				contentType = "3";
 				res = dao.list(dto);
-				System.out.println("contact dto" + dto);
-				System.out.println("contact" + res);
 			} else {
 				if (content.equals("notice"))
 					contentType = "1";
 				else if (content.equals("faq"))
 					contentType = "2";
 				res = dao.list(contentType);
-			} // DB에서 리스트를 가져옴
-				// // 페이징 관련 -----------------------------------------------------------
-				// PageMaker pageMaker = new PageMaker();
-				// pageMaker.setCri(cri);
-				// Integer totalNum = (Integer) dao.listCount(contentType);
-				// pageMaker.setTotalCount(totalNum);
-
+			}
 			break;
 		case "detail":
+			System.out.println("dto : " + dto);
+			System.out.println("dto.getA_id() : " + dto.getA_id());
 			dto = (ArticleDTO) dao.selectOne(dto.getA_id());
-			res = dto;
-			System.out.println("dto.getA_comment()" + dto.getA_comment());
-			if (dto.getA_comment() != null && dto.getA_comment().equals("1")) {
-				Object obj = dao.Replylist(dto);
-				System.out.println(obj);
-				dto.setObjReplay(dao.Replylist(dto));
+			System.out.println(res);
+			if (dto.getA_comment() != null && dto.getA_comment() != "0") {
+				System.out.println("dto.getA_comment()" + dto.getA_comment());
+				if (dto.getA_comment().equals("1")) {
+					dto.setObjReplay(dao.Replylist(dto));
+				}
 			}
+			res = dto;
 			break;
 		// 글작성 화면 노출
 		case "insert":
@@ -79,17 +74,23 @@ public class ArticleController {
 			break;
 		// 삽입 후 db 처리
 		case "insertReg":
-			if (request.getParameter("target").equals("notice"))
+			String sboardType = request.getParameter("target");
+			if (sboardType.equals("notice"))
 				dto.setA_board("1");
-			else if (request.getParameter("target").equals("faq"))
+			else if (sboardType.equals("faq"))
 				dto.setA_board("2");
 			else
 				dto.setA_board("3");
 
-			System.out.println("글작성 오류 : " + dto);
 			res = dao.insertOne(dto);
 			status.setMsg("등록되었습니다.");
-			status.setUrl("list");
+			if (sboardType.equals("notice"))
+				status.setUrl("notice/list");
+			else if (sboardType.equals("faq"))
+				status.setUrl("faq/list");
+			else
+				status.setUrl("list?m_code=" + dto.getM_code());
+
 			break;
 		// 수정 후 db처리
 		case "modifyReg":

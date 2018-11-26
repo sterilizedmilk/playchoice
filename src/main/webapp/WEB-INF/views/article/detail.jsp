@@ -73,7 +73,13 @@
 							<c:if test="${!empty data.objReplay}">
 								<c:forEach items="${data.objReplay }" var="dd" varStatus="no">
 									<tr>
-										<th colspan="2">작성자 : 관리자</th>
+										<c:if test="${login.m_level eq 2}">
+											<th colspan="2">작성자 : 관리자</th>
+										</c:if>
+										<c:if test="${login.m_level ne 2}">
+											<th colspan="2">작성자 :${login.m_id}</th>
+										</c:if>
+
 										<th colspan="3">작성 시간 : ${dd.re_time }</th>
 									</tr>
 									<tr>

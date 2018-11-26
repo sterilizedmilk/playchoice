@@ -37,7 +37,7 @@
 
 								<tr>
 									<th colspan="4">
-										<a href="detail?id=${dd.a_id }">Q. ${dd.a_title }</a>
+										<a href="detail?a_id=${dd.a_id }">Q. ${dd.a_title }</a>
 									</th>
 								</tr>
 							</c:forEach>

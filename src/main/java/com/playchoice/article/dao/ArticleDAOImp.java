@@ -18,13 +18,19 @@ public class ArticleDAOImp implements ArticleDAO {
 	@Override
 	public Object list(String a_target) {
 		// TODO Auto-generated method stub
+		System.out.println("zxcccccccccc");
 		return sqlSessionTemplate.selectList("article.list", a_target);
 	}
 
 	@Override
 	public Object list(ArticleDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("article.userlist", dto);
+		Object obj;
+		if (dto.getM_level().equals("2"))
+			obj = sqlSessionTemplate.selectList("article.contactAlllist", dto);
+		else
+			obj = sqlSessionTemplate.selectList("article.userlist", dto);
+		return obj;
 	}
 
 	public Object listCount(String a_target) {
@@ -51,9 +57,9 @@ public class ArticleDAOImp implements ArticleDAO {
 		return sqlSessionTemplate.update("article.modifyOne", dto);
 	}
 
-	public Object selectOne(Object a_id) {
+	public Object selectOne(Integer a_id) {
 		// TODO Auto-generated method stub
-		ArticleDTO dto = sqlSessionTemplate.selectOne("article.selectOne", (Integer) a_id);
+		ArticleDTO dto = sqlSessionTemplate.selectOne("article.selectOne", a_id);
 		return dto;
 	}
 
@@ -69,6 +75,13 @@ public class ArticleDAOImp implements ArticleDAO {
 	public Object Replylist(ArticleDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("article.replylist", dto);
+	}
+
+	@Override
+	public Object listContactAdmin(String a_target) {
+		// TODO Auto-generated method stub
+
+		return sqlSessionTemplate.selectList("article.contactAlllist", a_target);
 	}
 
 	// @Override

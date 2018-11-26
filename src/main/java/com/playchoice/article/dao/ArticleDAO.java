@@ -7,11 +7,13 @@ public interface ArticleDAO {
 
 	public Object list(String a_target);
 
+	public Object listContactAdmin(String a_target);
+
 	public Object list(ArticleDTO dto);
 
 	public Object insertOne(ArticleDTO dto);
 
-	public Object selectOne(Object sid);
+	public Object selectOne(Integer a_id);
 
 	public Object deleteOne(ArticleDTO dto);
 

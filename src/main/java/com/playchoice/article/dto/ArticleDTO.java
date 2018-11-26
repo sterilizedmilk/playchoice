@@ -7,7 +7,15 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("aaaDTO")
 public class ArticleDTO {
-	Integer a_id, m_code, a_solved;
+	Integer a_id, m_code, a_solved, m_level;
+
+	public Integer getM_level() {
+		return m_level;
+	}
+
+	public void setM_level(Integer m_level) {
+		this.m_level = m_level;
+	}
 
 	public String getA_comment() {
 		return a_comment;

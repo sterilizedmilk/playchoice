@@ -49,7 +49,7 @@
 								<tr>
 									<td>${no.index +1 }</td>
 									<td colspan="6"><a href="detail?a_id=${dd.a_id }">${dd.a_title }</a></td>
-									<td>${dd.m_code }</td>
+									<td>${login.m_id }</td>
 									<td>${dd.a_time }</td>
 									<td>${dd.a_solved }</td>
 								</tr>
