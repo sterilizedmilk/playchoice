@@ -4,13 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="container">
-	<div class="row">
-		<div class="span12">
-			<div class="navbar navbar-static-top">
-				<div class="navigation">
-					<nav>
-						<ul class="nav topnav">
+	<div class="span3 bs-docs-sidebar">
+		
+						<ul class="nav nav-list bs-docs-sidenav affix">
 							<li><a href="${pageContext.request.contextPath}/member/view">정보
 									수정</a></li>
 							<li><a href="${pageContext.request.contextPath}/basket/list">찜한
@@ -21,12 +17,7 @@
 								href="${pageContext.request.contextPath}/member/paymentList?m_code=${login.m_code}">결제
 									내역</a></li>
 						</ul>
-					</nav>
-					<div class="span12">
-						<div class="solidline"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+					
+		
+	
 	</div>
-</div>

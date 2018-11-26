@@ -23,8 +23,9 @@
 </form> --%>
 
 <input type="hidden" name="m_code" value="${login.m_code }" />
-
-<h2 align="center">연극 정보 입력</h2>
+<div class="container" align="center">
+	<div class="row">
+		<h2 align="center">연극 글 쓰기</h2>
 <form role="form" method="post" enctype="multipart/form-data">
 	<div class="box-body">
 		<div class="form-group">
@@ -34,7 +35,7 @@
 		
 		<div class="from-group">
 			<label for = "exampleInputPassword1">글 내용</label>
-			<textarea class="from-contorl" name="p_info" cols="100%" rows="50%">
+			<textarea class="from-contorl" name="p_info" style="width: 50%; height: 300px">
 예매정보
 
 공연기간: 년 월 일 - 월 일
@@ -87,7 +88,7 @@
 		</div>
 		<div class="from-group">
 			<label for = "exampleInputPassword1">환불 규정</label>
-			<textarea class="from-contorl" name="p_refund_policy" cols="100%" rows="50%">
+			<textarea class="from-contorl" name="p_refund_policy" style="width: 50%; height: 300px">
 환불규정 및 안내사항
 
 [환불규정]
@@ -123,10 +124,6 @@
 3) 무통장/실시간계좌이체: 공제금을 제외한 금액을 회원 계좌로 이체
 * 휴대폰결제 취소는 '구매월'에만 가능하며, 구매월이 아닌 경우 계좌이체로 환불
 </textarea>
-		</div>
-		<div class="form-group">
-			<label for = "exampleInputEmail1">찾아오시는 길(상세 주소)</label>
-			<input type="text" name = "p_location" class="form-contorl" placeholder="Enter location">
 		</div>
 <!-- <script>
 	$(function(){
@@ -178,10 +175,16 @@
 		</c:forEach>
 		</select>
 		</div>
-		
+		<div>
+			<label for = "exampleInputEmail1">찾아오시는 길(상세 주소)</label>
+			<input type="text" name = "p_location" class="form-contorl" placeholder="Enter location">
+		</div>
 	</div>
 	<div class="box-footer">
 		<button type="submit" class="btn btn-primary">완료</button>
 		<input type="button" onclick="history.go(-1)" value="취소">
 	</div>
 </form>
+	
+	</div>
+</div>
