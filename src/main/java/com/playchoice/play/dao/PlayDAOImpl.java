@@ -89,15 +89,15 @@ public class PlayDAOImpl implements PlayDAO {
 	@Override
 	public Object getPlayRank() {
 		// TODO Auto-generated method stub
-		// DB 값 처리 안함
 		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playRankList");
+		System.out.println("db처리 완료 : " + dto);
 		return dto;
 	}
 
-	//오늘,내일 연극
+	// 오늘,내일 연극
 	@Override
 	public List<PlayDTO> playTodayList(String date) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+".playTodayList", date);
+		return sqlSession.selectList(namespace + ".playTodayList", date);
 	}
 }

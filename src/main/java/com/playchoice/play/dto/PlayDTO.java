@@ -27,6 +27,15 @@ public class PlayDTO {
 		this.p_image = p_image;
 	}
 
+	@Override
+	public String toString() {
+		return "PlayDTO [p_id=" + p_id + ", m_code=" + m_code + ", g_id=" + g_id + ", a_id=" + a_id + ", lowest_price="
+				+ lowest_price + ", p_name=" + p_name + ", p_info=" + p_info + ", p_refund_policy=" + p_refund_policy
+				+ ", p_location=" + p_location + ", p_image=" + p_image + ", p_image0=" + p_image0 + ", p_image1="
+				+ p_image1 + ", p_image2=" + p_image2 + ", p_image3=" + p_image3 + ", p_image4=" + p_image4
+				+ ", p_status=" + p_status + "]";
+	}
+
 	public void setP_id(int p_id) {
 		this.p_id = p_id;
 	}
