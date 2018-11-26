@@ -19,9 +19,9 @@ public class FileService {
 	
 	
 	public FileService(HttpServletRequest request) {
-//		path = request.getRealPath("/resources/img/admin/play")+"/"; //배포할때 사용
-//		path = "D:\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\admin\\play/"; //작업할때 사용
-		path = "C:\\bg\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\play/"; //작업할때 사용
+//		path = request.getRealPath("/resources/img/play")+"/"; //배포할때 사용
+		path = "D:\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\play/"; //작업할때 사용
+//		path = "C:\\bg\\workspace\\PlayChoice\\src\\main\\webapp\\resources\\img\\play/"; //작업할때 사용
 	}
 
 	//imageUpload 메소드를 이용, imgchk와 fileupload를 구현

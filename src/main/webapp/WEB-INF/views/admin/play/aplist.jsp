@@ -10,7 +10,7 @@
 <h2 align="center">연극 리스트</h2>
 <div class="container" align="center">
 	<div class="row">
-		<table border="" >
+		<table class="table table-bordered" >
 			<tbody>
 				<tr>
 					<td>연극 번호</td>
@@ -22,8 +22,7 @@
 			<c:forEach items="${list}" var="li">
 				<tr>
 					<td>${li.p_id }</td>
-					<td> <a href="apread?p_id=${li.p_id }">${li.p_name }</a>
-					</td>
+					<td> <a href="apread?p_id=${li.p_id }">${li.p_name }</a></td>
 					<td>${li.g_id }</td>
 					<td>${li.a_id }</td>
 					<td>${li.p_status }</td>

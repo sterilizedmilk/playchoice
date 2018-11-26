@@ -18,34 +18,30 @@
 	<input type="hidden" name="p_id" value="${playDTO.p_id }">
 </form>
 
-<div class="box-footer">
+<div class="box-footer" align="center">
 	<button type="submit" class="btn btn-warning">글 수정</button>
 	<button type="submit" class="btn btn-danger">글 삭제</button>	
 	<button type="submit" class="btn btn-primary">목록으로</button>
 	<button type="submit" class="btn btn-pslist">일정 보기</button>
 </div>
 
-<div class="box-body">
+<div class="box-body" align="center">
 	<div class="form-group">
 		<label for="exampleInputEmail1">글 번호</label>
 		<input type="text" name="number" class="form-control" value="${playDTO.p_id }" readonly="readonly">
-	</div>
-	<div class="form-group">
+	
 		<label for="exampleInputEmail1">글 제목</label>
 		<input type="text" name="title" class="form-control" value="${playDTO.p_name }" readonly="readonly">
 	</div>
 	<div class="form-group">
 		<label for="exampleInputPassword1">글 내용</label>
-		<textarea rows="50" cols="50" readonly="readonly">${playDTO.p_info }</textarea>
+		<textarea style="width: 50%; height: 300px" readonly="readonly">${playDTO.p_info }</textarea>
 	</div>
 	<div class="form-group">
 		<label for="exampleInputPassword1">환불 규정</label>
-		<textarea rows="50" cols="50" readonly="readonly">${playDTO.p_refund_policy }</textarea>
+		<textarea style="width: 50%; height: 300px" readonly="readonly">${playDTO.p_refund_policy }</textarea>
 	</div>
-	<div class="form-group">
-		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>
-		<input type="text" name="location" class="form-control" value="${playDTO.p_location }" readonly="readonly">
-	</div>
+	
 	<div><label for="exampleInputEmail1">대표 포스터</label>
 	</div>
 	<div class="form-group">		
@@ -62,6 +58,10 @@
 		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image2 }"><br/>
 		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image3 }"><br/>
 		<img src="${pageContext.request.contextPath}/resources/img/admin/play/${playDTO.p_image4 }">
+	</div>
+	<div class="form-group">
+		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>
+		<input type="text" name="location" class="form-control" value="${playDTO.p_location }" readonly="readonly">
 	</div>
 </div>
 

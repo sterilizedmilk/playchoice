@@ -19,7 +19,7 @@
 				<div style="outline:1px solid #8C8C8C; float:left; margin:15px; width: 180px; height: 320px;">
 					<div>
 						<a href="playdetail?p_id=${li.p_id }">
-						<img src="${pageContext.request.contextPath}/resources/img/play/${li.p_image0 }"></a>
+						<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${li.p_image0 }"></a>
 					</div>
 					<div>
 						<p> <a href="playdetail?p_id=${li.p_id }">${li.p_name }</a> </p>
