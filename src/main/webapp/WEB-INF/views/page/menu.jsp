@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <%@ page import="java.util.*, java.text.*"%>
+
 <%
 	Date date = new Date();
 	SimpleDateFormat simpleDate = new SimpleDateFormat("MM-dd");
@@ -14,33 +15,37 @@
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-				<h4 style="color: white">전체 일정</h4>
+				<h4 style="color: white">연극 일정</h4>
 				<table class="table">
 					<thead>
 						<tr>
 							<td>
-								<strong>장르</strong>
+								<strong>지역</strong>
 							</td>
-							<td>전체보기</td>
-							<td>연극</td>
-							<td>뮤지컬</td>
-							<td>콘서트</td>
-							<td>가족 및 아동</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ init_g}">전체보기</a>
+							</td>
+							<c:forEach items="${area}" var="area" varStatus="status">
+								<td>
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ init_g}">${ area.a_name}</a>
+								</td>
+							</c:forEach>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>
-								<strong>지역</strong>
+								<strong>장르</strong>
 							</td>
-							<td>전체보기</td>
-							<td>대학로</td>
-							<td>서울</td>
-							<td>경기</td>
-							<td>대전/충청</td>
-							<td>부산/대구/경상</td>
-							<td>광주/전라</td>
-							<td>제주</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ init_a}&g_id=0">전체보기</a>
+							</td>
+							<c:forEach items="${genre}" var="genre" varStatus="status">
+								<td>
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ init_a}&g_id=${ genre.g_id}">${ genre.g_name } </a>
+								</td>
+							</c:forEach>
+							<td></td>
 						</tr>
 						<tr>
 							<td>
@@ -63,7 +68,6 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -71,3 +75,4 @@
 		</div>
 	</div>
 </section>
+

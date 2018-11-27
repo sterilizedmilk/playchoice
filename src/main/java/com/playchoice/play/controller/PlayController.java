@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.playchoice.admin.dto.AreaDTO;
+import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.service.PlayServiceImpl;
 
@@ -34,9 +36,20 @@ public class PlayController {
 	private static final Logger logger = LoggerFactory.getLogger(PlayController.class);
 
 	// 전체 일정
+	// 메뉴에서 장르나 지역의 경우, 0이면 전체 보기
 	@RequestMapping("mainlist")
-	public String playListController(Model model) throws Exception {
-		logger.info("list get............");
+	public String playListController(Model model,
+			@RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
+			@RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id) throws Exception {
+		// 메뉴 상단에 있는 지역 관련
+		List<AreaDTO> areadto = service.getAreaList();
+		model.addAttribute("area", areadto);
+		// 메뉴 상단에 있는 장르 관련
+		List<GenreDTO> genredto = service.getGenreList();
+		model.addAttribute("genre", genredto);
+		model.addAttribute("init_a",  a_id);
+		model.addAttribute("init_g",  g_id);
+
 		List<PlayDTO> dto = service.playList();
 		model.addAttribute("list", dto);
 		model.addAttribute("title", "전체리스트");
@@ -45,7 +58,16 @@ public class PlayController {
 
 	// 오늘일정
 	@RequestMapping("todaylist")
-	public String playTodaylist(HttpServletRequest request, Model model) throws Exception {
+	public String playTodaylist(HttpServletRequest request, Model model,
+			@RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
+			@RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id) throws Exception {
+		// 메뉴 상단에 있는 지역 관련
+		List<AreaDTO> areadto = service.getAreaList();
+		model.addAttribute("area", areadto);
+		// 메뉴 상단에 있는 장르 관련
+		List<GenreDTO> genredto = service.getGenreList();
+		model.addAttribute("genre", genredto);
+
 		HttpSession session = request.getSession();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -64,7 +86,16 @@ public class PlayController {
 
 	// 내일일정
 	@RequestMapping("tomorrowlist")
-	public String playTomorrowlist(HttpServletRequest request, Model model) throws Exception {
+	public String playTomorrowlist(HttpServletRequest request, Model model,
+			@RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
+			@RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id) throws Exception {
+		// 메뉴 상단에 있는 지역 관련
+		List<AreaDTO> areadto = service.getAreaList();
+		model.addAttribute("area", areadto);
+		// 메뉴 상단에 있는 장르 관련
+		List<GenreDTO> genredto = service.getGenreList();
+		model.addAttribute("genre", genredto);
+
 		HttpSession session = request.getSession();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();

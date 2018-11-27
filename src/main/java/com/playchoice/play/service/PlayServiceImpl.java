@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.playchoice.admin.dto.AreaDTO;
+import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dao.PlayDAOImpl;
 import com.playchoice.play.dto.PlayDTO;
 
@@ -86,6 +88,20 @@ public class PlayServiceImpl implements PlayService {
 	public List<PlayDTO> playTodayList(String date) {
 		// TODO Auto-generated method stub
 		return playDao.playTodayList(date);
+	}
+
+	// 지역 리스트
+	@Override
+	public List<AreaDTO> getAreaList() {
+		// TODO Auto-generated method stub
+		return playDao.getAreaList();
+	}
+
+	// 장르
+	@Override
+	public List<GenreDTO> getGenreList() {
+		// TODO Auto-generated method stub
+		return playDao.getGenreList();
 	}
 
 }

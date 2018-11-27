@@ -21,9 +21,11 @@
 		play as pl,
 		(SELECT sc.p_id FROM schedule as sc,
 		(SELECT s_id
-		FROM payment WHERE YEARWEEK(p_time) = YEARWEEK(now())-1 )
+		FROM payment WHERE
+		YEARWEEK(p_time) = YEARWEEK(now())-1 )
 		as pm
-		where sc.s_id = pm.s_id)as sp
+		where sc.s_id = pm.s_id)as
+		sp
 		where pl.p_id = sp.p_id
 		group by pl.p_id
 		order by count(pl.p_id) desc
@@ -32,7 +34,8 @@
 	<select id="playDetail" resultType="PlayDTO">
 		select *
 		from play
-		where p_id = #{p_id}
+		where p_id =
+		#{p_id}
 	</select>
 
 	<select id="viewCal" parameterType="Integer"
@@ -108,16 +111,31 @@
 		q_target_id desc ,
 		q_id;
 	</select>
-	
+
 	<!-- 오늘내일 리스트 -->
 	<select id="playTodayList" parameterType="java.lang.String"
 		resultType="PlayDTO">
-		SELECT min(`schedule`.s_price) as lowest_price, play.p_name,play.p_image0, play.p_id
+		SELECT min(`schedule`.s_price) as lowest_price,
+		play.p_name,play.p_image0, play.p_id
 		FROM `schedule`,play
 		WHERE
 		date_format(`schedule`.s_time,"%Y-%m-%d") =#{date}
-		AND play.p_id=`schedule`.p_id
+		AND
+		play.p_id=`schedule`.p_id
 		AND play.p_status = '1'
-		group by (`schedule`.p_id);
+		group by
+		(`schedule`.p_id);
 	</select>
+
+	<!-- 지역 리스트 -->
+	<select id="arealist" resultType="AreaDTO">
+		SELECT * from play.area order
+		by a_id;
+	</select>
+	<!-- 장르 리스트 -->
+	<select id="genrelist" resultType="GenreDTO">
+		SELECT * from play.genre order
+		by g_id;
+	</select>
+
 </mapper>

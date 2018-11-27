@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.admin.dto.AreaDTO;
+import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayshowDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
@@ -98,5 +100,19 @@ public class PlayDAOImpl implements PlayDAO {
 	public List<PlayDTO> playTodayList(String date) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".playTodayList", date);
+	}
+
+	@Override
+	public List<AreaDTO> getAreaList() {
+		// TODO Auto-generated method stub
+		List<AreaDTO> dto = sqlSession.selectList(namespace + ".arealist");
+		return dto;
+	}
+
+	@Override
+	public List<GenreDTO> getGenreList() {
+		// TODO Auto-generated method stub
+		List<GenreDTO> dto = sqlSession.selectList(namespace + ".genrelist");
+		return dto;
 	}
 }
