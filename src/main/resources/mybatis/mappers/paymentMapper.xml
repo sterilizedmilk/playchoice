@@ -5,8 +5,9 @@
 	
 	<select id="searchPayment" resultType="PaymentDTO" parameterType="PaymentSearchDTO">
 		SELECT payment.p_id, payment.m_code, payment.s_id,
-		payment.p_price, payment.p_quantity, payment.p_cancel_target_id,
-		payment.p_time, payment.p_canceled
+				payment.p_price, payment.p_quantity, payment.p_cancel_target_id,
+				payment.p_time, payment.p_canceled,
+				play.p_name, schedule.s_time
 		FROM payment, schedule, play
 		<where>
 			play.p_id = schedule.p_id
@@ -37,7 +38,17 @@
 			</if>
 		</where>
 		ORDER BY payment.p_time
-		LIMIT #{start}, 10
+		<if test="row != 0">
+			LIMIT #{start},
+			<choose>
+				<when test="row != null and row > 0">
+				#{row}
+				</when>
+				<otherwise>
+				10
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 
 	<select id="getPayment" resultType="PaymentDTO">

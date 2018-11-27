@@ -23,38 +23,35 @@
 				from<input type="date" name="from" value="${param.from}"><br>
 				until<input type="date" name="until" value="${param.until}"><br>
 				
-				watched<input type="checkbox" name="watched" value="true"><br>
+				watched<input type="checkbox" name="watched" value="true" ${param.watched == true ? 'checked' : ''} ><br>
 				
 				page<input type="number" name="page" value="${param.page}"><br>
 				<button>검색</button>
 			</form>
 			
-			<table border="1">
+			<table class="table" border="1">
 				<thead>
 					<tr>
-						<th>payment_id</th>
-						<th>m_code</th>
-						<th>s_id</th>
-						<th>p_price</th>
-						<th>p_quantity</th>
-						<th>p_cancel_target_id</th>
-						<th>p_time</th>
-						<th>p_canceled</th>
+						<th>결제 시간</th>
+						<th>연극 제목</th>
+						<th>금액</th>
+						<th>매수</th>
+						<th>상영 시간</th>
+						<th>비고</th>
+						<th>정보 보기</th>
 					</tr>
 				</thead>
 				
 				<tbody>
 					<c:forEach var="pay" items="${paymentList}">
 						<tr>
-							<td>${pay.p_id}</td>
-							<td>${pay.m_code}</td>
-							<td>${pay.s_id}</td>
+							<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
+							<td>${pay.p_name}</td>
 							<td>${pay.p_price}</td>
 							<td>${pay.p_quantity}</td>
-							<td>${pay.p_cancel_target_id}</td>
-							<td><fmt:formatDate value="${pay.p_time}"/></td>
-							<td>${pay.p_canceled}</td>
-							<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >정보</button></td>
+							<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
+							<td>${pay.p_canceled == 1 ? '취소됨' : pay.p_cancel_target_id == 0 ? '' : '환불'}</td>
+							<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >상세</button></td>
 						</tr>
 					</c:forEach> 
 				</tbody>

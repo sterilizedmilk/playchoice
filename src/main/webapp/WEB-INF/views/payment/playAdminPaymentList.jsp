@@ -43,7 +43,9 @@
 				</thead>
 				
 				<tbody>
+					<c:set var="sum" value="0"/>
 					<c:forEach var="pay" items="${paymentList}">
+						<c:set var="sum" value="${sum + pay.p_price}" />
 						<tr>
 							<td>${pay.p_id}</td>
 							<td>${pay.m_code}</td>
@@ -55,9 +57,17 @@
 							<td>${pay.p_canceled}</td>
 							<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >정보</button></td>
 						</tr>
-					</c:forEach> 
+					</c:forEach>
+					<c:if test="${paymentList.size() == 0}">
+						<tr>
+							<td colspan="8">결제 내역이 없습니다.</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
+			<div>
+				총액 : ${sum}
+			</div>
 		</div>
 		<!-- 탭 종료 -->
 	</div>

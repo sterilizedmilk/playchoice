@@ -1,6 +1,7 @@
 package com.playchoice.payment.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -86,7 +87,9 @@ public class PaymentController {
 			dto.setScheduleEnded(1);
 		}
 		
-		model.addAttribute("paymentList", service.searchPayment(dto));
+		List<PaymentDTO> paymentList = service.searchPayment(dto);
+		
+		model.addAttribute("paymentList", paymentList);
 		
 		return "payment/memberPaymentList";
 	}
@@ -111,32 +114,44 @@ public class PaymentController {
 		return "payment/playAdminPaymentList";
 	}
 	
-	@RequestMapping(value = "payment/list")
-	public String paymentListController(Model model, PaymentSearchDTO dto) {
-		model.addAttribute("paymentList", service.searchPayment(dto));
-		return "payment/list";
-	}
-
 	@RequestMapping(value = "payment/info", method = RequestMethod.GET)
 	public String paymentInfoController(HttpSession session, Model model,
 												@RequestParam int p_id) throws Exception {
 		PaymentDTO payment = service.getPayment(p_id);
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
-		if (user.getM_code() != payment.getM_code() // 일반 회원
-//				&& !(user.getM_level() == 1 && ) // 연극 관리자
-				&& user.getM_level() != 2) // 사이트 관리자
-			return "";
-		
 		ScheduleDTO schedule = scheduleService.getSchedule(payment.getS_id());
 		PlayDTO play = playService.playDetail(schedule.getP_id());
+
+		int level = 0;
+		if (user.getM_level() == 2) { // 사이트 관리자
+			level = 2;
+		} else if (user.getM_level() == 1 && user.getM_code() == play.getM_code()) { // 연극 관리자
+			level = 1;
+		} else if (user.getM_code() == payment.getM_code()) { // 일반 회원
+			level = 0;
+		} else
+			return "";
+		
 		
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("play", play);
 		model.addAttribute("payment", payment);
-		model.addAttribute("refund", -service.refund(payment));
-		model.addAttribute("scheduleEnded", schedule.getS_time().compareTo(new Date()) <= 0);
 		
-		return "payment/info";
+		if (level == 0) {
+		}
+
+		switch (level) {
+		case 0:
+			model.addAttribute("refund", -service.refund(payment));
+			model.addAttribute("scheduleEnded", schedule.getS_time().compareTo(new Date()) <= 0);
+			return "payment/memberInfo";
+		case 1:
+		case 2:
+			return "payment/adminInfo";
+		default:
+			break;
+		}
+		return "";
 	}
 
 	@RequestMapping(value = "payment/cancel", method = RequestMethod.POST)

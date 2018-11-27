@@ -18,7 +18,8 @@ public class PaymentSearchDTO {
 	Integer canceled = null;
 	Integer scheduleEnded = null;
 
-	Integer start = 0;
+	Integer page = 1;
+	Integer row = 10;
 
 	public Integer getMember() {
 		return member;
@@ -95,7 +96,7 @@ public class PaymentSearchDTO {
 	}
 
 	public Integer getStart() {
-		return start;
+		return (page - 1) * row;
 	}
 	
 	public Integer getScheduleEnded() {
@@ -106,14 +107,24 @@ public class PaymentSearchDTO {
 		this.scheduleEnded = scheduleEnded;
 	}
 
-	public void setStart(Integer start) {
-		this.start = start;
-	}
-	
 	public void setPage(Integer page) {
-		if (page == null || page <= 0)
+		if (page == null || page <= 0) {
+			this.page = 1;
 			return;
-		this.start = (page - 1) * 10;
+		}
+		this.page = page;
+	}
+
+	public Integer getRow() {
+		return row;
+	}
+
+	public void setRow(Integer row) {
+		if (row == null || row < 0) {
+			this.row = 10;
+			return;
+		}
+		this.row = row;
 	}
 
 

@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Payment</title>
 
+<jsp:include page="/WEB-INF/views/admin/site/integratedheader.jsp" />
 <div class="container">
 	<div class="row">
 		<!-- 좌측 정보 -->
@@ -23,6 +24,8 @@
 				
 				play admin<input type="number" name="playAdmin" value="${param.playAdmin}"><br>
 				
+                <input type="text" class="form_datetime" name="from" value="${param.from}">
+				<br>
 				from<input type="date" name="from" value="${param.from}"><br>
 				until<input type="date" name="until" value="${param.until}"><br>
 				
@@ -30,41 +33,66 @@
 				<button>검색</button>
 			</form>
 			
-			<table border="1">
+			<table class="table">
 				<thead>
 					<tr>
-						<th>p_id</th>
-						<th>m_code</th>
-						<th>s_id</th>
-						<th>p_price</th>
-						<th>p_quantity</th>
-						<th>p_cancel_target_id</th>
-						<th>p_time</th>
-						<th>p_canceled</th>
+						<th>결제 시간</th>
+						<th>결제 id</th>
+						<th>회원</th>
+						<th>연극 제목</th>
+						<th>일정 id</th>
+						<th>금액</th>
+						<th>매수</th>
+						<th>상영 시간</th>
+						<th>비고</th>
+						<th>정보 보기</th>
 					</tr>
 				</thead>
 				
 				<tbody>
+					<c:set var="sum" value="0"/>
 					<c:forEach var="pay" items="${paymentList}">
+						<c:set var="sum" value="${sum + pay.p_price}" />
 						<tr>
+							<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
 							<td>${pay.p_id}</td>
 							<td>${pay.m_code}</td>
+							<td>${pay.p_name}</td>
 							<td>${pay.s_id}</td>
 							<td>${pay.p_price}</td>
 							<td>${pay.p_quantity}</td>
-							<td>${pay.p_cancel_target_id}</td>
-							<td><fmt:formatDate value="${pay.p_time}"/></td>
-							<td>${pay.p_canceled}</td>
+							<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
+							<td>${pay.p_canceled == 1 ? '취소됨' : pay.p_cancel_target_id == 0 ? '' : '환불'}</td>
 							<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >정보</button></td>
 						</tr>
-					</c:forEach> 
+					</c:forEach>
+					<c:if test="${paymentList.size() == 0}">
+						<tr>
+							<td colspan="10">결과가 없습니다.</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
+			
+			<div>
+				총액 : ${sum}
+			</div>
 		</div>
 		<!-- 탭 종료 -->
 	</div>
 	<!-- 중앙정보 종료 -->
 </div>
 <!-- 끝 -->
+
+<script>
+    $('.form_datetime').datetimepicker({
+        language:  'ko',
+        format: 'yyyy-mm-dd P HH:ii',
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,		
+        showMeridian: 1
+    });
+</script>
 
 <jsp:include page="../page/footer.jsp" />

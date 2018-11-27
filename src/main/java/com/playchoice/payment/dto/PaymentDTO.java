@@ -7,6 +7,10 @@ public class PaymentDTO {
 	Timestamp p_time;
 	int p_canceled = 0;
 	
+	// for list
+	String p_name; // from play
+	Timestamp s_time; // from schedule
+	
 	public PaymentDTO cancel() {
 		PaymentDTO can = new PaymentDTO();
 		can.m_code = m_code;
@@ -86,7 +90,21 @@ public class PaymentDTO {
 				+ ", p_quantity=" + p_quantity + ", p_cancel_target_id=" + p_cancel_target_id + ", p_time=" + p_time
 				+ ", p_canceled=" + p_canceled + "]";
 	}
-	
-	
 
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+
+	public Timestamp getS_time() {
+		return s_time;
+	}
+
+	public void setS_time(Timestamp s_time) {
+		this.s_time = s_time;
+	}
+	
 }
