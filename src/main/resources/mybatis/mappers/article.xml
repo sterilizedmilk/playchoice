@@ -13,6 +13,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from article where a_board = "3"
 	</select>
 
+	<select id="userInfoID" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select m_id from play.member where m_code = #{m_code}
+	</select>
+	<select id="userInfoLevel" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select m_level from play.member where m_code = #{m_code}
+	</select>
+
+
 	<select id="userlist" parameterType="aaaDTO" resultType="aaaDTO">
 		select *
 		from article where m_code = #{m_code} and a_board = "3"
@@ -43,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<insert id="commentOne" parameterType="replyDTO">
 		insert into reply
-		(a_id,re_comment) values(#{a_id},#{re_comment})
+		(a_id,re_comment,m_code) values(#{a_id},#{re_comment},#{m_code})
 	</insert>
 	<update id="commentUpdate" parameterType="aaaDTO">
 		update article set

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.playchoice.article.dao.ArticleDAO;
 import com.playchoice.article.dto.ArticleDTO;
 import com.playchoice.article.dto.ReplyDTO;
 import com.playchoice.article.dto.Status;
+import com.playchoice.member.dto.MemberDTO;
 
 @Controller
 @RequestMapping("/article/{Content}/{No}")
@@ -31,15 +33,17 @@ public class ArticleController {
 	// a_target 1 = 공지사항 2 = FAQ 3 = 1:1문의
 	@ModelAttribute("data")
 	public Object Article(@PathVariable("Content") String content, @PathVariable("No") String no, ArticleDTO dto,
-			HttpServletRequest request) {
+			HttpServletRequest request, Model model) {
 		Object res = null;
 		System.out.println(content + "/" + no);
+		MemberDTO m_dto;
 		// 전체 리스트 개수
 		int totalCount = 0;
 		String contentType = "";
 
 		switch (no) {
 		case "list":
+			System.out.println("content" + content);
 			if (content.equals("contact")) {
 				contentType = "3";
 				res = dao.list(dto);
@@ -50,6 +54,8 @@ public class ArticleController {
 					contentType = "2";
 				res = dao.list(contentType);
 			}
+
+			System.out.println("여기다여기" + res);
 			break;
 		case "detail":
 			dto = (ArticleDTO) dao.selectOne(dto.getA_id());
@@ -109,8 +115,13 @@ public class ArticleController {
 				dto.setA_comment("0");
 
 			reDto.setA_id(dto.getA_id());
-
+			reDto.setM_code(dto.getM_code());
 			res = dao.commentOne(reDto, dto);
+
+			// m_dto = dao.userInfo(dto.getM_code());
+			// model.addAttribute("m_dto", m_dto);
+			// System.out.println("m_dto" + m_dto);
+
 			status.setMsg("댓글이 입력되었습니다.");
 			status.setUrl("detail?a_id=" + dto.getA_id());
 			System.out.println("getA_comment" + res);

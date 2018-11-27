@@ -2,6 +2,7 @@ package com.playchoice.article.dao;
 
 import com.playchoice.article.dto.ArticleDTO;
 import com.playchoice.article.dto.ReplyDTO;
+import com.playchoice.member.dto.MemberDTO;
 
 public interface ArticleDAO {
 
@@ -29,5 +30,8 @@ public interface ArticleDAO {
 
 	// 게시판 댓글 리스트 불러오는 거 만들기
 	public Object Replylist(ArticleDTO dto);
+
+	//
+	public String userInfo(Integer m_code);
 
 }

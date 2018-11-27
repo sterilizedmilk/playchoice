@@ -4,13 +4,34 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.playchoice.article.dao.ArticleDAO;
+import com.playchoice.member.dto.MemberDTO;
 
 @Alias("aaaDTO")
 public class ArticleDTO {
 	Integer a_id, m_code, m_level;
 
+	@Autowired
+	ArticleDAO dao;
+
 	public Integer getM_level() {
 		return m_level;
+	}
+
+	public String getM_id() {
+		/* MemberDTO m_dto = dao.userInfo(this.m_code); */
+		// return m_dto.getM_id();
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public void setA_boardTemp(String a_boardTemp) {
+		this.a_boardTemp = a_boardTemp;
 	}
 
 	public void setM_level(Integer m_level) {
@@ -18,7 +39,7 @@ public class ArticleDTO {
 	}
 
 	Timestamp a_time;
-	String a_board, a_title, a_content, a_comment, a_boardTemp;
+	String a_board, a_title, a_content, a_comment, a_boardTemp, m_id;
 	Object objReplay;
 
 	public Object getObjReplay() {
@@ -35,9 +56,9 @@ public class ArticleDTO {
 
 	@Override
 	public String toString() {
-		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", m_level=" + m_level + ", a_time=" + a_time
-				+ ", a_board=" + a_board + ", a_title=" + a_title + ", a_content=" + a_content + ", a_comment="
-				+ a_comment + ", objReplay=" + objReplay + "]";
+		return "ArticleDTO [a_id=" + a_id + ", m_code=" + m_code + ", m_level=" + m_level + ", dao=" + dao + ", a_time="
+				+ a_time + ", a_board=" + a_board + ", a_title=" + a_title + ", a_content=" + a_content + ", a_comment="
+				+ a_comment + ", a_boardTemp=" + a_boardTemp + ", m_id=" + m_id + ", objReplay=" + objReplay + "]";
 	}
 
 	public void setA_id(Integer a_id) {

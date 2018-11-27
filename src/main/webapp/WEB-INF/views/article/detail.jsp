@@ -38,9 +38,9 @@
 						</tr>
 						<tr>
 							<th>작성일</th>
-							<th>${data.a_title }</th>
+							<th>${data.a_time }</th>
 							<th>작성자</th>
-							<th>${data.a_title }</th>
+							<th>${data.m_id }</th>
 						</tr>
 						<tr>
 							<th colspan="5" style="width: 98%; height: 300px">${data.a_content }</th>
@@ -63,7 +63,10 @@
 						<table class="table table-bordered">
 							<tr>
 								<td colspan="4">
-									<input type="text" name="a_comment" style="width: 98%; height: 100px"> <input type="hidden" name="a_id" value="${data.a_id }" /> <input type="hidden" name="m_code" value="${data.m_code }" /> <input type="hidden" name="m_level" value="${login.m_level}" />
+									<input type="text" name="a_comment" style="width: 98%; height: 100px" />
+									<input type="hidden" name="a_id" value="${data.a_id }" />
+									<input type="hidden" name="m_code" value="${login.m_code }" />
+									<input type="hidden" name="m_level" value="${login.m_level}" />
 								</td>
 								<td>
 									<button type="submit" class="btn btn-square btn-theme" style="width: 100%; height: 100px">댓글</button>
@@ -72,11 +75,11 @@
 							<c:if test="${!empty data.objReplay}">
 								<c:forEach items="${data.objReplay }" var="dd" varStatus="no">
 									<tr>
-										<c:if test="${login.m_level eq 2}">
+										<c:if test="${dd.m_level eq 2}">
 											<th colspan="2">작성자 : 관리자</th>
 										</c:if>
-										<c:if test="${login.m_level ne 2}">
-											<th colspan="2">작성자 :${login.m_id}</th>
+										<c:if test="${dd.m_level ne 2}">
+											<th colspan="2">작성자 :${dd.m_id}</th>
 										</c:if>
 
 										<th colspan="3">작성 시간 : ${dd.re_time }</th>
