@@ -61,7 +61,18 @@ INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_ti
 -- Table `play`.`payment`
 -- -----------------------------------------------------
 
-
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '1', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '2', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '3', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '4', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '5', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '6', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '7', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '8', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '9', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '10', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '1', '2000', '1', '2018-11-23 16:15:02');
+INSERT INTO `play`.`payment` ( `m_code`, `s_id`, `p_price`, `p_quantity`, `p_time`) VALUES ( '1', '2', '2000', '1', '2018-11-23 16:15:02');
 
 
 
