@@ -63,7 +63,7 @@ CREATE TABLE `article` (
   `a_board` varchar(20) NOT NULL,
   `a_title` varchar(45) NOT NULL,
   `a_content` text NOT NULL,
-  `a_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `a_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `a_comment` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`a_id`),
   KEY `fk_article_member1_idx` (`m_code`),
@@ -121,7 +121,7 @@ CREATE TABLE `payment` (
   `s_id` int(11) NOT NULL,
   `p_price` int(11) NOT NULL,
   `p_quantity` int(11) NOT NULL COMMENT '결제 총액',
-  `p_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `p_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `p_canceled` tinyint(4) NOT NULL DEFAULT '0',
   `p_cancel_target_id` int(11) DEFAULT NULL COMMENT '이 결제가 취소한 결제의 p_id',
   PRIMARY KEY (`p_id`),
@@ -209,7 +209,7 @@ DROP TABLE IF EXISTS `question_answer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question_answer` (
   `q_id` int(11) NOT NULL AUTO_INCREMENT,
-  `q_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `q_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `q_content` text NOT NULL,
   `m_code` int(11) NOT NULL,
   `p_id` int(11) NOT NULL,
@@ -235,7 +235,7 @@ DROP TABLE IF EXISTS `reply`;
 CREATE TABLE `reply` (
   `re_id` int(11) NOT NULL AUTO_INCREMENT,
   `a_id` int(11) NOT NULL,
-  `re_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `re_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `re_comment` text NOT NULL,
   PRIMARY KEY (`re_id`),
   KEY `fk_reply_article1_idx` (`a_id`),
@@ -253,7 +253,7 @@ DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review` (
   `m_code` int(11) NOT NULL,
   `s_id` int(11) NOT NULL,
-  `r_register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `r_register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `r_content` text NOT NULL,
   `r_play_score` tinyint(4) NOT NULL,
   `r_actor1_score` tinyint(4) DEFAULT NULL,
@@ -279,7 +279,7 @@ CREATE TABLE `schedule` (
   `p_id` int(11) NOT NULL,
   `s_ticket` int(11) NOT NULL,
   `s_price` int(11) NOT NULL,
-  `s_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `s_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `a_id1` int(11) NOT NULL,
   `a_id2` int(11) NOT NULL,
   `s_canceled` tinyint(4) NOT NULL DEFAULT '0',
