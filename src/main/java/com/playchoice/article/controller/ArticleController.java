@@ -80,9 +80,9 @@ public class ArticleController {
 			res = dao.insertOne(dto);
 			status.setMsg("등록되었습니다.");
 			if (sboardType.equals("notice"))
-				status.setUrl("notice/list");
+				status.setUrl("list");
 			else if (sboardType.equals("faq"))
-				status.setUrl("faq/list");
+				status.setUrl("list");
 			else
 				status.setUrl("list?m_code=" + dto.getM_code());
 

@@ -30,7 +30,7 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>data.a_boardTemp</h4>
+				<h4>${data.a_boardTemp}</h4>
 				<form>
 					<table class="table table-bordered">
 						<tr>
