@@ -73,10 +73,6 @@ public class AdminQnaController {
 //		
 //		model.addAttribute("myPlayList", service.myPlay(1));
 		
-		
-		
-		
-		
 		return "admin/qna/qnalist";
 	}
 	

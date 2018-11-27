@@ -40,7 +40,13 @@
 					<c:when test="${scheduleEnded}">
 						<h4>리뷰 작성하러 가기</h4>
 						<!-- TODO: 주소 수정 필요 -->
-						<button onclick="href.location='${pageContext.request.contextPath}/play/review/write';">리뷰작성</button>
+						<form action="${pageContext.request.contextPath}/play/review/write" method="POST">
+						<input type="hidden" name="p_name" value="${play.p_name}">
+						<input type="hidden" name="p_id" value="${payment.p_id}">
+						<input type="hidden" name="s_id" value="${payment.s_id}">
+						<input type="hidden" name="m_code" value="${sessionScope.login.m_code}">
+						<button>리뷰작성</button>
+						</form>
 					</c:when>
 					<c:when test="${payment.p_canceled == 0}">
 						<h4>취소하기</h4>

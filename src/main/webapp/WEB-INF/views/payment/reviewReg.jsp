@@ -23,17 +23,21 @@ $(document).ready(function(){
 
 <div class="container">
 	<div class="row">
-		p_name, payment_id, 	
-		
-		<form action="">
-			연극평점<select name="" id="">
-			</select>
-			주연배우 1 <select></select>
-			주연배우 2 <select></select>
-
-			<textarea name="" id="" cols="30" rows="10">
+	<h2>리뷰작성</h2>
+		<form action="reviewReg" method="post">
+			연극 : ${p_name}<select name="r_play_score" id=""></select>
 			
+			<img src="<c:url value="/"/>resources/img/actor/${actorList[0].a_picture }" width="170px" height="170px" style="padding:10px"/>
+			${actorList[0].a_name }<select name="r_actor1_score"></select>
+			
+			<img src="<c:url value="/"/>resources/img/actor/${actorList[1].a_picture }" width="170px" height="170px" style="padding:10px"/>
+			${actorList[1].a_name } <select name="r_actor2_score"></select>
+
+			<textarea name="r_content" id="" cols="30" rows="10">
+				
 			</textarea>
+			<input type="hidden" name="s_id" value="${s_id}" />
+			<input type="hidden" name="m_code" value="${login.m_code}" />
 			<button>등록</button>
 		</form>
 	</div>

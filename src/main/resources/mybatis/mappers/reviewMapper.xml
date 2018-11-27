@@ -16,4 +16,16 @@
 			AND review.m_code = member.m_code
 		LIMIT 20;
 	</select>
+	
+	<select id="actorInfo" resultType="ActorDTO" parameterType="PaymentDTO">
+		SELECT a_name, a_picture
+		FROM play.actor, play.`schedule`
+		WHERE play.`schedule`.s_id=#{m_code}
+		AND play.actor.a_id IN(play.`schedule`.a_id1 , play.`schedule`.a_id2);
+	</select>
+	
+	<insert id="regReview" parameterType="ReviewDTO">
+		INSERT INTO review(m_code, s_id, r_content, r_play_score, r_actor1_score, r_actor2_score)
+		VALUES (#{m_code}, #{s_id}, #{r_content}, #{r_play_score}, #{r_actor1_score}, #{r_actor2_score})
+	</insert>
 </mapper>

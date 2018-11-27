@@ -1,24 +1,23 @@
 package com.playchoice.review.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.playchoice.payment.dto.PaymentDTO;
+import com.playchoice.review.dto.ReviewDTO;
 import com.playchoice.review.service.ReviewService;
 
 @Controller
-@RequestMapping("review")
+@RequestMapping("play/review")
 public class ReviewController {
 	
 	@Autowired
 	ReviewService service;
 	
-	@ResponseBody
+/*	@ResponseBody
 	@RequestMapping(value="playtotalreview", method=RequestMethod.POST)
 	public Object totalReview(@RequestParam int p_id) {
 		System.out.println("리뷰 컨트롤");
@@ -34,11 +33,29 @@ public class ReviewController {
 		
 		return res;
 		
+	}*/
+	
+	@RequestMapping("write")
+	public String reviewPage(@RequestParam("p_name")String p_name, PaymentDTO dto,Model model) {
+		System.out.println("피네임 : " + p_name);
+		System.out.println("페이먼트디티오 피아이 : "+ dto.getP_id());
+		System.out.println("페이먼트디티오 엠코 : "+ dto.getM_code());
+		System.out.println("페이먼트디티오 에스아이 : "+ dto.getS_id());
+		
+		model.addAttribute("p_name", p_name);
+		
+		model.addAttribute("actorList", service.actorInfo(dto));
+		model.addAttribute("s_id",dto.getS_id());
+		
+		
+		return "payment/reviewReg";
 	}
 	
 	@RequestMapping("reviewReg")
-	public String reviewReg() {
-		return "payment/reviewReg";
+	public String reviewReg(ReviewDTO dto) {
+		
+		service.regReview(dto);
+		
+		return null;
 	}
-
 }
