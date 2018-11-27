@@ -292,8 +292,9 @@
 					<p>연극에 대한 궁금증을 남겨주세요!</p>
 					<div style="background-color: #FAF4C0;">
 						<form id="qfrm" method="post">
-							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;"></textarea>
-							<input type="hidden" name="p_id" value="${playDTO.p_id }" /> <input type="hidden" name="m_code" value="${login.m_code }" />
+							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;" placeholder="내용을 입력해주세요"></textarea>
+							<input type="hidden" name="p_id" value="${playDTO.p_id }" />
+							<input type="hidden" name="m_code" value="${login.m_code }" />
 							<button id="qsubmit">등 록</button>
 						</form>
 					</div>
@@ -316,7 +317,9 @@
 						</c:forEach>
 						<!-- 데이터 넘기기위한 폼 -->
 						<form id="frmQna">
-							<input type="hidden" id="delQnaId" name="q_id" value="" /> <input type="hidden" id="delQnaCode" name="m_code" value="" /> <input type="hidden" id="delQnaPid" name="p_id" value="" />
+							<input type="hidden" id="delQnaId" name="q_id" value="" /> 
+							<input type="hidden" id="delQnaCode" name="m_code" value="" /> 
+							<input type="hidden" id="delQnaPid" name="p_id" value="" />
 						</form>
 					</div>
 				</div>

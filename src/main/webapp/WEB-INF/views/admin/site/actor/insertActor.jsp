@@ -40,49 +40,63 @@ $(document).ready(function(){
 		alert(msg);
 	}
 </script>
+<style>
+	.form-horizontal { padding:20px 10px;}
+	.form-horizontal .control-label { width: 100px;}
+	.form-horizontal .controls { margin-left: 120px;}
+	.form-horizontal .controls input { width: 250px; margin-right: 10px;}
+	.form-horizontal .button-group { margin-top: 20px;}
+	
+	select{
+		width:80px;
+	}
+</style>
 </head>
 <body>
+<section id="content">
 	<div class="container">
-		<h2>배우 등록</h2>
-			<form id="insertActor" name="insertActor" method="post" enctype="multipart/form-data">				
-			 	<div class="form-group">
+		<div class="row">
+			<div class="span6 offset3">
+			<form class="form-horizontal" id="insertActor" name="insertActor" method="post" enctype="multipart/form-data">				
+			 	<div class="control-group" style="height: 40px;">
 					<label for="a_name">이름</label>
-					<input type="text" class="form-control" name="a_name" id="a_name" placeholder="이름 입력">
+					<input type="text" name="a_name" id="a_name" placeholder="이름">
 				</div>
-					<div class="form-group">
-						생년월일
+					<div class="control-group">
+						<label>생년월일</label>
+					
 						<select name="year" id="year">
 						<option value="1900">연도</option>
 						</select>
+					
 						<select name="month" id="month" >
 						<option value="1">월</option>
 						</select>
+						
 						<select name="day" id="day" >
 						<option value="1">일</option>
 						</select>
-					
 						
-						<!-- <input type="date"nclass="form-control" name="a_birth" id="a_birth" > -->
 					</div>
-					<div class="form-group">
-						<label for="a_homepage">홈페이지</label> <input type="text"
-							class="form-control" name="a_homepage" id="a_homepage"
-							placeholder="홈페이지 입력">
+			
+					<div class="control-group">
+						<label for="a_homepage" >홈페이지</label> <input type="text" name="a_homepage" id="a_homepage"
+							placeholder="홈페이지">
 					</div>
-					<div class="form-group">
+					<div class="control-group">
 						<label>프로필사진</label> <input type="file"
-							class="form-control" name="a_picture" id="a_picture">
+							 name="a_picture" id="a_picture">
 					</div>
 					<div class="button-group pull-right">
-						<button type="submit" class="btn btn-primary" id="submit">
-							<i class="fa fa-pencil"></i> 등록
-						</button>
-						&nbsp; <a href='list' class="btn btn-default"><i
-							class="fa fa-list"></i> 취소</a>
+						<button type="submit" class="btn btn-success" id="submit">등록</button>
+						<a href='common' class="btn btn-danger"> 취소</a>
 					</div>
 				</form>
 				<!-- / 콘텐츠 부분 -->
+			</div>
+		</div>
 	</div>
+</section>
 	<!-- /container-fluid -->
 </body>
 </html>

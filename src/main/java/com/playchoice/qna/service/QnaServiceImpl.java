@@ -17,7 +17,7 @@ public class QnaServiceImpl implements QnaService {
 	//등록하기
 	@Override
 	public int insertQuset(HashMap<String, Object> res) {
-		
+		System.out.println(res);
 		//줄바꿈 처리
 		if(res.get("q_content") instanceof String) {
 			String test = (String)res.get("q_content");

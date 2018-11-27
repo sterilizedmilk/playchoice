@@ -17,8 +17,6 @@ $(document).ready(function(){
 	/* 답변달기 */
 	$("#write").click(function(){
 		
-		
-		
 		frm.action="write";
 		frm.submit();
 		
@@ -47,7 +45,7 @@ $(document).ready(function(){
 				<input type="hidden" name="q_target_id" value="${list[0].q_id}" />
 				<input type="hidden" name="p_id" value="${list[0].p_id}" />
 				<input type="hidden" name="m_code" value="1" />
-				<%-- <input type="hidden" name="m_code" value="${login.m_code }" /> --%>
+				<input type="hidden" name="m_code" value="${login.m_code }" />
 			<c:choose>
 				<c:when test="${list[1] == null }">
 					<button id="write" type="submit">작성</button>

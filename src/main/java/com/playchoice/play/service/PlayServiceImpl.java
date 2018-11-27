@@ -76,7 +76,7 @@ public class PlayServiceImpl implements PlayService {
 			if (res instanceof HashMap) {
 				HashMap<String, Object> test = (HashMap) res;
 
-				if (!test.get("m_level").equals(1)) {
+				if (!test.get("m_level").equals(0)) {
 					test.put("m_id", "연극관리자");
 				}
 			}

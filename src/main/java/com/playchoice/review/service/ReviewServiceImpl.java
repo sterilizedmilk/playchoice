@@ -41,10 +41,14 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return dao.actorInfo(dto);
 	}
-
+	
+	//리뷰 등록하기
 	@Override
 	public int regReview(ReviewDTO dto) {
-		// TODO Auto-generated method stub
+		//줄바꿈 처리
+		String res = dto.getR_content().replaceAll("\n", "<br>");
+		dto.setR_content(res);
+	
 		return dao.regReview(dto);
 	}
 	
