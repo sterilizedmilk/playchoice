@@ -7,16 +7,36 @@
 
 <jsp:include page="../page/header.jsp" />
 <style>
-	.form-horizontal {padding:20px 10px; border-top:3px solid #e74c3c;  border-bottom:1px solid #e74c3c;}
+	.form-horizontal {padding:30px 10px;}
 	.form-horizontal .control-label { width: 100px;}
 	.form-horizontal .controls { margin-left: 120px;}
 	.form-horizontal .controls input {width: 250px; margin-right: 10px;}
 	.form-horizontal .button-group { margin-top: 20px;}
 </style>
+
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="span4">
+				<div class="inner-heading">
+					<h2>회원가입</h2>
+				</div>
+			</div>
+			<div class="span8">
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i><i class="icon-angle-right"></i></li>
+					<li>회원가입</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="content">
 <div class="container">
 	<div class="row">
 		<div class="span6 offset3">
-			<h2 class="text-center">회원 가입</h2>
+			<!-- <h2 class="text-center">회원 가입</h2> -->
 			<form id="insertForm" name="insertForm" method="post" class="form-horizontal">
 				<div class="control-group">
 					<label class="control-label" for="m_id">아이디</label> 
@@ -78,7 +98,7 @@
 						<span class="help-block"></span>
 					</div>
 				</div>
-				<div class="button-group text-center">
+				<div class="button-group pull-right">
 					<button type="submit" class="btn btn-success btn-large" id="submit">확인</button>
 					<button type="reset" class="btn btn-danger btn-large">취소</button>
 					<button onclick="history.go(-1)" class="btn btn-primary btn-large">뒤로</button>
@@ -87,6 +107,7 @@
 		</div><!-- /.span12 -->
 	</div><!-- /.row -->
 </div><!-- /.container -->
+</section>
 
 <!-- JavaScript -->
 <script>
