@@ -9,6 +9,7 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 public interface SiteAdminService {
 
@@ -42,7 +43,10 @@ public interface SiteAdminService {
 	public Object memberDelete(MemberDTO memberDTO);
 
 	public Object memberblack(MemberDTO memberDTO);
-
+	
+	// 연극 관련
+	public List<PlayDTO> playList();
+	
 	// 배우 관련
 	public Object actorListAll();
 

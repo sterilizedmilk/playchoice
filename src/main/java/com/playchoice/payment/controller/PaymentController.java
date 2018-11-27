@@ -125,8 +125,8 @@ public class PaymentController {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		ScheduleDTO schedule = scheduleService.getSchedule(payment.getS_id());
 		PlayDTO play = playService.playDetail(schedule.getP_id());
-
-		int level = 0;
+ 
+ 		int level = 0;
 		if (user.getM_level() == 2) { // 사이트 관리자
 			level = 2;
 		} else if (user.getM_level() == 1 && user.getM_code() == play.getM_code()) { // 연극 관리자
@@ -136,18 +136,15 @@ public class PaymentController {
 		} else
 			return "";
 		
-		
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("play", play);
 		model.addAttribute("payment", payment);
 		
-		if (level == 0) {
-		}
-
 		switch (level) {
 		case 0:
 			model.addAttribute("refund", -service.refund(payment));
 			model.addAttribute("canReview", reviewService.canWriteReview(user.getM_code(), payment.getP_id()));
+			model.addAttribute("isReviewExist", reviewService.isReviewExist(user.getM_code(), payment.getS_id()));
 			return "payment/memberInfo";
 		case 1:
 		case 2:

@@ -12,6 +12,7 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 @Repository
 public class SiteAdminDAOImpl implements SiteAdminDAO {
@@ -120,6 +121,11 @@ public class SiteAdminDAOImpl implements SiteAdminDAO {
 	public Object memberBlack(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + ".memberBlack", memberDTO);
+	}
+
+	@Override
+	public List<PlayDTO> playList() {
+		return sqlSession.selectList(namespace + ".playList");
 	}
 
 	// -----------------배우 관련 -----------------

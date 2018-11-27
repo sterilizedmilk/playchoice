@@ -8,6 +8,7 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 public interface SiteAdminDAO {
 
@@ -52,6 +53,9 @@ public interface SiteAdminDAO {
 
 	public Object memberBlack(MemberDTO memberDTO);
 
+	
+	public List<PlayDTO> playList();
+	
 	// 배우 관리
 	public Object actorManage();
 

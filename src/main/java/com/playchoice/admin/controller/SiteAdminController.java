@@ -20,9 +20,12 @@ import com.playchoice.actor.service.ActorService;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
+import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.common.ActorFileService;
 import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.service.PlayService;
 
 /**
  * 사이트 관리자 메뉴 사용자 관리, 배우 관리...
@@ -32,10 +35,16 @@ import com.playchoice.member.dto.MemberDTO;
 public class SiteAdminController {
 
 	@Autowired
-	SiteAdminService adminService;
+	private SiteAdminService adminService;
 	
 	@Autowired
-	ActorService actorService;
+	private PlayService playService;
+	
+	@Autowired
+	private AdminPlayService adminPlayService;
+	
+	@Autowired
+	private ActorService actorService;
 	
 
 	@RequestMapping("")
@@ -104,23 +113,7 @@ public class SiteAdminController {
 		adminService.memberblack(dto);
 		return "redirect:/admin/site/member/common";
 	}
-
-	// ajax
-	@RequestMapping("member/Black")
-	public ResponseEntity<String> memberBlackController(@RequestParam("id") int m_id) {
-
-		return null;
-	}
-
-	// ajax
-	@RequestMapping("member/unBlack")
-	public ResponseEntity<String> memberUnBlackController(@RequestParam("id") int m_id) {
-
-		return null;
-	}
-
-	//
-
+	
 	// -----------------------------배우----------------------------------------
 	// 배우 전체 리스트 가져오기
 	@RequestMapping("actor/common")
@@ -217,19 +210,31 @@ public class SiteAdminController {
 
 	// -----------------------------연극----------------------------------------
 	@RequestMapping("play/common")
-	public String playListController() {
-		return "";
+	public String playListController(Model model) {
+		model.addAttribute("genreMap", adminService.genreMap());
+		model.addAttribute("areaMap", adminService.areaMap());
+		
+		model.addAttribute("playList", adminService.playList());
+		return "admin/site/play/list";
 	}
 
 	@RequestMapping("play/detail")
-	public String playDetailController(@RequestParam("id") int p_id) {
-
-		return "";
+	public String playDetailController(Model model, @RequestParam("id") int p_id) throws Exception {
+		model.addAttribute("genreMap", adminService.genreMap());
+		model.addAttribute("areaMap", adminService.areaMap());
+		
+		model.addAttribute("play", playService.playDetail(p_id));
+		return "admin/site/play/detail";
 	}
 
-	@RequestMapping("play/detach")
-	public String playDetachController(@RequestParam("id") int p_id) {
-		return "";
+	@RequestMapping(value = "play/status", method=RequestMethod.POST)
+	public String playDetachController(@RequestParam("id") int p_id, @RequestParam int p_status) throws Exception {
+		
+		if (p_status == 1)
+			adminPlayService.flurry(p_id);
+		else
+			adminPlayService.remove(p_id);
+		return "redirect:detail?id=" + p_id;
 	}
 
 	/*
@@ -350,8 +355,5 @@ public class SiteAdminController {
 			entity = new ResponseEntity<String>("FAILED", HttpStatus.OK);
 		return entity;
 	}
-
-	
-	
 
 }

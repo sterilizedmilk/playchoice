@@ -119,4 +119,9 @@
 		VALUES(#{a_name},#{a_birth},#{a_homepage},#{a_picture})
 	</insert>
 	
+	<select id="playList" resultType="PlayDTO">
+		SELECT *
+		FROM play
+	</select>
+	
 </mapper>

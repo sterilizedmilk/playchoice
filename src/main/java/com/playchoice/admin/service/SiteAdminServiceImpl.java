@@ -13,6 +13,7 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.play.dto.PlayDTO;
 
 @Service
 public class SiteAdminServiceImpl implements SiteAdminService {
@@ -113,6 +114,11 @@ public class SiteAdminServiceImpl implements SiteAdminService {
 	public Object memberblack(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return dao.memberBlack(memberDTO);
+	}
+	
+	@Override
+	public List<PlayDTO> playList() {
+		return dao.playList();
 	}
 
 	@Override

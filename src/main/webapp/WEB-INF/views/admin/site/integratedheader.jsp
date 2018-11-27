@@ -7,7 +7,7 @@
 					<nav>
 						<ul class="nav topnav">
 							<li><a href="${pageContext.request.contextPath}/admin/site/member/common">사용자 관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/site/play/common">TODO: 연극관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/site/play/common">연극관리</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/site/actor/common">배우관리</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/site/area">지역관리</a></li>         
 							<li><a href="${pageContext.request.contextPath}/admin/site/genre">장르관리</a></li>
