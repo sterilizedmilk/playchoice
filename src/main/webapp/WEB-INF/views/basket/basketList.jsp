@@ -34,7 +34,7 @@
 				<div class="span8">
 					<c:choose>
 						<c:when test="${fn:length(list) == 0 }">
-							<span>찜한 연극 목록이 비어있습니다.</span>
+							<span>찜한 연극이 없습니다.</span>
 						</c:when>
 						<c:otherwise>
 							<form id="basketListForm" name="basketListForm" action="post">

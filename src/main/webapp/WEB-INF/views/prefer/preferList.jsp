@@ -34,7 +34,7 @@
 				<div class="span8">
 					<c:choose>
 						<c:when test="${fn:length(list) == 0 }">
-							<span>찜한 배우 목록이 비어있습니다.</span>
+							<span>찜한 배우가 없습니다.</span>
 						</c:when>
 						<c:otherwise>
 							<form id="preferListForm" name="preferListForm" action="post">
@@ -67,13 +67,10 @@
 							</form>
 						</c:otherwise>
 					</c:choose>
-				</div>
-				<!-- /.span12 -->
-			</div>
-			<!-- /.row -->
-		</div>
-	</div>
-	<!-- /.container -->
+				</div><!-- /.span12 -->
+			</div><!-- /.row -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
 </section>
 
 <jsp:include page="../page/footer.jsp" />
