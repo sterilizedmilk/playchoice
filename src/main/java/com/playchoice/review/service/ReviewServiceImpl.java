@@ -47,15 +47,19 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return dao.regReview(dto);
 	}
+	
+	@Override
+	public boolean isReviewExist(int m_code, int s_id) {
+		return dao.isReviewExist(m_code, s_id);
+	}
 
 	@Override
 	public boolean canWriteReview(int m_code, int p_id) { // member, payment id
 //		MemberDTO member = siteAdminDao.getMember(m_code);
 		PaymentDTO payment = paymentDao.getPayment(p_id);
 		ScheduleDTO schedule = scheduleDao.getSchedule(payment.getS_id());
-		ReviewDTO review = dao.getReview(m_code, schedule.getS_id());
 		
-		if (review != null)
+		if (isReviewExist(m_code, schedule.getS_id()))
 			return false;
 		
 		// 자기 결제 || 취소 여부 || 취소하는 결제인지 여부
@@ -67,10 +71,11 @@ public class ReviewServiceImpl implements ReviewService{
 			return false;
 		
 		// 7일 전 비교
-		if (schedule.getS_time().getTime() - (new Date()).getTime() > 1000 * 60 * 60 * 24 * 7)
+		if ((new Date()).getTime() - schedule.getS_time().getTime() > 1000 * 60 * 60 * 24 * 7)
 			return false;
 		
 		return true;
 	}
+
 	
 }

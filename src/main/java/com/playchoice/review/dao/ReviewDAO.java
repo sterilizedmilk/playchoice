@@ -16,4 +16,5 @@ public interface ReviewDAO {
 	
 	ReviewDTO getReview(int m_code, int s_id);
 
+	boolean isReviewExist(int m_code, int s_id);
 }

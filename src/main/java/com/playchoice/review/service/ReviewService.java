@@ -15,6 +15,9 @@ public interface ReviewService {
 
 	int regReview(ReviewDTO dto);
 	
+	
+	boolean isReviewExist(int m_code, int s_id);
+	
 	/**
 	 * @param m_code member code
 	 * @param p_id payment id

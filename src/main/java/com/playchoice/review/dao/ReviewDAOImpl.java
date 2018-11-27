@@ -45,7 +45,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 		map.put("s_id", s_id);
 		return session.selectOne(namespace + ".getReview", map);
 	}
-	
-	
+
+	@Override
+	public boolean isReviewExist(int m_code, int s_id) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("m_code", m_code);
+		map.put("s_id", s_id);
+		return (Integer) session.selectOne(namespace + ".isReviewExist", map) == 1;
+	}
 	
 }
