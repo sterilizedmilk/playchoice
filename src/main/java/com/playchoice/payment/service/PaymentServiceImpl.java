@@ -50,11 +50,11 @@ public class PaymentServiceImpl implements PaymentService {
 		if (diff >= 7) {
 			refund = -dto.getP_price();
 		} else if (diff >= 4) {
-			refund = -dto.getP_price() * 100 / 90;
+			refund = -dto.getP_price() * 90 / 100;
 		} else if (diff >= 2) {
-			refund = -dto.getP_price() * 100 / 80;
+			refund = -dto.getP_price() * 80 / 100;
 		} else if (diff == 1) {
-			refund = -dto.getP_price() * 100 / 70;
+			refund = -dto.getP_price() * 70 / 100;
 		}
 
 		return refund;
