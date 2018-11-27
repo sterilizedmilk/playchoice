@@ -41,24 +41,28 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="m_pw">비밀번호</label> <input type="password"
-								class="form-control" name="m_pw" id="m_pw" placeholder="비밀번호"
-								required="required">
+							<label class="control-label" for="m_pw">비밀번호</label>
+							<div class="controls">
+								<input type="password" name="m_pw" id="m_pw" placeholder="비밀번호" required="required">
+							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="m_name">이름</label> <input type="text"
-								class="form-control" name="m_name" id="m_name" placeholder="이름"
-								value="${dto.m_name}" required="required">
+							<label class="control-label" for="m_name">이름</label>
+							<div class="controls">
+								<input type="text" name="m_name" id="m_name" placeholder="이름" value="${dto.m_name}" required="required">
+							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="m_mail">이메일</label> <input type="email"
-								class="form-control" name="m_mail" id="m_mail" placeholder="이메일"
-								value="${dto.m_mail}" required="required">
+							<label class="control-label" for="m_mail">이메일</label>
+							<div class="controls">
+								<input type="email" name="m_mail" id="m_mail" placeholder="이메일" value="${dto.m_mail}" required="required">
+							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="m_phone">연락처</label> <input type="text"
-								class="form-control" name="m_phone" id="m_phone"
-								placeholder="연락처" value="${dto.m_phone}">
+							<label class="control-label" for="m_phone">연락처</label>
+							<div class="controls">
+								<input type="text" name="m_phone" id="m_phone" placeholder="연락처" value="${dto.m_phone}">
+							</div>
 						</div>
 						<div class="control-group button-group pull-right">
 							<button type="button" class="btn btn-success" id="updateBtn">확인</button>
@@ -74,24 +78,20 @@
 
 <!-- JavaScript -->
 <script>
-	$(document)
-			.ready(
-					function() {
-						$("#updateBtn")
-								.click(
-										function() {
-											var m_pw = $("#m_pw").val();
-											if (m_pw == "") {
-												alert("비밀번호를 입력하세요");
-												$("#m_pw").focus();
-												return;
-											} else {
-												confirm("정보를 수정하시겠습니까?");
-												document.updateForm.action = "${pageContext.request.contextPath}/member/update";
-												document.updateForm.submit();
-											}
-										});
-					});
+	$(document).ready(function() {
+		$("#updateBtn").click(function() {
+			var m_pw = $("#m_pw").val();
+			if (m_pw == "") {
+				alert("비밀번호를 입력하세요");
+				$("#m_pw").focus();
+				return;
+			} else {
+				confirm("정보를 수정하시겠습니까?");
+				document.updateForm.action = "${pageContext.request.contextPath}/member/update";
+				document.updateForm.submit();
+			}
+		});
+	});
 </script>
 <!-- /.JavaScript -->
 

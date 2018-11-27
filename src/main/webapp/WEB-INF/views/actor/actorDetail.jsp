@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="span8 offset2">
-				<table class="table table-striped rable-hover">
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 							<th>사진</th>

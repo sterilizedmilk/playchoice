@@ -191,6 +191,9 @@ public class MemberController {
 	// 회원 정보 수정 처리
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updatePOST(@ModelAttribute MemberDTO dto, HttpSession session, RedirectAttributes rttr) throws Exception {
+		dto.setM_id(((MemberDTO) session.getAttribute("login")).getM_id());
+		/*System.out.println(dto.getM_id());
+		System.out.println(dto.getM_pw());*/
 		// 비밀번호 체크
 		boolean result = memberService.checkPw(dto.getM_id(), dto.getM_pw());
 		if(result) { // 비밀번호가 일치하면 수정 처리 후, 메인페이지로 리다이렉트
@@ -235,16 +238,19 @@ public class MemberController {
 	
 	// 회원 탈퇴 처리 ==> 삭제x, m_status를 2로 변경해서 로그인 방지
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String deletePOST(@RequestParam("m_id") String m_id, @RequestParam("m_pw") String m_pw, HttpSession session, Model model) throws Exception {
+	public String deletePOST(@RequestParam("m_pw") String m_pw, HttpSession session, Model model) throws Exception {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		dto.setM_id(dto.getM_id());
+		/*System.out.println("id : " + dto.getM_id());*/
 		// 비밀번호 체크
-		boolean result = memberService.checkPw(m_id, m_pw);
+		boolean result = memberService.checkPw(dto.getM_id(), m_pw);
 		if(result) { // 비밀번호가 일치하면 삭제 처리 후, 메인페이지로 리다이렉트
-			memberService.deleteMember(m_id);
+			memberService.deleteMember(dto.getM_id());
 			session.invalidate();
 			return "redirect:/";
 		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 deleteForm.jsp로 포워드
 			model.addAttribute("msg", "비밀번호를 다시 입력하세요.");
-			model.addAttribute("dto", memberService.viewMember(m_id));
+			model.addAttribute("dto", memberService.viewMember(dto.getM_id()));
 			return "member/deleteForm";
 		}
 	}
