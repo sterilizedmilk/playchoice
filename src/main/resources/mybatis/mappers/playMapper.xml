@@ -36,6 +36,26 @@
 		play.p_id
 	</select>
 
+	<select id="playSearchList" resultType="PlayDTO"
+		parameterType="java.lang.String">
+		SELECT play.*,
+		min(`schedule`.s_price) AS lowest_price
+		FROM play, `schedule`
+		WHERE
+		play.p_id = `schedule`.p_id
+		AND play.p_status
+		= '1'
+		And
+		play.p_name like CONCAT('%',#{search},'%')
+		<!-- OR
+		play.p_ifo like
+		CONCAT('%',#{search},'%')
+		OR play.p_location like CONCAT('%',#{search},'%') -->
+		
+		GROUP BY play.p_id
+	</select>
+
+
 	<select id="playRankList" resultType="PlayDTO">
 		SELECT * FROM
 		play as pl,

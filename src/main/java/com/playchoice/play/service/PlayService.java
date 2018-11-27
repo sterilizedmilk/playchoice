@@ -40,4 +40,6 @@ public interface PlayService {
 
 	// 장르 관련 리스트
 	public List<GenreDTO> getGenreList();
+
+	Object SearchList(String search);
 }

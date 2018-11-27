@@ -96,6 +96,13 @@ public class PlayDAOImpl implements PlayDAO {
 		return dto;
 	}
 
+	@Override
+	public Object getSearchList(String search) {
+		// TODO Auto-generated method stub
+		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playSearchList", search);
+		return dto;
+	}
+
 	// 오늘,내일 연극
 	@Override
 	public List<PlayDTO> playTodayList(String date) {

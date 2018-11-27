@@ -48,4 +48,6 @@ public interface PlayDAO {
 
 	// 장르 관련 리스트
 	public List<GenreDTO> getGenreList();
+
+	public Object getSearchList(String search);
 }

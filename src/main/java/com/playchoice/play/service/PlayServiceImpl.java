@@ -90,6 +90,11 @@ public class PlayServiceImpl implements PlayService {
 		return playDao.getPlayRank();
 	}
 
+	@Override
+	public Object SearchList(String search) {
+		return playDao.getSearchList(search);
+	}
+
 	// 오늘,내일 리스트
 	@Override
 	public List<PlayDTO> playTodayList(String date) {

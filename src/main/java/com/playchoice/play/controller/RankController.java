@@ -24,6 +24,6 @@ public class RankController {
 	public String RankList(Model model) {
 		Object obj = service.RankList();
 		model.addAttribute("list", obj);
-		return "rank/ranklist";
+		return "play/ranklist";
 	}
 }

@@ -115,7 +115,7 @@
 				</div>
 				<div class="span3">
 					<form class="form-search" action="${pageContext.request.contextPath}/search">
-						<input placeholder="Search" type="text" class="input-medium search-query" name="search" />
+						<input placeholder="Search" type="text" class="input-medium search-query" name="search"  id="search"/>
 						<button type="submit" class="btn btn-square btn-theme">Search</button>
 					</form>
 				</div>
