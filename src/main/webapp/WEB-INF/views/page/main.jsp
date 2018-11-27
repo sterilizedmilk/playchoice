@@ -27,7 +27,7 @@
 									여기에는<strong>뭘쓸까요!</strong>
 								</h2>
 								<p>써야하는 내용이 뭐가될지 궁금함!</p>
-								<a href="#" class="btn btn-theme">지금 알아보기!</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist" class="btn btn-theme">지금 알아보기!</a>
 							</div>
 						</div>
 						<!-- Slide #2 caption -->
@@ -37,7 +37,7 @@
 									쌀쌀한 날씨에 맞는<strong>연극추천!</strong>
 								</h2>
 								<p>계절에 맞는 연극으로 따뜻한 감성 느끼시길 바랄게요!</p>
-								<a href="#" class="btn btn-theme">지금 알아보기!</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist" class="btn btn-theme">지금 알아보기!</a>
 							</div>
 						</div>
 						<!-- Slide #3 caption -->
@@ -47,7 +47,7 @@
 									<strong>타임 특가</strong>프로모션!
 								</h2>
 								<p>타임 세일 최저가 티켓! 오직 연극어때에서만!</p>
-								<a href="#" class="btn btn-theme">지금 알아보기!</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist" class="btn btn-theme">지금 알아보기!</a>
 							</div>
 						</div>
 					</div>
