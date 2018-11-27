@@ -196,6 +196,7 @@ public class AdminPlayController {
 		model.addAttribute("key", service.psread(p_id));
 		//key 값을 key로 만들어 service.psread(p_id) 내용을 사용
 		System.out.println(service.psread(p_id));
+		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
 	}
 	
 	//일정 생성
@@ -204,21 +205,31 @@ public class AdminPlayController {
 		logger.info("psregister get.............");
 		System.out.println(sdto);
 		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
-		
+				
 	}
 	@RequestMapping(value="psregister", method=RequestMethod.POST)
-	public String psregisterPOST(ScheduleDTO sdto, RedirectAttributes rttr) throws Exception{
+	public String psregisterPOST(ScheduleDTO sdto) throws Exception{
 		logger.info("psregister post.............");
 		
 		System.out.println(sdto);
 		System.out.println(sdto.getP_id());
 		service.psregist(sdto);
-		rttr.addAttribute("msg", "success");
+//		rttr.addFlashAttribute("msg", "success");
 		
 		return "redirect:pslist?p_id="+sdto.getP_id();
 		//pslist로 이동 ->  p_id에 대하여 sdto.getP_id() 로 이동
 	}
 	
-
+	//일정 업데이트
+	
+	@RequestMapping(value="psmodify", method=RequestMethod.POST)
+	public String psmodifyPOST(ScheduleDTO sdto, RedirectAttributes rttr) throws Exception{
+		
+		service.psmodify(sdto);
+		
+		rttr.addFlashAttribute("msg", "success");
+		
+		return "redirect:pslist?p_id="+sdto.getP_id();
+	}
 
 }

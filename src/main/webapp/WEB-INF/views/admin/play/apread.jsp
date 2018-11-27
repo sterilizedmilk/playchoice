@@ -14,10 +14,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<form role="form" method="post">
-	<input type="hidden" name="p_id" value="${playDTO.p_id }">
-</form>
-
 <section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -34,7 +30,8 @@
 <div class="contanier">
 	<div class="row">
 		<div class="span6 offset3">
-			<form role="form" name="form" class="form-horizontal">
+			<form role="form" name="form" class="form-horizontal" method="post">
+			<input type="hidden" name="p_id" value="${playDTO.p_id }">
 			<div class="control-group" align="center">
 				<button type="submit" class="btn btn-warning">글 수정</button>
 				<button type="submit" class="btn btn-danger">글 내리기</button>

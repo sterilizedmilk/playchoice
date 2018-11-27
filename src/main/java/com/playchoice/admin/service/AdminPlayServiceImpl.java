@@ -59,7 +59,13 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		System.out.println("flurry service start");
 		dao.flurry(p_id);
 	}
-
+	
+	//연극 일정 수정
+	@Override
+	public void psmodify(ScheduleDTO sdto) throws Exception {
+		System.out.println("psmodify service start");
+		dao.psmodify(sdto);
+	}	
 	
 	//연극 일정 리스트 보기
 	@Override
@@ -106,4 +112,6 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		// TODO Auto-generated method stub
 		return dao.getQnaAsPlay(p_id);
 	}
+
+	
 }

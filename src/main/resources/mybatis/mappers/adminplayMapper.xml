@@ -43,7 +43,7 @@
     </update>
     
     <select id="psread" resultType="ScheduleDTO">
-    	select s_time, s_price, s_ticket, a_id1, a_id2
+    	select *
     	from schedule
     	where p_id = #{p_id}
     </select>
@@ -52,6 +52,10 @@
     	insert into schedule(p_id, s_time, s_price, s_ticket, a_id1, a_id2)
     	values(#{p_id}, #{s_time}, #{s_price}, #{s_ticket}, #{a_id1}, #{a_id2})
     </insert>
-
-    
+	
+	<update id="psmodify">
+		update schedule set s_time=#{s_time}, s_ticket=#{s_ticket}, s_price=#{s_price}, a_id1=#{a_id1}, a_id2=#{a_id2}, s_canceled=#{s_canceled}
+		where s_id=#{s_id}
+	</update>
+	
 </mapper>

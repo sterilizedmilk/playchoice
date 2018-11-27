@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="row">
 			<input type="hidden" name = "p_id" value="${param.p_id }">
-			<div class="span6 offset3">
+			<div class="span8 offset2">
 				<form role="form" method="post" class="form-horizontal" enctype="multipart/form-data">
 					<div class="control-group">
 						<label class="control-label" for="s_time">연극 시간</label>

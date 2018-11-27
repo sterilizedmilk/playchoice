@@ -8,9 +8,13 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-
 <jsp:include page="../../page/header.jsp" />
-
+<style>
+	.table select {width:100px;}
+	.table thead th {text-align:center;}
+	.table input[name='s_price'],
+	.table input[name='s_ticket'] {width:100px;}
+</style>
 <section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -23,40 +27,74 @@
 	</div>
 </section>
 
-<form role="form" method="post">
-	<input type="hidden" name="p_id" value="${param.p_id }">
-</form>
-
 <section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="span6 offset3">				
+			<div class="span12">				
 				<div class="box-footer" align="center">
-					<button type="submit" class="btn btn-primary">일정 추가 생성</button>
-					<button type="submit" class="btn btn-flurry">연극 올리기</button>
+					<button type="submit" class="btn btn-primary">일정 추가 생성</button>&nbsp;&nbsp;
+					<button type="submit" class="btn btn-flurry">연극 올리기</button>&nbsp;&nbsp;
 					<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
 					<span class="help-block"></span>
 				</div>	
 	
 			<table class="table table-hover" >
+				<thead>
+					<tr>
+						<th style="width:8%;">번호</th>
+						<th>시작시간</th>
+						<th>연극 가격</th>
+						<th>연극 총 매수</th>
+						<th style="width:12%;">배우 1</th>
+						<th style="width:12%;">배우 2</th>
+						<th style="width:12%;">연극 상태</th>
+						<th style="width:8%;">상태 버튼</th>
+					</tr>
+				</thead>
+				
 				<tbody>
-					<tr>
-						<td>연극 시작시간</td>
-						<td>연극 가격</td>
-						<td>연극 총 매수</td>
-						<td>배우 1</td>
-						<td>배우 2</td>
-					</tr>
 					<c:forEach items="${key}" var="ke">
+					<form action="${pageContext.request.contextPath}/admin/play/psmodify" method="POST">
 					<tr>
-						<td>${ke.s_time }</td>
-						<td>${ke.s_price }</td>
-						<td>${ke.s_ticket }</td>
-						<td>${ke.a_id1 }</td>
-						<td>${ke.a_id2 }</td>
+						<!-- form 안에 있어야 변수로서 사용이 가능하다 -->
+						<input type="hidden" name="p_id" value="${param.p_id }"> 
+						<td><input type="hidden" name="s_id" value="${ke.s_id }"/>${ke.s_id }</td>
+						<td>
+						<input type="text" name="s_time" value="${ke.s_time}">
+						</td>
+						<td>
+						<input type="text" name="s_price" value="${ke.s_price}">
+						</td>
+						<td>
+						<input type="text" name="s_ticket" value="${ke.s_ticket}">
+						</td>
+						<td>${ke.a_id1 }
+						<select name="a_id1">
+							<c:forEach items="${actorlist }" var="acl">
+								<option value="${acl.a_id }">${acl.a_name }</option>
+							</c:forEach>
+						</select>
+						</td>
+						<td>${ke.a_id2 }
+						<select name="a_id2">
+							<c:forEach items="${actorlist }" var="acl">
+								<option value="${acl.a_id }">${acl.a_name }</option>
+							</c:forEach>
+						</select>
+						</td>
+						<td>${ke.s_canceled }
+						<select name="s_canceled" id="">
+							<option value="0">개시</option>
+							<option value="1">내림</option>
+						</select>
+						</td>
+						<td><button type="submit">변경</button></td>
+						
 					</tr>
+					</form>
 					</c:forEach>
 				</tbody>
+				
 			</table>
 			</div>
 		</div>

@@ -61,6 +61,14 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		session.update(namespace + ".flurry", p_id);		
 	}
 	
+	//연극 일정 수정
+	@Override
+	public void psmodify(ScheduleDTO sdto) throws Exception {
+		System.out.println("psmodify dao start");
+		session.update(namespace+".psmodify", sdto);
+	}
+
+	
 	//연극 일정 리스트 보기
 	@Override
 	public List<ScheduleDTO> psread(int p_id) throws Exception {
@@ -113,4 +121,5 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		return session.selectList(namespace2+".getQnaAsPlay", p_id);
 	}
 
+	
 }

@@ -23,6 +23,8 @@ public interface AdminPlayDAO {
 	
 	public void flurry(int p_id) throws Exception;
 	
+	public void psmodify(ScheduleDTO sdto) throws Exception;
+	
 	public List<ScheduleDTO> psread(int p_id) throws Exception;
 	
 	public void pscreate(ScheduleDTO sdto) throws Exception;
