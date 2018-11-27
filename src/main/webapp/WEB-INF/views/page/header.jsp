@@ -80,7 +80,7 @@
 								</c:when>
 								<c:when test="${login.m_level == 0}">
 									<li><i class="icon-user"></i> ${login.m_id } 님</li>
-									<li><a href="${pageContext.request.contextPath}/member/view">마이페이지</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/view">MY PAGE</a></li>
 									<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</c:when>
 								<c:when test="${login.m_level eq 1}">
