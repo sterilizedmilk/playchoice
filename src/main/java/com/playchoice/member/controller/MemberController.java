@@ -140,10 +140,10 @@ public class MemberController {
 	// 아이디 찾기 처리
 	@RequestMapping(value = "findId", method = RequestMethod.POST)
 	public String findIdGo(@ModelAttribute MemberDTO dto, Model model) {
-		if (memberService.findId(dto).equals("fail")) {
+		if (memberService.findId(dto).equals("fail")) { // 일치하는 아이디가 없는 경우
 			model.addAttribute("msg", "일치하는 아이디가 없습니다.");
 			model.addAttribute("url", "login");
-			return "member/loginAlert";
+			return "member/findId";
 		} else {
 			model.addAttribute("m_id", memberService.findId(dto));
 			return "member/findIdResult";
@@ -160,10 +160,10 @@ public class MemberController {
 	@RequestMapping(value = "findPw", method = RequestMethod.POST)
 	public String findPwGo(@ModelAttribute MemberDTO dto, Model model) {
 		String res = memberService.findPw(dto);
-		if (res.equals("fail")) {
+		if (res.equals("fail")) { // 일치하는 아이디가 없는 경우
 			model.addAttribute("msg", "아이디 또는 이메일을 다시 확인하세요.");
 			model.addAttribute("url", "login");
-			return "member/loginAlert";
+			return "member/findPw";
 		} else {
 			model.addAttribute("m_pw", res);
 			return "member/findPwResult";

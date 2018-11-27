@@ -7,10 +7,10 @@
 
 <jsp:include page="../page/header.jsp" />
 <style>
-	.form-horizontal {padding:20px 10px;}
+	.form-horizontal { padding:20px 10px;}
 	.form-horizontal .control-label { width: 100px;}
 	.form-horizontal .controls { margin-left: 120px;}
-	.form-horizontal .controls input {width: 250px; margin-right: 10px;}
+	.form-horizontal .controls input { width: 250px; margin-right: 10px;}
 	.form-horizontal .button-group { margin-top: 20px;}
 </style>
 
@@ -38,10 +38,10 @@
 			<div class="span6 offset3">
 				<!-- <h2 class="text-center">회원 가입</h2> -->
 				<form id="insertForm" name="insertForm" method="post" class="form-horizontal">
-					<div class="control-group">
+					<div class="control-group" style="height: 40px;">
 						<label class="control-label" for="m_id">아이디</label> 
 						<div class="controls">
-							<input type="text" name="m_id" id="m_id" placeholder="아이디">
+							<input type="text" name="m_id" id="m_id" placeholder="아이디" required="required">
 							<button type="button" class="btn btn-primary" id="confirmBtn">중복체크</button>
 							<span class="help-block"></span>
 						</div>
@@ -55,14 +55,14 @@
 					<div class="control-group">
 						<label class="control-label" for="m_pw">비밀번호</label>
 						<div class="controls">
-							<input type="password" name="m_pw" id="m_pw" placeholder="비밀번호">
+							<input type="password" name="m_pw" id="m_pw" placeholder="비밀번호" required="required">
 							<span class="help-block"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="m_pwCheck">비밀번호 확인</label>
 						<div class="controls">
-							<input type="password" name="m_pwCheck" id="m_pwCheck" placeholder="비밀번호 확인">
+							<input type="password" name="m_pwCheck" id="m_pwCheck" placeholder="비밀번호 확인" required="required">
 							<span class="help-block"></span>
 						</div>
 					</div>
@@ -73,14 +73,14 @@
 					<div class="control-group">
 						<label class="control-label" for="m_name">이름</label>
 						<div class="controls">
-							<input type="text" name="m_name" id="m_name" placeholder="이름">
+							<input type="text" name="m_name" id="m_name" placeholder="이름" required="required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" style="height: 40px;">
 						<label class="control-label" for="m_mail">이메일</label>
 						<div class="controls">
-							<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일">
+							<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일" required="required">
 							<button type="button" class="btn btn-primary" id="confirmMailBtn">중복체크</button>
 							<span class="help-block"></span>
 						</div>
@@ -98,10 +98,12 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="button-group pull-right">
-						<button type="submit" class="btn btn-success btn-large" id="submit">확인</button>
-						<button type="reset" class="btn btn-danger btn-large">취소</button>
-						<button onclick="history.go(-1)" class="btn btn-primary btn-large">뒤로</button>
+					<div class="control-group">
+						<div class="controls pull-right">
+							<button type="submit" class="btn btn-success" id="submit">확인</button>
+							<button type="reset" class="btn btn-danger">취소</button>
+							<!-- <button onclick="history.go(-1)" class="btn btn-primary btn-large">뒤로</button> -->
+						</div>
 					</div>
 				</form><!-- / 콘텐츠 부분 -->
 			</div><!-- /.span12 -->

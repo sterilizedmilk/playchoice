@@ -33,35 +33,37 @@
 			<div class="row">
 				<div class="span8">
 					<form name="updateForm" method="post">
-						<div class="form-group">
-							<label for="m_id">아이디</label> <input type="text"
-								class="form-control" name="m_id" id="m_id" value="${dto.m_id}"
-								readonly="readonly">
+						<div class="control-group">
+							<label class="control-label" for="m_id">아이디</label>
+							<div class="controls">
+								<%-- <input type="text" class="form-control" name="m_id" id="m_id" value="${dto.m_id}" readonly="readonly"> --%>
+								<p class="form-control-static" style="margin-bottom: 20px;">${dto.m_id }</p>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="m_pw">비밀번호</label> <input type="password"
+						<div class="control-group">
+							<label class="control-label" for="m_pw">비밀번호</label> <input type="password"
 								class="form-control" name="m_pw" id="m_pw" placeholder="비밀번호"
 								required="required">
 						</div>
-						<div class="form-group">
-							<label for="m_name">이름</label> <input type="text"
+						<div class="control-group">
+							<label class="control-label" for="m_name">이름</label> <input type="text"
 								class="form-control" name="m_name" id="m_name" placeholder="이름"
 								value="${dto.m_name}" required="required">
 						</div>
-						<div class="form-group">
-							<label for="m_mail">이메일</label> <input type="email"
+						<div class="control-group">
+							<label class="control-label" for="m_mail">이메일</label> <input type="email"
 								class="form-control" name="m_mail" id="m_mail" placeholder="이메일"
 								value="${dto.m_mail}" required="required">
 						</div>
-						<div class="form-group">
-							<label for="m_phone">연락처</label> <input type="text"
+						<div class="control-group">
+							<label class="control-label" for="m_phone">연락처</label> <input type="text"
 								class="form-control" name="m_phone" id="m_phone"
 								placeholder="연락처" value="${dto.m_phone}">
 						</div>
-						<div class="button-group">
+						<div class="control-group button-group pull-right">
 							<button type="button" class="btn btn-success" id="updateBtn">확인</button>
 							<button type="reset" class="btn btn-danger">취소</button>
-							<button onclick="history.go(-1)" class="btn btn-primary">뒤로</button>
+							<!-- <button onclick="history.go(-1)" class="btn btn-primary">뒤로</button> -->
 						</div>
 					</form>
 				</div><!-- /.span8 -->

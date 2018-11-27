@@ -6,23 +6,60 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="../page/header.jsp" />
+<style>
+	.form-horizontal { padding:20px 10px;}
+	.form-horizontal .control-label { width: 100px;}
+	.form-horizontal .controls { margin-left: 120px;}
+	.form-horizontal .controls input { width: 300px; margin-right: 10px;}
+	.form-horizontal .button-group { margin-top: 40px; margin-bottom: 0;}
+</style>
 
-<div class="container">
-	<h2>비밀번호 찾기</h2>
-	<form action="findPw" method="post">
-		<div class="form-group">
-			<label for="m_id" class="sr-only">아이디</label>
-			<input type="text" id="m_id" name="m_id" class="form-control" placeholder="아이디 입력" required autofocus>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="span4">
+				<div class="inner-heading">
+					<h2>비밀번호 찾기</h2>
+				</div>
+			</div>
+			<div class="span8">
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i><i class="icon-angle-right"></i></li>
+					<li>로그인<i class="icon-angle-right"></i></li>
+					<li>비밀번호 찾기</li>
+				</ul>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="m_mail">이메일</label>
-			<input type="text" id="m_mail" name="m_mail" class="form-control" placeholder="이메일 입력" required>
+	</div>
+</section>
+
+<section id="content">
+	<div class="container">
+		<!-- <h2>비밀번호 찾기</h2> -->
+		<div class="row">
+			<div class="span6 offset3">
+				<form action="findPw" method="post" class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="m_id" class="sr-only">아이디</label>
+						<div class="controls">
+							<input type="text" id="m_id" name="m_id" placeholder="아이디" required autofocus>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="m_mail">이메일</label>
+						<div class="controls">
+							<input type="text" id="m_mail" name="m_mail" placeholder="이메일" required>
+						</div>
+					</div>
+					<div class="control-group text-center" style="color: red;">${msg }</div><!-- 불일치 문구 -->
+					<div class="control-group button-group">
+						<button class="btn btn-lg btn-success btn-block" id="findIdBtn" type="submit">비밀번호 찾기</button>
+						<button class="btn btn-lg btn-inverse btn-block" onclick="history.go(-1)">뒤로가기</button>
+					</div>
+				</form>
+			</div>
 		</div>
-		<div class="form-group">
-			<button class="btn btn-lg btn-submit btn-block" id="findIdBtn" type="submit">비밀번호 찾기</button>
-			<button class="btn btn-lg btn-primary btn-block" onclick="history.go(-1)">뒤로가기</button>
-		</div>
-	</form>
-</div>
+	</div>
+</section>
 
 <jsp:include page="../page/footer.jsp" />
