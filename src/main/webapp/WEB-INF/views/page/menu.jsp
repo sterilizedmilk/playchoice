@@ -23,11 +23,21 @@
 								<strong>지역</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ init_g}">전체보기</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ menudto.g_id}">전체보기</a>
 							</td>
+							<%-- <td>아이디 번호 : ${ playMenu.a_id}</td>
+							 --%>
 							<c:forEach items="${area}" var="area" varStatus="status">
 								<td>
-									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ init_g}">${ area.a_name}</a>
+									<%-- 		<c:choose>
+										<c:when test="">
+										</c:when>
+										<c:otherwise>
+							 --%>
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ menudto.g_id}">${ area.a_name}</a>
+									<%-- 		</c:otherwise>
+									</c:choose>
+								 --%>
 								</td>
 							</c:forEach>
 						</tr>
@@ -38,11 +48,11 @@
 								<strong>장르</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ init_a}&g_id=0">전체보기</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=0">전체보기</a>
 							</td>
 							<c:forEach items="${genre}" var="genre" varStatus="status">
 								<td>
-									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ init_a}&g_id=${ genre.g_id}">${ genre.g_name } </a>
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ genre.g_id}">${ genre.g_name } </a>
 								</td>
 							</c:forEach>
 							<td></td>

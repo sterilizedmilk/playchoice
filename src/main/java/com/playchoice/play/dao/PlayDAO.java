@@ -6,12 +6,16 @@ import java.util.List;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.dto.PlayshowDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
 public interface PlayDAO {
 	// 연극 전체 리스트
 	public List<PlayDTO> playList();
+
+	// 연극 목록 (장르와 지역 구분)
+	public List<PlayDTO> playList(PlayMenuDTO menudto);
 
 	// 연극 detail
 	public PlayDTO playDetail(int p_id);

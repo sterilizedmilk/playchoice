@@ -6,11 +6,15 @@ import java.util.List;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.dto.PlayshowDTO;
 
 public interface PlayService {
 	// 연극 목록
 	public List<PlayDTO> playList() throws Exception;
+
+	// 연극 목록 (장르와 지역 구분)
+	public List<PlayDTO> playList(PlayMenuDTO menudto);
 
 	// 연극 상세
 	public PlayDTO playDetail(int p_id) throws Exception;

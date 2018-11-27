@@ -15,6 +15,26 @@
 		GROUP BY play.p_id
 	</select>
 
+	<select id="playListFilter" resultType="PlayDTO"
+		parameterType="PlayMenuDTO">
+		SELECT play.*,
+		min(`schedule`.s_price) AS lowest_price
+		FROM play,
+		`schedule`
+		WHERE
+		play.p_id = `schedule`.p_id
+		<if test="a_id != 0 ">
+			AND play.a_id =
+			#{a_id}
+		</if>
+		<if test="g_id!= 0 ">
+			AND play.g_id =
+			#{g_id}
+		</if>
+		AND play.p_status = '1'
+		GROUP BY
+		play.p_id
+	</select>
 
 	<select id="playRankList" resultType="PlayDTO">
 		SELECT * FROM

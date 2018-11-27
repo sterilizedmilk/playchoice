@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.dto.PlayshowDTO;
 import com.playchoice.play.dto.SearchPlayDTO;
 
@@ -24,6 +25,13 @@ public class PlayDAOImpl implements PlayDAO {
 	@Override
 	public List<PlayDTO> playList() {
 		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playList");
+		return dto;
+	}
+
+	@Override
+	public List<PlayDTO> playList(PlayMenuDTO menudto) {
+		// TODO Auto-generated method stub
+		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playListFilter", menudto);
 		return dto;
 	}
 
@@ -115,4 +123,5 @@ public class PlayDAOImpl implements PlayDAO {
 		List<GenreDTO> dto = sqlSession.selectList(namespace + ".genrelist");
 		return dto;
 	}
+
 }

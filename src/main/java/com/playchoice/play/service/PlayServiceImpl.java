@@ -12,6 +12,7 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dao.PlayDAOImpl;
 import com.playchoice.play.dto.PlayDTO;
+import com.playchoice.play.dto.PlayMenuDTO;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -26,6 +27,12 @@ public class PlayServiceImpl implements PlayService {
 	public List<PlayDTO> playList() throws Exception {
 
 		return playDao.playList();
+	}
+
+	@Override
+	public List<PlayDTO> playList(PlayMenuDTO menudto) {
+		// TODO Auto-generated method stub
+		return playDao.playList(menudto);
 	}
 
 	@Override
