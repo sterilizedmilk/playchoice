@@ -11,42 +11,57 @@
 
 <jsp:include page="../../page/header.jsp" />
 
-<h2 align="center">연극 일정 보기</h2>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div>
+				<div class="inner-heading">
+					<h2>${param.p_id }번 연극 일정 보기</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <form role="form" method="post">
 	<input type="hidden" name="p_id" value="${param.p_id }">
 </form>
 
-<div class="box-footer" align="center">
-	<button type="submit" class="btn btn-primary">일정 추가 생성</button>
-	<button type="submit" class="btn btn-flurry">연극 올리기</button>
-	<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
-</div>
-
-<h3 align="center">연극 번호 : ${param.p_id }</h3>
-<div class="container" align="center">
-	<div class="row">
-		<table border="">
-			<tbody>
-			<tr>
-			<td>연극 시작시간</td>
-			<td>연극 가격</td>
-			<td>연극 총 매수</td>
-			<td>배우 1</td>
-			<td>배우 2</td>
-			</tr>
-			<c:forEach items="${key}" var="ke">
-				<tr>
-					<td>${ke.s_time }</td>
-					<td>${ke.s_price }</td>
-					<td>${ke.s_ticket }</td>
-					<td>${ke.a_id1 }</td>
-					<td>${ke.a_id2 }</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+<section id="content">
+	<div class="container">
+		<div class="row">
+			<div class="span6 offset3">				
+				<div class="box-footer" align="center">
+					<button type="submit" class="btn btn-primary">일정 추가 생성</button>
+					<button type="submit" class="btn btn-flurry">연극 올리기</button>
+					<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
+					<span class="help-block"></span>
+				</div>	
+	
+			<table class="table table-hover" >
+				<tbody>
+					<tr>
+						<td>연극 시작시간</td>
+						<td>연극 가격</td>
+						<td>연극 총 매수</td>
+						<td>배우 1</td>
+						<td>배우 2</td>
+					</tr>
+					<c:forEach items="${key}" var="ke">
+					<tr>
+						<td>${ke.s_time }</td>
+						<td>${ke.s_price }</td>
+						<td>${ke.s_ticket }</td>
+						<td>${ke.a_id1 }</td>
+						<td>${ke.a_id2 }</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			</div>
+		</div>
 	</div>
-</div>
+</section>
 
 <script>
 	var result = "${msg}";
@@ -72,3 +87,5 @@
 		});
 	});
 </script>
+
+<jsp:include page="../../page/footer.jsp" />

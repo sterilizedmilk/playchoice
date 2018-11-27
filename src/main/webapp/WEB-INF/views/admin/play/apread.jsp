@@ -7,64 +7,102 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="../../page/header.jsp" />
+<jsp:include page="adminheader.jsp" />
 
 <!DOCTYPE html>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<h2 align="center">연극 세부정보</h2>
 <form role="form" method="post">
 	<input type="hidden" name="p_id" value="${playDTO.p_id }">
 </form>
 
-<div class="box-footer" align="center">
-	<button type="submit" class="btn btn-warning">글 수정</button>
-	<button type="submit" class="btn btn-danger">글 삭제</button>	
-	<button type="submit" class="btn btn-primary">목록으로</button>
-	<button type="submit" class="btn btn-pslist">일정 보기</button>
-</div>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div>
+				<div class="inner-heading">
+					<h2>연극 세부정보</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-<div class="box-body" align="center">
-	<div class="form-group">
-		<label for="exampleInputEmail1">글 번호</label>
-		<input type="text" name="number" class="form-control" value="${playDTO.p_id }" readonly="readonly">
-	
-		<label for="exampleInputEmail1">글 제목</label>
-		<input type="text" name="title" class="form-control" value="${playDTO.p_name }" readonly="readonly">
-	</div>
-	<div class="form-group">
-		<label for="exampleInputPassword1">글 내용</label>
-		<textarea style="width: 50%; height: 300px" readonly="readonly">${playDTO.p_info }</textarea>
-	</div>
-	<div class="form-group">
-		<label for="exampleInputPassword1">환불 규정</label>
-		<textarea style="width: 50%; height: 300px" readonly="readonly">${playDTO.p_refund_policy }</textarea>
-	</div>
-	
-	<div><label for="exampleInputEmail1">대표 포스터</label>
-	</div>
-	<div class="form-group">		
-		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image0 }">
-		
-	</div>
-	<div><label>메인 썸네일 포스터</label></div>
-	<div>
-		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image1 }">
-	</div>
-	<div><label for="exampleInputEmail1">내용 포스터</label>
-	</div>
-	<div>
-		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }"><br/>
-		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image3 }"><br/>
-		<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image4 }">
-	</div>
-	<div class="form-group">
-		<label for="exampleInputEmail1">찾아오시는길(상세보기)</label>
-		<input type="text" name="location" class="form-control" value="${playDTO.p_location }" readonly="readonly">
+<section id="content">
+<div class="contanier">
+	<div class="row">
+		<div class="span6 offset3">
+			<form role="form" name="form" class="form-horizontal">
+			<div class="control-group" align="center">
+				<button type="submit" class="btn btn-warning">글 수정</button>
+				<button type="submit" class="btn btn-danger">글 내리기</button>
+				<button type="submit" class="btn btn-pslist">일정 보기</button>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="p_id">글 번호</label>
+				<div class="controls">
+					<input type="text" name="p_id" id="p_id" value="${playDTO.p_id }" readonly="readonly">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control_group">
+				<label class="control-label" for="p_name">글 제목</label>
+				<div class="controls">
+					<input type="text" name="p_name" id="p_name" value="${playDTO.p_name }" readonly="readonly">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control_group">
+				<label class="control-label" for="p_info">글 내용</label>
+				<div class="controls">
+					<textarea style="width: 100%; height: 300px" readonly="readonly">${playDTO.p_info }</textarea>
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="p_refund_policy">환불 규정</label>
+				<div class="controls">
+					<textarea style="width: 100%; height: 300px" readonly="readonly">${playDTO.p_refund_policy }</textarea>
+					<span class="help-block"></span>
+				</div>
+			</div>
+			
+			<div class="control-group">
+			<label class="control-label" for="p_image0">대표 포스터의 썸네일</label>
+				<div class="controls">		
+					<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${playDTO.p_image0 }">
+					<span class="help-block"></span>	
+				</div>
+			</div>
+			<div class="control-group">
+			<label class="control-label" for="p_image1">메인 썸네일 포스터</label>
+				<div class="controls">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image1 }">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+			<label class="control-label" for="image">대표포스터 및 내용 포스터</label>
+				<div class="controls">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image0 }"><span class="help-block"></span>
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }"><span class="help-block"></span>
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image3 }"><span class="help-block"></span>
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image4 }"><span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="p_location">찾아오시는길(상세보기)</label>
+				<input type="text" name="p_location" id="p_location" value="${playDTO.p_location }" readonly="readonly">
+				<span class="help-block"></span>
+			</div>
+			</form>
+		</div>
 	</div>
 </div>
-
+</section>
 <script>
 	$(document).ready(function(){
 		var formObj = $("form[role='form']");
@@ -79,13 +117,12 @@
 		$(".btn-danger").on("click", function(){
 			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/remove");
 			formObj.submit();
-		});		
-		$(".btn-primary").on("click", function(){
-			self.location="${pageContext.request.contextPath}/admin/play/aplist";
-		});
+		});	
 		$(".btn-pslist").on("click", function(){
-			
-			self.location="${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}";
+			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}");
+			//self.location="${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}";
 		});
 	});
 </script>
+
+<jsp:include page="../../page/footer.jsp" />

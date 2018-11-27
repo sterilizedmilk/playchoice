@@ -11,55 +11,75 @@
 
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<%-- <link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
-	rel="stylesheet" /> --%>
 
 <title>Insert title here</title>
 
-<h2 align="center">연극 일정 추가</h2>
-<div class="container" align="center">
-	<div class="row">
-		<form role="form" method="post" enctype="multipart/form-data">
-<input type="hidden" name = "p_id" value="${param.p_id }">
-	<div class="box-body">
-		<div>
-			<label for = "exampleInputEmail1">연극 시간</label>
-			<input type="text" name = "s_time" class="form-contorl" placeholder="Enter time">
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div>
+				<div class="inner-heading">
+					<h2>연극 일정 추가</h2>
+				</div>
+			</div>
 		</div>
-		<div>
-			<label for = "exampleInputEmail1">연극 가격</label>
-			<input type="text" name = "s_price" class="form-contorl" placeholder="Enter price">
-		</div>
-		<div>
-			<label for = "exampleInputEmail1">최대 티켓 수</label>
-			<input type="text" name = "s_ticket" class="form-contorl" placeholder="Enter ticket">
-		</div>
-		<div>
-		<label>배우 1</label>
-		<select name="a_id1">
-		<c:forEach items="${actorlist }" var="acl">
-			<option value="${acl.a_id }">${acl.a_name }</option>
-		</c:forEach>
-		</select>
-		</div>
-		<div>
-		<label>배우 2</label>
-		<select name="a_id2">
-		<c:forEach items="${actorlist }" var="acl">
-			<option value="${acl.a_id }">${acl.a_name }</option>
-		</c:forEach>
-		</select>
-		</div>
-		<div>
-		
 	</div>
-	<div class="box-footer">
-		<button type="submit" class="btn btn-primary">일정 추가</button>
-		<input type="button" onclick="history.go(-1)" value="취소"/>
-	</div>
-	</div>
-	</form>
-	</div>
-</div>
+</section>
 
+<section class="content">
+	<div class="container">
+		<div class="row">
+			<input type="hidden" name = "p_id" value="${param.p_id }">
+			<div class="span6 offset3">
+				<form role="form" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div class="control-group">
+						<label class="control-label" for="s_time">연극 시간</label>
+						<div class="controls">
+							<input type="text" name = "s_time" id="s_time" placeholder="Enter time">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="s_price">연극 가격</label>
+						<div class="controls">
+							<input type="text" name = "s_price" id="s_pirce" placeholder="Enter price">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="p_id">최대 티켓 수</label>
+						<div class="controls">
+							<input type="text" name = "s_ticket" id="s_pirce" placeholder="Enter ticket">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="p_id">배우 1</label>
+						<div class="controls">
+							<select name="a_id1">
+							<c:forEach items="${actorlist }" var="acl">
+								<option value="${acl.a_id }">${acl.a_name }</option>
+							</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="p_id">배우 2</label>
+						<div class="controls">
+							<select name="a_id2">
+							<c:forEach items="${actorlist }" var="acl">
+								<option value="${acl.a_id }">${acl.a_name }</option>
+							</c:forEach>
+							</select>
+						</div>
+					</div>
+					
+					<div class="control-group" align="center">
+						<button type="submit" class="btn btn-primary">일정 추가</button>
+						<input type="button" onclick="history.go(-1)" value="취소"/>
+					</div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<jsp:include page="../../page/footer.jsp" />

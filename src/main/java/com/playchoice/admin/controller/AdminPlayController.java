@@ -47,15 +47,40 @@ public class AdminPlayController {
 	
 	//리스트
 	@RequestMapping(value="aplist", method=RequestMethod.GET)
-	public void listAll(Model model, HttpSession session) throws Exception{
+	public String listAll(Model model, HttpSession session) throws Exception{
 		logger.info("list all show....................");
 		
 		//session login 정보 가져옴 / list로 불러온것을 객체 res에 저장
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
-		Object res = service.listAll(user);
+		
+		
+		//세션 체크해서 level 이 1이 아닐시 list가 보이지 않게 설정.,.. 단 DB에는 값이 입력되므로 수정 요망
+		if(user != null) {
+			int level = user.getM_level();
+			if(level == 1) {
+				Object res = service.listAll(user);
+				
+				model.addAttribute("list", res); //res 와 list 보냄
+				return "/admin/play/aplist";
+			}else {
+				model.addAttribute("msg", "NotAuth"); //접근된 사용자가 아닙니다.
+				return "redirect:/";
+			}
+		}else {
+			
+//			model.addAttribute("msg", "로그인을 해야 합니다.");
+//			model.addAttribute("url", "/login");
+//			return "redirect:/member/loginAlert";
+			
+			model.addAttribute("msg", "Login"); //로그인을 해야 합니다.
+			return "redirect:/member/login";
+		}
+		
+		/*Object res = service.listAll(user);
 		
 //		System.out.println(res);
-		model.addAttribute("list", res); //res 와 list 보냄
+		model.addAttribute("list", res); //res 와 list 보냄	
+*/	
 	}
 	
 	//조회
@@ -120,18 +145,24 @@ public class AdminPlayController {
 	@RequestMapping(value="modify", method=RequestMethod.POST)
 	public String modifyPOST(PlayDTO dto,
 			MultipartHttpServletRequest request, RedirectAttributes rttr) throws Exception{
+		
 		logger.info("mod post............");
 		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
 		FileService fs = new FileService(request);
 		
 		//이미지 생성 및 이미지 체크
-		dto.setP_image0(fs.imageUpload(dto.getP_image().get(0)));
+		String th = fs.imageUpload(dto.getP_image().get(0));
+		System.out.println("th:"+th);
+		dto.setP_image0(th);
+		
 		dto.setP_image1(fs.imageUpload(dto.getP_image().get(1)));
 		dto.setP_image2(fs.imageUpload(dto.getP_image().get(2)));
 		dto.setP_image3(fs.imageUpload(dto.getP_image().get(3)));
 		dto.setP_image4(fs.imageUpload(dto.getP_image().get(4)));
 		
-		
+		if(th != null) {
+			fs.setThumb(th);
+		}
 		service.modify(dto);
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/play/aplist";
