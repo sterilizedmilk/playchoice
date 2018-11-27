@@ -59,10 +59,10 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${appearDTO}" var="appear" varStatus="status">
-							<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 180px; height: 320px;">
+							<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 200px; height: 360px;">
 								<div>
 									<a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">
-										<img src="${pageContext.request.contextPath}/resources/img/play/${appear.p_image0 }">
+										<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${appear.p_image0 }"  width="200px">
 									</a>
 								</div>
 								<div>

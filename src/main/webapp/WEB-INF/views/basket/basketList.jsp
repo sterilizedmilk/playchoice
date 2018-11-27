@@ -51,12 +51,12 @@
 									<tbody>
 										<c:forEach var="result" items="${list }" varStatus="status">
 											<tr>
-												<td></td>
-												<td><a
+												<td><img src="${pageContext.request.contextPath}/resources/img/play/thumb_${result.p_image0}" width="200px"></td>
+												<td style="line-height: 250px;"><a
 													href="${pageContext.request.contextPath}/play/playdetail?p_id=${result.p_id}">${result.p_name }</a></td>
-												<td>${genreMap.get(result.g_id) }</td><!-- map.get()대신에 ${genreMap[result.g_id]}으로도 가능 -->
-												<td>${result.p_info }</td>
-												<td><a
+												<td style="line-height: 250px;">${genreMap.get(result.g_id) }</td><!-- map.get()대신에 ${genreMap[result.g_id]}으로도 가능 -->
+												<td style="line-height: 250px;">${result.p_info }</td>
+												<td style="line-height: 250px;"><a
 													href="${pageContext.request.contextPath}/basket/delete?p_id=${result.p_id}"
 													class="btn btn-danger" title="찜한 연극 삭제">삭제</a></td>
 											</tr>
