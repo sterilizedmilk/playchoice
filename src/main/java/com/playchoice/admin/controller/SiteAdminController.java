@@ -59,7 +59,7 @@ public class SiteAdminController {
 		Object obj = adminService.searchMember(search);
 
 		model.addAttribute("memberlist", obj);
-		return "admin/site/member/common";
+		return "admin/site/member/search";
 	}
 	
 	@RequestMapping("member/detail")

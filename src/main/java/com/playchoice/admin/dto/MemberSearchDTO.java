@@ -58,7 +58,7 @@ public class MemberSearchDTO {
 	}
 	
 	public void setPage(Integer page) {
-		if (page == null)
+		if (page == null || page < 1)
 			page = 1;
 		
 		start = (page - 1) * 10;

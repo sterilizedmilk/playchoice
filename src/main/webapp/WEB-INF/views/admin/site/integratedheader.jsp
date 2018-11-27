@@ -11,7 +11,7 @@
 							<li><a href="${pageContext.request.contextPath}/admin/site/actor/common">배우관리</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/site/area">지역관리</a></li>         
 							<li><a href="${pageContext.request.contextPath}/admin/site/genre">장르관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/site/play/common">TODO: 정산</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/site/paymentList">정산</a></li>
 						</ul>
 					</nav>
 					<div class="span12">

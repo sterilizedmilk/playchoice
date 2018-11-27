@@ -12,6 +12,18 @@
 		<div class="row">
 			<div class="span8">
 				<h4>멤버관리페이지</h4>
+				
+				<div>
+					<form action="">
+						m_code<input type="number" name="code" value="${param.code}"><br>
+						m_level<input type="number" name="level" value="${param.level}"><br>
+						m_status<input type="number" name="status" value="${param.status}"><br>
+						m_id<input type="text" name="id" value="${param.id}"><br>
+						m_name<input type="text" name="name" value="${param.name}"><br>
+						page<input type="number" name="page" value="${param.page}"><br>
+						<button class="btn btn-primary btn-small">상세 검색</button>
+					</form>
+				</div>
 
 				<table class="table table-striped" border="">
 					<thead>
@@ -44,10 +56,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<button class="btn btn-primary btn-small"
-						onclick="location.href='${pageContext.request.contextPath}/admin/site/member/search'">
-						상세 검색</button><br>
-				
 			</div>
 		</div>
 	</div>

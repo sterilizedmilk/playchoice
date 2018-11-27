@@ -40,30 +40,37 @@
 
 </script>
 
-</head>
 
-<jsp:include page="integratedheader.jsp" />
-	<h2>Genre Management</h2>
+<div class="container">
+	<div class="row">
+		<!-- Default table -->
+		<div class="row">
+			<div class="span8">
+				<jsp:include page="integratedheader.jsp" />
+				<h2>Genre Management</h2>
 
 
-	<table border="1">
-		<thead>
-			<tr>
-				<th>genre id</th>
-				<th>name</th>
-				<th>delete</th>
-			</tr>
-		</thead>
-		<c:forEach var="genre" items="${genreList}">
-			<tr>
-				<td>${genre.g_id}</td>
-				<td>${genre.g_name}</td>
-				<td><button onclick="updateGenre(${genre.g_id})">수정</button></td>
-			</tr>
-		</c:forEach>
-	</table>
-	새 장르
-	<form id="addGenre" onsubmit="return addGenre();">
-		<input type="text" name="g_name">
-		<input type="submit">
-	</form>
+				<table class="table table-striped" border="1">
+					<thead>
+						<tr>
+							<th>genre id</th>
+							<th>name</th>
+							<th>delete</th>
+						</tr>
+					</thead>
+					<c:forEach var="genre" items="${genreList}">
+						<tr>
+							<td>${genre.g_id}</td>
+							<td>${genre.g_name}</td>
+							<td><button class="btn btn-primary btn-small" onclick="updateGenre(${genre.g_id})">수정</button></td>
+						</tr>
+					</c:forEach>
+				</table>
+				새 장르
+				<form id="addGenre" onsubmit="return addGenre();">
+					<input type="text" name="g_name"> <input class="btn btn-primary btn-small" type="submit">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
