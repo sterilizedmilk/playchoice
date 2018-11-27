@@ -50,7 +50,7 @@
 									<td colspan="6">
 										<a href="detail?a_id=${dd.a_id }">${dd.a_title }</a>
 									</td>
-									<td>${login.m_id }</td>
+									<td>${dd.m_id }</td>
 									<td>${dd.a_time }</td>
 									<c:choose>
 										<c:when test="${dd.a_comment eq 1}">

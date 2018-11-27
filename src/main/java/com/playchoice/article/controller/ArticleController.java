@@ -102,13 +102,13 @@ public class ArticleController {
 		// 댓글
 		case "comment":
 			ReplyDTO reDto = new ReplyDTO();
+			reDto.setRe_comment(dto.getA_comment());
 			if (dto.getM_level().equals(2))
 				dto.setA_comment("1");
 			else
 				dto.setA_comment("0");
 
 			reDto.setA_id(dto.getA_id());
-			reDto.setRe_comment(dto.getA_comment());
 
 			res = dao.commentOne(reDto, dto);
 			status.setMsg("댓글이 입력되었습니다.");
