@@ -14,5 +14,11 @@ public interface ReviewService {
 	List<ActorDTO> actorInfo(PaymentDTO dto);
 
 	int regReview(ReviewDTO dto);
+	
+	/**
+	 * @param m_code member code
+	 * @param p_id payment id
+	 */
+	boolean canWriteReview(int m_code, int p_id);
 
 }

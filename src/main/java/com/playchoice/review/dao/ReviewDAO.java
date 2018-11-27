@@ -13,5 +13,7 @@ public interface ReviewDAO {
 	List<ActorDTO> actorInfo(PaymentDTO dto);
 	
 	int regReview(ReviewDTO dto);
+	
+	ReviewDTO getReview(int m_code, int s_id);
 
 }

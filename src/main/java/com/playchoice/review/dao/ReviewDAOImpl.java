@@ -1,6 +1,8 @@
 package com.playchoice.review.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int regReview(ReviewDTO dto) {
 		// TODO Auto-generated method stub
 		return session.insert(namespace+".regReview", dto);
+	}
+
+	@Override
+	public ReviewDTO getReview(int m_code, int s_id) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("m_code", m_code);
+		map.put("s_id", s_id);
+		return session.selectOne(namespace + ".getReview", map);
 	}
 	
 	

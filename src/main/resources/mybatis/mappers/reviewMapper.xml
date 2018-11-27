@@ -28,4 +28,12 @@
 		INSERT INTO review(m_code, s_id, r_content, r_play_score, r_actor1_score, r_actor2_score)
 		VALUES (#{m_code}, #{s_id}, #{r_content}, #{r_play_score}, #{r_actor1_score}, #{r_actor2_score})
 	</insert>
+	
+	<select id="getReview" resultType="ReviewDTO">
+		SELECT *
+		FROM review
+		WHERE m_code = #{m_code}
+		AND s_id = #{s_id}
+	</select>
+	
 </mapper>
