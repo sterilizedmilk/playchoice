@@ -18,6 +18,7 @@ import com.playchoice.payment.dto.PaymentSearchDTO;
 import com.playchoice.payment.service.PaymentService;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.service.PlayService;
+import com.playchoice.review.service.ReviewService;
 import com.playchoice.schedule.dto.ScheduleDTO;
 import com.playchoice.schedule.service.ScheduleService;
 
@@ -32,6 +33,9 @@ public class PaymentController {
 	
 	@Autowired
 	private PlayService playService;
+	
+	@Autowired
+	private ReviewService reviewService;
 
 	@RequestMapping(value = "play/payment", method = RequestMethod.POST)
 	public String paymentController(Model model,
@@ -143,7 +147,7 @@ public class PaymentController {
 		switch (level) {
 		case 0:
 			model.addAttribute("refund", -service.refund(payment));
-			model.addAttribute("scheduleEnded", schedule.getS_time().compareTo(new Date()) <= 0);
+			model.addAttribute("canReview", reviewService.canWriteReview(user.getM_code(), payment.getP_id()));
 			return "payment/memberInfo";
 		case 1:
 		case 2:

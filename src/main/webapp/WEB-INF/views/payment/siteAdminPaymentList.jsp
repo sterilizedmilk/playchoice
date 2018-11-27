@@ -62,7 +62,7 @@
 							<td>${pay.p_price}</td>
 							<td>${pay.p_quantity}</td>
 							<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
-							<td>${pay.p_canceled == 1 ? '취소됨' : pay.p_cancel_target_id == 0 ? '' : '환불'}</td>
+							<td>${pay.p_canceled == 1 ? '환불됨' : pay.p_cancel_target_id == 0 ? '' : '환불결제'}</td>
 							<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >정보</button></td>
 						</tr>
 					</c:forEach>

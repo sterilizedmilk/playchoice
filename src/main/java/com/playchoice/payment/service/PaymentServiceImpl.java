@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
 		long today = System.currentTimeMillis() / 86400000;
 		int diff = (int) (showDay - today);
 
-		if (dto.getP_canceled() == 1 || diff <= 0)
+		if (dto.getP_canceled() == 1 || diff <= 0 || dto.getP_cancel_target_id() != 0)
 			return 0; // 환불 불가
 
 		int refund = 0;
