@@ -37,11 +37,7 @@ public class ReviewController {
 	
 	@RequestMapping("write")
 	public String reviewPage(@RequestParam("p_name")String p_name, PaymentDTO dto,Model model) {
-		System.out.println("피네임 : " + p_name);
-		System.out.println("페이먼트디티오 피아이 : "+ dto.getP_id());
-		System.out.println("페이먼트디티오 엠코 : "+ dto.getM_code());
-		System.out.println("페이먼트디티오 에스아이 : "+ dto.getS_id());
-		
+	
 		model.addAttribute("p_name", p_name);
 		
 		model.addAttribute("actorList", service.actorInfo(dto));
