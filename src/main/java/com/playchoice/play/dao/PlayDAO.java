@@ -7,8 +7,6 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
-import com.playchoice.play.dto.PlayshowDTO;
-import com.playchoice.play.dto.SearchPlayDTO;
 
 public interface PlayDAO {
 	// 연극 전체 리스트
@@ -19,8 +17,6 @@ public interface PlayDAO {
 
 	// 연극 detail
 	public PlayDTO playDetail(int p_id);
-
-	public List<PlayDAO> playSearch(SearchPlayDTO search);
 
 	// 연극 게시물 작성
 	public int playAdd(PlayDTO dto);

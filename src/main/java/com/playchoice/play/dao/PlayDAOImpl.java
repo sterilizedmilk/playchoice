@@ -12,8 +12,6 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
-import com.playchoice.play.dto.PlayshowDTO;
-import com.playchoice.play.dto.SearchPlayDTO;
 
 @Repository
 public class PlayDAOImpl implements PlayDAO {
@@ -39,11 +37,6 @@ public class PlayDAOImpl implements PlayDAO {
 	public PlayDTO playDetail(int p_id) { // detail
 
 		return sqlSession.selectOne(namespace + ".playDetail", p_id);
-	}
-
-	@Override
-	public List<PlayDAO> playSearch(SearchPlayDTO search) {
-		return null;
 	}
 
 	@Override

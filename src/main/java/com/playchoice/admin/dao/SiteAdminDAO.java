@@ -8,11 +8,8 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.admin.dto.MemberSearchDTO;
 import com.playchoice.member.dto.MemberDTO;
-import com.playchoice.play.dto.SearchPlayDTO;
 
 public interface SiteAdminDAO {
-
-	public List<MemberDTO> memberList(SearchPlayDTO search);
 
 	public int black(int m_id);
 
