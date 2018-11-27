@@ -235,11 +235,14 @@ DROP TABLE IF EXISTS `reply`;
 CREATE TABLE `reply` (
   `re_id` int(11) NOT NULL AUTO_INCREMENT,
   `a_id` int(11) NOT NULL,
+  `m_id` int(11) NOT NULL,
   `re_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `re_comment` text NOT NULL,
   PRIMARY KEY (`re_id`),
   KEY `fk_reply_article1_idx` (`a_id`),
-  CONSTRAINT `fk_reply_article1` FOREIGN KEY (`a_id`) REFERENCES `article` (`a_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_reply_member1_idx` (`m_code`),
+  CONSTRAINT `fk_reply_article1` FOREIGN KEY (`a_id`) REFERENCES `article` (`a_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reply_member1` FOREIGN KEY (`m_code`) REFERENCES `article` (`m_code`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
