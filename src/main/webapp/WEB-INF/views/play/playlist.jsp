@@ -15,10 +15,10 @@
 <div class="container" align="center">
 	<div class="row">
 		<c:forEach items="${list}" var="li" varStatus="status">
-			<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 180px; height: 320px;">
+			<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 200px; height: 360px;">
 				<div>
 					<a href="playdetail?p_id=${li.p_id }">
-						<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${li.p_image0 }">
+						<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${li.p_image0 }" width="200px">
 					</a>
 				</div>
 				<div>

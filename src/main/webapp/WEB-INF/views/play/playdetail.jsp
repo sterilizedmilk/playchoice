@@ -22,105 +22,99 @@
 }
 </style>
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+		var quantity = parseInt($("#quantity").val()); //구매할 티켓수
+		var price; // 티켓 가격
+		var total; // 티켓 총합
+		var scheId; // 스케쥴 아이디
+		
+		$("#ticket_div").hide();
+	
+		// 티켓 수 출력
+		$('#ticket').text(quantity);
+		
+		//스케쥴 선택
+		$(".scheduleCho").click(function() {
+			$("#ticket_div").show();
+			price = parseInt($(this).attr("price"))
+			total = parseInt($(this).attr("price"))	* parseInt($("#quantity").val());
+			scheId = $(this).attr("date");
 
-						var quantity = parseInt($("#quantity").val()); //구매할 티켓수
-						var price; // 티켓 가격
-						var total; // 티켓 총합
-						var scheId; // 스케쥴 아이디
+			$("#scheText").text(scheId);
+			$("#schePrice").text($(this).attr("price") + " 원");
+			$("#totalCost").text(total);
 
-						// 티켓 수 출력
-						$('#ticket').text(quantity);
+		});
 
-						//스케쥴 선택
-						$(".scheduleCho").click(
-								function() {
-									price = parseInt($(this).attr("price"))
-									total = parseInt($(this).attr("price"))
-											* parseInt($("#quantity").val());
-									scheId = $(this).val();
+		//매표 수 마이너스
+		$('#minus').click(function() {
+			//최저 매표 1
+			if ($('#quantity').val() > 1) {
+				quantity -= 1;
+				total = price * quantity;
+				$('#quantity').val(quantity);
+				$('#ticket').text(quantity); // 티켓 수 출력
+				$("#totalCost").text(total); // 총가격 출력
+			} else {
+				quantity = 1;
+				$('#quantity').val(quantity);
+			}
 
-									$("#scheText").text(scheId);
-									$("#schePrice").text(
-											$(this).attr("price") + " 원");
-									$("#totalCost").text(total);
+		})
+			
+		//매표 수 플러스
+		$('#plus').click(function() {
+			quantity += 1;
+			total = price * quantity;
+				$('#quantity').val(quantity);
+				$('#ticket').text(quantity); // 티켓 수 출력
+				$("#totalCost").text(total); // 총가격 출력
+		})
 
-								});
+		//장바구니
+		$('#cart').click(function() {
+			$("#frmId").val(scheId);
+			$("#frmPrice").val(total);
+			$("#frmQuantity").val(quantity);
 
-						//매표 수 마이너스
-						$('#minus').click(function() {
-							//최저 매표 1
-							if ($('#quantity').val() > 1) {
-								quantity -= 1;
-								total = price * quantity;
-								$('#quantity').val(quantity);
-								$('#ticket').text(quantity); // 티켓 수 출력
-								$("#totalCost").text(total); // 총가격 출력
+			frm.action = "${pageContext.request.contextPath}/basket/insert";
+			frm.submit();
+		});
 
-							} else {
-								quantity = 1;
-								$('#quantity').val(quantity);
-							}
+		//결제
+		$('#charge').click(function() {
+			$("#frmId").val(scheId);
+			$("#frmPrice").val(total);
+			$("#frmQuantity").val(quantity);
 
-						})
-						//매표 수 플러스
-						$('#plus').click(function() {
-							quantity += 1;
-							total = price * quantity;
-							$('#quantity').val(quantity);
-							$('#ticket').text(quantity); // 티켓 수 출력
-							$("#totalCost").text(total); // 총가격 출력
-						})
+			frm.action = "payment";
+			frm.submit();
+		});
 
-						//장바구니
-						$('#cart').click(function() {
-							$("#frmId").val(scheId);
-							$("#frmPrice").val(total);
-							$("#frmQuantity").val(quantity);
+		// Q & A 등록
+		$("#qsubmit").click(function() {
+			qfrm.action = "../qna/insertQues";
+			qfrm.submit();
+		})
 
-							frm.action = "${pageContext.request.contextPath}/basket/insert";
-							frm.submit();
-						});
+		// Q & A 삭제
+		$(".deleteQna").click(function() {
+			var m_code = $(this).attr("m_code");
+			var q_id = $(this).attr("q_id");
+			var p_id = $(this).attr("p_id");
 
-						//결제
-						$('#charge').click(function() {
-							$("#frmId").val(scheId);
-							$("#frmPrice").val(total);
-							$("#frmQuantity").val(quantity);
+			if (confirm("삭제하시겠습니까?")) {
+				$("#delQnaId").val(q_id);
+				$("#delQnaCode").val(m_code);
+				$("#delQnaPid").val(p_id);
 
-							frm.action = "payment";
-							frm.submit();
-						});
-
-						// Q & A 등록
-						$("#qsubmit").click(function() {
-							qfrm.action = "../qna/insertQues";
-							qfrm.submit();
-
-						})
-
-						// Q & A 삭제
-						$(".deleteQna").click(function() {
-							var m_code = $(this).attr("m_code");
-							var q_id = $(this).attr("q_id");
-							var p_id = $(this).attr("p_id");
-
-							console.log(m_code);
-							console.log(q_id);
-							console.log(p_id);
-
-							if (confirm("삭제하시겠습니까?")) {
-								$("#delQnaId").val(q_id);
-								$("#delQnaCode").val(m_code);
-								$("#delQnaPid").val(p_id);
-
-								frmQna.action = "../qna/delete";
-								$("#frmQna").submit();
-							}
-						});
-					});
+				frmQna.action = "../qna/delete";
+				$("#frmQna").submit();
+			}
+		});
+		
+		
+});
 </script>
 
 <title>Insert title here</title>
@@ -137,7 +131,7 @@
 			<!--  이미지 끝 -->
 
 			<!-- 연극 제목 및 가격정보 -->
-			<div>
+			<div id="ticket_div">
 				<!-- 제목 -->
 				<div style="text-align: center; padding: 15px 10px">
 					<span style="margin-left: 2px; font-size: 20px; font-weight: 500; color: #000;">${playDTO.p_name }</span>
@@ -154,7 +148,6 @@
 					<div style="float: right;">
 						<span id="schePrice"></span>
 					</div>
-					<!-- ${showDTO.s_price} -->
 				</div>
 
 				<!-- 매수 선택 -->
@@ -189,12 +182,13 @@
 		<div class="col-md-7" style="margin: 0px 10px; float: left; ">
 			<jsp:include page="playcal.jsp" />
 
-			<button id="viewSchedule">달력보기</button>
 			<div>
-				<!--   <table id="calendar" border="1">
-            </table> -->
 				<c:forEach items="${schedule }" var="list" varStatus="status">
-            	${list.s_time } <button class="scheduleCho" value="${list.s_id }" price="${list.s_price }">선택</button>
+					<c:set var="date"> 
+						<fmt:formatDate value="${list.s_time }" pattern="yyyy년 MM월 dd일 hh:mm a"/> 
+					</c:set>
+					${date}
+					<button class="scheduleCho" date="${date}" value="${list.s_id }" price="${list.s_price }">선택</button>
 					<br>
 				</c:forEach>
 			</div>
@@ -247,13 +241,24 @@
 			<li class="active"><a href="#one" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">
 					<span style="font-size: 2em">안 내</span>
 				</a></li>
-			<li><a href="#two" id="review" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기</a></li>
+			<li><a href="#two" id="review" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기(${reviewScore.cnt }명)</a></li>
 			<li><a href="#three" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">Q & A</a></li>
 			<li><a href="#four" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">환불규정</a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="one">
 				<p>연극 안내 페이지</p>
+				<div style="text-align: center;">
+				<c:if test="${playDTO.p_image2 ne null }">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }" align="top" >
+				</c:if>
+				<c:if test="${playDTO.p_image3 ne null }">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image3 }" align="top" >
+				</c:if>
+				<c:if test="${playDTO.p_image4 ne null }">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image4 }" align="top" >
+				</c:if>
+				</div>
 			</div>
 			<!-- 리뷰 탭 -->
 			<div class="tab-pane" id="two">
