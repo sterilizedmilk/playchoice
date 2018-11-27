@@ -248,6 +248,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="one">
 				<p>연극 안내 페이지</p>
+				<p>${playDTO.p_info }</p>
 				<div style="text-align: center;">
 				<c:if test="${playDTO.p_image2 ne null }">
 					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }" align="top" >
