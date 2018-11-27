@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
+
 
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
@@ -64,7 +64,7 @@
 							</c:forEach>
 							<tr>
 								<td colspan="10">
-									<button type="button" class="btn btn-square btn-theme" style="width: 100%" onclick="location.href='${uuu }contact/userinsert'">글쓰기</button>
+									<button type="button" class="btn btn-square btn-theme" style="width: 100%" onclick="location.href='${pageContext.request.contextPath}/article/contact/userinsert'">글쓰기</button>
 								</td>
 							</tr>
 						</tbody>

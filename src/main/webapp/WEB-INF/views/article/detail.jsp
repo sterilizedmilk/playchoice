@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
 
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
@@ -50,17 +49,17 @@
 							<td colspan="5">
 								<c:if test="${login.m_level eq 2}">
 									<input type="hidden" value="${data.a_id }" />
-									<button type="button" class="btn btn-square btn-theme" onclick="location.href='${uuu }notice/modify?a_id=${data.a_id }'">수정</button>
-									<button type="button" class="btn btn-square btn-theme" onclick="location.href='${uuu }notice/deleteReg?a_id=${data.a_id }'">삭제</button>
+									<button type="button" class="btn btn-square btn-theme" onclick="location.href='${pageContext.request.contextPath}/article/notice/modify?a_id=${data.a_id }'">수정</button>
+									<button type="button" class="btn btn-square btn-theme" onclick="location.href='${pageContext.request.contextPath}/article/notice/deleteReg?a_id=${data.a_id }'">삭제</button>
 								</c:if>
-								<button type="button" class="btn btn-square btn-theme" onclick="location.href='${uuu }notice/list'">목록 전체보기</button>
+								<button type="button" class="btn btn-square btn-theme" onclick="location.href='${pageContext.request.contextPath}/article/notice/list'">목록 전체보기</button>
 							</td>
 						</tr>
 						<!-- 관리자일 경우에만 보여주기 -->
 					</table>
 				</form>
 				<c:if test="${data.a_board eq '3' }">
-					<form action="${uuu }notice/comment">
+					<form action="${pageContext.request.contextPath}/article/notice/comment">
 						<table class="table table-bordered">
 							<tr>
 								<td colspan="4">

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:url value="http://localhost:8080/playChoice/article/" var="uuu" />
 
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
@@ -32,7 +31,7 @@
 		<div class="row">
 			<div class="span8">
 				<h4></h4>
-				<form action="${uuu }notice/modifyReg">
+				<form action="${pageContext.request.contextPath}/article/notice/modifyReg">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
