@@ -7,7 +7,7 @@
 
 <jsp:include page="../page/header.jsp" />
 <style>
-	.form-horizontal {padding:30px 10px;}
+	.form-horizontal {padding:20px 10px;}
 	.form-horizontal .control-label { width: 100px;}
 	.form-horizontal .controls { margin-left: 120px;}
 	.form-horizontal .controls input {width: 250px; margin-right: 10px;}
@@ -33,80 +33,80 @@
 </section>
 
 <section id="content">
-<div class="container">
-	<div class="row">
-		<div class="span6 offset3">
-			<!-- <h2 class="text-center">회원 가입</h2> -->
-			<form id="insertForm" name="insertForm" method="post" class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label" for="m_id">아이디</label> 
-					<div class="controls">
-						<input type="text" name="m_id" id="m_id" placeholder="아이디">
-						<button type="button" class="btn btn-primary" id="confirmBtn">중복체크</button>
-						<span class="help-block"></span>
+	<div class="container">
+		<div class="row">
+			<div class="span6 offset3">
+				<!-- <h2 class="text-center">회원 가입</h2> -->
+				<form id="insertForm" name="insertForm" method="post" class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="m_id">아이디</label> 
+						<div class="controls">
+							<input type="text" name="m_id" id="m_id" placeholder="아이디">
+							<button type="button" class="btn btn-primary" id="confirmBtn">중복체크</button>
+							<span class="help-block"></span>
+						</div>
 					</div>
-				</div>
-				<!-- 아이디 중복 경고창 -->
-				<div class="alert alert-danger" id="alert-dangerId"
-					style="margin-bottom: 5px;">이미 사용중인 아이디입니다.</div>
-				<div class="alert alert-submit" id="alert-submitId"
-					style="margin-bottom: 5px;">사용가능한 아이디입니다.</div>
-				<!-- //.아이디 중복 경고창 -->
-				<div class="control-group">
-					<label class="control-label" for="m_pw">비밀번호</label>
-					<div class="controls">
-						<input type="password" name="m_pw" id="m_pw" placeholder="비밀번호">
-						<span class="help-block"></span>
+					<!-- 아이디 중복 경고창 -->
+					<!-- <div class="alert alert-danger" id="alert-dangerId"
+						style="margin-bottom: 5px;">이미 사용중인 아이디입니다.</div>
+					<div class="alert alert-submit" id="alert-submitId"
+						style="margin-bottom: 5px;">사용가능한 아이디입니다.</div> -->
+					<!-- //.아이디 중복 경고창 -->
+					<div class="control-group">
+						<label class="control-label" for="m_pw">비밀번호</label>
+						<div class="controls">
+							<input type="password" name="m_pw" id="m_pw" placeholder="비밀번호">
+							<span class="help-block"></span>
+						</div>
 					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="m_pwCheck">비밀번호 확인</label>
-					<div class="controls">
-						<input type="password" name="m_pwCheck" id="m_pwCheck" placeholder="비밀번호 확인">
-						<span class="help-block"></span>
+					<div class="control-group">
+						<label class="control-label" for="m_pwCheck">비밀번호 확인</label>
+						<div class="controls">
+							<input type="password" name="m_pwCheck" id="m_pwCheck" placeholder="비밀번호 확인">
+							<span class="help-block"></span>
+						</div>
 					</div>
-				</div>
-				<!-- 비밀번호 불일치 경고창 -->
-				<div class="alert alert-danger" id="alert-dangerPw"
-					style="margin-bottom: 5px;">비밀번호가 일치하지 않습니다.</div>
-				<!-- //.비밀번호 불일치 경고창 -->
-				<div class="control-group">
-					<label class="control-label" for="m_name">이름</label>
-					<div class="controls">
-						<input type="text" name="m_name" id="m_name" placeholder="이름">
-						<span class="help-block"></span>
+					<!-- 비밀번호 불일치 경고창 -->
+					<!-- <div class="alert alert-danger" id="alert-dangerPw"
+						style="margin-bottom: 5px;">비밀번호가 일치하지 않습니다.</div> -->
+					<!-- //.비밀번호 불일치 경고창 -->
+					<div class="control-group">
+						<label class="control-label" for="m_name">이름</label>
+						<div class="controls">
+							<input type="text" name="m_name" id="m_name" placeholder="이름">
+							<span class="help-block"></span>
+						</div>
 					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="m_mail">이메일</label>
-					<div class="controls">
-						<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일">
-						<button type="button" class="btn btn-primary" id="confirmMailBtn">중복체크</button>
-						<span class="help-block"></span>
+					<div class="control-group">
+						<label class="control-label" for="m_mail">이메일</label>
+						<div class="controls">
+							<input type="email" class="form-control" name="m_mail" id="m_mail" placeholder="이메일">
+							<button type="button" class="btn btn-primary" id="confirmMailBtn">중복체크</button>
+							<span class="help-block"></span>
+						</div>
 					</div>
-				</div>
-				<!-- 이메일 중복 경고창 -->
-				<div class="alert alert-danger" id="alert-dangerEmail"
-					style="margin-bottom: 5px;">이미 등록된 이메일입니다.</div>
-				<div class="alert alert-submit" id="alert-submitEmail"
-					style="margin-bottom: 5px;">사용가능한 이메일입니다.</div>
-				<!-- //.이메일 중복 경고창 -->
-				<div class="control-group">
-					<label class="control-label" for="m_phone">연락처</label>
-					<div class="controls">
-						<input type="text" name="m_phone" id="m_phone" placeholder="연락처">
-						<span class="help-block"></span>
+					<!-- 이메일 중복 경고창 -->
+					<!-- <div class="alert alert-danger" id="alert-dangerEmail"
+						style="margin-bottom: 5px;">이미 등록된 이메일입니다.</div>
+					<div class="alert alert-submit" id="alert-submitEmail"
+						style="margin-bottom: 5px;">사용가능한 이메일입니다.</div> -->
+					<!-- //.이메일 중복 경고창 -->
+					<div class="control-group">
+						<label class="control-label" for="m_phone">연락처</label>
+						<div class="controls">
+							<input type="text" name="m_phone" id="m_phone" placeholder="연락처">
+							<span class="help-block"></span>
+						</div>
 					</div>
-				</div>
-				<div class="button-group pull-right">
-					<button type="submit" class="btn btn-success btn-large" id="submit">확인</button>
-					<button type="reset" class="btn btn-danger btn-large">취소</button>
-					<button onclick="history.go(-1)" class="btn btn-primary btn-large">뒤로</button>
-				</div>
-			</form><!-- / 콘텐츠 부분 -->
-		</div><!-- /.span12 -->
-	</div><!-- /.row -->
-</div><!-- /.container -->
+					<div class="button-group pull-right">
+						<button type="submit" class="btn btn-success btn-large" id="submit">확인</button>
+						<button type="reset" class="btn btn-danger btn-large">취소</button>
+						<button onclick="history.go(-1)" class="btn btn-primary btn-large">뒤로</button>
+					</div>
+				</form><!-- / 콘텐츠 부분 -->
+			</div><!-- /.span12 -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
 </section>
 
 <!-- JavaScript -->
@@ -168,13 +168,15 @@
 						type : "POST",
 						success : function(data){
 							if(data == "DUPLICATED") { // 이메일 중복인 경우
-								$("#alert-submitEmail").hide();
-								$("#alert-dangerEmail").show();
+								/* $("#alert-submitEmail").hide();
+								$("#alert-dangerEmail").show(); */
+								displayError("m_mail", "이미 사용중인 이메일입니다.");
 								$("#m_mail").focus();
 								$("#submit").attr("disabled", "disabled");
 							} else { // 사용가능한 경우
-								$("#alert-dangerEmail").hide();
-								$("#alert-submitEmail").show();
+								/* $("#alert-dangerEmail").hide();
+								$("#alert-submitEmail").show(); */
+								displaySuccess("m_mail", "사용가능한 이메일입니다.");
 								$("#submit").removeAttr("disabled");
 							}
 						}
@@ -184,20 +186,23 @@
 		});
 		
 		// 비밀번호 일치 검사
-		$("input").keyup(function(){
+		$("#m_pwCheck").keyup(function(){
 			var pw1 = $("#m_pw").val();
 			var pw2 = $("#m_pwCheck").val();
 			if(pw1 != "" && pw2 != "") {
 				if(pw1 != pw2) { // 비밀번호 불일치하는 경우
-					$("#alert-dangerPw").show();
+					/* $("#alert-dangerPw").show(); */
+					displayError("m_pwCheck", "비밀번호가 일치하지 않습니다.");
 					$("#submit").attr("disabled", "disabled");
 				} else { // 비밀번호 일치하는 경우
-					$("#alert-dangerPw").hide();
+					/* $("#alert-dangerPw").hide(); */
+					displaySuccess("m_pwCheck", "비밀번호가 일치합니다.");
 					$("#submit").removeAttr("disabled");
 				}
 			}
 		});
 		
+		// 유효검사(에러출력)
 		function displayError(inputId, msg) {
 			var inputObj = $("#"+inputId);
 			var formGroup = inputObj.parents(".control-group");
@@ -213,6 +218,7 @@
 			inputObj.focus();
 		}
 		
+		// 유효검사(성공출력)
 		function displaySuccess(inputId, msg) {
 			var inputObj = $("#"+inputId);
 			var formGroup = inputObj.parents(".control-group");
@@ -225,7 +231,6 @@
 			helpBlock.text(msg);
 			inputObj.focus();
 		}
-		
 	});
 </script>
 <!-- /.JavaScript -->
