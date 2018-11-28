@@ -43,9 +43,9 @@
 					<tbody>
 						<tr>
 							<td><img src="<c:url value="/"/>resources/img/actor/${actorDTO.a_picture }" width="170px" height="170px" style="padding:10px"/></td>
-							<td>${actorDTO.a_name}</td>
-							<td>${actorDTO.sdf}</td>
-							<td><a href="http://${actorDTO.a_homepage}" target="_blank">${actorDTO.a_homepage}</a></td>
+							<td style="line-height: 210px;">${actorDTO.a_name}</td>
+							<td style="line-height: 210px;">${actorDTO.sdf}</td>
+							<td style="line-height: 210px;"><a href="http://${actorDTO.a_homepage}" target="_blank">${actorDTO.a_homepage}</a></td>
 							<%-- <td><button id="basketBtn" class="btn btn-info basketBtn" data-actor="${actor.a_id }">찜</button></td> --%>
 						</tr>
 						</tbody>
