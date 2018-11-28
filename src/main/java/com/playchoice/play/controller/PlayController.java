@@ -56,9 +56,10 @@ public class PlayController {
 	@RequestMapping("mainlist")
 	public String playListController(HttpServletRequest request, Model model, PlayMenuDTO menudto) throws Exception {
 
-		List<PlayDTO> dto = null ;
+		List<PlayDTO> dto = null;
 		HttpSession session;
 		SimpleDateFormat sdf;
+
 		switch (menudto.getS_tab()) {
 		case "mainlist":
 			menudto.setS_tab("mainlist");
@@ -72,7 +73,6 @@ public class PlayController {
 			menudto.setS_tab("todaylist");
 			session = request.getSession();
 			sdf = new SimpleDateFormat("yyyy-MM-dd");
-			model.addAttribute("title", "오늘 리스트");
 
 			if (session.getAttribute("date") instanceof Date) {
 				Date date = (Date) session.getAttribute("date");
@@ -81,6 +81,7 @@ public class PlayController {
 				dto = service.playTodayList(menudto);
 				System.out.println("todaylist--------" + dto);
 				// model.addAttribute("list", dto);
+				model.addAttribute("title", "오늘 리스트(" + sdf.format(date) + ")");
 			}
 			break;
 		case "tomorrowlist":
@@ -100,8 +101,8 @@ public class PlayController {
 				dto = service.playTodayList(menudto);
 				System.out.println("todaylist--------" + dto);
 				// model.addAttribute("list", dto);
+				model.addAttribute("title", "내일 리스트(" + sdf.format(cal.getTime()) + ")");
 			}
-			model.addAttribute("title", "내일 리스트");
 			break;
 		}
 		model.addAttribute("menudto", menudto);
