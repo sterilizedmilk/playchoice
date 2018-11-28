@@ -78,7 +78,7 @@ public class PaymentSearchDTO {
 		if (until.isEmpty())
 			return;
 		
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		
 		try {
 			this.until = new Timestamp(format.parse(until).getTime()) ;
@@ -108,7 +108,7 @@ public class PaymentSearchDTO {
 	}
 
 	public void setPage(Integer page) {
-		if (page == null || page <= 0) {
+		if (page == null || page < 0) {
 			this.page = 1;
 			return;
 		}

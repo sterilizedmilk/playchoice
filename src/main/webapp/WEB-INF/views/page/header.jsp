@@ -20,6 +20,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/jcarousel.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/flexslider.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
 <!-- Theme skin -->
 <link href="${pageContext.request.contextPath}/resources/skins/default.css" rel="stylesheet" />
@@ -49,6 +50,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.ba-cond.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.slitslider.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/animate.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/locales/bootstrap-datetimepicker.ko.js"></script>
 
 <!-- Template Custom JavaScript File -->
 <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>

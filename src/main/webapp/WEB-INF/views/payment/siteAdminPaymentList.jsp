@@ -11,6 +11,12 @@
 <title>Payment</title>
 
 <jsp:include page="/WEB-INF/views/admin/site/integratedheader.jsp" />
+<style>
+.dropdown-menu {
+	background: white
+}
+</style>
+
 <div class="container">
 	<div class="row">
 		<!-- 좌측 정보 -->
@@ -24,12 +30,11 @@
 				
 				play admin<input type="number" name="playAdmin" value="${param.playAdmin}"><br>
 				
-                <input type="text" class="form_datetime" name="from" value="${param.from}">
-				<br>
-				from<input type="date" name="from" value="${param.from}"><br>
-				until<input type="date" name="until" value="${param.until}"><br>
-				
+                from<input type="text" class="form_datetime" name="from" value="${param.from}"><br>
+				until<input type="text" class="form_datetime" name="until" value="${param.until}"><br>
+                
 				page<input type="number" name="page" value="${param.page}"><br>
+				row<input type="number" name="row" value="${param.row}"><br>
 				<button>검색</button>
 			</form>
 			
@@ -87,7 +92,7 @@
 <script>
     $('.form_datetime').datetimepicker({
         language:  'ko',
-        format: 'yyyy-mm-dd P HH:ii',
+        format: 'yyyy-mm-dd hh:mm',
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,		
