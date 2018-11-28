@@ -7,6 +7,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <jsp:include page="../page/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/play/adminheader.jsp" />
 <meta charset="UTF-8">
 <title>Payment</title>
 

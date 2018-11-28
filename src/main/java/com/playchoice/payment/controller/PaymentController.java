@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.payment.dto.PaymentDTO;
 import com.playchoice.payment.dto.PaymentSearchDTO;
@@ -32,9 +33,12 @@ public class PaymentController {
 	
 	@Autowired
 	private PlayService playService;
-	
+
 	@Autowired
 	private ReviewService reviewService;
+
+	@Autowired
+	private SiteAdminService siteAdminService;
 
 	@RequestMapping(value = "play/payment", method = RequestMethod.POST)
 	public String paymentController(Model model,
@@ -155,6 +159,8 @@ public class PaymentController {
 			return "payment/memberInfo";
 		case 1:
 		case 2:
+			MemberDTO buyer = siteAdminService.getMember(payment.getM_code());
+			model.addAttribute("buyer", buyer);
 			return "payment/adminInfo";
 		default:
 			break;

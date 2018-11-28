@@ -36,8 +36,8 @@
 				
 			<div>
 				<h4>이용자정보</h4>
-				<div>이름 : ${sessionScope.login.m_name}</div>
-				<div>전화번호 : ${sessionScope.login.m_phone}</div>
+				<div>이름 : ${buyer.m_name}</div>
+				<div>전화번호 : ${buyer.m_phone}</div>
 			</div>
 			<br>
 		
