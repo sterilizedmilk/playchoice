@@ -30,11 +30,11 @@
 <div class="contanier">
 	<div class="row">
 		<div class="span6 offset3">
-			<form role="form" name="form" class="form-horizontal" method="post">
+			<form role="form" name="form" class="form-horizontal">
 			<input type="hidden" name="p_id" value="${playDTO.p_id }">
 			<div class="control-group" align="center">
 				<button type="submit" class="btn btn-warning">글 수정</button>
-				<button type="submit" class="btn btn-danger">글 내리기</button>
+				<button type="button" class="btn btn-danger">글 내리기</button>
 				<button type="submit" class="btn btn-pslist">일정 보기</button>
 			</div>
 
@@ -113,11 +113,12 @@
 		});
 		$(".btn-danger").on("click", function(){
 			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/remove");
+			formObj.attr("method", "post");
 			formObj.submit();
 		});	
 		$(".btn-pslist").on("click", function(){
 			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}");
-			//self.location="${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}";
+	//		self.location="${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}";
 		});
 	});
 </script>

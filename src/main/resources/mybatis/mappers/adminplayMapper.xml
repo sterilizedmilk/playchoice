@@ -7,6 +7,7 @@
 									<!-- com.playchoice.play.dto.PlayDTO -->
     <select id="listAll" resultType="PlayDTO" parameterType="memberDTO">
     	select * from play where m_code = #{m_code}
+    	order by p_id DESC
     </select>
     
     <select id="read" resultType="PlayDTO">

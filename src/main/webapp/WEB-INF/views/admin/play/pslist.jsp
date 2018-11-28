@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <jsp:include page="../../page/header.jsp" />
+<jsp:include page="adminheader.jsp" />
 <style>
 	.table select {width:100px;}
 	.table thead th {text-align:center;}
@@ -30,14 +31,16 @@
 <section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="span12">				
+			<div class="span12">	
+			<form role="form" name="form" class="form-horizontal">		
 				<div class="box-footer" align="center">
-					<button type="submit" class="btn btn-primary">일정 추가 생성</button>&nbsp;&nbsp;
+					<input type="hidden" name="p_id" value="${param.p_id }">
+					<button type="button" class="btn btn-primary">일정 추가 생성</button>&nbsp;&nbsp;
 					<button type="submit" class="btn btn-flurry">연극 올리기</button>&nbsp;&nbsp;
-					<button type="submit" class="btn btn-danger">뒤로 돌아가기</button>
+					<button type="button" class="btn btn-danger">뒤로 돌아가기</button>
 					<span class="help-block"></span>
 				</div>	
-	
+			</form>	
 			<table class="table table-hover" >
 				<thead>
 					<tr>
@@ -121,6 +124,7 @@
 		});
 		$(".btn-flurry").on("click", function(){
 			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/flurry");
+			formObj.attr("method", "post");
 			formObj.submit();
 		});
 	});
