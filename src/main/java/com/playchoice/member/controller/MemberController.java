@@ -294,5 +294,11 @@ public class MemberController {
 		}
 		return entity;
 	}
+	
+	@RequestMapping("noAuthority")
+	public String noAuthorityController() {
+		
+		return "member/noAuthority";
+	}
 
 }

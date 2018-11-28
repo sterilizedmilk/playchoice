@@ -12,9 +12,44 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/playChoice/**/" />
-			<bean
-				class="
-				com.playchoice.member.interceptor.UserInterceptor" />
+			<bean class="com.playchoice.member.interceptor.UserInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/member/logout"/>
+			<mvc:mapping path="/member/view"/>
+			<mvc:mapping path="/member/update"/>
+			<mvc:mapping path="/member/updatePw"/>
+			<mvc:mapping path="/member/delete"/>
+			<mvc:mapping path="/member/paymentList"/>
+			<mvc:mapping path="/prefer/*"/>
+			<mvc:mapping path="/basket/*"/>
+			<mvc:mapping path="/play/payment"/>
+			<mvc:mapping path="/play/payAction"/>
+			<mvc:mapping path="/play/review/reviewReg"/>
+			<mvc:mapping path="/play/review/write"/>
+			<mvc:mapping path="/payment/info"/>
+			<mvc:mapping path="/member/cancel"/>
+			<mvc:mapping path="/qna/insertQues"/>
+			<mvc:mapping path="/qna/delete"/>
+			<bean class="com.playchoice.member.interceptor.CommonMemberInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/play/**/"/>
+			<mvc:mapping path="/admin/qna/**/"/>
+			<bean class="com.playchoice.member.interceptor.PlayAdminInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/site/**/"/>
+			<bean class="com.playchoice.member.interceptor.SiteAdminInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans> 
