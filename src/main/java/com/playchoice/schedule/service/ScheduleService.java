@@ -12,4 +12,6 @@ public interface ScheduleService {
 	
 	public int discountedPrice(ScheduleDTO schedule);
 	
+	public int ticketLeft(ScheduleDTO schedule);
+	
 }

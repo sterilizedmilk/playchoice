@@ -17,4 +17,11 @@
 		WHERE s_id = #{s_id}
 	</select>
 	
+	<select id="ticketSold" resultType="int">
+		SELECT SUM(payment.p_quantity)
+		FROM schedule, payment
+		WHERE schedule.s_id = #{s_id}
+		AND schedule.s_id = payment.s_id
+	</select>
+	
 </mapper>

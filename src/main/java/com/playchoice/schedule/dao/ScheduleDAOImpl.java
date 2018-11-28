@@ -25,4 +25,9 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	public ScheduleDTO getSchedule(int s_id) {
 		return sqlSession.selectOne(namespace + ".getSchedule", s_id);
 	}
+
+	@Override
+	public int ticketSold(int s_id) {
+		return sqlSession.selectOne(namespace + ".tikectLeft", s_id);
+	}
 }

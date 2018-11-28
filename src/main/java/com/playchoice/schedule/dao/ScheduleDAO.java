@@ -10,4 +10,6 @@ public interface ScheduleDAO {
 	
 	public ScheduleDTO getSchedule(int s_id);
 	
+	public int ticketSold(int s_id);
+	
 }

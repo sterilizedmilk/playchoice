@@ -41,5 +41,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 		return price;
 	}
+
+	@Override
+	public int ticketLeft(ScheduleDTO schedule) {
+		return schedule.getS_ticket() - dao.ticketSold(schedule.getS_id());
+	}
 	
 }
