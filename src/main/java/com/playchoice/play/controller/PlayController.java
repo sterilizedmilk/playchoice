@@ -52,32 +52,21 @@ public class PlayController {
 	}
 
 	// 전체 일정
+	@SuppressWarnings("null")
 	@RequestMapping("mainlist")
-	public String playListController(HttpServletRequest request, Model model,
-			/*
-			 * @RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
-			 * 
-			 * @RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id,
-			 * 
-			 * @RequestParam(value = "s_tab", required = false, defaultValue = "0") String
-			 * s_tab,
-			 */
-			PlayMenuDTO menudto) throws Exception {
+	public String playListController(HttpServletRequest request, Model model, PlayMenuDTO menudto) throws Exception {
 
-		// PlayMenuDTO menudto = new PlayMenuDTO();
-		// menudto.setA_id(a_id);
-		// menudto.setG_id(g_id);
-		List<PlayDTO> dto;
+		List<PlayDTO> dto = null ;
 		HttpSession session;
 		SimpleDateFormat sdf;
-
 		switch (menudto.getS_tab()) {
 		case "mainlist":
 			menudto.setS_tab("mainlist");
 			dto = service.playList(menudto);
-			model.addAttribute("list", dto);
+			// model.addAttribute("list", dto);
 			model.addAttribute("title", "전체리스트");
 
+			System.out.println("전체리스트 " + dto);
 			break;
 		case "todaylist":
 			menudto.setS_tab("todaylist");
@@ -88,10 +77,10 @@ public class PlayController {
 			if (session.getAttribute("date") instanceof Date) {
 				Date date = (Date) session.getAttribute("date");
 
-				String res = sdf.format(date);
-
-				dto = service.playTodayList(res);
-				model.addAttribute("list", dto);
+				menudto.setS_time(sdf.format(date));
+				dto = service.playTodayList(menudto);
+				System.out.println("todaylist--------" + dto);
+				// model.addAttribute("list", dto);
 			}
 			break;
 		case "tomorrowlist":
@@ -107,15 +96,16 @@ public class PlayController {
 				cal.setTime(date);
 				cal.add(Calendar.DATE, 1);
 
-				String res = sdf.format(cal.getTime());
-				dto = service.playTodayList(res);
-				model.addAttribute("list", dto);
+				menudto.setS_time(sdf.format(cal.getTime()));
+				dto = service.playTodayList(menudto);
+				System.out.println("todaylist--------" + dto);
+				// model.addAttribute("list", dto);
 			}
 			model.addAttribute("title", "내일 리스트");
 			break;
 		}
 		model.addAttribute("menudto", menudto);
-
+		model.addAttribute("list", dto);
 		return "play/playlist";
 	}
 
@@ -125,8 +115,6 @@ public class PlayController {
 			@RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
 			@RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id) throws Exception {
 		PlayMenuDTO menudto = new PlayMenuDTO();
-		menudto.setA_id(a_id);
-		menudto.setG_id(g_id);
 		menudto.setS_tab("todaylist");
 
 		model.addAttribute("playMenu", menudto);
@@ -154,8 +142,6 @@ public class PlayController {
 			@RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id) throws Exception {
 
 		PlayMenuDTO menudto = new PlayMenuDTO();
-		menudto.setA_id(a_id);
-		menudto.setG_id(g_id);
 		menudto.setS_tab("tomorrowlist");
 
 		model.addAttribute("playMenu", menudto);

@@ -59,7 +59,8 @@
 	<select id="playPrice" resultType="Integer"
 		parameterType="Integer">
 		SELECT min(`schedule`.s_price) AS lowest_price
-		FROM  `schedule`
+		FROM
+		`schedule`
 		WHERE
 		`schedule`.p_id = #{p_id}
 	</select>
@@ -166,14 +167,22 @@
 	<!-- 오늘내일 리스트 -->
 	<select id="playTodayList" parameterType="java.lang.String"
 		resultType="PlayDTO">
-		SELECT min(`schedule`.s_price) as lowest_price,
-		play.p_name,play.p_image0, play.p_id
-		FROM `schedule`,play
+		SELECT play.*, min(`schedule`.s_price) as lowest_price
+		FROM
+		`schedule`,play
 		WHERE
-		date_format(`schedule`.s_time,"%Y-%m-%d") =#{date}
+		date_format(`schedule`.s_time,"%Y-%m-%d") =#{s_time}
 		AND
 		play.p_id=`schedule`.p_id
 		AND play.p_status = '1'
+		<if test="a_id != 0 ">
+			AND play.a_id =
+			#{a_id}
+		</if>
+		<if test="g_id!= 0 ">
+			AND play.g_id =
+			#{g_id}
+		</if>
 		group by
 		(`schedule`.p_id);
 	</select>

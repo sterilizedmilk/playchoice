@@ -6,6 +6,15 @@ package com.playchoice.play.dto;
 public class PlayMenuDTO {
 	int a_id = 0, g_id = 0;
 	String s_tab = "mainlist";
+	String s_time = "";
+
+	public String getS_time() {
+		return s_time;
+	}
+
+	public void setS_time(String s_time) {
+		this.s_time = s_time;
+	}
 
 	public String getS_tab() {
 		return s_tab;

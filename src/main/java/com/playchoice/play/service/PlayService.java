@@ -42,4 +42,6 @@ public interface PlayService {
 	public List<GenreDTO> getGenreList();
 
 	Object SearchList(String search);
+
+	List<PlayDTO> playTodayList(PlayMenuDTO dto);
 }

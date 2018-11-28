@@ -97,9 +97,9 @@ public class PlayServiceImpl implements PlayService {
 
 	// 오늘,내일 리스트
 	@Override
-	public List<PlayDTO> playTodayList(String date) {
+	public List<PlayDTO> playTodayList(PlayMenuDTO dto) {
 		// TODO Auto-generated method stub
-		return playDao.playTodayList(date);
+		return playDao.playTodayList(dto);
 	}
 
 	// 지역 리스트
@@ -114,6 +114,12 @@ public class PlayServiceImpl implements PlayService {
 	public List<GenreDTO> getGenreList() {
 		// TODO Auto-generated method stub
 		return playDao.getGenreList();
+	}
+
+	@Override
+	public List<PlayDTO> playTodayList(String date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
