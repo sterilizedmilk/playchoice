@@ -45,12 +45,10 @@
 		play.p_id = `schedule`.p_id
 		AND play.p_status
 		= '1'
-		And
+		And (
 		play.p_name like CONCAT('%',#{search},'%')
-		<!-- OR
-		play.p_ifo like
-		CONCAT('%',#{search},'%')
-		OR play.p_location like CONCAT('%',#{search},'%') -->
+		OR play.p_info like	CONCAT('%',#{search},'%')
+		OR play.p_location like CONCAT('%',#{search},'%') )
 		
 		GROUP BY play.p_id
 	</select>
