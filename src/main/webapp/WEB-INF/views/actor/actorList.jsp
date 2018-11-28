@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -9,27 +8,32 @@
 <jsp:include page="../page/header.jsp"></jsp:include>
 
 <script>
-	$(document).ready(function(){
-		$('.basketBtn').click(function(e){
-			e.preventDefault();
-			var actorId = $(this).data('actor');
-			//alert("actor id: " + actorId);
-			location.href = "${pageContext.request.contextPath}/prefer/insert?a_id=" + actorId;
-/* 			a_id = $(this).attr('value');
-			alert($(this).attr('value'));
-			$.ajax({
-				 type : "POST"
-				,url  : "mypick"
-				,data : {"a_id" : a_id}
-				,success : function(data){
-					alert("성공")
-				}
-				,error : function(){
-					alert("에러")
-				}
-			}) */
-		});
-	});
+	$(document)
+			.ready(
+					function() {
+						$('.basketBtn')
+								.click(
+										function(e) {
+											e.preventDefault();
+											var actorId = $(this).data('actor');
+											//alert("actor id: " + actorId);
+											location.href = "${pageContext.request.contextPath}/prefer/insert?a_id="
+													+ actorId;
+											/* 			a_id = $(this).attr('value');
+											 alert($(this).attr('value'));
+											 $.ajax({
+											 type : "POST"
+											 ,url  : "mypick"
+											 ,data : {"a_id" : a_id}
+											 ,success : function(data){
+											 alert("성공")
+											 }
+											 ,error : function(){
+											 alert("에러")
+											 }
+											 }) */
+										});
+					});
 </script>
 
 
@@ -61,11 +65,10 @@
 						<table>
 							<tr>
 								<td>
-									<select name="type" form="search" style="width:70px">
-										<option value="a_name" selected >이름</option>
+									<select name="type" form="search" style="width: 70px">
+										<option value="a_name" selected>이름</option>
 										<option value="">기타</option>
-									</select>
-									<input type="text" name="keyword" />
+									</select> <input type="text" name="keyword" />
 									<button class="btn btn-success">검색</button>
 								</td>
 							</tr>
@@ -83,20 +86,40 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${actorList }" var="actor" varStatus="status">	
-						<tr>
-							<td><img src="<c:url value="/"/>resources/img/actor/${actor.a_picture }" width="136px" height="170px" style="padding:10px" class="img-rounded"/></td>
-							<td style="line-height: 180px;"><a href="detail?a_id=${actor.a_id}">${actor.a_name}</a></td>
-							<td style="line-height: 180px;">${actor.sdf}</td>
-							<td style="line-height: 180px;"><a href="http://${actor.a_homepage}" target="_blank">${actor.a_homepage}</a></td>
-							<td style="line-height: 180px;"><button id="basketBtn" class="btn btn-primary basketBtn" data-actor="${actor.a_id }">찜</button></td>
-						</tr>
+						<c:forEach items="${actorList }" var="actor" varStatus="status">
+							<tr>
+								<td>
+									<img src="<c:url value="/"/>resources/img/actor/${actor.a_picture }" width="136px" height="170px" style="padding: 10px" class="img-rounded" />
+								</td>
+								<td style="line-height: 180px;">
+									<a href="detail?a_id=${actor.a_id}">${actor.a_name}</a>
+								</td>
+								<td style="line-height: 180px;">${actor.sdf}</td>
+								<td style="line-height: 180px;">
+									<a href="http://${actor.a_homepage}" target="_blank">${actor.a_homepage}</a>
+								</td>
+								<c:choose>
+									<c:when test="${!empty login}">
+										<td style="line-height: 180px;">
+											<button id="basketBtn" class="btn btn-primary basketBtn" data-actor="${actor.a_id }" >찜</button>
+										</td>
+									</c:when>
+									<c:otherwise>
+										<td style="line-height: 180px;">
+											<button id="basketBtn" class="btn btn-primary basketBtn" data-actor="${actor.a_id }" disabled="disabled">찜</button>
+										</td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			</div><!-- /.row -->
-		</div><!-- /.row -->
-	</div><!-- /.container -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
 </section>
 
 <jsp:include page="../page/footer.jsp"></jsp:include>
