@@ -32,10 +32,12 @@
 		<div class="row">
 			<div class="span6 offset3">
 				<div class="control-group">
-					<label for="m_id" class="control-label">아이디</label>
+					<%-- <label for="m_id" class="control-label">아이디</label>
 					<div class="controls">
 						<p class="form-control-static" style="margin-bottom: 20px;">${m_id }</p>
-					</div>	
+					</div> --%>	
+					<h3>아이디 찾기 결과</h3>
+					<h5>고객님의 정보와 일치하는 아이디는 ${m_id } 입니다.</h5>
 				</div>
 				<div class="control-group pull-right">
 					<a href="login">로그인</a>&nbsp;/

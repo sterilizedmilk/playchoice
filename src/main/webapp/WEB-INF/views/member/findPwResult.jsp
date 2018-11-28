@@ -32,10 +32,13 @@
 		<div class="row">
 			<div class="span6 offset3">
 				<div class="control-group">
-					<label for="m_pw" class="control-label">비밀번호</label>
+					<%-- <label for="m_pw" class="control-label">비밀번호</label>
 					<div class="controls">
 						<p class="form-control-static" style="margin-bottom: 20px;">${m_pw }</p>
-					</div>	
+					</div> --%>
+					<h3>비밀번호 찾기 결과</h3>
+					<h5>새로운 비밀번호가 ${m_pw } 로 설정되었습니다.</h5>
+					<h5>로그인 후 비밀번호 변경을 해주세요.</h5>
 				</div>
 				<div class="control-group pull-right">
 					<a href="login">로그인</a>&nbsp;/
