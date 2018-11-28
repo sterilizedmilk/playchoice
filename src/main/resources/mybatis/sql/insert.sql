@@ -43,7 +43,19 @@ INSERT INTO `play`.`article` (`m_code`, `a_board`, `a_title`, `a_content`, `a_ti
 -- -----------------------------------------------------
 -- Table `play`.`play`
 -- -----------------------------------------------------
-INSERT INTO `play` VALUES (1,21,'발칙한 로맨스','섹시 발랄 코미디 연극','환불가능','JTN 아트홀 2관',4,1,1,'p_image1.jpg','main_balchik.jpg','balchik1.jpg',NULL,NULL),(2,21,'오마이갓','세상종말 로맨스','환불불가','봄날 아트홀 2관',2,1,1,'p_image0.png','default.png',NULL,NULL,NULL),(3,22,'메리골드','치유받을 수 있는 소확행 뮤지컬','환불가능','대학로 열린극장',3,1,1,'p_image0.png','default.png',NULL,NULL,NULL),(4,22,'뷰티풀 라이프','따뜻한 공감을 부르는 우리네 사랑이야기','환불불가','JTN 아트홀 4관',3,1,1,'p_image0.png','default.png',NULL,NULL,NULL),(5,23,'와일드 패밀리','가족코믹극','환불가능','미마지아트센터 풀빛극장',4,1,1,'p_image0.png','default.png',NULL,NULL,NULL);
+INSERT INTO `play` VALUES (1,21,'발칙한 로맨스','섹시 발랄 코미디 연극','환불가능','JTN 아트홀 2관',4,1,1,'p_image1.jpg','main_balchik.jpg','balchik1.jpg',NULL,NULL),(2,21,'오마이갓','세상종말 로맨스','환불불가','봄날 아트홀 2관',2,1,1,'p_image0.png','default.png',NULL,NULL,NULL),(3,22,'메리골드','치유받을 수 있는 소확행 뮤지컬','환불가능','대학로 열린극장',3,1,1,'p_image0.png','default.png',NULL,NULL,NULL),(4,22,'뷰티풀 라이프','따뜻한 공감을 부르는 우리네 사랑이야기','환불불가','JTN 아트홀 4관',3,1,1,'p_image0.png','default.png',NULL,NULL,NULL),(5,23,'와일드 패밀리','가족코믹극','환불가능','미마지아트센터 풀빛극장',4,1,1,'p_image0.png','default.png',NULL,NULL,NULL),
+(6,23,'죽여주는 이야기','코미디 연극','환불가능','JTN 아트홀 1관',4,1,1,'deathstory.jpg','main_deathstory.jpg','deathstory1.jpg',NULL,NULL),
+(7,23,'파이어맨','드라마 연극','환불가능','봄날 아트홀 3관',3,1,1,'fireman.jpg','main_fireman.jpg','fireman1.jpg',NULL,NULL),
+(8,22,'호두까기인형','코미디 연극','환불가능','JTN 아트홀 2관',4,1,1,'hodu.jpg','main_hodu.jpg','hodu1.jpg',NULL,NULL),
+(9,21,'노배우의 마지막 연기','드라마 연극','환불가능','JTN 아트홀 3관',3,1,1,'lastplay.jpg','main_lastplay.jpg','lastplay1.jpg',NULL,NULL),
+(10,23,'렛잇고','발랄 코미디 연극','환불가능','대학로 열린극장',4,1,1,'letitgo.jpg','main_letitgo.jpg','letitgo1.jpg',NULL,NULL),
+(11,23,'내 생에 가장 아름다운 추억','드라마 연극','환불가능','종로 극장',4,2,1,'lifememory.jpg','main_lifememory.jpg','lifememory1.jpg',NULL,NULL),
+(12,22,'사라진마술사','코미디 연극','환불가능','예술 회관',3,3,1,'magician.jpg','main_magician.jpg','magician1.jpg',NULL,NULL),
+(13,22,'오! 나의 귀신님','로맨틱 코미디 연극','환불가능','소래포 극장',1,3,1,'myghost.jpg','main_myghost.jpg','myghost1.jpg',NULL,NULL),
+(14,21,'두 여자','공포/스릴러 연극','환불가능','봄날 아트홀 1관',2,1,1,'twowoman.jpg','main_twowoman.jpg','twowoman1.jpg',NULL,NULL),
+(15,23,'술래잡기','공포/스릴러 연극','환불가능','대학로 열린극장',2,1,1,'술래잡기.jpg','main_술래잡기.jpg','술래잡기1.jpg',NULL,NULL),
+(16,21,'점바치','드라마 연극','환불가능','예술 회관',4,3,1,'점바치.jpg','main_점바치.jpg','점바치1.jpg',NULL,NULL)
+;
 
 -- -----------------------------------------------------
 -- Table `play`.`schedule`
