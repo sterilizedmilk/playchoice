@@ -56,7 +56,7 @@
 													href="${pageContext.request.contextPath}/actor/detail?a_id=${result.a_id}">${result.a_name }</a></td>
 												<td style="line-height: 170px;"><fmt:formatDate value="${result.a_birth }"
 														pattern="yyyy-MM-dd" /></td>
-												<td style="line-height: 170px;">${result.a_homepage }</td>
+												<td style="line-height: 170px;"><a href="${result.a_homepage }">${result.a_homepage }</a></td>
 												<td style="line-height: 170px;"><a
 													href="${pageContext.request.contextPath}/prefer/delete?a_id=${result.a_id}"
 													class="btn btn-danger" title="찜한 배우 삭제">삭제</a></td>
@@ -65,6 +65,27 @@
 									</tbody>
 								</table>
 							</form>
+							<div class="pagination pagination-large pagination-centered">
+				  				<ul class="pagination">
+						    		<c:if test="${paging.pdto.page != 1}">
+						    			<li><a href="list?page=${paging.prevPage}&perPage=${paging.pdto.perPage}">&laquo;</a></li>
+							    	</c:if>
+									<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
+										<c:choose>
+											<c:when test="${pageNum == paging.pdto.page}">
+												<li class="disabled"><a href="list?page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}
+													<span class="sr-only">(current)</span></a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a href="list?page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${paging.pdto.page != paging.pageCnt}">
+										<li><a href="list?page=${paging.nextPage}&perPage=${paging.pdto.perPage}">&raquo;</a></li>
+									</c:if>
+								</ul>
+							</div><!-- /.pagination -->
 						</c:otherwise>
 					</c:choose>
 				</div><!-- /.span12 -->

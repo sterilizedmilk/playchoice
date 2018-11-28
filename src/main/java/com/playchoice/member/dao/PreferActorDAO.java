@@ -3,12 +3,19 @@ package com.playchoice.member.dao;
 import java.util.List;
 
 import com.playchoice.actor.dto.ActorDTO;
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.PreferActorDTO;
 
 public interface PreferActorDAO {
 
 	// 찜한 배우 목록
 	public List<ActorDTO> preferActorList(int m_code) throws Exception;
+	
+	// 찜한 배우 목록 페이징
+	public List<ActorDTO> preferActorPaging(int m_code, PageDTO dto) throws Exception;
+	
+	// 총 목록 수
+	public int preferActorCount(int m_code) throws Exception;
 	
 	// 찜한 배우 추가
 	public void insertPrefer(PreferActorDTO dto) throws Exception;

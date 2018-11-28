@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.playchoice.actor.dto.ActorDTO;
+import com.playchoice.common.PageDTO;
+import com.playchoice.common.Pagination;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.member.dto.PreferActorDTO;
 import com.playchoice.member.service.PreferActorService;
@@ -42,12 +44,16 @@ public class PreferActorController {
 	
 	// 찜한 배우 목록
 	@RequestMapping(value = "/list")
-	public String list(HttpSession session, Model model) throws Exception {
+	public String list(PageDTO pdto, HttpSession session, Model model) throws Exception {
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		
-		List<ActorDTO> list = preferService.preferActorList(m_code);
+		// List<ActorDTO> list = preferService.preferActorList(m_code); // 그냥 목록
+		List<ActorDTO> list = preferService.preferActorPaging(m_code, pdto); // 페이징 목록
+		Pagination pagination = new Pagination(pdto);
+		pagination.setTotalCnt(preferService.preferActorCount(m_code));
 		
 		model.addAttribute("list", list);
+		model.addAttribute("paging", pagination);
 		return "prefer/preferList";
 	}
 	
