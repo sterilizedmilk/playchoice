@@ -1,34 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
+
+<%@ page import="java.util.*, java.text.*"%>
+<%
+	Date date = new Date();
+	SimpleDateFormat simpleDate = new SimpleDateFormat("MM-dd");
+	String strdate = simpleDate.format(date);
+	Calendar cal = Calendar.getInstance();
+%>
+
+<c:set var="date" value="<%=date%>" scope="session" />
+
 <footer>
 	<div class="container">
 		<div class="row">
-			<div class="span3">
+			<div class="span4">
 				<div class="widget">
 					<h5 class="widgetheading">Browse pages</h5>
 					<ul class="link-list">
-						<li><a href="#">About our company</a></li>
-						<li><a href="#">Our services</a></li>
-						<li><a href="#">Meet our team</a></li>
-						<li><a href="#">Explore our portfolio</a></li>
-						<li><a href="#">Get in touch with us</a></li>
+						<li><a href="${pageContext.request.contextPath}">Home</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/todaylist">
+											오늘(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
+										</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/tomorrowlist">
+											내일(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
+										</a></li>
+									<li><a href="${pageContext.request.contextPath}/play/mainlist">전체 일정</a></li>
+									<li><a href="${pageContext.request.contextPath}/actor/list">배우</a></li>
+									<li><a href="${pageContext.request.contextPath}/rank">주간랭킹</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span4">
 				<div class="widget">
 					<h5 class="widgetheading">Important stuff</h5>
 					<ul class="link-list">
-						<li><a href="#">Press release</a></li>
-						<li><a href="#">Terms and conditions</a></li>
-						<li><a href="#">Privacy policy</a></li>
-						<li><a href="#">Career center</a></li>
-						<li><a href="#">Flattern forum</a></li>
+						<li>김정대</li>
+						<li>추윤지</li>						
+						<li>양병길</li>
+						<li>이승휘</li>
+						<li>최태식</li>												
 					</ul>
 				</div>
 			</div>
-			<div class="span3">
+			<!-- <div class="span3">
 				<div class="widget">
 					<h5 class="widgetheading">Flickr photostream</h5>
 					<div class="flickr_badge">
@@ -37,17 +55,17 @@
 					</div>
 					<div class="clear"></div>
 				</div>
-			</div>
-			<div class="span3">
+			</div> -->
+			<div class="span4">
 				<div class="widget">
 					<h5 class="widgetheading">Get in touch with us</h5>
 					<address>
-						<strong>Flattern studio, Pte Ltd</strong><br> Springville
-						center X264, Park Ave S.01<br> Semarang 16425 Indonesia
+						<strong>더 조은 아카데미</strong><br> 서울특별시 종로구 삼일대로17길 51
+						<br> 스타골드빌딩 3,4,5층
 					</address>
 					<p>
-						<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-						<i class="icon-envelope-alt"></i> email@domainname.com
+						<i class="icon-phone"></i> (02) 738-5001 - (010) 9230-2653 <br>
+						<i class="icon-envelope-alt"></i> www.thoeun.co.kr
 					</p>
 				</div>
 			</div>
@@ -56,7 +74,7 @@
 	<div id="sub-footer">
 		<div class="container">
 			<div class="row">
-				<div class="span6">
+				<div class="span12">
 					<div class="copyright">
 						<p>
 							<span>&copy; Flattern - All right reserved.</span>
@@ -71,20 +89,6 @@
 							Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
 						</div>
 					</div>
-				</div>
-				<div class="span6">
-					<ul class="social-network">
-						<li><a href="#" data-placement="bottom" title="Facebook"><i
-								class="icon-facebook icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Twitter"><i
-								class="icon-twitter icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Linkedin"><i
-								class="icon-linkedin icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Pinterest"><i
-								class="icon-pinterest icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Google plus"><i
-								class="icon-google-plus icon-square"></i></a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
