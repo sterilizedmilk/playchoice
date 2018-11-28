@@ -18,7 +18,7 @@
 	</select>
 	
 	<select id="ticketSold" resultType="int">
-		SELECT SUM(payment.p_quantity)
+		SELECT IFNULL(SUM(payment.p_quantity), 0)
 		FROM schedule, payment
 		WHERE schedule.s_id = #{s_id}
 		AND schedule.s_id = payment.s_id

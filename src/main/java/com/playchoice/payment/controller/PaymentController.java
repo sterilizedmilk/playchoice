@@ -1,6 +1,5 @@
 package com.playchoice.payment.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -41,15 +40,18 @@ public class PaymentController {
 	public String paymentController(Model model,
 									@RequestParam int p_quantity,
 									@RequestParam int s_id) throws Exception {
-		// TODO 로그인여부 확인(인터셉터)
-		
 		ScheduleDTO schedule = scheduleService.getSchedule(s_id);
 		PlayDTO play = playService.playDetail(schedule.getP_id());
+
+		if (p_quantity > scheduleService.ticketLeft(schedule)) {
+			p_quantity = scheduleService.ticketLeft(schedule);
+		}
 		
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("play", play);
 		model.addAttribute("quantity", p_quantity);
 		model.addAttribute("discountedPrice", scheduleService.discountedPrice(schedule));
+		
 		
 		return "payment/payment";
 	}
@@ -65,6 +67,11 @@ public class PaymentController {
 		
 //		System.out.println("cardno : " + cardno	+ "validity : " + validityYear + "/" + validityMonth);
 		ScheduleDTO schedule = scheduleService.getSchedule(s_id);
+		
+		// 티켓 수량이 부족
+		if (p_quantity > scheduleService.ticketLeft(schedule)) {
+			return "redirect:/play/playdetail?&p_id=" + schedule.getP_id();
+		}
 		
 		PaymentDTO payment = new PaymentDTO();
 		payment.setS_id(s_id);
