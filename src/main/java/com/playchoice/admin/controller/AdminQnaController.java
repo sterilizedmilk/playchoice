@@ -57,43 +57,36 @@ public class AdminQnaController {
 			}else {
 				model.addAttribute("qnaList",service.getQnaAsPlay(dto.getP_id()));
 			}
-		}else {
-			
-			model.addAttribute("msg","로그인해야합니다.");
-			model.addAttribute("url", "../../");
 		}
-		
-		
-		
-//		if(dto.getP_id() == 0) {
-//			model.addAttribute("qnaList",service.getQna(1));
-//		}else {
-//			model.addAttribute("qnaList",service.getQnaAsPlay(dto.getP_id()));
-//		}
-//		
-//		model.addAttribute("myPlayList", service.myPlay(1));
-		
+	
 		return "admin/qna/qnalist";
 	}
 	
-	
+	// Q & A 디테일
 	@RequestMapping("qnadetail")
-	public String qnaDetail(HttpServletRequest request, QnaDTO dto, Model model) {
-		
+	public String qnaDetail(QnaDTO dto, Model model) {
+
 		model.addAttribute("list", service.getDetail(dto));
-		
 		
 		return "admin/qna/qnadetail";
 	}
 	
+	// Q & A 답변 등록하기
 	@RequestMapping("write")
-	public String replyWri(QnaDTO dto, Model model) {
-		//내용 빈칸 체크 , 디자인 , 뉴/답변완료 체크 , 연극별로 보여주기, detail페이지에 m_code 고정되어있음
-		service.replyWri(dto);
+	public String replyWri(HttpServletRequest request, QnaDTO dto, Model model) {
+		//내용 빈칸 체크 , 디자인
+		HttpSession session = request.getSession();
 		
+		MemberDTO res = (MemberDTO)session.getAttribute("login");
+	
+		if(res != null) {
+			dto.setM_code(res.getM_code());
+			service.replyWri(dto);
+		}
 		return "redirect:/admin/qna/qnalist";
 	}
 	
+	// Q & A 답변 수정하기
 	@RequestMapping("modify")
 	public String replyModi(QnaDTO dto, Model model) {
 		

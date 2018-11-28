@@ -34,26 +34,27 @@ $(document).ready(function(){
 
 </script>
 <div class="container">
-	<div class="row" style="outline:1px solid black;">
-		<div>
-			${list[0].q_content }
+	<div class="row">
+		<div style="margin: 20px; border-bottom:1px solid #8C8C8C;">
+		<p style="font-weight: bold;">${list[0].m_id } | ${list[0].q_time}</p>
+			<p>${list[0].q_content }</p>
 		</div>
 		
-		<div>
+		<div style="margin:20;padding:20px;">
 			<form name="frm" method="POST">
-				<textarea rows="" cols="" name="q_content">${list[1].q_content }</textarea>
+				<textarea style="width: 80%; height:100px;"rows="" cols="" name="q_content" required>${list[1].q_content }</textarea>
 				<input type="hidden" name="q_target_id" value="${list[0].q_id}" />
 				<input type="hidden" name="p_id" value="${list[0].p_id}" />
-				<input type="hidden" name="m_code" value="1" />
-				<input type="hidden" name="m_code" value="${login.m_code }" />
+				
 			<c:choose>
 				<c:when test="${list[1] == null }">
-					<button id="write" type="submit">작성</button>
+					<button class="btn btn-success" id="write" type="submit">작성</button>
 				</c:when>
 				<c:otherwise>
-					<button id="modify">수정</button>
+					<button class="btn btn-success" id="modify">수정</button>
 				</c:otherwise>
 			</c:choose>
+				<a class="btn btn-danger" href="qnalist">취 소</a>
 			
 
 			</form>

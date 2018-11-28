@@ -30,7 +30,7 @@
 		var scehTime; // 스케쥴 타임
 		
 		$("#ticket_div").hide();
-	
+		
 		// 티켓 수 출력
 		$('#ticket').text(quantity);
 		
@@ -133,15 +133,16 @@
 			<!--  이미지 끝 -->
 
 			<!-- 연극 제목 및 가격정보 -->
-			<div id="ticket_div">
+			<div>
 				<!-- 제목 -->
-				<div style="text-align: center; padding: 15px 10px">
+				<div style="text-align: center; padding: 15px 10px; border-bottom:1px solid #eee">
 					<span style="margin-left: 2px; font-size: 20px; font-weight: 500; color: #000;">${playDTO.p_name }</span>
 				</div>
 				<!-- 제목 끝 -->
-
+			</div>
+			<div id="ticket_div">
 				<!-- 정가 가격  -->
-				<div style="margin: 0 10px; padding: 15px 0 0px 0; font-size: 12px; font-weight: 300; color: #8b8b8b; border-top: 1px solid #eee;"></div>
+				<div style="margin: 0 10px; padding: 15px 0 0px 0; font-size: 12px; font-weight: 300; color: #8b8b8b;"></div>
 				<!-- 할인 가격 -->
 				<div class="row" style="margin: 0 10px; font-size: 18px; color: #ed1c24; font-weight: 400;">
 					<div style="float: left;">
@@ -180,21 +181,26 @@
 		</div>
 		<!--  좌측정보 끝 -->
 
-		<!-- 우측 상단 정보영역 시작 / 달력 -->
+		<!-- 우측 상단 정보영역 시작 / 일정 -->
 		<div class="col-md-7" style="margin: 0px 10px; float: left; ">
+			<!-- 달력 -->
 			<jsp:include page="playcal.jsp" />
-
-			<div>
+			
+			<!-- 일정리스트 -->
+			<c:if test="${login ne null}">
+			<div id="schedule_div">
 				<c:forEach items="${schedule }" var="list" varStatus="status">
 					<c:set var="date"> 
-						<fmt:formatDate value="${list.s_time }" pattern="yyyy년 MM월 dd일 hh:mm a"/> 
+						<fmt:formatDate value="${list.s_time }" pattern="yyyy/MM/dd a hh:mm"/> 
 					</c:set>
-					${date}
+					${date} - ${list.s_price } 원
 					<button class="scheduleCho" date="${date}" value="${list.s_id }" price="${list.s_price }">선택</button>
 					<br>
 				</c:forEach>
 			</div>
+			</c:if>
 		</div>
+		<!-- 일정 끝 -->
 	</div>
 	<!-------- 우측 정보영역 끝 -------->
 	<!-- divider -->
@@ -208,7 +214,11 @@
 	<div class="row" align="right" style="outline: 1px solid blue;">
 		<div style="float: rigth;">
 			<form name="frm" method="post">
-				<input type="hidden" id="frmId" name="s_id" value="" /> <input type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" /> <input type="hidden" id="" name="m_code" value="${login.m_code }" /> <input type="hidden" id="frmPrice" name="p_price" value="" /> <input type="hidden" id="frmQuantity" name="p_quantity" value="12000" />
+				<input type="hidden" id="frmId" name="s_id" value="" />
+				<input type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" /> 
+				<input type="hidden" id="sessionMcode"name="m_code" value="${login.m_code }" /> 
+				<input type="hidden" id="frmPrice" name="p_price" value="" /> 
+				<input type="hidden" id="frmQuantity" name="p_quantity" value="" />
 
 				<button id="cart" type="submit" class="btn btn-success btn-lg">장바구니</button>
 			</form>

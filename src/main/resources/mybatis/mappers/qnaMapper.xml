@@ -66,9 +66,11 @@
 	</select>
 	
 	<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
-		select * 
-		from question_answer
-		where q_target_id = #{q_id}
+		SELECT question_answer.*, play.p_name, member.m_id
+		FROM question_answer,member,play
+		WHERE q_target_id = #{q_id}
+		AND question_answer.m_code = member.m_code
+		AND question_answer.p_id = play.p_id;
 	</select>
 	
 	<insert id="replyWri" parameterType="QnaDTO">
