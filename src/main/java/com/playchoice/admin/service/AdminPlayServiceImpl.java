@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playchoice.admin.dao.AdminPlayDAO;
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
@@ -73,6 +74,17 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		System.out.println("psread service start");
 		return dao.psread(p_id);
 	}
+	//연극 일정 리스트 페이징
+	@Override
+	public List<ScheduleDTO> psreadPaging(int p_id, PageDTO dto) throws Exception {
+		return dao.psreadPaging(p_id, dto);
+	}
+	//총 목록 수
+	@Override
+	public int psreadCount(int p_id) throws Exception {
+		return dao.psreadCount(p_id);
+	}
+	
 
 	//연극 일정 생성
 	@Override
@@ -113,5 +125,4 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		return dao.getQnaAsPlay(p_id);
 	}
 
-	
 }

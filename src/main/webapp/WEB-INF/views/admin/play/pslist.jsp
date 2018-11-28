@@ -96,9 +96,29 @@
 					</tr>
 					</form>
 					</c:forEach>
-				</tbody>
-				
+				</tbody>			
 			</table>
+				<div class="pagination pagination-large pagination-centered">
+				  	<ul class="pagination">
+						<c:if test="${paging.pdto.page != 1}">
+							<li><a href="pslist?p_id=${param.p_id }&page=${paging.prevPage}&perPage=${paging.pdto.perPage}">&laquo;</a></li>
+					   	</c:if>
+						<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
+							<c:choose>
+								<c:when test="${pageNum == paging.pdto.page}">
+									<li class="disabled"><a href="pslist?p_id=${param.p_id }&page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}
+										</a></li>
+									</c:when>
+								<c:otherwise>
+									<li><a href="pslist?p_id=${param.p_id }&page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}</a></li>
+								</c:otherwise>
+								</c:choose>
+						</c:forEach>
+						<c:if test="${paging.pdto.page != paging.pageCnt}">
+							<li><a href="pslist?p_id=${param.p_id }&page=${paging.nextPage}&perPage=${paging.pdto.perPage}">&raquo;</a></li>
+						</c:if>
+					</ul>
+				</div><!-- /.pagination -->	
 			</div>
 		</div>
 	</div>

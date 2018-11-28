@@ -2,6 +2,7 @@ package com.playchoice.admin.service;
 
 import java.util.List;
 
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
@@ -24,6 +25,10 @@ public interface AdminPlayService {
 	public void psmodify(ScheduleDTO sdto) throws Exception;	
 	
 	public List<ScheduleDTO> psread(int p_id) throws Exception;
+	//연극 일정 페이징
+	public List<ScheduleDTO> psreadPaging(int p_id, PageDTO dto) throws Exception;
+	//총 목록 수
+	public int psreadCount(int p_id) throws Exception;
 	
 	public void psregist(ScheduleDTO sdto) throws Exception;
 	

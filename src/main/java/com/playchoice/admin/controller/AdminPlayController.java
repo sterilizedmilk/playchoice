@@ -1,5 +1,7 @@
 package com.playchoice.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,6 +20,8 @@ import com.playchoice.actor.service.ActorService;
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
 import com.playchoice.admin.service.SiteAdminService;
+import com.playchoice.common.PageDTO;
+import com.playchoice.common.Pagination;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.payment.dto.PaymentDTO;
 import com.playchoice.play.dto.PlayDTO;
@@ -191,12 +195,22 @@ public class AdminPlayController {
 	
 	//일정 조회
 	@RequestMapping(value="pslist", method=RequestMethod.GET)
-	public void psread(@RequestParam("p_id") int p_id, Model model) throws Exception{
+	public void psread(PageDTO pdto,@RequestParam("p_id") int p_id, Model model, HttpSession session) throws Exception{
 		logger.info("list psread show....................");
-		model.addAttribute("key", service.psread(p_id));
+		model.addAttribute("key", service.psreadPaging(p_id,pdto));
 		//key 값을 key로 만들어 service.psread(p_id) 내용을 사용
 		System.out.println(service.psread(p_id));
 		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
+		
+		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
+		
+		List<ScheduleDTO> list = service.psreadPaging(m_code, pdto);
+		
+		Pagination pagination = new Pagination(pdto);
+		pagination.setTotalCnt(service.psreadCount(p_id));
+		
+		//model.addAttribute("list",list);
+		model.addAttribute("paging", pagination);
 	}
 	
 	//일정 생성

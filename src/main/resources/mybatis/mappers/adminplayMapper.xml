@@ -43,6 +43,20 @@
     	where p_id=#{p_id}
     </update>
     
+    <!-- 찜한 스케쥴 페이징 -->
+	<select id="psreadPaging" resultType="ScheduleDTO">
+		SELECT *
+		FROM schedule
+		WHERE p_id=#{p_id}
+		LIMIT #{pageDTO.startNum}, #{pageDTO.perPage}
+	</select>
+	<!-- 총 목록 수 -->
+	<select id="psreadCount" resultType="int">
+		SELECT COUNT(*)
+		FROM schedule
+		WHERE  p_id=#{p_id}
+	</select>
+	    
     <select id="psread" resultType="ScheduleDTO">
     	select *
     	from schedule

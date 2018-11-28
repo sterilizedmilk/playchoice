@@ -2,11 +2,13 @@ package com.playchoice.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
@@ -76,6 +78,19 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 //		return session.selectOne(namespace + ".psread",p_id);
 		return session.selectList(namespace + ".psread", p_id);
 	}
+	//연극 일정 리스트 페이징 처리
+	@Override
+	public List<ScheduleDTO> psreadPaging(int p_id, PageDTO dto) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_id", p_id);
+		map.put("pageDTO", dto);
+		return session.selectList(namespace + ".psreadPaging",map);
+	}
+	//총 목록 수
+	@Override
+	public int psreadCount(int p_id) throws Exception {
+		return session.selectOne(namespace + ".psreadCount", p_id);
+	}
 	
 	//연극 일정 생성
 	@Override
@@ -121,5 +136,6 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		return session.selectList(namespace2+".getQnaAsPlay", p_id);
 	}
 
-	
+
+
 }
