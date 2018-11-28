@@ -93,6 +93,12 @@ public class PlayDAOImpl implements PlayDAO {
 	public Object getPlayRank() {
 		// TODO Auto-generated method stub
 		List<PlayDTO> dto = sqlSession.selectList(namespace + ".playRankList");
+		int p_id = 0;
+		for (int i = 0; i < dto.size(); i++) {
+			p_id = dto.get(i).getP_id();
+
+			dto.get(i).setLowest_price(sqlSession.selectOne(namespace + ".playPrice", p_id));
+		}
 		return dto;
 	}
 

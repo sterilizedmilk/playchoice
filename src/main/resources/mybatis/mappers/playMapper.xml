@@ -47,12 +47,22 @@
 		= '1'
 		And (
 		play.p_name like CONCAT('%',#{search},'%')
-		OR play.p_info like	CONCAT('%',#{search},'%')
-		OR play.p_location like CONCAT('%',#{search},'%') )
-		
+		OR play.p_info
+		like CONCAT('%',#{search},'%')
+		OR play.p_location like
+		CONCAT('%',#{search},'%') )
+
 		GROUP BY play.p_id
 	</select>
 
+
+	<select id="playPrice" resultType="Integer"
+		parameterType="Integer">
+		SELECT min(`schedule`.s_price) AS lowest_price
+		FROM  `schedule`
+		WHERE
+		`schedule`.p_id = #{p_id}
+	</select>
 
 	<select id="playRankList" resultType="PlayDTO">
 		SELECT * FROM
@@ -82,7 +92,8 @@
 		from schedule
 		where p_id = #{p_id}
 		AND s_canceled = 0
-		AND s_time <![CDATA[>]]> now()
+		AND s_time <![CDATA[>]]>
+		now()
 		order by s_time
 	</select>
 
