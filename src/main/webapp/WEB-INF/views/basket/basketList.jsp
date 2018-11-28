@@ -44,7 +44,7 @@
 											<th>사진</th>
 											<th>연극명</th>
 											<th>장르</th>
-											<th>연극정보</th>
+											<!-- <th>연극정보</th> -->
 											<th>삭제</th>
 										</tr>
 									</thead>
@@ -55,7 +55,7 @@
 												<td style="line-height: 250px;"><a
 													href="${pageContext.request.contextPath}/play/playdetail?p_id=${result.p_id}">${result.p_name }</a></td>
 												<td style="line-height: 250px;">${genreMap.get(result.g_id) }</td><!-- map.get()대신에 ${genreMap[result.g_id]}으로도 가능 -->
-												<td style="line-height: 250px;">${result.p_info }</td>
+												<%-- <td style="line-height: 250px;">${result.p_info }</td> --%>
 												<td style="line-height: 250px;"><a
 													href="${pageContext.request.contextPath}/basket/delete?p_id=${result.p_id}"
 													class="btn btn-danger" title="찜한 연극 삭제">삭제</a></td>

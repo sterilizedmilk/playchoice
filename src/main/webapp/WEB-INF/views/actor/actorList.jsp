@@ -85,7 +85,7 @@
 					<tbody>
 						<c:forEach items="${actorList }" var="actor" varStatus="status">	
 						<tr>
-							<td><img src="<c:url value="/"/>resources/img/actor/${actor.a_picture }" width="136px" height="170px" style="padding:10px"/></td>
+							<td><img src="<c:url value="/"/>resources/img/actor/${actor.a_picture }" width="136px" height="170px" style="padding:10px" class="img-rounded"/></td>
 							<td style="line-height: 180px;"><a href="detail?a_id=${actor.a_id}">${actor.a_name}</a></td>
 							<td style="line-height: 180px;">${actor.sdf}</td>
 							<td style="line-height: 180px;"><a href="http://${actor.a_homepage}" target="_blank">${actor.a_homepage}</a></td>

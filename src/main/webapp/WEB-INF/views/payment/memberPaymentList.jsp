@@ -78,11 +78,11 @@
 					<%-- watched<input type="checkbox" name="watched" value="true" ${param.watched == true ? 'checked' : ''} ><br> --%>
 					<%-- page<input type="number" name="page" value="${param.page}"><br> --%>
 					<div class="control-group button-group pull-right">
-						<button type="button" class="btn btn-success">검색</button>
+						<button type="submit" class="btn btn-success">검색</button>
 					</div>
 					</form>
 				
-					<table class="table" border="1">
+					<table class="table table-striped table-hover" border="1">
 						<thead>
 							<tr>
 								<th>결제 시간</th>

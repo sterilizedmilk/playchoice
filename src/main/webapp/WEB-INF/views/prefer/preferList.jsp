@@ -56,7 +56,7 @@
 													href="${pageContext.request.contextPath}/actor/detail?a_id=${result.a_id}">${result.a_name }</a></td>
 												<td style="line-height: 170px;"><fmt:formatDate value="${result.a_birth }"
 														pattern="yyyy-MM-dd" /></td>
-												<td>${result.a_homepage }</td>
+												<td style="line-height: 170px;">${result.a_homepage }</td>
 												<td style="line-height: 170px;"><a
 													href="${pageContext.request.contextPath}/prefer/delete?a_id=${result.a_id}"
 													class="btn btn-danger" title="찜한 배우 삭제">삭제</a></td>
