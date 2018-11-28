@@ -115,7 +115,7 @@
 				</div>
 				<div class="span3">
 					<form class="form-search" action="${pageContext.request.contextPath}/search">
-						<input placeholder="Search" type="text" class="input-medium search-query" name="search"  id="search"/>
+						<input placeholder="Search" type="text" class="input-medium search-query" name="search" id="search" />
 						<button type="submit" class="btn btn-square btn-theme">Search</button>
 					</form>
 				</div>
@@ -125,10 +125,10 @@
 							<nav>
 								<ul class="nav topnav">
 									<li><a href="${pageContext.request.contextPath}">Home</a></li>
-									<li><a href="${pageContext.request.contextPath}/play/todaylist">
+									<li><a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=0&s_tab=todaylist">
 											오늘(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
 										</a></li>
-									<li><a href="${pageContext.request.contextPath}/play/tomorrowlist">
+									<li><a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=0&s_tab=tomorrowlist">
 											내일(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
 										</a></li>
 									<li><a href="${pageContext.request.contextPath}/play/mainlist">전체 일정</a></li>

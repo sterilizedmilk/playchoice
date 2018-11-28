@@ -23,21 +23,23 @@
 								<strong>지역</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ menudto.g_id}&s_tab=${ menudto.s_tab}">전체보기</a>
+								<c:if test="${ menudto.a_id ne 0}">
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ menudto.g_id}&s_tab=${ menudto.s_tab}">전체보기</a>
+								</c:if>
+								<c:if test="${ menudto.a_id eq 0}">
+									전체보기
+								</c:if>
 							</td>
-							<%-- <td>아이디 번호 : ${ playMenu.a_id}</td>
-							 --%>
 							<c:forEach items="${area}" var="area" varStatus="status">
 								<td>
-									<%-- 		<c:choose>
-										<c:when test="">
+									<c:choose>
+										<c:when test="${ menudto.a_id eq status.count}">
+											${ area.a_name}
 										</c:when>
 										<c:otherwise>
-							 --%>
-									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ menudto.g_id}&s_tab=${ menudto.s_tab}">${ area.a_name}</a>
-									<%-- 		</c:otherwise>
+											<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ menudto.g_id}&s_tab=${ menudto.s_tab}">${ area.a_name}</a>
+										</c:otherwise>
 									</c:choose>
-								 --%>
 								</td>
 							</c:forEach>
 						</tr>
@@ -48,11 +50,23 @@
 								<strong>장르</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=0&s_tab=${ menudto.s_tab}">전체보기</a>
+								<c:if test="${ menudto.g_id ne 0}">
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=0&s_tab=${ menudto.s_tab}">전체보기</a>
+								</c:if>
+								<c:if test="${ menudto.g_id eq 0}">
+									전체보기
+								</c:if>
 							</td>
 							<c:forEach items="${genre}" var="genre" varStatus="status">
 								<td>
-									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ genre.g_id}&s_tab=${ menudto.s_tab}">${ genre.g_name } </a>
+									<c:choose>
+										<c:when test="${ menudto.g_id eq status.count}">
+										${ genre.g_name } 
+										</c:when>
+										<c:otherwise>
+											<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ genre.g_id}&s_tab=${ menudto.s_tab}">${ genre.g_name } </a>
+										</c:otherwise>
+									</c:choose>
 								</td>
 							</c:forEach>
 							<td></td>
@@ -62,17 +76,32 @@
 								<strong>일정</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=mainlist">전체보기</a>
+								<c:if test="${menudto.s_tab ne 'mainlist' }">
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=mainlist">전체보기</a>
+								</c:if>
+								<c:if test="${menudto.s_tab eq 'mainlist' }">
+									전체보기
+								</c:if>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=todaylist">
+								<c:if test="${menudto.s_tab ne 'todaylist'}">
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=todaylist">
+										오늘(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
+									</a>
+								</c:if>
+								<c:if test="${menudto.s_tab eq 'todaylist'}">
 									오늘(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
-								</a>
+								</c:if>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=tomorrowlist">
+								<c:if test="${menudto.s_tab ne 'tomorrowlist' }">
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=tomorrowlist">
+										내일(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
+									</a>
+								</c:if>
+								<c:if test="${menudto.s_tab eq 'tomorrowlist' }">
 									내일(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
-								</a>
+								</c:if>
 							</td>
 							<td></td>
 							<td></td>
