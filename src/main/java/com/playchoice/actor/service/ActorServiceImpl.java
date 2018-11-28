@@ -19,7 +19,7 @@ public class ActorServiceImpl implements ActorService {
 	
 	@Override
 	public List<ActorDTO> listActor(String keyword) {
-		//keyword의 유무로 SQL문이 달라져서 DAO 메소드를 나눠놨음
+		// keyword의 유무로 SQL문이 달라져서 DAO 메소드를 나눠놨음
 		if(keyword == null || keyword.equals("")) {
 			return dao.listActor();
 		}else {
@@ -27,7 +27,7 @@ public class ActorServiceImpl implements ActorService {
 		}
 	}
 
-	//배우 찜하기
+	// 배우 찜하기
 	@Override
 	public int mypickActor(MemberDTO dto, String a_id) {
 		HashMap<String, Object> param = new HashMap<String, Object>();

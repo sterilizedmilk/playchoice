@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.actor.dto.SearchActorDTO;
-import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 
 public interface ActorDAO {
@@ -13,7 +12,7 @@ public interface ActorDAO {
 	public List<ActorDTO> listActor();
 	
 	public List<ActorDTO> seachActor(String keyword);
-
+	
 	// a_id
 	public ActorDTO getActor(int a_id);
 	

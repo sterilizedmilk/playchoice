@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.ShoppingBasketDTO;
 import com.playchoice.play.dto.PlayDTO;
 
@@ -24,6 +25,21 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
 		return sqlSession.selectList(namespace + ".shoppingBasketList", m_code);
 	}
 
+	// 찜한 연극 목록 페이징
+	@Override
+	public List<PlayDTO> shoppingBasketPaging(int m_code, PageDTO dto) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_code", m_code);
+		map.put("pageDTO", dto);
+		return sqlSession.selectList(namespace + ".shoppingBasketPaging", map);
+	}
+	
+	// 총 목록 수
+	@Override
+	public int shoppingBasketCount(int m_code) throws Exception {
+		return sqlSession.selectOne(namespace + ".shoppingBasketCount", m_code);
+	}
+	
 	// 찜한 연극 추가
 	@Override
 	public void insertBasket(ShoppingBasketDTO dto) throws Exception {

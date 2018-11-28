@@ -1,6 +1,5 @@
 package com.playchoice.actor.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.actor.dto.SearchActorDTO;
-import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
 
 @Repository

@@ -1,10 +1,8 @@
 package com.playchoice.actor.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.playchoice.actor.dto.ActorDTO;
-import com.playchoice.actor.dto.SearchActorDTO;
 import com.playchoice.member.dto.MemberDTO;
 
 public interface ActorService {

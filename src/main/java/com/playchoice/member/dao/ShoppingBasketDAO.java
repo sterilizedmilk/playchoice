@@ -2,6 +2,7 @@ package com.playchoice.member.dao;
 
 import java.util.List;
 
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.ShoppingBasketDTO;
 import com.playchoice.play.dto.PlayDTO;
 
@@ -9,6 +10,12 @@ public interface ShoppingBasketDAO {
 
 	// 찜한 연극  목록
 	public List<PlayDTO> shoppingBasketList(int m_code) throws Exception;
+	
+	// 찜한 연극 목록 페이징
+	public List<PlayDTO> shoppingBasketPaging(int m_code, PageDTO dto) throws Exception;
+	
+	// 총 목록 수
+	public int shoppingBasketCount(int m_code) throws Exception;
 	
 	// 찜한 연극 추가
 	public void insertBasket(ShoppingBasketDTO dto) throws Exception;

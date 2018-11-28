@@ -64,6 +64,27 @@
 									</tbody>
 								</table>
 							</form>
+							<div class="pagination pagination-large pagination-centered">
+				  				<ul class="pagination">
+						    		<c:if test="${paging.pdto.page != 1}">
+						    			<li><a href="list?page=${paging.prevPage}&perPage=${paging.pdto.perPage}">&laquo;</a></li>
+							    	</c:if>
+									<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
+										<c:choose>
+											<c:when test="${pageNum == paging.pdto.page}">
+												<li class="disabled"><a href="list?page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}
+													<span class="sr-only">(current)</span></a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a href="list?page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${paging.pdto.page != paging.pageCnt}">
+										<li><a href="list?page=${paging.nextPage}&perPage=${paging.pdto.perPage}">&raquo;</a></li>
+									</c:if>
+								</ul>
+							</div><!-- /.pagination -->
 						</c:otherwise>
 					</c:choose>
 				</div><!-- /.span8 -->

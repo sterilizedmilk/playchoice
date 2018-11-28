@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.playchoice.common.PageDTO;
 import com.playchoice.member.dao.ShoppingBasketDAO;
 import com.playchoice.member.dto.ShoppingBasketDTO;
 import com.playchoice.play.dto.PlayDTO;
@@ -19,6 +20,18 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 	@Override
 	public List<PlayDTO> shoppingBasketList(int m_code) throws Exception {
 		return shoppingBasketDao.shoppingBasketList(m_code);
+	}
+	
+	// 찜한 연극 목록 페이징
+	@Override
+	public List<PlayDTO> shoppingBasketPaging(int m_code, PageDTO dto) throws Exception {
+		return shoppingBasketDao.shoppingBasketPaging(m_code, dto);
+	}
+	
+	// 총 목록 수
+	@Override
+	public int shoppingBasketCount(int m_code) throws Exception {
+		return shoppingBasketDao.shoppingBasketCount(m_code);
 	}
 
 	// 찜한 연극 추가

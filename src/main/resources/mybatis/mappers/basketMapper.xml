@@ -4,42 +4,58 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.playchoice.mapper.basketMapper">
 
-	<!-- 장바구니 목록 -->
+	<!-- 찜한 연극 목록 -->
 	<select id="shoppingBasketList" resultType="PlayDTO">
 		SELECT play.p_id, play.p_name, play.p_info, play.g_id, play.p_image0
 		FROM shopping_basket, play
 		WHERE play.p_id=shopping_basket.p_id
 		AND shopping_basket.m_code=#{m_code}
 	</select>
+	
+	<!-- 찜한 연극 목록 페이징 -->
+	<select id="shoppingBasketPaging" resultType="PlayDTO">
+		SELECT play.p_id, play.p_name, play.p_info, play.g_id, play.p_image0
+		FROM shopping_basket, play
+		WHERE play.p_id=shopping_basket.p_id
+		AND shopping_basket.m_code=#{m_code}
+		LIMIT #{pageDTO.startNum}, #{pageDTO.perPage}
+	</select>
+	
+	<!-- 총 목록 수 -->
+	<select id="shoppingBasketCount" resultType="int">
+		SELECT COUNT(*)
+		FROM shopping_basket
+		WHERE shopping_basket.m_code=#{m_code}
+	</select>
 
-	<!-- 장바구니 추가 -->
+	<!-- 찜한 연극 추가 -->
 	<insert id="insertBasket">
 		INSERT INTO shopping_basket (m_code, p_id)
 		VALUES (#{m_code}, #{p_id})
 	</insert>
 
-	<!-- 장바구니 수정 -->
+	<!-- 찜한 연극 수정 -->
 	<update id="updateBasket">
 		UPDATE shopping_basket
 		SET m_code=#{m_code}, p_id=#{p_id}
 		WHERE m_id=#{m_id}
 	</update>
 
-	<!-- 장바구니 삭제 -->
+	<!-- 찜한 연극 삭제 -->
 	<delete id="deleteBasket">
 		DELETE
 		FROM shopping_basket
 		WHERE p_id=#{p_id}
 	</delete>
 
-	<!-- 장바구니 조회 -->
+	<!-- 찜한 연극 조회 -->
 	<select id="viewBasket" resultType="ShoppingBasketDTO">
 		SELECT *
 		FROM shopping_basket
 		WHERE m_code=#{m_code}
 	</select>
 
-	<!-- 장바구니에 동일한 상품이 있는지 체크 -->
+	<!-- 찜한 연극 목록에 동일한 상품이 있는지 체크 -->
 	<select id="countBasket" resultType="int">
 		SELECT COUNT(*)
 		FROM shopping_basket
