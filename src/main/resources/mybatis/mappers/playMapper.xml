@@ -84,6 +84,7 @@
 		from schedule
 		where p_id = #{p_id}
 		AND s_canceled = 0
+		AND s_time <![CDATA[>]]> now()
 		order by s_time
 	</select>
 
