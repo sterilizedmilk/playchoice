@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-				<h4 style="color: white">연극 일정</h4>
+				<h4 style="color: white">연극 일정 ${ menudto.s_tab}</h4>
 				<table class="table">
 					<thead>
 						<tr>
@@ -23,7 +23,7 @@
 								<strong>지역</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ menudto.g_id}">전체보기</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=0&g_id=${ menudto.g_id}&s_tab=${ menuinfo.s_tab}">전체보기</a>
 							</td>
 							<%-- <td>아이디 번호 : ${ playMenu.a_id}</td>
 							 --%>
@@ -34,7 +34,7 @@
 										</c:when>
 										<c:otherwise>
 							 --%>
-									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ menudto.g_id}">${ area.a_name}</a>
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ area.a_id}&g_id=${ menudto.g_id}&s_tab=${ menudto.s_tab}">${ area.a_name}</a>
 									<%-- 		</c:otherwise>
 									</c:choose>
 								 --%>
@@ -52,7 +52,7 @@
 							</td>
 							<c:forEach items="${genre}" var="genre" varStatus="status">
 								<td>
-									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ genre.g_id}">${ genre.g_name } </a>
+									<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ genre.g_id}&s_tab=${ menudto.s_tab}">${ genre.g_name } </a>
 								</td>
 							</c:forEach>
 							<td></td>
@@ -62,15 +62,15 @@
 								<strong>일정</strong>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/mainlist">전체보기</a>
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=mainlist">전체보기</a>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/todaylist">
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=todaylist">
 									오늘(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE)%>)
 								</a>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/play/tomorrowlist">
+								<a href="${pageContext.request.contextPath}/play/mainlist?a_id=${ menudto.a_id}&g_id=${ menudto.g_id}&s_tab=tomorrowlist">
 									내일(<%=cal.get(Calendar.MONTH) + 1%>/<%=cal.get(Calendar.DATE) + 1%>)
 								</a>
 							</td>

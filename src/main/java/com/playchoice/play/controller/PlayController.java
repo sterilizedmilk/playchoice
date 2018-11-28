@@ -53,22 +53,69 @@ public class PlayController {
 
 	// 전체 일정
 	@RequestMapping("mainlist")
-	public String playListController(Model model,
-			@RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
-			@RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id) throws Exception {
+	public String playListController(HttpServletRequest request, Model model,
+			/*
+			 * @RequestParam(value = "a_id", required = false, defaultValue = "0") int a_id,
+			 * 
+			 * @RequestParam(value = "g_id", required = false, defaultValue = "0") int g_id,
+			 * 
+			 * @RequestParam(value = "s_tab", required = false, defaultValue = "0") String
+			 * s_tab,
+			 */
+			PlayMenuDTO menudto) throws Exception {
 
-		PlayMenuDTO menudto = new PlayMenuDTO();
-		menudto.setA_id(a_id);
-		menudto.setG_id(g_id);
-		System.out.println("menudto" + menudto);
-		model.addAttribute("playMenu", menudto);
+		// PlayMenuDTO menudto = new PlayMenuDTO();
+		// menudto.setA_id(a_id);
+		// menudto.setG_id(g_id);
+		List<PlayDTO> dto;
+		HttpSession session;
+		SimpleDateFormat sdf;
 
-		List<PlayDTO> dto = service.playList(menudto);
-		System.out.println("mainlist = " + dto);
-		// List<PlayDTO> dto = service.playList();
+		switch (menudto.getS_tab()) {
+		case "mainlist":
+			menudto.setS_tab("mainlist");
+			dto = service.playList(menudto);
+			model.addAttribute("list", dto);
+			model.addAttribute("title", "전체리스트");
 
-		model.addAttribute("list", dto);
-		model.addAttribute("title", "전체리스트");
+			break;
+		case "todaylist":
+			menudto.setS_tab("todaylist");
+			session = request.getSession();
+			sdf = new SimpleDateFormat("yyyy-MM-dd");
+			model.addAttribute("title", "오늘 리스트");
+
+			if (session.getAttribute("date") instanceof Date) {
+				Date date = (Date) session.getAttribute("date");
+
+				String res = sdf.format(date);
+
+				dto = service.playTodayList(res);
+				model.addAttribute("list", dto);
+			}
+			break;
+		case "tomorrowlist":
+			menudto.setS_tab("tomorrowlist");
+			session = request.getSession();
+			sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar cal = Calendar.getInstance();
+
+			if (session.getAttribute("date") instanceof Date) {
+
+				Date date = (Date) session.getAttribute("date");
+
+				cal.setTime(date);
+				cal.add(Calendar.DATE, 1);
+
+				String res = sdf.format(cal.getTime());
+				dto = service.playTodayList(res);
+				model.addAttribute("list", dto);
+			}
+			model.addAttribute("title", "내일 리스트");
+			break;
+		}
+		model.addAttribute("menudto", menudto);
+
 		return "play/playlist";
 	}
 
@@ -80,6 +127,8 @@ public class PlayController {
 		PlayMenuDTO menudto = new PlayMenuDTO();
 		menudto.setA_id(a_id);
 		menudto.setG_id(g_id);
+		menudto.setS_tab("todaylist");
+
 		model.addAttribute("playMenu", menudto);
 
 		HttpSession session = request.getSession();
@@ -107,6 +156,8 @@ public class PlayController {
 		PlayMenuDTO menudto = new PlayMenuDTO();
 		menudto.setA_id(a_id);
 		menudto.setG_id(g_id);
+		menudto.setS_tab("tomorrowlist");
+
 		model.addAttribute("playMenu", menudto);
 
 		HttpSession session = request.getSession();
