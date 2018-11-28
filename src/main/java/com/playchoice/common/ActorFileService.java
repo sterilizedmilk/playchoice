@@ -63,10 +63,12 @@ public class ActorFileService {
 		String ext = mf.getOriginalFilename().toLowerCase().substring(
 				mf.getOriginalFilename().lastIndexOf(".")+1);
 		
-		// jpg, jpeg 파일만 허용
+		// jpg, jpeg, gif, png 파일만 허용
 		ArrayList<String> extList = new ArrayList<>();
 		extList.add("jpg");
 		extList.add("jpeg");
+		extList.add("gif");
+		extList.add("png");
 		
 		return extList.contains(ext);		
 		

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.actor.service.ActorService;
@@ -184,26 +185,28 @@ public class SiteAdminController {
 	// 배우등록하기
 	@RequestMapping(value = "actor/insertActor", method = RequestMethod.POST)
 	public String insertActorSubmit(@RequestParam HashMap<String, Object> param,
-			@RequestParam("a_picture") MultipartFile file, MultipartHttpServletRequest request, Model model)
+			@RequestParam("a_picture") MultipartFile file, MultipartHttpServletRequest request, RedirectAttributes reattr)
 			throws IOException {
-		//TODO 널체크, 디자인, 이미지 체크 이후 else 에서 alert처리 안됨
+		//TODO 널체크
 		ActorFileService fs = new ActorFileService();
-		if (fs.isImgCheck(file)) {
-			// 파일 등록 유무 확인
-			if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+		
+		// 파일 등록 유무 확인
+		if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+			if (fs.isImgCheck(file)) {
 				// 파일업로드
 				param.put("a_picture", fs.fileUpload(request, file));
 			} else {
-				// 기본 프로필사진으로 DB저장
-				param.put("a_picture", "default.jpg");
+				reattr.addFlashAttribute("msg", "등록 실패 : 사진첨부는 jpg, jpeg, gif, png 파일만 가능합니다.");
+				return "redirect:insertActor";
 			}
-			// DB insert
-			adminService.insertActor(param);
-				return "redirect:common";
+			
 		} else {
-			model.addAttribute("msg", "등록 실패 : 사진첨부는 jpg, jpeg 파일만 가능합니다.");
-			return "redirect:insertActor";
+			// 기본 프로필사진으로 DB저장
+			param.put("a_picture", "default.jpg");
 		}
+		// DB insert
+		adminService.insertActor(param);
+		return "redirect:common";
 	}
 	
 	
