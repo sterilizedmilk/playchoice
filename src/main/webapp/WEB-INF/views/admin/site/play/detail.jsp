@@ -25,7 +25,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${play.m_code}</td>
+							<td><a href="${pageContext.request.contextPath}/admin/site/member/detail?m_code=${playAdmin.m_code}">${playAdmin.m_id}</a></td>
 						</tr>
 						<tr>
 							<th>장르</th>

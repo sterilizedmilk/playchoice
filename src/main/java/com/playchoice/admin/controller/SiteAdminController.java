@@ -226,7 +226,9 @@ public class SiteAdminController {
 		model.addAttribute("genreMap", adminService.genreMap());
 		model.addAttribute("areaMap", adminService.areaMap());
 		
-		model.addAttribute("play", playService.playDetail(p_id));
+		PlayDTO play = playService.playDetail(p_id);
+		model.addAttribute("play", play);
+		model.addAttribute("playAdmin", adminService.getMember(play.getM_code()));
 		return "admin/site/play/detail";
 	}
 
