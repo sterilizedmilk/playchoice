@@ -10,8 +10,9 @@
 		min(`schedule`.s_price) AS lowest_price
 		FROM play, `schedule`
 		WHERE
-		play.p_id = `schedule`.p_id
-		AND play.p_status = '1'
+			play.p_id = `schedule`.p_id
+			AND play.p_status = '1'
+			AND `schedule`.s_time <![CDATA[>]]> now()
 		GROUP BY play.p_id
 	</select>
 
@@ -23,6 +24,7 @@
 		`schedule`
 		WHERE
 		play.p_id = `schedule`.p_id
+		AND `schedule`.s_time <![CDATA[>]]> now()
 		<if test="a_id != 0 ">
 			AND play.a_id =
 			#{a_id}
