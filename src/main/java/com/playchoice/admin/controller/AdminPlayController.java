@@ -197,6 +197,9 @@ public class AdminPlayController {
 	@RequestMapping(value="pslist", method=RequestMethod.GET)
 	public void psread(PageDTO pdto,@RequestParam("p_id") int p_id, Model model, HttpSession session) throws Exception{
 		logger.info("list psread show....................");
+		
+		pdto.setPerPage(10);
+		
 		model.addAttribute("key", service.psreadPaging(p_id,pdto));
 		//key 값을 key로 만들어 service.psread(p_id) 내용을 사용
 		System.out.println(service.psread(p_id));
@@ -204,7 +207,7 @@ public class AdminPlayController {
 		
 		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		
-		List<ScheduleDTO> list = service.psreadPaging(m_code, pdto);
+//		List<ScheduleDTO> list = service.psreadPaging(m_code, pdto);
 		
 		Pagination pagination = new Pagination(pdto);
 		pagination.setTotalCnt(service.psreadCount(p_id));

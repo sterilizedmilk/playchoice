@@ -48,6 +48,7 @@
 		SELECT *
 		FROM schedule
 		WHERE p_id=#{p_id}
+		order by s_id DESC
 		LIMIT #{pageDTO.startNum}, #{pageDTO.perPage}
 	</select>
 	<!-- 총 목록 수 -->
