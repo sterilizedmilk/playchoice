@@ -175,6 +175,7 @@
 		`schedule`,play
 		WHERE
 		date_format(`schedule`.s_time,"%Y-%m-%d") =#{s_time}
+		AND `schedule`.s_time <![CDATA[>]]> now()
 		AND
 		play.p_id=`schedule`.p_id
 		AND play.p_status = '1'
