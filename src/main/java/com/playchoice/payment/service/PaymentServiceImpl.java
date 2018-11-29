@@ -40,14 +40,14 @@ public class PaymentServiceImpl implements PaymentService {
 
 		long showDay = schedule.getS_time().getTime() / 86400000;
 		long today = System.currentTimeMillis() / 86400000;
+		long payDay = dto.getP_time().getTime() / 86400000;
 		int diff = (int) (showDay - today);
 
 		if (dto.getP_canceled() == 1 || diff <= 0 || dto.getP_cancel_target_id() != 0)
 			return 0; // 환불 불가
 
 		int refund = 0;
-
-		if (diff >= 7) {
+		if (payDay == today && diff != 0 || diff >= 7) {
 			refund = -dto.getP_price();
 		} else if (diff >= 4) {
 			refund = -dto.getP_price() * 90 / 100;

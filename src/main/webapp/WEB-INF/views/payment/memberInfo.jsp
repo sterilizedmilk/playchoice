@@ -95,6 +95,15 @@
 						<c:choose>
 							<c:when test="${refund > 0 && payment.p_canceled == 0}">
 								<h4>환불하기</h4>
+								<div>
+									관람 당일 지각/지역착오/연령 미숙지로 인한 환불/취소/변경 불가<br>
+									1) 구매 당일 요청 시 전액 환불 (단, 당일 관람티켓은 환불 불가)<br>
+									2) 관람일 7일 전~ : 티켓 금액 전액 환불<br>
+									3) 관람일 6일 전 ~ 4일 전까지 : 10% 공제 후 환불<br>
+									4) 관람일 3일 전 ~ 2일 전까지 : 20% 공제 후 환불<br>
+									5) 관람일 1일 전 : 30% 공제 후 환불<br>
+									6) 관람일 당일(자정 이후) : 환불/취소/변경 불가<br>
+								</div>
 								<div>환불 금액 : ${refund}</div>
 								<form action="${pageContext.request.contextPath}/payment/cancel" method="post">
 									<input type="hidden" name="p_id" value="${payment.p_id}">
