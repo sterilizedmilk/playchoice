@@ -220,7 +220,7 @@
 				<input type="hidden" id="frmPrice" name="p_price" value="" /> 
 				<input type="hidden" id="frmQuantity" name="p_quantity" value="" />
 
-				<button id="cart" type="submit" class="btn btn-success btn-lg">장바구니</button>
+				<button id="cart" type="submit" class="btn btn-success btn-lg">찜하기</button>
 			</form>
 		</div>
 		<div style="float: rigth;">
