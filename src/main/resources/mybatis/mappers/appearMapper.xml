@@ -6,7 +6,7 @@
 
 	<!-- 장바구니 목록 -->
 	<select id="appearList" resultType="PlayDTO">
-		SELECT play.p_id, play.p_name, play.p_image0
+		SELECT play.p_id, play.p_name, play.p_image0, play.p_status
 		FROM play_appear, play
 		WHERE play.p_id=play_appear.p_id
 		AND play_appear.a_id=#{a_id}

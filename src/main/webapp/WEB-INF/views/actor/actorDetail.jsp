@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="span4">
 				<div class="inner-heading">
-					<h2>${actorDTO.a_name }</h2>
+					<h2>배우조회</h2>
 				</div>
 			</div>
 			<div class="span8">
@@ -30,6 +30,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="span8 offset2">
+				<form action="">
+				<fieldset>
+				<legend>${actorDTO.a_name}</legend>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -37,7 +40,7 @@
 							<th>이름</th>
 							<th>생년월일</th>
 							<th>홈페이지</th>
-							<!-- <th>찜하기</th> -->
+							<th>평점</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,19 +49,44 @@
 							<td style="line-height: 210px;">${actorDTO.a_name}</td>
 							<td style="line-height: 210px;">${actorDTO.sdf}</td>
 							<td style="line-height: 210px;"><a href="http://${actorDTO.a_homepage}" target="_blank">${actorDTO.a_homepage}</a></td>
+							<td></td>
 							<%-- <td><button id="basketBtn" class="btn btn-info basketBtn" data-actor="${actor.a_id }">찜</button></td> --%>
 						</tr>
 						</tbody>
 				</table>
-				<br />
 				
-				<h5>출연작품</h5>
+				<legend>출연작품</legend>
 				<c:choose>
 					<c:when test="${fn:length(appearDTO) == 0 }">
 						<span>출연 작품이 없습니다.</span>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${appearDTO}" var="appear" varStatus="status">
+						<c:choose>
+							<c:when test="${appear.p_status }">
+									<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 200px; height: 360px;">
+								<div>
+									<a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">
+										<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${appear.p_image0 }"  width="200px">
+									</a>
+								</div>
+								<div>
+									<p><a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">${appear.p_name }</a></p>
+								</div>
+							</div>
+							</c:when>
+							<c:otherwise>
+								<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 200px; height: 360px;">
+								<div>
+									<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${appear.p_image0 }"  width="200px">
+								</div>
+								<div>
+									<p>${appear.p_name }(상영종료)</p>
+								</div>
+							</div>
+							</c:otherwise>
+						</c:choose>
+						<%-- <c:if test="${appear.p_status }">
 							<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 200px; height: 360px;">
 								<div>
 									<a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">
@@ -69,9 +97,20 @@
 									<p><a href="${pageContext.request.contextPath}/play/playdetail?p_id=${appear.p_id }">${appear.p_name }</a></p>
 								</div>
 							</div>
+						</c:if>
+							<div style="outline: 1px solid #8C8C8C; float: left; margin: 15px; width: 200px; height: 360px;">
+								<div>
+									<img src="${pageContext.request.contextPath}/resources/img/play/thumb_${appear.p_image0 }"  width="200px">
+								</div>
+								<div>
+									<p>${appear.p_name }</p>
+								</div>
+							</div> --%>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				</fieldset>
+				</form>
 			</div><!-- /.span8 offset2 -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->
