@@ -38,6 +38,8 @@
 			<div class="span6 offset3">
 				<!-- <h2 class="text-center">회원 가입</h2> -->
 				<form id="insertForm" name="insertForm" method="post" class="form-horizontal">
+					<fieldset>
+					<legend>필수 입력사항</legend>
 					<div class="control-group" style="height: 40px;">
 						<label class="control-label" for="m_id">아이디</label> 
 						<div class="controls">
@@ -91,6 +93,7 @@
 					<div class="alert alert-submit" id="alert-submitEmail"
 						style="margin-bottom: 5px;">사용가능한 이메일입니다.</div> -->
 					<!-- //.이메일 중복 경고창 -->
+					<legend>선택 입력사항</legend>
 					<div class="control-group">
 						<label class="control-label" for="m_phone">연락처</label>
 						<div class="controls">
@@ -105,6 +108,7 @@
 							<!-- <button onclick="history.go(-1)" class="btn btn-primary btn-large">뒤로</button> -->
 						</div>
 					</div>
+					</fieldset>
 				</form><!-- / 콘텐츠 부분 -->
 			</div><!-- /.span12 -->
 		</div><!-- /.row -->

@@ -85,6 +85,7 @@
 					confirm("비밀번호를 변경하시겠습니까?");
 					document.updatePwForm.action = "${pageContext.request.contextPath}/member/updatePw";
 					document.updatePwForm.submit();
+					alert("비밀번호가 변경되었습니다. 다시 로그인해주세요.");
 				}
 			});
 		});

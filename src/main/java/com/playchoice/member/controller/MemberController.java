@@ -200,7 +200,7 @@ public class MemberController {
 			memberService.updateMember(dto);
 			dto.setM_pw("");
 			session.setAttribute("login", dto);
-			return "redirect:/";
+			return "redirect:/member/view";
 		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 viewForm.jsp로 포워드
 			rttr.addFlashAttribute("msg", "비밀번호를 다시 입력하세요.");
 			return "redirect:/member/view";
@@ -221,6 +221,7 @@ public class MemberController {
 		// 비밀번호 체크
 		if(result) { // 비밀번호가 일치하면 수정 처리 후, 메인페이지로 리다이렉트
 			memberService.updatePw(m_id, m_pw, new_pw);
+			session.invalidate();
 			return "redirect:/";
 		} else { // 비밀번호가 일치하지 않는다면, div에 불일치 문구 출력 후 viewForm.jsp로 포워드
 			rttr.addFlashAttribute("msg", "비밀번호를 다시 입력하세요.");
