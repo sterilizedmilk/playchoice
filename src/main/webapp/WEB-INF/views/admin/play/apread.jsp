@@ -27,7 +27,7 @@
 </section>
 
 <section id="content">
-<div class="contanier">
+<div class="container">
 	<div class="row">
 		<div class="span6 offset3">
 			<form role="form" name="form" class="form-horizontal">
