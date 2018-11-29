@@ -10,8 +10,8 @@
 <script>
 function updateMember(action) {
 	var form = $("#mem");
+
 	switch (action) {
-	
 	case "playAdmin":
 		$("#m_level").val(1);
 		break;
@@ -25,8 +25,7 @@ function updateMember(action) {
 		$("#m_status").val(0);
 		break;
 	}
-	console.log($("#m_level"));
-	console.log($("#m_status"));
+	
 	$.ajax({
 		url: "${pageContext.request.contextPath}/admin/site/member/modify",
 		type: "post",
@@ -49,7 +48,7 @@ function updateMember(action) {
 					<input type="hidden" name="m_level" id="m_level" value="${mem.m_level}">
 					<input type="hidden" name="m_status" id="m_status" value="${mem.m_status}">
 				</form>
-				<table class="table table-striped" border="">
+				<table class="table table-striped">
 						<tr>
 							<th>번호</th>
 							<td>${mem.m_code}</td>
@@ -81,7 +80,6 @@ function updateMember(action) {
 
 
 						<tr>
-
 							<c:choose>
 								<c:when test="${mem.m_level == 0}">
 									<td><button onclick="updateMember('playAdmin');">연극 관리자로 변경</button></td>

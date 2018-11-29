@@ -80,6 +80,7 @@
 		where pl.p_id = sp.p_id
 		group by pl.p_id
 		order by count(pl.p_id) desc
+		LIMIT 10
 	</select>
 
 	<select id="playDetail" resultType="PlayDTO">

@@ -108,7 +108,7 @@ public class PaymentSearchDTO {
 	}
 
 	public void setPage(Integer page) {
-		if (page == null || page < 0) {
+		if (page == null || page <= 0) {
 			this.page = 1;
 			return;
 		}

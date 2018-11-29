@@ -305,7 +305,7 @@
 							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;" placeholder="내용을 입력해주세요"></textarea>
 							<input type="hidden" name="p_id" value="${playDTO.p_id }" />
 							<input type="hidden" name="m_code" value="${login.m_code }" />
-							<button id="qsubmit">등 록</button>
+							<button type="button" id="qsubmit">등 록</button>
 						</form>
 					</div>
 					<!-- 다른 질문 보기 -->
