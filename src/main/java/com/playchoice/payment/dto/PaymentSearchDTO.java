@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 public class PaymentSearchDTO {
 	Integer member;
 	Integer play;
-	Integer schedule;
 	
 	Integer playAdmin;
 
@@ -37,14 +36,6 @@ public class PaymentSearchDTO {
 		this.play = play;
 	}
 
-	public Integer getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(Integer schedule) {
-		this.schedule = schedule;
-	}
-	
 	public Integer getPlayAdmin() {
 		return playAdmin;
 	}

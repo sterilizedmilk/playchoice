@@ -22,22 +22,6 @@
 		<!-- 좌측 정보 -->
 		<div class="col-md-5" style="float: left; position: relative; margin-right: 15px; background: #fff;">
 			<h3>결재내역</h3>
-			
-			<form action="">
-				member id<input type="number" name="member" value="${param.member}"><br>
-				play id<input type="number" name="play" value="${param.play}"><br>
-				schedule id<input type="number" name="schedule" value="${param.schedule}"><br>
-				
-				play admin<input type="number" name="playAdmin" value="${param.playAdmin}"><br>
-				
-                from<input type="text" class="form_datetime" name="from" value="${param.from}"><br>
-				until<input type="text" class="form_datetime" name="until" value="${param.until}"><br>
-                
-				page<input type="number" name="page" value="${param.page}"><br>
-				row<input type="number" name="row" value="${param.row}"><br>
-				<button>검색</button>
-			</form>
-			
 			<table class="table">
 				<thead>
 					<tr>
@@ -82,6 +66,29 @@
 			<div>
 				총액 : ${sum}
 			</div>
+
+			<form action="">
+				회원 아이디<input type="text" name="member" value="${param.member}"><br>
+				연극 제목<input type="text" name="play" value="${param.play}"><br>
+				
+				연극 관리자 아이디<input type="text" name="playAdmin" value="${param.playAdmin}"><br>
+				
+                <input type="text" class="form_datetime" name="from" value="${param.from}">부터~
+				<input type="text" class="form_datetime" name="until" value="${param.until}">까지<br>
+                
+				<select name="row">
+					<option>-선택-</option>
+					<option value="10">10개씩</option>
+					<option value="20">20개씩</option>
+					<option value="50">50개씩</option>
+					<option value="0">제한없이</option>
+				</select><br>
+
+				page<input type="number" name="page" value="${param.page}"><br>
+
+				<button>검색</button>
+			</form>
+			
 		</div>
 		<!-- 탭 종료 -->
 	</div>
