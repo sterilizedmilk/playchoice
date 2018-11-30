@@ -4,10 +4,16 @@ import java.util.Date;
 
 public class ReviewDTO {
 	
-	int m_code,s_id,r_play_score,r_actor1_score,r_actor2_score,r_deleted;
+	int m_code,s_id,r_play_score,r_actor1_score,r_actor2_score,r_deleted, p_id;
 	Date r_register_time;
 	String r_content;
 	
+	public int getP_id() {
+		return p_id;
+	}
+	public void setP_id(int p_id) {
+		this.p_id = p_id;
+	}
 	public int getM_code() {
 		return m_code;
 	}

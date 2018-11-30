@@ -17,11 +17,15 @@
 		LIMIT 20;
 	</select>
 	
-	<select id="actorInfo" resultType="ActorDTO" parameterType="PaymentDTO">
-		SELECT a_name, a_picture
-		FROM play.actor, play.`schedule`
-		WHERE play.`schedule`.s_id=#{m_code}
-		AND play.actor.a_id IN(play.`schedule`.a_id1 , play.`schedule`.a_id2);
+	<!-- 리뷰 작성시 가져올 데이터 -->
+	<select id="actorInfo" resultType="java.util.HashMap" parameterType="PaymentDTO">
+		SELECT actor.a_name AS a_name, actor.a_picture AS a_picture, play.p_id AS p_id, play.p_name AS p_name,s_id
+		FROM play.actor, play.`schedule`, play.play
+		WHERE play.`schedule`.s_id=#{s_id}
+		AND play.actor.a_id IN(play.`schedule`.a_id1 , play.`schedule`.a_id2)
+        AND play.p_id = `schedule`.p_id;
+		
+		
 	</select>
 	
 	<insert id="regReview" parameterType="ReviewDTO">

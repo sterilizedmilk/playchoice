@@ -36,7 +36,7 @@ select{
 		<div class="span12">
 		<form class="form-group" action="reviewReg" method="post">
 			<div style="height:100px; border-bottom: 1px solid #8C8C8C; text-align:center; line-height:100px; align-items: center;">
-				<p style="font-size:1.5em;">${p_name} &nbsp;&nbsp;&nbsp; <select name="r_play_score"></select></p>
+				<p style="font-size:1.5em;">${actorList[0].p_name} &nbsp;&nbsp;&nbsp; <select name="r_play_score"></select></p>
 			</div>
 			<div style="margin:20px 0 20px 0; height:200px;">
 				<div style="float:left; width:50%; height:100%; padding:10px;">
@@ -51,7 +51,8 @@ select{
 			<div style="margin:20px 0; padding: 20px 0; border-top:1px soild #8C8C8C;">
 				<textarea name="r_content" style="width:80%" cols="70%" rows="10" placeholder="연극에 대한 후기를 남겨주세요!"></textarea>
 			</div>
-				<input type="hidden" name="s_id" value="${s_id}" />
+				<input type="hidden" name="p_id" value="${actorList[0].p_id }" />
+				<input type="hidden" name="s_id" value="${actorList[0].s_id }" />
 				<input type="hidden" name="m_code" value="${login.m_code}" />
 			<button class="btn btn-success">등 록</button>
 			<a class="btn btn-danger" href="..">취 소</a>
