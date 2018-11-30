@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playchoice.actor.dao.ActorDAOImpl;
+import com.playchoice.actor.dao.PlayAppearDAOImpl;
 import com.playchoice.actor.service.ActorService;
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
@@ -46,6 +47,9 @@ public class AdminPlayController {
 	
 	@Autowired
 	private ActorDAOImpl adao;
+	
+	@Autowired
+	private PlayAppearDAOImpl padao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminPlayController.class);
 	
@@ -109,7 +113,7 @@ public class AdminPlayController {
 	public String registerPOST(PlayDTO dto,
 			MultipartHttpServletRequest request, RedirectAttributes rttr, HttpSession session) throws Exception{
 		logger.info("apregister............");
-		dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
+		//dto.getP_image().stream().forEach(file -> logger.info(file.getOriginalFilename()));
 		
 		//session -> login 설정 / dto로 저장
 		MemberDTO user = (MemberDTO) session.getAttribute("login");		
@@ -121,6 +125,10 @@ public class AdminPlayController {
 		
 		//이름부분을 th 라는 String 변수 입력
 		String th = fs.imageUpload(dto.getP_image().get(0));
+		if(th == null) {
+			rttr.addFlashAttribute("msg", "필수 선택 입력값을 입력 하지 않았습니다.");
+			return "redirect:apregister";
+		}else {
 		System.out.println("th:"+th);
 		dto.setP_image0(th);
 		
@@ -138,7 +146,7 @@ public class AdminPlayController {
 		
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/play/aplist";
-					
+		}		
 	}
 
 	//수정
@@ -218,23 +226,27 @@ public class AdminPlayController {
 	
 	//일정 생성
 	@RequestMapping(value="psregister", method=RequestMethod.GET)
-	public void psregisterGET(ScheduleDTO sdto, Model model) throws Exception{
+	public void psregisterGET(ScheduleDTO sdto,
+			@RequestParam("p_id") int p_id, Model model) throws Exception{
 		logger.info("psregister get.............");
 		System.out.println(sdto);
 		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
+		model.addAttribute("palist", padao.palist(p_id));
 				
 	}
 	@RequestMapping(value="psregister", method=RequestMethod.POST)
-	public String psregisterPOST(ScheduleDTO sdto) throws Exception{
+	public String psregisterPOST(ScheduleDTO sdto, RedirectAttributes rttr) throws Exception{
 		logger.info("psregister post.............");
 		
 		System.out.println(sdto);
 		System.out.println(sdto.getP_id());
+
 		service.psregist(sdto);
 //		rttr.addFlashAttribute("msg", "success");
 		
 		return "redirect:pslist?p_id="+sdto.getP_id();
 		//pslist로 이동 ->  p_id에 대하여 sdto.getP_id() 로 이동
+		
 	}
 	
 	//일정 업데이트

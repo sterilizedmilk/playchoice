@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.actor.dto.ActorDTO;
 import com.playchoice.play.dto.PlayDTO;
 
 @Repository
@@ -19,5 +20,10 @@ public class PlayAppearDAOImpl implements PlayAppearDAO {
 	@Override
 	public List<PlayDTO> appearList(int a_id) throws Exception {
 		return sqlSession.selectList(namespace + ".appearList", a_id);
+	}
+	
+	//연극 별 배우 가져오기
+	public List<ActorDTO> palist(int p_id) throws Exception{
+		return sqlSession.selectList(namespace + ".palist", p_id);
 	}
 }

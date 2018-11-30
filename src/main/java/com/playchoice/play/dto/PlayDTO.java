@@ -109,7 +109,11 @@ public class PlayDTO {
 	}
 
 	public void setP_image0(String p_image0) {
+		if(p_image0 != null) {
 		this.p_image0 = p_image0;
+		}else {
+			this.p_image0 = "default.png";
+		}
 	}
 
 	public String getP_image1() {
@@ -117,7 +121,11 @@ public class PlayDTO {
 	}
 
 	public void setP_image1(String p_image1) {
-		this.p_image1 = p_image1;
+		if(p_image1 != null) {
+			this.p_image1 = p_image1;
+			}else {
+				this.p_image1 = "default.png";
+			}
 	}
 
 	public String getP_image2() {
