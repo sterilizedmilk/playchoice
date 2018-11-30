@@ -10,6 +10,7 @@ public class PaymentDTO {
 	// for list
 	String p_name; // from play
 	Timestamp s_time; // from schedule
+	String m_id; // from member
 	
 	public PaymentDTO cancel() {
 		PaymentDTO can = new PaymentDTO();
@@ -105,6 +106,14 @@ public class PaymentDTO {
 
 	public void setS_time(Timestamp s_time) {
 		this.s_time = s_time;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 	
 }

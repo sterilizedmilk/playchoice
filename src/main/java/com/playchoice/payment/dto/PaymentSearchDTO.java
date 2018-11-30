@@ -6,10 +6,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class PaymentSearchDTO {
-	Integer member;
-	Integer play;
+	String member;
+	String play;
 	
-	Integer playAdmin;
+	String playAdmin;
 
 	Timestamp from = null;
 	Timestamp until = null;
@@ -20,27 +20,27 @@ public class PaymentSearchDTO {
 	Integer page = 1;
 	Integer row = 10;
 
-	public Integer getMember() {
+	public String getMember() {
 		return member;
 	}
 
-	public void setMember(Integer member) {
+	public void setMember(String member) {
 		this.member = member;
 	}
 
-	public Integer getPlay() {
+	public String getPlay() {
 		return play;
 	}
 
-	public void setPlay(Integer play) {
+	public void setPlay(String play) {
 		this.play = play;
 	}
 
-	public Integer getPlayAdmin() {
+	public String getPlayAdmin() {
 		return playAdmin;
 	}
 
-	public void setPlayAdmin(Integer playAdmin) {
+	public void setPlayAdmin(String playAdmin) {
 		this.playAdmin = playAdmin;
 	}
 

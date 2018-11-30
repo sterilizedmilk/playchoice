@@ -36,33 +36,39 @@
 				<%-- <h3>${sessionScope.login.m_name}님의 결재내역</h3> --%>
 					<form action="">
 						<div class="control-group">
-							<label class="control-label" for="p_id">p_id</label>
+							<label class="control-label" for="p_id">연극 제목</label>
 							<div class="control">
-								<input type="number" name="play" value="${param.play}">
+								<input type="text" name="play" value="${param.play}">
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="s_id">s_id</label>
-							<div class="control">
-								<input type="number" name="schedule" value="${param.schedule}">
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="from">from</label>
+							<label class="control-label" for="from">기간 시작</label>
 							<div class="control">
 								<input type="date" name="from" value="${param.from}">
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="until">until</label>
+							<label class="control-label" for="until">기간 끝</label>
 							<div class="control">
 								<input type="date" name="until" value="${param.until}">
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="watched">watched</label>
+							<label class="control-label" for="watched">끝남 여부</label>
 							<div class="control">
 								<input type="checkbox" name="watched" value="true" ${param.watched == true ? 'checked' : ''} >
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="row">페이지당 개수</label>
+							<div class="control">
+								<select name="row">
+									<option value="10">-선택-</option>
+									<option value="10">10개씩</option>
+									<option value="20">20개씩</option>
+									<option value="50">50개씩</option>
+									<option value="0">제한없이</option>
+								</select>
 							</div>
 						</div>
 						<div class="control-group">

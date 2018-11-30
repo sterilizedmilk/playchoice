@@ -93,7 +93,7 @@ public class PaymentController {
 	public String memberPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto, boolean watched) {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		
-		dto.setMember(user.getM_code());
+		dto.setMember(user.getM_id());
 		dto.setPlayAdmin(null);
 		System.out.println(watched);
 		// 취소 안된 연극중 끝난 연극 검색
@@ -122,7 +122,7 @@ public class PaymentController {
 	public String playAdminPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto) {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		
-		dto.setPlayAdmin(user.getM_code());
+		dto.setPlayAdmin(user.getM_id());
 		
 		model.addAttribute("paymentList", service.searchPayment(dto));
 		

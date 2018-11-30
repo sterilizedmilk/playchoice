@@ -7,26 +7,26 @@
 		SELECT payment.p_id, payment.m_code, payment.s_id,
 				payment.p_price, payment.p_quantity, payment.p_cancel_target_id,
 				payment.p_time, payment.p_canceled,
-				play.p_name, schedule.s_time
-		FROM payment, schedule, play
+				play.p_id, play.p_name, schedule.s_time, member.m_id
+		FROM payment, schedule, play, member
 		<where>
 			play.p_id = schedule.p_id
 			AND schedule.s_id = payment.s_id
-			<if test="member != null">
-				AND payment.m_code = #{member}
+			AND member.m_code = payment.m_code
+			<if test="member != null and member != ''">
+				AND member.m_id = #{member}
 			</if>
-			<if test="play != null">
-				AND play.p_id = #{play}
+			<if test="play != null and play != ''">
+				AND play.p_name LIKE CONCAT('%', #{play}, '%')
 			</if>
-			<if test="schedule != null">
-				AND schedule.s_id = #{schedule}
-			</if>
-			<if test="playAdmin != null">
-				AND play.m_code = #{playAdmin}
+			<if test="playAdmin != null and playAdmin != ''">
+				AND (SELECT m_id
+						FROM member as mem
+						WHERE mem.m_code = play.m_code) = #{playAdmin}
 			</if>
 			<if test="from != null">
 				AND payment.p_time >= #{from}
-			</if> 
+			</if>
 			<if test="until != null">
 <![CDATA[		AND payment.p_time <= #{until}	]]>
 			</if>

@@ -45,7 +45,7 @@
 						<tr>
 							<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
 							<td>${pay.p_id}</td>
-							<td>${pay.m_code}</td>
+							<td><a href="${pageContext.request.contextPath}/admin/site/member/detail?m_code=${pay.m_code}">${pay.m_id}</a></td>
 							<td>${pay.p_name}</td>
 							<td>${pay.s_id}</td>
 							<td>${pay.p_price}</td>
@@ -68,16 +68,16 @@
 			</div>
 
 			<form action="">
-				회원 아이디<input type="text" name="member" value="${param.member}"><br>
-				연극 제목<input type="text" name="play" value="${param.play}"><br>
+				회원 아이디 : <input type="text" name="member" value="${param.member}"><br>
+				연극 제목 : <input type="text" name="play" value="${param.play}"><br>
 				
-				연극 관리자 아이디<input type="text" name="playAdmin" value="${param.playAdmin}"><br>
+				연극 관리자 아이디 : <input type="text" name="playAdmin" value="${param.playAdmin}"><br>
 				
                 <input type="text" class="form_datetime" name="from" value="${param.from}">부터~
 				<input type="text" class="form_datetime" name="until" value="${param.until}">까지<br>
                 
 				<select name="row">
-					<option>-선택-</option>
+					<option value="10">-선택-</option>
 					<option value="10">10개씩</option>
 					<option value="20">20개씩</option>
 					<option value="50">50개씩</option>
