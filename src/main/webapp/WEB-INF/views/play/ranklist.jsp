@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html >
 <jsp:include page="../page/header.jsp" />
+<style>
+	.medal {display: block; position: absolute; top: 0px; left: 0px; width: 36px; height: 36px;}
+	.medal.gold {top: -18px;left:-18px; width:90px; height:90px; background: url(${pageContext.request.contextPath}/resources/img/medal_gold.png) 0 0 no-repeat; background-size: cover;}
+	.medal.silver { background: url(${pageContext.request.contextPath}/resources/img/medal_silver.png) 0 0 no-repeat; background-size: cover;}
+	.medal.bronze { background: url(${pageContext.request.contextPath}/resources/img/medal_bronze.png) 0 0 no-repeat; background-size: cover;}
+</style>
 <section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -35,7 +39,19 @@
 									<p align="right">
 										<span style="font-size: 20px; color: #FF5E00">${li.lowest_price}</span> 원 ~
 									</p>
-								</div></li>
+								</div>
+								<c:choose>
+									<c:when test="${status.index == 0}">
+										<span class="medal gold"></span>
+									</c:when>
+									<c:when test="${status.index == 1}">
+										<span class="medal silver"></span>
+									</c:when>
+									<c:when test="${status.index == 2}">
+										<span class="medal bronze"></span>
+									</c:when>
+								</c:choose>		
+							</li>
 						</c:forEach>
 					</ul>
 				</section>
