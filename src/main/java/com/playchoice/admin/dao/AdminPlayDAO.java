@@ -2,6 +2,7 @@ package com.playchoice.admin.dao;
 
 import java.util.List;
 
+import com.playchoice.actor.dto.PlayAppearDTO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
@@ -34,7 +35,7 @@ public interface AdminPlayDAO {
 	
 	//총 목록수
 	public int psreadCount(int p_id) throws Exception;
-	
+		
 	public void pscreate(ScheduleDTO sdto) throws Exception;
 	
 	public List<QnaDTO> getQna(int m_code);

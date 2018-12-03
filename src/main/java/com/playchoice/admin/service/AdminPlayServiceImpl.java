@@ -7,6 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.playchoice.actor.dao.PlayAppearDAO;
+import com.playchoice.actor.dto.ActorDTO;
+import com.playchoice.actor.dto.PlayAppearDTO;
 import com.playchoice.admin.dao.AdminPlayDAO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
@@ -19,6 +22,9 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	
 	@Autowired
 	private AdminPlayDAO dao;
+	
+	@Autowired
+	private PlayAppearDAO padao;
 	
 		
 	//연극 리스트 보기
@@ -84,7 +90,16 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	public int psreadCount(int p_id) throws Exception {
 		return dao.psreadCount(p_id);
 	}
-	
+	//연극별 배우 선택
+	@Override
+	public int palistinsert(PlayAppearDTO padto) throws Exception {
+		return padao.painsert(padto);
+	}
+	//연극별 배우 리스트 페이징
+	@Override
+	public List<ActorDTO> palistPaging(int p_id, PageDTO dto) throws Exception {
+		return padao.palistPaging(p_id, dto);
+	}
 
 	//연극 일정 생성
 	@Override
@@ -124,5 +139,6 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		// TODO Auto-generated method stub
 		return dao.getQnaAsPlay(p_id);
 	}
+
 
 }

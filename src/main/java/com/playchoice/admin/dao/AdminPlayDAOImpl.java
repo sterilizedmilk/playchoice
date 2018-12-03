@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playchoice.actor.dto.PlayAppearDTO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
@@ -135,7 +136,5 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		// TODO Auto-generated method stub
 		return session.selectList(namespace2+".getQnaAsPlay", p_id);
 	}
-
-
 
 }

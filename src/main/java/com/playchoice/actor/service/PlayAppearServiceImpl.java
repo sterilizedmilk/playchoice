@@ -18,5 +18,10 @@ public class PlayAppearServiceImpl implements PlayAppearService {
 	public List<PlayDTO> appearList(int a_id) throws Exception {
 		return playAppearDao.appearList(a_id);
 	}
+	//연극별 배우 삭제
+	@Override
+	public void padelete(int a_id) throws Exception {
+		playAppearDao.padelete(a_id);
+	}
 
 }

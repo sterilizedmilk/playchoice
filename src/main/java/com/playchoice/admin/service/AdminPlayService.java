@@ -2,6 +2,8 @@ package com.playchoice.admin.service;
 
 import java.util.List;
 
+import com.playchoice.actor.dto.ActorDTO;
+import com.playchoice.actor.dto.PlayAppearDTO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.member.dto.MemberDTO;
 import com.playchoice.play.dto.PlayDTO;
@@ -29,6 +31,10 @@ public interface AdminPlayService {
 	public List<ScheduleDTO> psreadPaging(int p_id, PageDTO dto) throws Exception;
 	//총 목록 수
 	public int psreadCount(int p_id) throws Exception;
+	//연극별 배우 추가
+	public int palistinsert(PlayAppearDTO padto) throws Exception;
+	//연극별 배우 리스트 페이징
+	public List<ActorDTO> palistPaging(int p_id, PageDTO dto) throws Exception;
 	
 	public void psregist(ScheduleDTO sdto) throws Exception;
 	

@@ -17,13 +17,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playchoice.actor.dao.ActorDAOImpl;
 import com.playchoice.actor.dao.PlayAppearDAOImpl;
+import com.playchoice.actor.dto.PlayAppearDTO;
 import com.playchoice.actor.service.ActorService;
+import com.playchoice.actor.service.PlayAppearService;
 import com.playchoice.admin.service.AdminPlayService;
 import com.playchoice.admin.service.FileService;
 import com.playchoice.admin.service.SiteAdminService;
 import com.playchoice.common.PageDTO;
 import com.playchoice.common.Pagination;
 import com.playchoice.member.dto.MemberDTO;
+import com.playchoice.member.dto.PreferActorDTO;
 import com.playchoice.payment.dto.PaymentDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.qna.dto.QnaDTO;
@@ -43,6 +46,9 @@ public class AdminPlayController {
 	
 	@Autowired
 	private SiteAdminService sservice;
+	
+	@Autowired
+	private PlayAppearService paservice;
 
 	
 	@Autowired
@@ -55,7 +61,7 @@ public class AdminPlayController {
 	
 	//리스트
 	@RequestMapping(value="aplist", method=RequestMethod.GET)
-	public String listAll(Model model, HttpSession session) throws Exception{
+	public String listAll(PageDTO pdto, Model model, HttpSession session) throws Exception{
 		logger.info("list all show....................");
 		
 		//session login 정보 가져옴 / list로 불러온것을 객체 res에 저장
@@ -69,6 +75,7 @@ public class AdminPlayController {
 				Object res = service.listAll(user);
 				
 				model.addAttribute("list", res); //res 와 list 보냄
+				
 				return "/admin/play/aplist";
 			}else {
 				model.addAttribute("msg", "NotAuth"); //접근된 사용자가 아닙니다.
@@ -191,7 +198,7 @@ public class AdminPlayController {
 		return "redirect:/admin/play/aplist";
 	}
 	
-	//게시
+	//일정 게시
 	@RequestMapping(value="flurry", method=RequestMethod.POST)
 	public String flurry(@RequestParam("p_id")int p_id, RedirectAttributes rttr) throws Exception{
 		service.flurry(p_id);
@@ -210,10 +217,11 @@ public class AdminPlayController {
 		
 		model.addAttribute("key", service.psreadPaging(p_id,pdto));
 		//key 값을 key로 만들어 service.psread(p_id) 내용을 사용
-		System.out.println(service.psread(p_id));
-		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
+		System.out.println(service.psreadPaging(p_id, pdto));
+//		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
+		model.addAttribute("palist", padao.palist(p_id)); //palist 리스트 가져오기
 		
-		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
+//		int m_code = ((MemberDTO) session.getAttribute("login")).getM_code();
 		
 //		List<ScheduleDTO> list = service.psreadPaging(m_code, pdto);
 		
@@ -223,6 +231,38 @@ public class AdminPlayController {
 		//model.addAttribute("list",list);
 		model.addAttribute("paging", pagination);
 	}
+	//연극 별 배우 추가
+	@RequestMapping(value="palist", method=RequestMethod.GET)
+	public void palistGET(PageDTO pdto, @RequestParam("p_id") int p_id, Model model) throws Exception{
+
+		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
+//		model.addAttribute("palist", padao.palist(p_id)); //palist 리스트 가져오기
+		model.addAttribute("palistPaging", service.palistPaging(p_id, pdto)); //palistPaging 리스트 가져오기
+		
+		Pagination pagination = new Pagination(pdto);
+		pagination.setTotalCnt(service.psreadCount(p_id));
+		
+		model.addAttribute("paging", pagination);
+	}
+	
+	@RequestMapping(value="actoradd", method=RequestMethod.POST)
+	public String actoradd(PlayAppearDTO padto,  @RequestParam("p_id") int p_id, Model model) throws Exception{
+		
+		model.addAttribute("palist", padao.palist(p_id)); //palist 리스트 가져오기
+		
+		//p_id, a_id DB 저장
+		service.palistinsert(padto);
+		
+		return "redirect:palist?p_id="+padto.getP_id();
+	}
+	
+	//연극별 배우 삭제
+	@RequestMapping(value="padelete")
+	public String padelete(PlayAppearDTO padto, @RequestParam("a_id") int a_id) throws Exception{
+		System.out.println("a_id : "+ a_id );
+		paservice.padelete(a_id);
+		return "redirect:palist?p_id="+padto.getP_id();
+	}
 	
 	//일정 생성
 	@RequestMapping(value="psregister", method=RequestMethod.GET)
@@ -230,8 +270,8 @@ public class AdminPlayController {
 			@RequestParam("p_id") int p_id, Model model) throws Exception{
 		logger.info("psregister get.............");
 		System.out.println(sdto);
-		model.addAttribute("actorlist", adao.listActor()); //actor 리스트 가져오기
-		model.addAttribute("palist", padao.palist(p_id));
+
+		model.addAttribute("palist", padao.palist(p_id)); //palist 리스트 가져오기
 				
 	}
 	@RequestMapping(value="psregister", method=RequestMethod.POST)
@@ -249,8 +289,7 @@ public class AdminPlayController {
 		
 	}
 	
-	//일정 업데이트
-	
+	//일정 업데이트	
 	@RequestMapping(value="psmodify", method=RequestMethod.POST)
 	public String psmodifyPOST(ScheduleDTO sdto, RedirectAttributes rttr) throws Exception{
 		
@@ -260,5 +299,5 @@ public class AdminPlayController {
 		
 		return "redirect:pslist?p_id="+sdto.getP_id();
 	}
-
+	
 }

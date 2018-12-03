@@ -48,8 +48,8 @@
 						<th>시작시간</th>
 						<th>연극 가격</th>
 						<th>연극 총 매수</th>
-						<th style="width:12%;">배우 1</th>
-						<th style="width:12%;">배우 2</th>
+						<th style="width:12%;">주연 배우 1</th>
+						<th style="width:12%;">주연 배우 2</th>
 						<th style="width:12%;">연극 상태</th>
 						<th style="width:8%;">상태 버튼</th>
 					</tr>
@@ -73,15 +73,15 @@
 						</td>
 						<td>${ke.a_id1 }
 						<select name="a_id1">
-							<c:forEach items="${actorlist }" var="acl">
-								<option value="${acl.a_id }">${acl.a_name }</option>
+							<c:forEach items="${palist }" var="pal">
+								<option value="${pal.a_id }">${pal.a_name }</option>
 							</c:forEach>
 						</select>
 						</td>
 						<td>${ke.a_id2 }
 						<select name="a_id2">
-							<c:forEach items="${actorlist }" var="acl">
-								<option value="${acl.a_id }">${acl.a_name }</option>
+							<c:forEach items="${palist }" var="pal">
+								<option value="${pal.a_id }">${pal.a_name }</option>
 							</c:forEach>
 						</select>
 						</td>

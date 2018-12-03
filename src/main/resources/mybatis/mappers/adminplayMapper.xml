@@ -73,5 +73,5 @@
 		update schedule set s_time=#{s_time}, s_ticket=#{s_ticket}, s_price=#{s_price}, a_id1=#{a_id1}, a_id2=#{a_id2}, s_canceled=#{s_canceled}
 		where s_id=#{s_id}
 	</update>
-	
+
 </mapper>

@@ -35,6 +35,7 @@
 			<div class="control-group" align="center">
 				<button type="submit" class="btn btn-warning">글 수정</button>
 				<button type="button" class="btn btn-danger">글 내리기</button>
+				<button type="submit" class="btn btn-actoradd">출연 배우 추가</button>
 				<button type="submit" class="btn btn-pslist">일정 보기</button>
 			</div>
 
@@ -119,6 +120,11 @@
 		$(".btn-pslist").on("click", function(){
 			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}");
 	//		self.location="${pageContext.request.contextPath}/admin/play/pslist?p_id=${playDTO.p_id}";
+		});
+		$(".btn-actoradd").on("click", function(){
+			formObj.attr("action", "${pageContext.request.contextPath}/admin/play/palist?p_id=${playDTO.p_id}");
+			formObj.attr("method", "get");
+			formObj.submit();
 		});
 	});
 </script>

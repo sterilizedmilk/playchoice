@@ -18,6 +18,27 @@
 		from play_appear, actor
 		where actor.a_id = play_appear.a_id
 		and play_appear.p_id = #{p_id}
+		order by a_id;
 	</select>
+	<!-- 연극별 배우 목록  페이징 -->
+	<select id="palistPaging" resultType="ActorDTO">
+		select actor.a_id, actor.a_name, actor.a_picture
+		from play_appear, actor
+		where actor.a_id = play_appear.a_id
+		and play_appear.p_id = #{p_id}
+		order by actor.a_id
+		LIMIT #{pageDTO.startNum}, #{pageDTO.perPage}
+	</select>
+	
+	<insert id="painsert" parameterType="ActorDTO">
+		insert into play_appear(p_id, a_id)
+		values(#{p_id}, #{a_id})
+	</insert>
+	
+	<delete id="padelete">
+		delete
+		from play_appear
+		where a_id=#{a_id}
+	</delete>
 
 </mapper>
