@@ -27,6 +27,7 @@
 		var price; // 티켓 가격
 		var total; // 티켓 총합
 		var scheId; // 스케쥴 아이디
+		var scehTime; // 스케쥴 타임
 		
 		$("#ticket_div").hide();
 	
@@ -38,9 +39,10 @@
 			$("#ticket_div").show();
 			price = parseInt($(this).attr("price"))
 			total = parseInt($(this).attr("price"))	* parseInt($("#quantity").val());
-			scheId = $(this).attr("date");
+			scheId = $(this).val();
+			scehTime = $(this).attr("date");
 
-			$("#scheText").text(scheId);
+			$("#scheText").text(scehTime);
 			$("#schePrice").text($(this).attr("price") + " 원");
 			$("#totalCost").text(total);
 
