@@ -12,6 +12,7 @@ import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
+import com.playchoice.schedule.dto.ScheduleDTO;
 
 @Repository
 public class PlayDAOImpl implements PlayDAO {
@@ -55,18 +56,15 @@ public class PlayDAOImpl implements PlayDAO {
 	}
 
 	@Override
-	public List<Object> viewCal(HashMap<String, Object> param) {
-		System.out.println("viewCal Dao입니다");
-
-		List<Object> res = new ArrayList<Object>();
+	public List<ScheduleDTO> viewCal(HashMap<String, Object> param) {
+		List<ScheduleDTO> res = new ArrayList<ScheduleDTO>();
 		res = sqlSession.selectList(namespace + ".viewCal", param);
-		System.out.println(res);
 
 		return res;
 	}
 
 	@Override
-	public Object getSchedule(int p_id) {
+	public List<ScheduleDTO> getSchedule(int p_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".viewCal", p_id);
 	}

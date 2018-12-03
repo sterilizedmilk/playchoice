@@ -8,6 +8,7 @@ import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.dto.PlayshowDTO;
+import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface PlayService {
 	// 연극 목록
@@ -19,9 +20,9 @@ public interface PlayService {
 	// 연극 상세
 	public PlayDTO playDetail(int p_id) throws Exception;
 
-	public List<Object> viewCal(HashMap<String, Object> param);
+	public List<ScheduleDTO> viewCal(HashMap<String, Object> param);
 
-	public Object getSchedule(int p_id);
+	public List<ScheduleDTO> getSchedule(int p_id);
 
 	public Object getReviewSmall(int p_id);
 

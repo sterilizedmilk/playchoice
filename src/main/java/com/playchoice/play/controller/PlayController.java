@@ -5,8 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,12 +20,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.service.PlayServiceImpl;
+import com.playchoice.schedule.dto.ScheduleDTO;
 
 /**
  * 연극 목록, 검색, 정보 열람, 예매
@@ -31,6 +35,9 @@ import com.playchoice.play.service.PlayServiceImpl;
 @Controller
 @RequestMapping("/play")
 public class PlayController {
+
+	private PlayDTO playDto;
+	private List<ScheduleDTO> scheduleDto;
 
 	@Autowired
 	private PlayServiceImpl service;
@@ -170,10 +177,12 @@ public class PlayController {
 	@RequestMapping(value = "playdetail", method = RequestMethod.GET)
 	public String playDetail(@RequestParam("p_id") int p_id, Model model) throws Exception {
 		// play
-		model.addAttribute("playDTO", service.playDetail(p_id));
+		playDto = service.playDetail(p_id);
+		model.addAttribute("playDTO", playDto);
 
 		// schedule
-		model.addAttribute("schedule", service.getSchedule(p_id));
+		scheduleDto = service.getSchedule(p_id);
+		model.addAttribute("schedule", scheduleDto);
 
 		// review
 		model.addAttribute("reviewScore", service.getReviewScore(p_id));
@@ -198,4 +207,26 @@ public class PlayController {
 		// TODO 로그인여부 확인(인터셉터)
 		System.out.println(param);
 	}
+
+	// 달력 일정 리턴
+	@RequestMapping(value = "playcal", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getBookInfo(String str) {
+		System.out.println("123-----------");
+		scheduleDto = service.getSchedule(playDto.getP_id());
+		str = "";
+		String time = "";
+		SimpleDateFormat new_format = new SimpleDateFormat("yyyy-MM-dd");
+
+		for (int i = 0; i < scheduleDto.size(); i++) {
+			time = new_format.format(scheduleDto.get(i).getS_time());
+			str += "{title:\"" + playDto.getP_name() + "\",start:\"" + time + "\"},";
+		}
+
+		System.out.println("전:" + str);
+		str = str.substring(0, str.length() - 1);
+		System.out.println("후:" + str);
+		return str;
+	}
+
 }

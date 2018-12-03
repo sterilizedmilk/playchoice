@@ -13,6 +13,7 @@ import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.play.dao.PlayDAOImpl;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
+import com.playchoice.schedule.dto.ScheduleDTO;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -42,13 +43,13 @@ public class PlayServiceImpl implements PlayService {
 	}
 
 	@Override
-	public List<Object> viewCal(HashMap<String, Object> param) {
+	public List<ScheduleDTO> viewCal(HashMap<String, Object> param) {
 		// TODO 안쓰면 삭제해야함
 		return playDao.viewCal(param);
 	}
 
 	@Override
-	public Object getSchedule(int p_id) {
+	public List<ScheduleDTO> getSchedule(int p_id) {
 
 		return playDao.getSchedule(p_id);
 

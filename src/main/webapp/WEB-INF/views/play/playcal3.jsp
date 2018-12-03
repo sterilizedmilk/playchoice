@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -30,16 +30,25 @@ body {
 <script type="text/javascript">
 	jQuery(document).ready(
 			function() {
-				var event = "";
-
-				$.post("playcal", function(str) {
-
+				var list = new Array();
+				var event ="";
 				
-	/* 	 alert(str);
-					 */
-				});/* 
-								alert("1" + event); */
+				
+				
+				
+				<c:forEach items="${schedule }" var="item">
+					<c:set var="date">
+						<fmt:formatDate value="${item.s_time }" pattern="yyyy-MM-dd"/>
+					</c:set>
+					list.push("{title:" + "${item.s_id }" + ", start:" + "${date}"+ "}");
+				</c:forEach>
 
+				for (var i = 0; i < list.length; i++)
+				{
+					alert(list[i]);
+				  	/* event = fn:join(list[i],','); */
+				 }
+				
 				var ToDay = new Date()
 				var y = new Date(ToDay.getFullYear(), ToDay.getMonth(), ToDay
 						.getDate() - 34)
@@ -54,19 +63,10 @@ body {
 					editable : true,
 					eventLimit : true,
 
-					events : [ {
-						title : "오마이갓",
-						start : "2018-12-04"
-					}, {
-						title : "오마이갓",
-						start : "2018-12-04"
-					}, {
-						title : "오마이갓",
-						start : "2018-12-04"
-					}, {
-						title : "오마이갓",
-						start : "2018-12-07"
-					}
+					events : [ 
+						for (var i = 0; i < list.length; i++) {
+							document.write(list[i]);
+						}
 					/*  {
 									title : "All Day Event",
 									start : "2018-12-03"
@@ -82,10 +82,10 @@ body {
 									title : "Repeating Event",
 									start : "2018-12-03",
 									end : "2018-12-05"
-									}  */]
+									}  */ ]
 				});
 			});
 </script>
 <body>
 	<div id="calendar" style="width: 650px;"></div>
-</body>
+</body> --%>
