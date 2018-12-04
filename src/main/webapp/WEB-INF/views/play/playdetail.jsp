@@ -5,7 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
+<!-- ${pageContext.request.contextPath} -->
+
 <jsp:include page="../page/header.jsp" />
+<link href="${pageContext.request.contextPath}/resources/rateit/rateit.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/rateit/jquery.rateit.min.js">
+</script>
 <meta charset="UTF-8">
 <style type="text/css">
 .qna_question {
@@ -20,109 +25,106 @@
 	background-color: #FAF4C0;
 	margin: 0px 0px 30px 0px;
 }
+
 </style>
 <script>
-	$(document)
-			.ready(
-					function() {
-						var quantity = parseInt($("#quantity").val()); //구매할 티켓수
-						var price; // 티켓 가격
-						var total; // 티켓 총합
-						var scheId; // 스케쥴 아이디
-						var scehTime; // 스케쥴 타임
+	$(document).ready(function() {
+		var quantity = parseInt($("#quantity").val()); //구매할 티켓수
+		var price; // 티켓 가격
+		var total; // 티켓 총합
+		var scheId; // 스케쥴 아이디
+		var scehTime; // 스케쥴 타임
+		
+		$("#ticket_div").hide();
+		
+		// 티켓 수 출력
+		$('#ticket').text(quantity);
+		
+		//스케쥴 선택
+		$(".scheduleCho").click(function() {
+			$("#ticket_div").show();
+			price = parseInt($(this).attr("price"))
+			total = parseInt($(this).attr("price"))	* parseInt($("#quantity").val());
+			scheId = $(this).val();
+			scehTime = $(this).attr("date");
 
-						$("#ticket_div").hide();
+			$("#scheText").text(scehTime);
+			$("#schePrice").text($(this).attr("price") + " 원");
+			$("#totalCost").text(total);
 
-						// 티켓 수 출력
-						$('#ticket').text(quantity);
+		});
 
-						//스케쥴 선택
-						$(".scheduleCho").click(
-								function() {
-									$("#ticket_div").show();
-									price = parseInt($(this).attr("price"))
-									total = parseInt($(this).attr("price"))
-											* parseInt($("#quantity").val());
-									scheId = $(this).val();
-									scehTime = $(this).attr("date");
+		//매표 수 마이너스
+		$('#minus').click(function() {
+			//최저 매표 1
+			if ($('#quantity').val() > 1) {
+				quantity -= 1;
+				total = price * quantity;
+				$('#quantity').val(quantity);
+				$('#ticket').text(quantity); // 티켓 수 출력
+				$("#totalCost").text(total); // 총가격 출력
+			} else {
+				quantity = 1;
+				$('#quantity').val(quantity);
+			}
 
-									$("#scheText").text(scehTime);
-									$("#schePrice").text(
-											$(this).attr("price") + " 원");
-									$("#totalCost").text(total);
+		})
+			
+		//매표 수 플러스
+		$('#plus').click(function() {
+			quantity += 1;
+			total = price * quantity;
+				$('#quantity').val(quantity);
+				$('#ticket').text(quantity); // 티켓 수 출력
+				$("#totalCost").text(total); // 총가격 출력
+		})
 
-								});
+		//장바구니
+		$('#cart').click(function() {
+			$("#frmId").val(scheId);
+			$("#frmPrice").val(total);
+			$("#frmQuantity").val(quantity);
 
-						//매표 수 마이너스
-						$('#minus').click(function() {
-							//최저 매표 1
-							if ($('#quantity').val() > 1) {
-								quantity -= 1;
-								total = price * quantity;
-								$('#quantity').val(quantity);
-								$('#ticket').text(quantity); // 티켓 수 출력
-								$("#totalCost").text(total); // 총가격 출력
-							} else {
-								quantity = 1;
-								$('#quantity').val(quantity);
-							}
+			frm.action = "${pageContext.request.contextPath}/basket/insert";
+			frm.submit();
+		});
 
-						})
+		//결제
+		$('#charge').click(function() {
+			$("#frmId").val(scheId);
+			$("#frmPrice").val(total);
+			$("#frmQuantity").val(quantity);
 
-						//매표 수 플러스
-						$('#plus').click(function() {
-							quantity += 1;
-							total = price * quantity;
-							$('#quantity').val(quantity);
-							$('#ticket').text(quantity); // 티켓 수 출력
-							$("#totalCost").text(total); // 총가격 출력
-						})
+			frm.action = "payment";
+			frm.submit();
+		});
+		
+		
 
-						//장바구니
-						$('#cart')
-								.click(
-										function() {
-											$("#frmId").val(scheId);
-											$("#frmPrice").val(total);
-											$("#frmQuantity").val(quantity);
+		// Q & A 등록
+		$("#qsubmit").click(function() {
+			qfrm.action = "../qna/insertQues";
+			qfrm.submit();
+		})
 
-											frm.action = "${pageContext.request.contextPath}/basket/insert";
-											frm.submit();
-										});
+		// Q & A 삭제
+		$(".deleteQna").click(function() {
+			var m_code = $(this).attr("m_code");
+			var q_id = $(this).attr("q_id");
+			var p_id = $(this).attr("p_id");
 
-						//결제
-						$('#charge').click(function() {
-							$("#frmId").val(scheId);
-							$("#frmPrice").val(total);
-							$("#frmQuantity").val(quantity);
+			if (confirm("삭제하시겠습니까?")) {
+				$("#delQnaId").val(q_id);
+				$("#delQnaCode").val(m_code);
+				$("#delQnaPid").val(p_id);
 
-							frm.action = "payment";
-							frm.submit();
-						});
-
-						// Q & A 등록
-						$("#qsubmit").click(function() {
-							qfrm.action = "../qna/insertQues";
-							qfrm.submit();
-						})
-
-						// Q & A 삭제
-						$(".deleteQna").click(function() {
-							var m_code = $(this).attr("m_code");
-							var q_id = $(this).attr("q_id");
-							var p_id = $(this).attr("p_id");
-
-							if (confirm("삭제하시겠습니까?")) {
-								$("#delQnaId").val(q_id);
-								$("#delQnaCode").val(m_code);
-								$("#delQnaPid").val(p_id);
-
-								frmQna.action = "../qna/delete";
-								$("#frmQna").submit();
-							}
-						});
-
-					});
+				frmQna.action = "../qna/delete";
+				$("#frmQna").submit();
+			}
+		});
+		
+		
+});
 </script>
 
 <title>Insert title here</title>
@@ -141,7 +143,7 @@
 			<!-- 연극 제목 및 가격정보 -->
 			<div>
 				<!-- 제목 -->
-				<div style="text-align: center; padding: 15px 10px; border-bottom: 1px solid #eee">
+				<div style="text-align: center; padding: 15px 10px; border-bottom:1px solid #eee">
 					<span style="margin-left: 2px; font-size: 20px; font-weight: 500; color: #000;">${playDTO.p_name }</span>
 				</div>
 				<!-- 제목 끝 -->
@@ -188,22 +190,22 @@
 		<!--  좌측정보 끝 -->
 
 		<!-- 우측 상단 정보영역 시작 / 일정 -->
-		<div class="col-md-7" style="margin: 0px 10px; float: left;">
+		<div class="col-md-7" style="margin: 0px 10px; float: left; ">
 			<!-- 달력 -->
 			<jsp:include page="playcal.jsp" />
-
+			
 			<!-- 일정리스트 -->
 			<c:if test="${login ne null}">
-				<div id="schedule_div">
-					<c:forEach items="${schedule }" var="list" varStatus="status">
-						<c:set var="date">
-							<fmt:formatDate value="${list.s_time }" pattern="yyyy/MM/dd a hh:mm" />
-						</c:set>
+			<div id="schedule_div">
+				<c:forEach items="${schedule }" var="list" varStatus="status">
+					<c:set var="date"> 
+						<fmt:formatDate value="${list.s_time }" pattern="yyyy/MM/dd a hh:mm"/> 
+					</c:set>
 					${date} - ${list.s_price } 원
 					<button class="scheduleCho" date="${date}" value="${list.s_id }" price="${list.s_price }">선택</button>
-						<br>
-					</c:forEach>
-				</div>
+					<br>
+				</c:forEach>
+			</div>
 			</c:if>
 		</div>
 		<!-- 일정 끝 -->
@@ -220,7 +222,11 @@
 	<div class="row" align="right" style="outline: 1px solid blue;">
 		<div style="float: rigth;">
 			<form name="frm" method="post">
-				<input type="hidden" id="frmId" name="s_id" value="" /> <input type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" /> <input type="hidden" id="sessionMcode" name="m_code" value="${login.m_code }" /> <input type="hidden" id="frmPrice" name="p_price" value="" /> <input type="hidden" id="frmQuantity" name="p_quantity" value="" />
+				<input type="hidden" id="frmId" name="s_id" value="" />
+				<input type="hidden" id="frmPid" name="p_id" value="${playDTO.p_id }" /> 
+				<input type="hidden" id="sessionMcode"name="m_code" value="${login.m_code }" /> 
+				<input type="hidden" id="frmPrice" name="p_price" value="" /> 
+				<input type="hidden" id="frmQuantity" name="p_quantity" value="" />
 
 				<button id="cart" type="submit" class="btn btn-success btn-lg">찜하기</button>
 			</form>
@@ -264,15 +270,15 @@
 				<p>연극 안내 페이지</p>
 				<p>${playDTO.p_info }</p>
 				<div style="text-align: center;">
-					<c:if test="${playDTO.p_image2 ne null }">
-						<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }" align="top">
-					</c:if>
-					<c:if test="${playDTO.p_image3 ne null }">
-						<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image3 }" align="top">
-					</c:if>
-					<c:if test="${playDTO.p_image4 ne null }">
-						<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image4 }" align="top">
-					</c:if>
+				<c:if test="${playDTO.p_image2 ne null }">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image2 }" align="top" >
+				</c:if>
+				<c:if test="${playDTO.p_image3 ne null }">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image3 }" align="top" >
+				</c:if>
+				<c:if test="${playDTO.p_image4 ne null }">
+					<img src="${pageContext.request.contextPath}/resources/img/play/${playDTO.p_image4 }" align="top" >
+				</c:if>
 				</div>
 			</div>
 			<!-- 리뷰 탭 -->
@@ -281,20 +287,81 @@
 					<p>
 						평균 <span style="font-size: 1.5em">${reviewScore.avgscore }</span> 점
 					</p>
-					<p>별 그림</p>
+					
+					<div class="rateit" style="margin-top: 10px;"
+						data-rateit-value="${reviewScore.avgscore}" data-rateit-readonly="true" ></div>
 					<p>실제 관람객들 후기입니다.</p>
 				</div>
 				<div id="reviews" style="margin: 10px 30px;">
-					<c:forEach items="${reviewSmall}" var="list" varStatus="status">
-						<div style="border-bottom: 1px solid #eee;">
-							<p>${list.r_play_score}점/5점</p>
-							<p>${list.r_content }</p>
+					<c:forEach items="${reviewList}" var="list" varStatus="status">
+						<div id="review_${status.index }" style="border-bottom: 1px solid #eee;">
+							<div id="score_${status.index }" class="rateit" style="margin-top: 10px;"
+							 data-rateit-value="${list.r_play_score}" data-rateit-readonly="true" ></div>
+						
+							<p id="content_${status.index }">${list.r_content }</p>
 							<p>
-								${list.m_id } <span style="font-size: 0.5ex">(${list.r_register_time })</span>
+								<span id="id_${status.index }">${list.m_id }</span> |  <span id="time_${status.index }" style="font-size: 0.5ex">(${list.sdfTime })</span>
 							</p>
 						</div>
 					</c:forEach>
 				</div>
+				<script>
+				// 리뷰 페이징 아작스
+				function callPaging(page){
+					
+					var p_id = $(page).attr('p_id');
+					var perPage = $(page).attr('perPage');
+					var page = $(page).attr('page');
+	
+					$.ajax({
+						type : 'post',
+						dataType : 'json',
+						url : 'reviewPage',
+						data :{
+							'p_id' : p_id,
+							'page' : page ,
+							'perPage' : perPage
+						},
+						success : function(data){
+							var reviews = new Array();
+							reviews = data;
+							
+							var cnt = data.length-1;
+							//리뷰 바꿔넣기
+							for(var i=0 ; i<=4 ; i++){
+								$("#review_"+i).show();
+								if(i-cnt > 0){
+									$("#review_"+i).hide();	
+								}
+							}
+
+							for(var i in data){
+								
+								$("#score_"+i).attr("data-rateit-value",reviews[i].r_play_score);
+								$("#content_"+i).html(reviews[i].r_content);
+								$("#id_"+i).html(reviews[i].m_id);
+								$("#time_"+i).html(reviews[i].sdfTime);
+								
+							} 
+							
+						}
+					})
+					
+				}
+				</script>
+				<div class="pagination pagination-large pagination-centered">
+				  	<ul class="pagination">
+						<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
+							
+								
+								
+									<%-- <li><a href="list?page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}</a></li> --%>
+									<li><a href="javascript:void(0);" onclick="callPaging(this)" p_id="${playDTO.p_id }" page="${pageNum}" perPage="${paging.pdto.perPage}"><span>${pageNum}</span></a></li>
+								
+							
+						</c:forEach>
+					</ul>
+				</div><!-- /.pagination -->
 			</div>
 			<!-- 리뷰 탭 종료 -->
 			<!-- Q & A 탭 -->
@@ -305,7 +372,8 @@
 					<div style="background-color: #FAF4C0;">
 						<form id="qfrm" method="post">
 							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;" placeholder="내용을 입력해주세요"></textarea>
-							<input type="hidden" name="p_id" value="${playDTO.p_id }" /> <input type="hidden" name="m_code" value="${login.m_code }" />
+							<input type="hidden" name="p_id" value="${playDTO.p_id }" />
+							<input type="hidden" name="m_code" value="${login.m_code }" />
 							<button type="button" id="qsubmit">등 록</button>
 						</form>
 					</div>
@@ -328,7 +396,9 @@
 						</c:forEach>
 						<!-- 데이터 넘기기위한 폼 -->
 						<form id="frmQna">
-							<input type="hidden" id="delQnaId" name="q_id" value="" /> <input type="hidden" id="delQnaCode" name="m_code" value="" /> <input type="hidden" id="delQnaPid" name="p_id" value="" />
+							<input type="hidden" id="delQnaId" name="q_id" value="" /> 
+							<input type="hidden" id="delQnaCode" name="m_code" value="" /> 
+							<input type="hidden" id="delQnaPid" name="p_id" value="" />
 						</form>
 					</div>
 				</div>

@@ -1,13 +1,25 @@
 package com.playchoice.review.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReviewDTO {
 	
 	int m_code,s_id,r_play_score,r_actor1_score,r_actor2_score,r_deleted, p_id;
 	Date r_register_time;
-	String r_content;
+	String r_content, m_id;
 	
+	
+	public String getSdfTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(this.r_register_time);
+	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	public int getP_id() {
 		return p_id;
 	}

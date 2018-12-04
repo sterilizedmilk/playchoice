@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.common.PageDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
@@ -27,7 +28,7 @@ public interface PlayDAO {
 
 	// 끝난 연극 내리기?
 	public int playDetach(int p_id);
-
+	
 	public List<ScheduleDTO> viewCal(HashMap<String, Object> param);
 
 	// detail 접근시 schedule 가져오기
@@ -38,6 +39,7 @@ public interface PlayDAO {
 	public Object getReviewScore(int p_id);
 
 	public List<Object> getQnA(int p_id);
+
 
 	public Object getPlayRank();
 
@@ -51,4 +53,6 @@ public interface PlayDAO {
 
 	// 오늘,내일 연극
 	List<PlayDTO> playTodayList(PlayMenuDTO dto);
+
+	Object getReviewList(int p_id, PageDTO pdto);
 }

@@ -3,6 +3,7 @@ package com.playchoice.play.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.common.PageDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
@@ -58,7 +60,9 @@ public class PlayDAOImpl implements PlayDAO {
 	@Override
 	public List<ScheduleDTO> viewCal(HashMap<String, Object> param) {
 		List<ScheduleDTO> res = new ArrayList<ScheduleDTO>();
+
 		res = sqlSession.selectList(namespace + ".viewCal", param);
+		System.out.println(res);
 
 		return res;
 	}
@@ -74,6 +78,16 @@ public class PlayDAOImpl implements PlayDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".getReviewSmall", p_id);
 	}
+	
+	// 리뷰 페이징
+	@Override
+	public List<Object> getReviewList(int p_id, PageDTO pdto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_id", p_id);
+		map.put("pageDTO", pdto);
+		return sqlSession.selectList(namespace + ".getReviewList", map);
+	}
+	
 
 	@Override
 	public Object getReviewScore(int p_id) {
@@ -99,7 +113,7 @@ public class PlayDAOImpl implements PlayDAO {
 		}
 		return dto;
 	}
-
+	
 	@Override
 	public Object getSearchList(String search) {
 		// TODO Auto-generated method stub

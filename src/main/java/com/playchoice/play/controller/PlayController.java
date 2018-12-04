@@ -5,10 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -24,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.common.PageDTO;
+import com.playchoice.common.Pagination;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.service.PlayServiceImpl;
@@ -35,7 +35,7 @@ import com.playchoice.schedule.dto.ScheduleDTO;
 @Controller
 @RequestMapping("/play")
 public class PlayController {
-
+	
 	private PlayDTO playDto;
 	private List<ScheduleDTO> scheduleDto;
 
@@ -175,23 +175,47 @@ public class PlayController {
 
 	// 연극 detail
 	@RequestMapping(value = "playdetail", method = RequestMethod.GET)
-	public String playDetail(@RequestParam("p_id") int p_id, Model model) throws Exception {
+	public String playDetail(@RequestParam("p_id") int p_id, PageDTO pdto, Model model) throws Exception {
 		// play
-		playDto = service.playDetail(p_id);
-		model.addAttribute("playDTO", playDto);
+		model.addAttribute("playDTO", service.playDetail(p_id));
 
 		// schedule
 		scheduleDto = service.getSchedule(p_id);
 		model.addAttribute("schedule", scheduleDto);
 
 		// review
-		model.addAttribute("reviewScore", service.getReviewScore(p_id));
-		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
+//		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
+		model.addAttribute("reviewList", service.getReviewList(p_id, pdto));
+		
+		Pagination pagination = new Pagination(pdto);
 
+		Object reviewScore = service.getReviewScore(p_id);
+		if(reviewScore instanceof HashMap) {
+			if(((HashMap) reviewScore).get("cnt") instanceof Long) {
+				long tmp =  (long)((HashMap) reviewScore).get("cnt");
+				int cnt = (int) tmp;
+				pagination.setTotalCnt(cnt);
+				model.addAttribute("paging", pagination);
+			}			
+		}
+		
+		model.addAttribute("reviewScore", reviewScore);
+		
 		// Q & A
 		model.addAttribute("qnaAll", service.getQnA(p_id));
 		return "play/playdetail";
 
+	}
+	
+	//리뷰 아작스
+	@RequestMapping("reviewPage")
+	@ResponseBody
+	public List reviewPage(int p_id, PageDTO pdto) {
+
+		List reviewList = service.getReviewList(p_id, pdto);
+		
+		return reviewList;
+		
 	}
 
 	// 장바구니
@@ -207,7 +231,7 @@ public class PlayController {
 		// TODO 로그인여부 확인(인터셉터)
 		System.out.println(param);
 	}
-
+	
 	// 달력 일정 리턴
 	@RequestMapping(value = "playcal", method = RequestMethod.POST)
 	@ResponseBody
@@ -228,5 +252,4 @@ public class PlayController {
 		System.out.println("후:" + str);
 		return str;
 	}
-
 }

@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.common.PageDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
-import com.playchoice.play.dto.PlayshowDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface PlayService {
@@ -45,4 +45,6 @@ public interface PlayService {
 	Object SearchList(String search);
 
 	List<PlayDTO> playTodayList(PlayMenuDTO dto);
+
+	Object getReviewList(int p_id,PageDTO pdto);
 }

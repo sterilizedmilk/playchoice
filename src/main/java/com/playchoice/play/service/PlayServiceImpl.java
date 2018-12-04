@@ -2,7 +2,6 @@ package com.playchoice.play.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
+import com.playchoice.common.PageDTO;
 import com.playchoice.play.dao.PlayDAOImpl;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
@@ -59,6 +59,14 @@ public class PlayServiceImpl implements PlayService {
 	public Object getReviewSmall(int p_id) {
 
 		return playDao.getReviewSmall(p_id);
+	}
+	
+	@Override
+	public List<Object> getReviewList(int p_id,PageDTO pdto) {
+		
+		List res = playDao.getReviewList(p_id, pdto);
+	
+		return res;
 	}
 
 	@Override
