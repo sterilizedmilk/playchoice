@@ -73,6 +73,7 @@
 								<h5>리뷰 작성하러 가기</h5>
 								<form action="${pageContext.request.contextPath}/play/review/write" method="POST">
 									<input type="hidden" name="s_id" value="${payment.s_id}">
+									<input type="hidden" name="p_id" value="${payment.p_id}">
 									<input type="hidden" name="m_code" value="${sessionScope.login.m_code}">
 									<button>리뷰작성</button>
 								</form>

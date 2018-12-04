@@ -8,8 +8,8 @@
 <!-- ${pageContext.request.contextPath} -->
 
 <jsp:include page="../page/header.jsp" />
-<link href="${pageContext.request.contextPath}/resources/rateit/rateit.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/rateit/jquery.rateit.min.js">
+<link href="${pageContext.request.contextPath}/resources/rateit/scripts/rateit.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/rateit/scripts/jquery.rateit.min.js">
 </script>
 <meta charset="UTF-8">
 <style type="text/css">

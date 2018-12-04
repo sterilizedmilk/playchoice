@@ -75,5 +75,11 @@ public class ReviewDTO {
 		this.r_content = r_content;
 	}
 	
+	@Override
+	public String toString() {
+		return "ReviewDTO [m_code=" + m_code + ", s_id=" + s_id + ", r_play_score=" + r_play_score + ", r_actor1_score="
+				+ r_actor1_score + ", r_actor2_score=" + r_actor2_score + ", r_deleted=" + r_deleted + ", p_id=" + p_id
+				+ ", r_register_time=" + r_register_time + ", r_content=" + r_content + ", m_id=" + m_id + "]";
+	}
 	
 }

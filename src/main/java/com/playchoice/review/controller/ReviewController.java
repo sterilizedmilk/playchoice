@@ -22,7 +22,7 @@ public class ReviewController {
 		
 		model.addAttribute("actorList", service.actorInfo(dto));
 		model.addAttribute("m_code",dto.getM_code());
-		
+		model.addAttribute("p_id",dto.getP_id());
 		
 		return "payment/reviewReg";
 	}
@@ -30,9 +30,10 @@ public class ReviewController {
 	//리뷰 등록하기
 	@RequestMapping("reviewReg")
 	public String reviewReg(ReviewDTO dto) {
+		System.out.println(dto);
 		
-		service.regReview(dto);
+//		service.regReview(dto);
 		
-		return "play/detail?p_id="+dto.getP_id();
+		return "redirect:/payment/info?p_id="+dto.getP_id();
 	}
 }
