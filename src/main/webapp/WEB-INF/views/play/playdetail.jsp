@@ -243,7 +243,7 @@
 			<p style="font-size: 1.5em;">예매자 평점 ${reviewScore.avgscore } / 5.0 (${reviewScore.cnt }명)</p>
 		</div>
 		<div style="background-color: #FAF4C0; outline: 1px solid #eee;">
-			<c:forEach items="${reviewSmall }" var="reviewList" begin="0" end="1">
+			<c:forEach items="${reviewList }" var="reviewList" begin="0" end="1">
 				<div style="padding: 10px 10px; margin: 15px 25px; border-bottom: 1px solid #BDBDBD;">
 					<p>
 						<b>${reviewList.m_id }</b>(${reviewList.r_register_time })
