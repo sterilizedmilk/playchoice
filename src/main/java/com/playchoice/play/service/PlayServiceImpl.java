@@ -90,12 +90,13 @@ public class PlayServiceImpl implements PlayService {
 			q_id_list.add(res.getQ_id());
 		}
 		
-		AList = playDao.AnswerList(p_id, q_id_list);
-		
-		for(QnaDTO res : AList) {
-			res.setM_id("연극관리자");
+		if(q_id_list.size() != 0 || !q_id_list.isEmpty()) {
+			AList = playDao.AnswerList(p_id, q_id_list);
+			
+			for(QnaDTO res : AList) {
+				res.setM_id("연극관리자");
+			}
 		}
-		
 		map.put("qlist", QList);
 		map.put("alist", AList);
 		// 연극관리자는 노출되는 아이디가 연극관리자로 변경

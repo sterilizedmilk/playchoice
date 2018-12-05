@@ -295,7 +295,7 @@
 				<div id="reviews" style="margin: 10px 30px;">
 					<c:forEach items="${reviewList}" var="list" varStatus="status">
 						<div id="review_${status.index }" style="border-bottom: 1px solid #eee;">
-							<div id="score_${status.index }" class="rateit" style="margin-top: 10px;"
+							<div id="score_${status.index }" class="rateit starNum" style="margin-top: 10px;"
 							 data-rateit-value="${list.r_play_score}" data-rateit-readonly="true" ></div>
 						
 							<p id="content_${status.index }">${list.r_content }</p>
@@ -334,15 +334,21 @@
 									$("#review_"+i).hide();	
 								}
 							}
-
-							for(var i in data){
+							
+							//$(".starNum").remove();
+							for(var i in reviews){
 								
-								$("#score_"+i).attr("data-rateit-value",reviews[i].r_play_score);
+							//	var score ="<div class='rateit starNum' style='margin-top: 10px;' data-rateit-value='"+reviews[i].r_play_score+"' data-rateit-readonly='true' ></div>";
+								
+								var width=16*reviews[i].r_play_score;
+							
+								 $("#score_"+i).find(".rateit-selected").css("width",width+"px");
+								//$("#review_"+i).prepend(score);
 								$("#content_"+i).html(reviews[i].r_content);
 								$("#id_"+i).html(reviews[i].m_id);
 								$("#time_"+i).html(reviews[i].sdfTime);
 								
-							} 
+							}
 							
 						}
 					})
@@ -371,7 +377,7 @@
 							alist = data.alist;
 							
 							var qcnt = qlist.length-1;
-							console.log(qcnt)
+							
 							//값 숨기기
 							for(var i=0 ; i<=4 ; i++){
 								$("#q_div_"+i).show();
