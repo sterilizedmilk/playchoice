@@ -64,7 +64,7 @@
 						<td><img src="${pageContext.request.contextPath}/resources/img/actor/${pal.a_picture }"></td>
 						<td>${pal.a_name }</td>
 						<!-- <td><button type="submit" class="btn btn-cancel1">제거</button></td> -->
-						<td><a href="${pageContext.request.contextPath}/admin/play/padelete?a_id=${pal.a_id}"
+						<td><a href="${pageContext.request.contextPath}/admin/play/padelete?a_id=${pal.a_id}&p_id=${param.p_id }"
 													class="btn btn-danger">삭제</a></td>
 					</tr>
 				</form>

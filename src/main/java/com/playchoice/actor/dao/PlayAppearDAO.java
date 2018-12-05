@@ -21,5 +21,6 @@ public interface PlayAppearDAO {
 	public int painsert(PlayAppearDTO padto) throws Exception;
 	
 	//연극별 배우 삭제
-	public void padelete(int a_id) throws Exception;
+//	public void padelete(int a_id) throws Exception;
+	public void padelete(PlayAppearDTO padto) throws Exception;
 }

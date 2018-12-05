@@ -31,6 +31,15 @@ public interface AdminPlayService {
 	public List<ScheduleDTO> psreadPaging(int p_id, PageDTO dto) throws Exception;
 	//총 목록 수
 	public int psreadCount(int p_id) throws Exception;
+	//연극별 배우 총목록수
+	public int palistCount(int p_id) throws Exception;
+	
+	
+	
+	
+	
+	//연글별 배우 카운팅
+	public int pacount(int p_id, int a_id) throws Exception;
 	//연극별 배우 추가
 	public int palistinsert(PlayAppearDTO padto) throws Exception;
 	//연극별 배우 리스트 페이징

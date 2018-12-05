@@ -21,6 +21,8 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 	@Autowired
 	private SqlSessionTemplate session;
 	private static String namespace = "com.playchoice.mappers.adminplayMapper";
+									   //com.playchoice.mappers.adminplayMapper
+										// com.playchoice.mappers.adminplayMapper
 	private static String namespace2 = "com.playchoice.mappers.qnaMapper"; //Qna매퍼
 	
 	//연극 리스트 보기
@@ -87,10 +89,25 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		map.put("pageDTO", dto);
 		return session.selectList(namespace + ".psreadPaging",map);
 	}
-	//총 목록 수
+	//스케쥴 총 목록 수
 	@Override
 	public int psreadCount(int p_id) throws Exception {
 		return session.selectOne(namespace + ".psreadCount", p_id);
+	}
+	//play_appear 배우 총목록수
+	@Override
+	public int palistCount(int p_id) throws Exception {
+		System.out.println("palistCount..... "+ namespace +".palistCount" + p_id);
+		
+		return session.selectOne(namespace + ".palistCount",p_id);
+	}
+	//play_appear 배우 카운팅
+	@Override
+	public int pacount(int p_id, int a_id) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_id", p_id);
+		map.put("a_id", a_id);
+		return session.selectOne(namespace + ".pacount", map);
 	}
 	
 	//연극 일정 생성
@@ -137,4 +154,5 @@ public class AdminPlayDAOImpl implements AdminPlayDAO{
 		return session.selectList(namespace2+".getQnaAsPlay", p_id);
 	}
 
+	
 }

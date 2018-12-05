@@ -35,6 +35,11 @@ public interface AdminPlayDAO {
 	
 	//총 목록수
 	public int psreadCount(int p_id) throws Exception;
+	// 연극배우 총목록수
+	public int palistCount(int p_id) throws Exception;
+	
+	// 연극배우별 확인
+	public int pacount(int p_id, int a_id) throws Exception;
 		
 	public void pscreate(ScheduleDTO sdto) throws Exception;
 	

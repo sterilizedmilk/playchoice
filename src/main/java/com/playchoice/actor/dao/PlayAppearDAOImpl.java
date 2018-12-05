@@ -45,7 +45,10 @@ public class PlayAppearDAOImpl implements PlayAppearDAO {
 	}
 	//연극별 배우 삭제
 	@Override
-	public void padelete(int a_id) throws Exception {
-		sqlSession.delete(namespace + ".padelete", a_id);
+//	public void padelete(int a_id) throws Exception {
+//		sqlSession.delete(namespace + ".padelete", a_id);
+//	}
+	public void padelete(PlayAppearDTO padto) throws Exception {
+		sqlSession.delete(namespace + ".padelete", padto);
 	}
 }

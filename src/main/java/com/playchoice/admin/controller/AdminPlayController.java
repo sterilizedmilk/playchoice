@@ -82,20 +82,9 @@ public class AdminPlayController {
 				return "redirect:/";
 			}
 		}else {
-			
-//			model.addAttribute("msg", "로그인을 해야 합니다.");
-//			model.addAttribute("url", "/login");
-//			return "redirect:/member/loginAlert";
-			
 			model.addAttribute("msg", "Login"); //로그인을 해야 합니다.
 			return "redirect:/member/login";
 		}
-		
-		/*Object res = service.listAll(user);
-		
-//		System.out.println(res);
-		model.addAttribute("list", res); //res 와 list 보냄	
-*/	
 	}
 	
 	//조회
@@ -239,9 +228,11 @@ public class AdminPlayController {
 //		model.addAttribute("palist", padao.palist(p_id)); //palist 리스트 가져오기
 		model.addAttribute("palistPaging", service.palistPaging(p_id, pdto)); //palistPaging 리스트 가져오기
 		
+
 		Pagination pagination = new Pagination(pdto);
-		pagination.setTotalCnt(service.psreadCount(p_id));
 		
+		pagination.setTotalCnt(service.palistCount(p_id));
+
 		model.addAttribute("paging", pagination);
 	}
 	
@@ -249,18 +240,26 @@ public class AdminPlayController {
 	public String actoradd(PlayAppearDTO padto,  @RequestParam("p_id") int p_id, Model model) throws Exception{
 		
 		model.addAttribute("palist", padao.palist(p_id)); //palist 리스트 가져오기
+		System.out.println(padao.palist(p_id));
+		System.out.println(padto.getA_id());
 		
-		//p_id, a_id DB 저장
-		service.palistinsert(padto);
-		
+		//배우 추가전 추가할 배우가 목록에 있는지 확인
+		int cnt = service.pacount(p_id, padto.getA_id()) ;
+		if(cnt == 0) {
+			//p_id, a_id DB 저장
+			service.palistinsert(padto);
+		}
 		return "redirect:palist?p_id="+padto.getP_id();
 	}
 	
 	//연극별 배우 삭제
 	@RequestMapping(value="padelete")
-	public String padelete(PlayAppearDTO padto, @RequestParam("a_id") int a_id) throws Exception{
+	public String padelete(PlayAppearDTO padto, @RequestParam("a_id") int a_id ) throws Exception{
 		System.out.println("a_id : "+ a_id );
-		paservice.padelete(a_id);
+		System.out.println("getP_id : "+ padto.getP_id());
+		System.out.println("getA_id : "+ padto.getA_id());
+//		paservice.padelete(a_id);
+		paservice.padelete(padto);
 		return "redirect:palist?p_id="+padto.getP_id();
 	}
 	

@@ -90,6 +90,11 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	public int psreadCount(int p_id) throws Exception {
 		return dao.psreadCount(p_id);
 	}
+	//연극별 배우 총리스트
+	@Override
+	public int palistCount(int p_id) throws Exception {
+		return dao.palistCount(p_id);
+	}
 	//연극별 배우 선택
 	@Override
 	public int palistinsert(PlayAppearDTO padto) throws Exception {
@@ -100,7 +105,12 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	public List<ActorDTO> palistPaging(int p_id, PageDTO dto) throws Exception {
 		return padao.palistPaging(p_id, dto);
 	}
-
+	//연극별 배우 카운팅
+	@Override
+	public int pacount(int p_id, int a_id) throws Exception {
+		return dao.pacount(p_id, a_id);
+	}
+	
 	//연극 일정 생성
 	@Override
 	public void psregist(ScheduleDTO sdto) throws Exception {
@@ -139,6 +149,5 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 		// TODO Auto-generated method stub
 		return dao.getQnaAsPlay(p_id);
 	}
-
 
 }
