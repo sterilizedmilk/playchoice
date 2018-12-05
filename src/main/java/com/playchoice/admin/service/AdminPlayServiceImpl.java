@@ -37,13 +37,28 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	@Override
 	public PlayDTO read(int p_id) throws Exception {
 		System.out.println("read service start");
-		return dao.read(p_id);
+		
+		PlayDTO dto = dao.read(p_id);
+		
+		//줄바꿈 처리
+		String res = dto.getP_info().replaceAll("<br>", "\n");
+		dto.setP_info(res);
+		String res2 = dto.getP_refund_policy().replaceAll("<br>", "\n");
+		dto.setP_refund_policy(res2);
+		
+		return dto;
 	}
 	
 	//연극 생성
 	@Override
 	public void regist(PlayDTO dto) throws Exception {
 		System.out.println("insert service start");
+		//줄바꿈 처리
+		String res = dto.getP_info().replaceAll("\n", "<br>");
+		dto.setP_info(res);
+		String res2 = dto.getP_refund_policy().replaceAll("\n", "<br>");
+		dto.setP_refund_policy(res2);
+		
 		dao.create(dto);
 	}
 
@@ -51,6 +66,12 @@ public class AdminPlayServiceImpl implements AdminPlayService{
 	@Override
 	public void modify(PlayDTO dto) throws Exception {
 		System.out.println("modify service start");
+		//줄바꿈 처리
+		String res = dto.getP_info().replaceAll("\n", "<br>");
+		dto.setP_info(res);
+		String res2 = dto.getP_refund_policy().replaceAll("\n", "<br>");
+		dto.setP_refund_policy(res2);
+		
 		dao.update(dto);
 	}	
 
