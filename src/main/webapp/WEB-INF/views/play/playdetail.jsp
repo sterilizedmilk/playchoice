@@ -111,12 +111,12 @@
 		$(".deleteQna").click(function() {
 			var m_code = $(this).attr("m_code");
 			var q_id = $(this).attr("q_id");
-			var p_id = $(this).attr("p_id");
+		
 
 			if (confirm("삭제하시겠습니까?")) {
 				$("#delQnaId").val(q_id);
 				$("#delQnaCode").val(m_code);
-				$("#delQnaPid").val(p_id);
+			
 
 				frmQna.action = "../qna/delete";
 				$("#frmQna").submit();
@@ -370,25 +370,33 @@
 							qlist = data.qlist;
 							alist = data.alist;
 							
-							
-							var cnt = data.length-1;
+							var qcnt = qlist.length-1;
+							console.log(qcnt)
 							//값 숨기기
 							for(var i=0 ; i<=4 ; i++){
-								$("#review_"+i).show();
-								if(i-cnt > 0){
-									$("#review_"+i).hide();	
+								$("#q_div_"+i).show();
+								if(i-qcnt > 0){
+									$("#q_div_"+i).hide();	
 								}
 							}
+							$(".qna_answer").remove();
 							//값 변경하기
-							for(var i in data){
+							for(var i in qlist){
 								
-								$("#score_"+i).attr("data-rateit-value",reviews[i].r_play_score);
-								$("#content_"+i).html(reviews[i].r_content);
-								$("#id_"+i).html(reviews[i].m_id);
-								$("#time_"+i).html(reviews[i].sdfTime);
+								$("#q_id_"+i).html(qlist[i].m_id);
+								$("#q_time_"+i).html(qlist[i].sdfTime);
+								$("#q_del_"+i).attr("q_id",qlist[i].q_id);
+								$("#q_del_"+i).attr("m_code",qlist[i].m_code);;
+								$("#q_con_"+i).html(qlist[i].q_content);
 								
+								for(var j in alist){
+									if(qlist[i].q_id == alist[j].q_target_id){
+										var a_div = "<div class='qna_answer'><p style='font-weight: bold;'> "+alist[j].m_id + " | "+alist[j].sdfTime+"<a class='deleteQna' q_id='"+alist[j].q_id + "'m_code='"+ alist[j].m_code+"'> <i class='icon-remove-circle'></i></a></p><p>"+ alist[j].q_content+"</p></div>";
+										
+										$("#q_div_"+i).after(a_div);
+									}
+								}
 							} 
-							
 						}
 					})
 				}
@@ -415,27 +423,25 @@
 							<button type="button" id="qsubmit">등 록</button>
 						</form>
 					</div>
+					
+
+								
 					<!-- 다른 질문 보기 -->
 					<div style="margin: 70px 0 0 0;">
-						<c:forEach items="${qnalist.qlist}" var="list">
-							<c:set var="className" value="qna_question" />
-							<c:if test="${list.q_id != list.q_target_id }">
-								<c:set var="className" value="qna_answer" />
-							</c:if>
-							<div class="${className }">
-								<p style="font-weight: bold;">${list.m_id }
-									| ${list.sdfTime}
-									<a class="deleteQna" q_id="${list.q_id }" m_code="${list.m_code}" p_id="${list.p_id }">
+						<c:forEach items="${qnalist.qlist}" var="list" varStatus="status">
+							<div id="q_div_${status.index }" class="qna_question">
+								<p style="font-weight: bold;"><span id="q_id_${status.index }"> ${list.m_id }</span> | <span id="q_time_${status.index }"> ${list.sdfTime} </span>
+									<a class="deleteQna" id="q_del_${status.index }" q_id="${list.q_id }" m_code="${list.m_code}">
 										<i class="icon-remove-circle"></i>
 									</a>
 								</p>
-								<p>${list.q_content }</p>
+								<p id="q_con_${status.index }">${list.q_content }</p>
 							</div>
 							<c:forEach items="${qnalist.alist}" var="list2">
 								<c:if test="${list.q_id eq list2.q_target_id}">
-									<div class=qna_answer>
+									<div class="qna_answer">
 										<p style="font-weight: bold;">${list2.m_id } | ${list2.sdfTime}
-											<a class="deleteQna" q_id="${list2.q_id }" m_code="${list2.m_code}" p_id="${list2.p_id }">
+											<a class="deleteQna" q_id="${list2.q_id }" m_code="${list2.m_code}">
 												<i class="icon-remove-circle"></i>
 											</a>
 										</p>
@@ -455,7 +461,7 @@
 						<form id="frmQna">
 							<input type="hidden" id="delQnaId" name="q_id" value="" /> 
 							<input type="hidden" id="delQnaCode" name="m_code" value="" /> 
-							<input type="hidden" id="delQnaPid" name="p_id" value="" />
+							<input type="hidden" id="delQnaPid" name="p_id" value="${playDTO.p_id }" />
 						</form>
 					</div>
 				</div>
