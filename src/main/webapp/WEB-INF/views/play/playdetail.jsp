@@ -100,9 +100,31 @@
 		});
 		
 		
-
+		//QnA keyup
+		$("#q_content").keyup(function(){
+			var length = $("#q_content").val().length;
+			$("#q_content").next().text(length)
+		})
+		
+		
 		// Q & A 등록
 		$("#qsubmit").click(function() {
+			//유효성 검사
+			if($("#q_content").val() == "" || $("#q_content").val() == null){
+				alert("내용을 입력해주세요");
+				return false;
+			}
+			if($("#q_content").val().length < 5){
+				alert("5자 이상 입력해주세요");
+				$("#q_content").focus();
+				return false;
+			}
+			if($("#q_content").val().length > 100){
+				alert("100자 이하로 입력해주세요");
+				$("#q_content").focus();
+				return false;
+			}	
+			
 			qfrm.action = "../qna/insertQues";
 			qfrm.submit();
 		})
@@ -219,7 +241,7 @@
 
 	<!-- 중앙 정보 시작 -->
 	<!-- 장바구니/결제 버튼 -->
-	<div class="row" align="right" style="outline: 1px solid blue;">
+	<div class="row" align="right">
 		<div style="float: rigth;">
 			<form name="frm" method="post">
 				<input type="hidden" id="frmId" name="s_id" value="" />
@@ -229,10 +251,8 @@
 				<input type="hidden" id="frmQuantity" name="p_quantity" value="" />
 
 				<button id="cart" type="submit" class="btn btn-success btn-lg">찜하기</button>
+				<button id="charge" class="btn btn-primary btn-lg">구매하기</button>
 			</form>
-		</div>
-		<div style="float: rigth;">
-			<button id="charge" class="btn btn-primary btn-lg">구매하기</button>
 		</div>
 	</div>
 	<!-- 버튼 끝 -->
@@ -246,7 +266,7 @@
 			<c:forEach items="${reviewList }" var="reviewList" begin="0" end="1">
 				<div style="padding: 10px 10px; margin: 15px 25px; border-bottom: 1px solid #BDBDBD;">
 					<p>
-						<b>${reviewList.m_id }</b>(${reviewList.r_register_time })
+						<b>${reviewList.m_id }</b>(${reviewList.sdfTime })
 					</p>
 					<p>${reviewList.r_content }</p>
 				</div>
@@ -267,7 +287,6 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="one">
-				<p>연극 안내 페이지</p>
 				<p>${playDTO.p_info }</p>
 				<div style="text-align: center;">
 				<c:if test="${playDTO.p_image2 ne null }">
@@ -295,7 +314,7 @@
 				<div id="reviews" style="margin: 10px 30px;">
 					<c:forEach items="${reviewList}" var="list" varStatus="status">
 						<div id="review_${status.index }" style="border-bottom: 1px solid #eee;">
-							<div id="score_${status.index }" class="rateit starNum" style="margin-top: 10px;"
+							<div id="score_${status.index }" class="rateit" style="margin-top: 10px;"
 							 data-rateit-value="${list.r_play_score}" data-rateit-readonly="true" ></div>
 						
 							<p id="content_${status.index }">${list.r_content }</p>
@@ -334,12 +353,9 @@
 									$("#review_"+i).hide();	
 								}
 							}
-							
-							//$(".starNum").remove();
+								
 							for(var i in reviews){
-								
-							//	var score ="<div class='rateit starNum' style='margin-top: 10px;' data-rateit-value='"+reviews[i].r_play_score+"' data-rateit-readonly='true' ></div>";
-								
+	
 								var width=16*reviews[i].r_play_score;
 							
 								 $("#score_"+i).find(".rateit-selected").css("width",width+"px");
@@ -423,7 +439,8 @@
 					<p>연극에 대한 궁금증을 남겨주세요!</p>
 					<div style="background-color: #FAF4C0;">
 						<form id="qfrm" method="post">
-							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;" placeholder="내용을 입력해주세요"></textarea>
+							<textarea id="q_content" name="q_content" style="margin: 10px 30px 10px 10px; height: 100px; width: 80%;" required="required" placeholder="내용을 입력해주세요(5 ~ 100자)"></textarea>
+							<span>0</span>/100
 							<input type="hidden" name="p_id" value="${playDTO.p_id }" />
 							<input type="hidden" name="m_code" value="${login.m_code }" />
 							<button type="button" id="qsubmit">등 록</button>

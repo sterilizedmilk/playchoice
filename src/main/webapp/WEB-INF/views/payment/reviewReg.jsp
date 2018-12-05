@@ -40,6 +40,7 @@ $(document).ready(function(){
 	$("#submit").click(function(){
 		if($("#r_content").val() == "" || $("#r_content").val() == null){
 			alert("내용을 입력해주세요");
+			return false;
 		}
 		if($("#r_content").val().length < 5){
 			alert("5자 이상 입력해주세요");
