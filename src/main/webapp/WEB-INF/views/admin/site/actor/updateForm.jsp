@@ -4,6 +4,11 @@
 <!DOCTYPE html >
 <jsp:include page="../../../page/header.jsp" />
 <jsp:include page="../integratedheader.jsp" />
+<script>
+$(document).ready(function(){
+	if
+})
+</script>
 <div class="container">
 	<div class="row">
 		<!-- Default table -->
@@ -35,7 +40,13 @@
 							</tr>
 							<tr>
 								<th>삭제 여부</th>
-								<td><input type="number" name="a_deleted" value="${actor.a_deleted}"></td>
+								<td>
+									<select name="a_deleted">
+										<option value="0" <c:if test="${actor.a_deleted} == 0"> selected</c:if>>활동중</option>
+										<option value="1" <c:if test="${actor.a_deleted} == 1"> selected</c:if>>활동중지</option>
+									</select>
+									<input type="hidden" name="a_deleted" value="${actor.a_deleted}">
+								</td>
 							</tr>
 						</thead>
 					</table>

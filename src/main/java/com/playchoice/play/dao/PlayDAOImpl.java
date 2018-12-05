@@ -14,6 +14,7 @@ import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 @Repository
@@ -94,11 +95,32 @@ public class PlayDAOImpl implements PlayDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".getReviewScore", p_id);
 	}
-
+	
+	//QnA 질문 리스트 
 	@Override
-	public List<Object> getQnA(int p_id) {
+	public List<QnaDTO> QeusetionList(int p_id, PageDTO pdto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".getQnA", p_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_id", p_id);
+		map.put("pageDTO", pdto);
+		return sqlSession.selectList(namespace + ".QuestionList", map);
+	}
+	
+	@Override
+	public List<QnaDTO> AnswerList(int p_id, List<Integer> q_id_list){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_id", p_id);
+		map.put("q_id_list", q_id_list);
+		
+		return sqlSession.selectList(namespace + ".AnswerList", map);
+		
+	}
+	
+	//QnA 질문 개수
+	@Override
+	public int QnaCnt(int p_id) {
+	
+		return sqlSession.selectOne(namespace+".QnaCnt", p_id);
 	}
 
 	@Override

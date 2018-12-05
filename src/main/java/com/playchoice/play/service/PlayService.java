@@ -2,12 +2,14 @@ package com.playchoice.play.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.playchoice.admin.dto.AreaDTO;
 import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface PlayService {
@@ -28,7 +30,9 @@ public interface PlayService {
 
 	public Object getReviewScore(int p_id);
 
-	public List<Object> getQnA(int p_id);
+	public Map<String, List<QnaDTO>> getQnAList(int p_id, PageDTO pdto);
+	
+	public int QnaCnt(int p_id);
 
 	// 오늘연극
 	public List<PlayDTO> playTodayList(String date);

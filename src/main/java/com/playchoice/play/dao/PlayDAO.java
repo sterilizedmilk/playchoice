@@ -8,6 +8,7 @@ import com.playchoice.admin.dto.GenreDTO;
 import com.playchoice.common.PageDTO;
 import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
+import com.playchoice.qna.dto.QnaDTO;
 import com.playchoice.schedule.dto.ScheduleDTO;
 
 public interface PlayDAO {
@@ -38,7 +39,11 @@ public interface PlayDAO {
 
 	public Object getReviewScore(int p_id);
 
-	public List<Object> getQnA(int p_id);
+	public List<QnaDTO> QeusetionList(int p_id, PageDTO pdto);
+	
+	public List<QnaDTO> AnswerList(int p_id, List<Integer> q_id_list);
+	
+	public int QnaCnt(int p_id);
 
 
 	public Object getPlayRank();

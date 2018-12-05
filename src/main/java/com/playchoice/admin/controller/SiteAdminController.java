@@ -152,6 +152,7 @@ public class SiteAdminController {
 	public String updateActorActionController(Model model, MultipartHttpServletRequest request,
 			@RequestParam("a_file") MultipartFile file, ActorDTO dto) throws IOException {
 		ActorFileService fs = new ActorFileService();
+		System.out.println(dto);
 		if (fs.isImgCheck(file)) {
 			// 파일 등록 유무 확인
 			if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {

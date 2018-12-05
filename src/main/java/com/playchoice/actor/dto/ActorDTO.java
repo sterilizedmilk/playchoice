@@ -88,4 +88,10 @@ public class ActorDTO {
 		this.a_birth = a_birth;
 	}
 
+	@Override
+	public String toString() {
+		return "ActorDTO [a_id=" + a_id + ", a_deleted=" + a_deleted + ", a_name=" + a_name + ", a_homepage="
+				+ a_homepage + ", a_picture=" + a_picture + ", a_birth=" + a_birth + ", sdf=" + sdf + "]";
+	}
+
 }

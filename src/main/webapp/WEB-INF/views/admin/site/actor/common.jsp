@@ -10,7 +10,7 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<a href="insertActor"> 배우 등록</a>
+				<a class="btn btn-success" href="insertActor"> 배우 등록</a>
 				<h4>배우 관리페이지</h4>
 				<table class="table table-striped" border="">
 					<thead>

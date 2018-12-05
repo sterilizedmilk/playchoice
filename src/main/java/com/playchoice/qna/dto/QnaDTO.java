@@ -1,6 +1,7 @@
 package com.playchoice.qna.dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class QnaDTO {
 	
@@ -8,6 +9,14 @@ public class QnaDTO {
 	Timestamp q_time;
 	String q_content, m_id, p_name;
 	
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	
+	public String getSdfTime() {
+		
+		return sdf.format(q_time);
+	}
 	
 	
 	public int getReplychk() {
@@ -70,8 +79,12 @@ public class QnaDTO {
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
 	}
-	
-	
 
-	
+	@Override
+	public String toString() {
+		return "QnaDTO [q_id=" + q_id + ", m_code=" + m_code + ", p_id=" + p_id + ", q_target_id=" + q_target_id
+				+ ", q_deleted=" + q_deleted + ", replychk=" + replychk + ", q_time=" + q_time + ", q_content="
+				+ q_content + ", m_id=" + m_id + ", p_name=" + p_name + ", sdf=" + sdf + "]";
+	}
+
 }

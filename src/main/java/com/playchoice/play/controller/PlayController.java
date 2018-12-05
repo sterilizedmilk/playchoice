@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -184,7 +185,6 @@ public class PlayController {
 		model.addAttribute("schedule", scheduleDto);
 
 		// review
-//		model.addAttribute("reviewSmall", service.getReviewSmall(p_id));
 		model.addAttribute("reviewList", service.getReviewList(p_id, pdto));
 		
 		Pagination pagination = new Pagination(pdto);
@@ -202,7 +202,15 @@ public class PlayController {
 		model.addAttribute("reviewScore", reviewScore);
 		
 		// Q & A
-		model.addAttribute("qnaAll", service.getQnA(p_id));
+		
+		model.addAttribute("qnalist", service.getQnAList(p_id, pdto));
+		int qnacnt = service.QnaCnt(p_id);
+		Pagination pagination2 = new Pagination(pdto);
+		pagination2.setTotalCnt(qnacnt);
+		
+		System.out.println(service.getQnAList(p_id, pdto).get("alist"));
+		model.addAttribute("qnacnt", qnacnt);
+		model.addAttribute("paging2", pagination2);
 		return "play/playdetail";
 
 	}
@@ -215,6 +223,17 @@ public class PlayController {
 		List reviewList = service.getReviewList(p_id, pdto);
 		
 		return reviewList;
+		
+	}
+	
+	//QnA 아작스
+	@RequestMapping("qnaPage")
+	@ResponseBody
+	public Map qnaPage(int p_id, PageDTO pdto) {
+
+		Map qnaMap = service.getQnAList(p_id, pdto);
+		
+		return qnaMap;
 		
 	}
 

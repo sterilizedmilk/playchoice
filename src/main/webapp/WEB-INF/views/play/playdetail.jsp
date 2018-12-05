@@ -261,8 +261,8 @@
 			<li class="active"><a href="#one" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">
 					<span style="font-size: 2em">안 내</span>
 				</a></li>
-			<li><a href="#two" id="review" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기(${reviewScore.cnt }명)</a></li>
-			<li><a href="#three" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">Q & A</a></li>
+			<li><a href="#two" id="review" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">후 기( ${reviewScore.cnt } 명)</a></li>
+			<li><a href="#three" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">Q & A( ${qnacnt } 건)</a></li>
 			<li><a href="#four" data-toggle="tab" style="padding-left: 100px; padding-right: 100px;">환불규정</a></li>
 		</ul>
 		<div class="tab-content">
@@ -348,17 +348,55 @@
 					})
 					
 				}
+				//Qna 페이징
+				function callPaging2(page){ 
+					
+					var p_id = $(page).attr('p_id');
+					var perPage = $(page).attr('perPage');
+					var page = $(page).attr('page');
+	
+					$.ajax({
+						type : 'post',
+						dataType : 'json',
+						url : 'qnaPage',
+						data :{
+							'p_id' : p_id,
+							'page' : page ,
+							'perPage' : perPage
+						},
+						success : function(data){
+							var qlist = new Array();
+							var alist = new Array();
+							qlist = data.qlist;
+							alist = data.alist;
+							
+							
+							var cnt = data.length-1;
+							//값 숨기기
+							for(var i=0 ; i<=4 ; i++){
+								$("#review_"+i).show();
+								if(i-cnt > 0){
+									$("#review_"+i).hide();	
+								}
+							}
+							//값 변경하기
+							for(var i in data){
+								
+								$("#score_"+i).attr("data-rateit-value",reviews[i].r_play_score);
+								$("#content_"+i).html(reviews[i].r_content);
+								$("#id_"+i).html(reviews[i].m_id);
+								$("#time_"+i).html(reviews[i].sdfTime);
+								
+							} 
+							
+						}
+					})
+				}
 				</script>
 				<div class="pagination pagination-large pagination-centered">
 				  	<ul class="pagination">
 						<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
-							
-								
-								
-									<%-- <li><a href="list?page=${pageNum}&perPage=${paging.pdto.perPage}">${pageNum}</a></li> --%>
-									<li><a href="javascript:void(0);" onclick="callPaging(this)" p_id="${playDTO.p_id }" page="${pageNum}" perPage="${paging.pdto.perPage}"><span>${pageNum}</span></a></li>
-								
-							
+							<li><a href="javascript:void(0);" onclick="callPaging(this)" p_id="${playDTO.p_id }" page="${pageNum}" perPage="${paging.pdto.perPage}"><span>${pageNum}</span></a></li>
 						</c:forEach>
 					</ul>
 				</div><!-- /.pagination -->
@@ -379,21 +417,40 @@
 					</div>
 					<!-- 다른 질문 보기 -->
 					<div style="margin: 70px 0 0 0;">
-						<c:forEach items="${qnaAll}" var="list">
+						<c:forEach items="${qnalist.qlist}" var="list">
 							<c:set var="className" value="qna_question" />
 							<c:if test="${list.q_id != list.q_target_id }">
 								<c:set var="className" value="qna_answer" />
 							</c:if>
 							<div class="${className }">
 								<p style="font-weight: bold;">${list.m_id }
-									| ${list.q_time}
+									| ${list.sdfTime}
 									<a class="deleteQna" q_id="${list.q_id }" m_code="${list.m_code}" p_id="${list.p_id }">
 										<i class="icon-remove-circle"></i>
 									</a>
 								</p>
 								<p>${list.q_content }</p>
 							</div>
+							<c:forEach items="${qnalist.alist}" var="list2">
+								<c:if test="${list.q_id eq list2.q_target_id}">
+									<div class=qna_answer>
+										<p style="font-weight: bold;">${list2.m_id } | ${list2.sdfTime}
+											<a class="deleteQna" q_id="${list2.q_id }" m_code="${list2.m_code}" p_id="${list2.p_id }">
+												<i class="icon-remove-circle"></i>
+											</a>
+										</p>
+										<p>${list2.q_content }</p>
+									</div>
+								</c:if>
+							</c:forEach>
 						</c:forEach>
+						<div class="pagination pagination-large pagination-centered">
+						  	<ul class="pagination">
+								<c:forEach var="pageNum" begin="${paging2.startPage}" end="${paging2.endPage}">
+									<li><a href="javascript:void(0);" onclick="callPaging2(this)" p_id="${playDTO.p_id }" page="${pageNum}" perPage="${paging2.pdto.perPage}"><span>${pageNum}</span></a></li>
+								</c:forEach>
+							</ul>
+						</div><!-- /.pagination -->
 						<!-- 데이터 넘기기위한 폼 -->
 						<form id="frmQna">
 							<input type="hidden" id="delQnaId" name="q_id" value="" /> 
