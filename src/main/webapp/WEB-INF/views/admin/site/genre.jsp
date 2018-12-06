@@ -10,32 +10,36 @@
 		$.ajax({
 			url: "${pageContext.request.contextPath}/admin/site/genre/add",
 			type: "post",
+			async: false,
 			data: $("#addGenre").serialize(),
 			success: function(data) {
-				alert("success : " + data);
+				alert("성공적으로 추가되었습니다.");
 			},
 			error: function(data) {
 				alert("error : " + data);
 			}
 		})
+		window.location.reload();
 		return false;
 	}
 	
 	function updateGenre(g_id) {
-		var newName = prompt("change to what?");
+		var newName = prompt("장르의 새 이름을 입력하세요.");
 		if (newName === null)
 			return;
 		$.ajax({
 			url: "${pageContext.request.contextPath}/admin/site/genre/edit",
 			type: "post",
+			async: false,
 			data: {"g_id" : g_id, "g_name" : newName},
 			success: function(data) {
-				alert("success : " + data);
+				alert("성공적으로 수정되었습니다.");
 			},
 			error: function(data) {
 				alert("error : " + data);
 			}
 		})
+		window.location.reload();
 	}
 
 </script>
@@ -52,9 +56,9 @@
 				<table class="table table-striped" border="1">
 					<thead>
 						<tr>
-							<th>genre id</th>
-							<th>name</th>
-							<th>delete</th>
+							<th>id</th>
+							<th>이름</th>
+							<th>수정</th>
 						</tr>
 					</thead>
 					<c:forEach var="genre" items="${genreList}">

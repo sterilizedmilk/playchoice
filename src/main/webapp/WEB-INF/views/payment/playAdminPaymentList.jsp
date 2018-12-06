@@ -21,7 +21,7 @@
 	<div class="row">
 		<!-- 좌측 정보 -->
 		<div class="col-md-5" style="float: left; position: relative; margin-right: 15px; background: #fff;">
-			<h3>결재내역</h3>
+			<h3>결제 내역</h3>
 			
 			<form id="paymentSearchForm" autocomplete="off" action="">
 				<div class="control-group">
