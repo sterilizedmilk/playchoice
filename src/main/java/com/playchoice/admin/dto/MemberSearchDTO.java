@@ -6,8 +6,6 @@ public class MemberSearchDTO {
 	Integer status = null;
 	String id = null;
 	String name = null;
-	
-	Integer start = 0;
 
 	public Integer getLevel() {
 		return level;
@@ -47,20 +45,5 @@ public class MemberSearchDTO {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Integer getStart() {
-		return start;
-	}
-
-	public void setStart(Integer start) {
-		this.start = start;
-	}
-	
-	public void setPage(Integer page) {
-		if (page == null || page < 1)
-			page = 1;
-		
-		start = (page - 1) * 10;
 	}
 }

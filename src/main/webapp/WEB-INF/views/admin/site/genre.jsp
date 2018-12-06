@@ -47,8 +47,7 @@
 		<div class="row">
 			<div class="span8">
 				<jsp:include page="integratedheader.jsp" />
-				<h2>Genre Management</h2>
-
+				<h2>장르 관리</h2>
 
 				<table class="table table-striped" border="1">
 					<thead>

@@ -87,14 +87,12 @@ public class PaymentController {
 		return "redirect:/payment/info?p_id=" + payment.getP_id();
 	}
 	
-// TODO: MemberController로 옮기기
 	@RequestMapping("member/paymentList")
 	public String memberPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto, boolean watched) {
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		
 		dto.setMember(user.getM_id());
 		dto.setPlayAdmin(null);
-		System.out.println(watched);
 		// 취소 안된 연극중 끝난 연극 검색
 		if (watched) {
 			dto.setCanceled(0);

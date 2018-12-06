@@ -11,7 +11,7 @@
 			<div class="span8">
 
 				<jsp:include page="../integratedheader.jsp" />
-				<h2>Play Management</h2>
+				<h2>연극 관리</h2>
 
 				<table class="table table-bordered" >
 					<tbody>

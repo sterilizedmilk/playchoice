@@ -11,7 +11,7 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>멤버관리페이지</h4>
+				<h4>회원 관리</h4>
 
 				<table class="table table-striped" border="">
 					<thead>

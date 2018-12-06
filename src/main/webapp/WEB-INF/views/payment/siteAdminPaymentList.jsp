@@ -98,7 +98,7 @@
 								<tr>
 									<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
 									<td>${pay.p_id}</td>
-									<td>${pay.m_id}</td>
+									<td><a href="${pageContext.request.contextPath}/admin/site/member/detail?m_code=${pay.m_code}">${pay.m_id}</a></td>
 									<td>${pay.p_name}</td>
 									<td>${pay.s_id}</td>
 									<td>${pay.p_price}</td>

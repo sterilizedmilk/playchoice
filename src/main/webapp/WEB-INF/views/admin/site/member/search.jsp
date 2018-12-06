@@ -11,16 +11,46 @@
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>멤버관리페이지</h4>
+				<h4>회원 검색</h4>
 				
 				<div>
 					<form action="">
-						m_code<input type="number" name="code" value="${param.code}"><br>
-						m_level<input type="number" name="level" value="${param.level}"><br>
-						m_status<input type="number" name="status" value="${param.status}"><br>
-						m_id<input type="text" name="id" value="${param.id}"><br>
-						m_name<input type="text" name="name" value="${param.name}"><br>
-						page<input type="number" name="page" value="${param.page}"><br>
+						<div class="control-group">
+						    <label class="control-label">번호</label>
+						    <div class="control">
+						        <input type="number" name="code" value="${param.code}">
+						    
+						    </div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label">레벨</label>
+						    <div class="control">
+						        <input type="number" name="level" value="${param.level}">
+						    </div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label">상태</label>
+						    <div class="control">
+						        <input type="number" name="status" value="${param.status}">
+						    </div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label">아이디</label>
+						    <div class="control">
+						        <input type="text" name="id" value="${param.id}">
+						    </div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label">이름</label>
+						    <div class="control">
+						        <input type="text" name="name" value="${param.name}">
+						    </div>
+						</div>
+						
 						<button class="btn btn-primary btn-small">상세 검색</button>
 					</form>
 				</div>

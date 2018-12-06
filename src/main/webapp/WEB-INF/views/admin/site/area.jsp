@@ -46,7 +46,7 @@
 			<div class="span8">
 
 				<jsp:include page="integratedheader.jsp" />
-				<h2>Area Management</h2>
+				<h2>지역 관리</h2>
 
 				<table class="table table-striped" border="1">
 					<thead>

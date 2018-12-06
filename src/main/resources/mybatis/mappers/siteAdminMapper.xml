@@ -64,7 +64,6 @@
 				AND m_name LIKE CONCAT('%', #{name}, '%')
 			</if>
 		</where>
-		LIMIT #{start}, 20
 	</select>
 	
 	<select id="getMember" resultType="memberDTO">

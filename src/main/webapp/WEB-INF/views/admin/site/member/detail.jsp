@@ -41,7 +41,7 @@ function updateMember(action) {
 		<!-- Default table -->
 		<div class="row">
 			<div class="span8">
-				<h4>멤버 상세</h4>
+				<h4>회원 상세</h4>
 				
 				<form id="mem" method="post">
 					<input type="hidden" name="m_code" id="m_code" value="${mem.m_code}">
