@@ -15,6 +15,10 @@
 	.table thead th {text-align:center;}
 	.table input[name='s_price'],
 	.table input[name='s_ticket'] {width:100px;}
+	.table tbody {text-align:center;}
+	.table th, .table td { text-align:center;}
+	.table .img-polaroid {width: 120px; height: 150px; margin: 0;}
+	.table td {line-height:150px;}
 </style>
 <section id="inner-headline">
 	<div class="container">
@@ -31,7 +35,7 @@
 <section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="span12">	
+			<div class="span10 offset1">	
 			<form role="form" name="form" class="form-horizontal">		
 				<div class="box-footer" align="center">
 					<input type="hidden" name="p_id" value="${param.p_id }">
@@ -49,7 +53,7 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>배우 번호</th>
+						<th width="10%">배우 번호</th>
 						<th>배우 사진</th>
 						<th>배우 이름</th>
 						<th>제거 버튼</th>
@@ -61,9 +65,8 @@
 					<tr>
 						<input type="hidden" name="p_id" value="${param.p_id }">
 						<td>${pal.a_id }</td>
-						<td><img src="${pageContext.request.contextPath}/resources/img/actor/${pal.a_picture }"></td>
+						<td><img src="${pageContext.request.contextPath}/resources/img/actor/${pal.a_picture }" class="img-polaroid"></td>
 						<td>${pal.a_name }</td>
-						<!-- <td><button type="submit" class="btn btn-cancel1">제거</button></td> -->
 						<td><a href="${pageContext.request.contextPath}/admin/play/padelete?a_id=${pal.a_id}&p_id=${param.p_id }"
 													class="btn btn-danger">삭제</a></td>
 					</tr>
@@ -72,7 +75,6 @@
 				</tbody>
 			</table>
 			</fildset>
-						
 			
 				<div class="pagination pagination-large pagination-centered">
 				  	<ul class="pagination">

@@ -4,10 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <!-- com.playchoice.play.dto.PlayDTO --> 
 <mapper namespace="com.playchoice.mappers.adminplayMapper">
-                    
-	
-
-              
 									<!-- com.playchoice.play.dto.PlayDTO -->
     <select id="listAll" resultType="PlayDTO" parameterType="memberDTO">
     	select * from play where m_code = #{m_code}

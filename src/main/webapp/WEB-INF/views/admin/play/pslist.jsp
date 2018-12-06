@@ -13,8 +13,10 @@
 <style>
 	.table select {width:100px;}
 	.table thead th {text-align:center;}
+	.table input[name='s_time'] { width:160px;}
 	.table input[name='s_price'],
 	.table input[name='s_ticket'] {width:100px;}
+	.table th, .table td { text-align:center;}
 </style>
 <section id="inner-headline">
 	<div class="container">
@@ -45,9 +47,9 @@
 				<thead>
 					<tr>
 						<th style="width:8%;">번호</th>
-						<th>시작시간</th>
-						<th>연극 가격</th>
-						<th>연극 총 매수</th>
+						<th style="width:18%;">시작시간</th>
+						<th style="width:15%;">연극 가격</th>
+						<th style="width:15%;">연극 총 매수</th>
 						<th style="width:12%;">주연 배우 1</th>
 						<th style="width:12%;">주연 배우 2</th>
 						<th style="width:12%;">연극 상태</th>
@@ -71,27 +73,29 @@
 						<td>
 						<input type="text" name="s_ticket" value="${ke.s_ticket}">
 						</td>
-						<td>${ke.a_id1 }
+						<td>
 						<select name="a_id1">
-							<c:forEach items="${palist }" var="pal">
-								<option value="${pal.a_id }">${pal.a_name }</option>
+							<c:forEach items="${palist}" var="pal">
+								<option value="${pal.a_id }" ${pal.a_id == ke.a_id1 ? 'selected': ''}>${pal.a_name }</option>
 							</c:forEach>
 						</select>
 						</td>
-						<td>${ke.a_id2 }
+						<!-- 3항연산자를 이용 ${pal.a_id == ke.a_id1 ? 'selected': ''}
+						저장되어있는 ke.a_id1 값과 palist에 있는 pal.a_id가 같을때 select의 맞는 이름의 값을 selected로 해서 해당 이름을 보이게 한다. -->
+						<td>
 						<select name="a_id2">
 							<c:forEach items="${palist }" var="pal">
-								<option value="${pal.a_id }">${pal.a_name }</option>
+								<option value="${pal.a_id }" ${pal.a_id == ke.a_id2 ? 'selected': ''}>${pal.a_name }</option>
 							</c:forEach>
 						</select>
 						</td>
-						<td>${ke.s_canceled }
+						<td>
 						<select name="s_canceled" id="">
-							<option value="0">개시</option>
-							<option value="1">내림</option>
+							<option value="0" ${ke.s_canceled == 0 ? 'selected': ''}>개시</option>
+							<option value="1" ${ke.s_canceled == 1 ? 'selected': ''}>내림</option>
 						</select>
 						</td>
-						<td><button type="submit">변경</button></td>
+						<td><button type="submit" class="btn btn-default">변경</button></td>
 						
 					</tr>
 					</form>

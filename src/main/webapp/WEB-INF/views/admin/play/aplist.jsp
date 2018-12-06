@@ -8,6 +8,10 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <input type="hidden" name="m_code" value="${login.m_code }" />
 
+<style>
+	.table th, .table td { text-align:center;}
+</style>
+
 <section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -37,9 +41,17 @@
 					<tr>
 						<td align="center">${li.p_id }</td>
 						<td> <a href="apread?p_id=${li.p_id }">${li.p_name }</a></td>
-						<td>${li.g_id }</td>
-						<td>${li.a_id }</td>
-						<td>${li.p_status }</td>
+						<td>
+							<c:forEach items="${glist}" var="gl">
+								<c:if test="${gl.g_id == li.g_id}">${gl.g_name}</c:if>
+							</c:forEach>
+						</td>
+						<td>
+							<c:forEach items="${alist}" var="al">
+								<c:if test="${al.a_id == li.a_id}">${al.a_name}</c:if>
+							</c:forEach>
+						</td>
+						<td>${li.p_status == 'true' ? '게시' : '내림' }</td>
 					</tr>
 				</c:forEach>			
 				</tbody>

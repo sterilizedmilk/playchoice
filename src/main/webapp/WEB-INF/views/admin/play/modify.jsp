@@ -57,7 +57,7 @@
 				<div class="control-group">
 					<label class="control-label" for="p_refund_policy">환불 규정</label>
 					<div class="controls">
-						<textarea name="p_refund_policy" id="p_refund_plicy" style="width:100%; height: 300px">${playDTO.p_refund_policy }</textarea>
+						<textarea name="p_refund_policy" id="p_refund_plicy" style="width:100%; height: 300px" readonly="readonly">${playDTO.p_refund_policy }</textarea>
 						<span class="help-block"></span>
 					</div>
 				</div>

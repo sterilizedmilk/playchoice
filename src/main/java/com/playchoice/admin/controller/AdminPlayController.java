@@ -75,6 +75,8 @@ public class AdminPlayController {
 				Object res = service.listAll(user);
 				
 				model.addAttribute("list", res); //res 와 list 보냄
+				model.addAttribute("glist", sservice.genreList()); //장르 리스트 가져오기
+				model.addAttribute("alist", sservice.areaList()); //지역 리스트 가져오기
 				
 				return "/admin/play/aplist";
 			}else {
@@ -168,6 +170,7 @@ public class AdminPlayController {
 		dto.setP_image3(fs.imageUpload(dto.getP_image().get(3)));
 		dto.setP_image4(fs.imageUpload(dto.getP_image().get(4)));
 		
+		//저장되어 있는 이미지 변경 없을시 원래값 유지
 		if(th != null) {
 			fs.setThumb(th);
 		}
