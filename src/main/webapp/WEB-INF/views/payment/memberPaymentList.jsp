@@ -115,15 +115,18 @@
 						</tbody>
 					</table>
 					
-					<div class="pagination pagination-large pagination-centered">
-						<ul class="pagination">
-		 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" varStatus="status">
-								<li<c:if test="${param.page == i}"> class="disabled"</c:if>>
-									<a href="#" class="page-link">${i}</a>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
+					<c:if test="${firstPage != null}">
+						<div class="pagination pagination-large pagination-centered">
+							<ul class="pagination">
+			 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" varStatus="status">
+									<li<c:if test="${param.page == i}"> class="disabled"</c:if>>
+										<a href="#" class="page-link">${i}</a>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</c:if>
+					
 				</div><!-- 탭 종료 -->
 			</div><!-- /.row -->
 		</div><!-- /.row -->

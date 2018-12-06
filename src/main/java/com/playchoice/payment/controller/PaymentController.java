@@ -103,10 +103,14 @@ public class PaymentController {
 		}
 
 		int count = service.paymentCount(dto);
-		int firstPage = Math.max(dto.getPage() - 4, 1);
-		int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
-		model.addAttribute("firstPage", firstPage);
-		model.addAttribute("lastPage", lastPage);
+		
+		if (dto.getRow() != 0) {
+			int firstPage = Math.max(dto.getPage() - 4, 1);
+			int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
+			model.addAttribute("firstPage", firstPage);
+			model.addAttribute("lastPage", lastPage);
+		}
+		
 		if (count != 0) {
 			model.addAttribute("paymentList", service.searchPayment(dto));
 		}
@@ -117,10 +121,13 @@ public class PaymentController {
 	@RequestMapping("admin/site/paymentList")
 	public String siteAdminPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto) {
 		int count = service.paymentCount(dto);
-		int firstPage = Math.max(dto.getPage() - 4, 1);
-		int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
-		model.addAttribute("firstPage", firstPage);
-		model.addAttribute("lastPage", lastPage);
+		if (dto.getRow() != 0) {
+			int firstPage = Math.max(dto.getPage() - 4, 1);
+			int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
+			model.addAttribute("firstPage", firstPage);
+			model.addAttribute("lastPage", lastPage);
+		}
+		
 		if (count != 0) {
 			model.addAttribute("paymentList", service.searchPayment(dto));
 		}
@@ -135,10 +142,13 @@ public class PaymentController {
 		dto.setPlayAdmin(user.getM_id());
 		
 		int count = service.paymentCount(dto);
-		int firstPage = Math.max(dto.getPage() - 4, 1);
-		int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
-		model.addAttribute("firstPage", firstPage);
-		model.addAttribute("lastPage", lastPage);
+		if (dto.getRow() != 0) {
+			int firstPage = Math.max(dto.getPage() - 4, 1);
+			int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
+			model.addAttribute("firstPage", firstPage);
+			model.addAttribute("lastPage", lastPage);
+		}
+		
 		if (count != 0) {
 			model.addAttribute("paymentList", service.searchPayment(dto));
 		}
