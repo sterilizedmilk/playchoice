@@ -56,7 +56,6 @@ public class PaymentController {
 		model.addAttribute("quantity", p_quantity);
 		model.addAttribute("discountedPrice", scheduleService.discountedPrice(schedule));
 		
-		
 		return "payment/payment";
 	}
 
@@ -100,20 +99,33 @@ public class PaymentController {
 		if (watched) {
 			dto.setCanceled(0);
 			dto.setScheduleEnded(1);
+		} else {
+			dto.setCanceled(null);
+			dto.setScheduleEnded(null);
 		}
-		
-		List<PaymentDTO> paymentList = service.searchPayment(dto);
-		
-		model.addAttribute("paymentList", paymentList);
+
+		int count = service.paymentCount(dto);
+		int firstPage = Math.max(dto.getPage() - 4, 1);
+		int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
+		model.addAttribute("firstPage", firstPage);
+		model.addAttribute("lastPage", lastPage);
+		if (count != 0) {
+			model.addAttribute("paymentList", service.searchPayment(dto));
+		}
 		
 		return "payment/memberPaymentList";
 	}
 	
 	@RequestMapping("admin/site/paymentList")
 	public String siteAdminPaymentListController(Model model, HttpSession session, PaymentSearchDTO dto) {
-//		MemberDTO user = (MemberDTO) session.getAttribute("login");
-		
-		model.addAttribute("paymentList", service.searchPayment(dto));
+		int count = service.paymentCount(dto);
+		int firstPage = Math.max(dto.getPage() - 4, 1);
+		int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
+		model.addAttribute("firstPage", firstPage);
+		model.addAttribute("lastPage", lastPage);
+		if (count != 0) {
+			model.addAttribute("paymentList", service.searchPayment(dto));
+		}
 		
 		return "payment/siteAdminPaymentList";
 	}
@@ -124,14 +136,20 @@ public class PaymentController {
 		
 		dto.setPlayAdmin(user.getM_id());
 		
-		model.addAttribute("paymentList", service.searchPayment(dto));
+		int count = service.paymentCount(dto);
+		int firstPage = Math.max(dto.getPage() - 4, 1);
+		int lastPage = Math.min((count - 1) / dto.getRow() + 1, dto.getPage() + 4);
+		model.addAttribute("firstPage", firstPage);
+		model.addAttribute("lastPage", lastPage);
+		if (count != 0) {
+			model.addAttribute("paymentList", service.searchPayment(dto));
+		}
 		
 		return "payment/playAdminPaymentList";
 	}
 	
 	@RequestMapping(value = "payment/info", method = RequestMethod.GET)
-	public String paymentInfoController(HttpSession session, Model model,
-												@RequestParam int p_id) throws Exception {
+	public String paymentInfoController(HttpSession session, Model model, @RequestParam int p_id) throws Exception {
 		PaymentDTO payment = service.getPayment(p_id);
 		MemberDTO user = (MemberDTO) session.getAttribute("login");
 		ScheduleDTO schedule = scheduleService.getSchedule(payment.getS_id());

@@ -22,6 +22,11 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
+	public int paymentCount(PaymentSearchDTO dto) {
+		return session.selectOne(namespace + ".paymentCount", dto);
+	}
+	
+	@Override
 	public List<PaymentDTO> searchPayment(PaymentSearchDTO dto) {
 		return session.selectList(namespace + ".searchPayment", dto);
 	}

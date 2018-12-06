@@ -2,6 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.playchoice.mappers.paymentMapper">
+
+	<select id="paymentCount" resultType="int" parameterType="PaymentSearchDTO">
+		SELECT count(*)
+		FROM payment, schedule, play, member
+		<where>
+			play.p_id = schedule.p_id
+			AND schedule.s_id = payment.s_id
+			AND member.m_code = payment.m_code
+			<if test="member != null and member != ''">
+				AND member.m_id = #{member}
+			</if>
+			<if test="play != null and play != ''">
+				AND play.p_name LIKE CONCAT('%', #{play}, '%')
+			</if>
+			<if test="playAdmin != null and playAdmin != ''">
+				AND (SELECT m_id
+						FROM member as mem
+						WHERE mem.m_code = play.m_code) = #{playAdmin}
+			</if>
+			<if test="from != null">
+				AND payment.p_time >= #{from}
+			</if>
+			<if test="until != null">
+<![CDATA[		AND payment.p_time <= #{until}	]]>
+			</if>
+			<if test="canceled != null">
+				AND payment.p_canceled = #{canceled}
+			</if>
+			<if test="scheduleEnded != null and scheduleEnded == 1">
+<![CDATA[		AND schedule.s_time <= NOW()	]]>
+			</if>
+		</where>
+	</select>
 	
 	<select id="searchPayment" resultType="PaymentDTO" parameterType="PaymentSearchDTO">
 		SELECT payment.p_id, payment.m_code, payment.s_id,

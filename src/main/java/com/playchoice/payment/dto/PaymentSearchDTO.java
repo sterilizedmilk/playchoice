@@ -52,7 +52,7 @@ public class PaymentSearchDTO {
 		if (from.isEmpty())
 			return;
 		
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
 		try {
 			this.from = new Timestamp(format.parse(from).getTime());
@@ -69,7 +69,7 @@ public class PaymentSearchDTO {
 		if (until.isEmpty())
 			return;
 		
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
 		try {
 			this.until = new Timestamp(format.parse(until).getTime()) ;
@@ -96,6 +96,10 @@ public class PaymentSearchDTO {
 
 	public void setScheduleEnded(Integer scheduleEnded) {
 		this.scheduleEnded = scheduleEnded;
+	}
+	
+	public int getPage() {
+		return page;
 	}
 
 	public void setPage(Integer page) {

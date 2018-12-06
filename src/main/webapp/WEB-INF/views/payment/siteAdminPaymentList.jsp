@@ -22,7 +22,58 @@
 		<!-- 좌측 정보 -->
 		<div class="col-md-5" style="float: left; position: relative; margin-right: 15px; background: #fff;">
 			<h3>결재내역</h3>
-			<table class="table">
+			<div class="span8">
+				<form id="paymentSearchForm" autocomplete="off" action="">
+					<div class="control-group">
+						<label class="control-label">연극 제목</label>
+						<div class="control">
+							<input type="text" name="play" value="${param.play}">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">회원 아이디</label>
+						<div class="control">
+							<input type="text" name="member" value="${param.member}">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">연극 관리자 아이디</label>
+						<div class="control">
+							<input type="text" name="playAdmin" value="${param.playAdmin}">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">기간</label>
+						<div class="control">
+			                <input type="text" class="form_datetime" name="from" style="width: 8em;" value="${param.from}">~
+							<input type="text" class="form_datetime" name="until" style="width: 8em;" value="${param.until}">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="row">페이지당 개수</label>
+						<div class="control">
+							<select name="row" style="width: 6em;">
+								<option value="10">-선택-</option>
+								<option value="10" ${param.row == 10 ? 'selected' : ''}>10개씩</option>
+								<option value="20" ${param.row == 20 ? 'selected' : ''}>20개씩</option>
+								<option value="50" ${param.row == 50 ? 'selected' : ''}>50개씩</option>
+								<option value="0" ${param.row == 0 ? 'selected' : ''}>제한없이</option>
+							</select><br>
+						</div>
+					</div>
+					
+					<div class="control-group button-group pull-right">
+						<button type="submit" class="btn btn-primary">검색</button>
+					</div>
+					
+					<input type="hidden" name="page" id="inputPage" value="${param.page}"><br>
+				</form>
+			</div>
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th>결제 시간</th>
@@ -40,54 +91,46 @@
 				
 				<tbody>
 					<c:set var="sum" value="0"/>
-					<c:forEach var="pay" items="${paymentList}">
-						<c:set var="sum" value="${sum + pay.p_price}" />
-						<tr>
-							<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
-							<td>${pay.p_id}</td>
-							<td><a href="${pageContext.request.contextPath}/admin/site/member/detail?m_code=${pay.m_code}">${pay.m_id}</a></td>
-							<td>${pay.p_name}</td>
-							<td>${pay.s_id}</td>
-							<td>${pay.p_price}</td>
-							<td>${pay.p_quantity}</td>
-							<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
-							<td>${pay.p_canceled == 1 ? '환불됨' : pay.p_cancel_target_id == 0 ? '' : '환불결제'}</td>
-							<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >정보</button></td>
-						</tr>
-					</c:forEach>
-					<c:if test="${paymentList.size() == 0}">
-						<tr>
-							<td colspan="10">결과가 없습니다.</td>
-						</tr>
-					</c:if>
+					<c:choose>
+						<c:when test="${paymentList != null && paymentList.size() != 0}">
+							<c:forEach var="pay" items="${paymentList}">
+								<c:set var="sum" value="${sum + pay.p_price}" />
+								<tr>
+									<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
+									<td>${pay.p_id}</td>
+									<td>${pay.m_id}</td>
+									<td>${pay.p_name}</td>
+									<td>${pay.s_id}</td>
+									<td>${pay.p_price}</td>
+									<td>${pay.p_quantity}</td>
+									<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
+									<td>${pay.p_canceled == 1 ? '환불됨' : pay.p_cancel_target_id == 0 ? '' : '환불결제'}</td>
+									<td><button class="btn btn-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >정보</button></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="10">결과가 없습니다.</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 			
 			<div>
 				총액 : ${sum}
 			</div>
-
-			<form action="">
-				회원 아이디 : <input type="text" name="member" value="${param.member}"><br>
-				연극 제목 : <input type="text" name="play" value="${param.play}"><br>
-				
-				연극 관리자 아이디 : <input type="text" name="playAdmin" value="${param.playAdmin}"><br>
-				
-                <input type="text" class="form_datetime" name="from" value="${param.from}">부터~
-				<input type="text" class="form_datetime" name="until" value="${param.until}">까지<br>
-                
-				<select name="row">
-					<option value="10">-선택-</option>
-					<option value="10">10개씩</option>
-					<option value="20">20개씩</option>
-					<option value="50">50개씩</option>
-					<option value="0">제한없이</option>
-				</select><br>
-
-				page<input type="number" name="page" value="${param.page}"><br>
-
-				<button>검색</button>
-			</form>
+			
+			<div class="pagination pagination-large pagination-centered">
+				<ul class="pagination">
+ 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" varStatus="status">
+						<li<c:if test="${param.page == i}"> class="disabled"</c:if>>
+							<a href="#" class="page-link">${i}</a>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
 			
 		</div>
 		<!-- 탭 종료 -->
@@ -98,12 +141,19 @@
 
 <script>
     $('.form_datetime').datetimepicker({
-        language:  'ko',
+        language: 'ko',
         format: 'yyyy-mm-dd hh:mm',
-        todayBtn:  1,
+        todayBtn: 1,
 		autoclose: 1,
 		todayHighlight: 1,		
         showMeridian: 1
+    });
+    
+    $(function() {
+    	$(".page-link").click(function() {
+    		$("#inputPage").val($(this).text());
+    		$("#paymentSearchForm").submit();
+    	});
     });
 </script>
 

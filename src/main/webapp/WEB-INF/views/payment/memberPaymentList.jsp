@@ -7,6 +7,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="../page/header.jsp" />
+<style>
+.dropdown-menu {
+	background: white
+}
+</style>
 
 <section id="inner-headline">
 	<div class="container">
@@ -34,23 +39,18 @@
 			<div class="row">
 				<div class="span8">
 				<%-- <h3>${sessionScope.login.m_name}님의 결재내역</h3> --%>
-					<form action="">
+					<form id="paymentSearchForm" action="" autocomplete="off">
 						<div class="control-group">
-							<label class="control-label" for="p_id">연극 제목</label>
+							<label class="control-label">연극 제목</label>
 							<div class="control">
 								<input type="text" name="play" value="${param.play}">
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="from">기간 시작</label>
+							<label class="control-label">기간</label>
 							<div class="control">
-								<input type="date" name="from" value="${param.from}">
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="until">기간 끝</label>
-							<div class="control">
-								<input type="date" name="until" value="${param.until}">
+				                <input type="text" class="form_datetime" name="from" style="width: 9em;" value="${param.from}">~
+								<input type="text" class="form_datetime" name="until" style="width: 9em;" value="${param.until}">
 							</div>
 						</div>
 						<div class="control-group">
@@ -71,24 +71,14 @@
 								</select>
 							</div>
 						</div>
-						<div class="control-group">
-							<label class="control-label" for="page">page</label>
-							<div class="control">
-								<input type="number" name="page" value="${param.page}">
-							</div>
-						</div>
-					<%-- play id<input type="number" name="play" value="${param.play}"><br> --%>
-					<%-- schedule id<input type="number" name="schedule" value="${param.schedule}"><br> --%>
-					<%-- from<input type="date" name="from" value="${param.from}"><br> --%>
-					<%-- until<input type="date" name="until" value="${param.until}"><br> --%>
-					<%-- watched<input type="checkbox" name="watched" value="true" ${param.watched == true ? 'checked' : ''} ><br> --%>
-					<%-- page<input type="number" name="page" value="${param.page}"><br> --%>
+							<input type="hidden" name="page" id="inputPage" value="${param.page}"><br>
+
 					<div class="control-group button-group pull-right">
 						<button type="submit" class="btn btn-success">검색</button>
 					</div>
 					</form>
 				
-					<table class="table table-striped table-hover" border="1">
+					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
 								<th>결제 시간</th>
@@ -102,23 +92,60 @@
 						</thead>
 					
 						<tbody>
-							<c:forEach var="pay" items="${paymentList}">
-								<tr>
-									<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
-									<td>${pay.p_name}</td>
-									<td>${pay.p_price}</td>
-									<td>${pay.p_quantity}</td>
-									<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
-									<td>${pay.p_canceled == 1 ? '취소됨' : pay.p_cancel_target_id == 0 ? '' : '환불'}</td>
-									<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >상세</button></td>
-								</tr>
-							</c:forEach> 
+							<c:choose>
+								<c:when test="${paymentList != null && paymentList.size() != 0}">
+									<c:forEach var="pay" items="${paymentList}">
+										<tr>
+											<td><fmt:formatDate type="both" value="${pay.p_time}"/></td>
+											<td>${pay.p_name}</td>
+											<td>${pay.p_price}</td>
+											<td>${pay.p_quantity}</td>
+											<td><fmt:formatDate type="both" value="${pay.s_time}"/></td>
+											<td>${pay.p_canceled == 1 ? '취소됨' : pay.p_cancel_target_id == 0 ? '' : '환불'}</td>
+											<td><button onclick="location.href='${pageContext.request.contextPath}/payment/info?p_id=${pay.p_id}'" >상세</button></td>
+										</tr>
+									</c:forEach> 
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="7">결과가 없습니다.</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
+					
+					<div class="pagination pagination-large pagination-centered">
+						<ul class="pagination">
+		 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" varStatus="status">
+								<li<c:if test="${param.page == i}"> class="disabled"</c:if>>
+									<a href="#" class="page-link">${i}</a>
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
 				</div><!-- 탭 종료 -->
 			</div><!-- /.row -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->
 </section>
+
+<script>
+    $('.form_datetime').datetimepicker({
+        language: 'ko',
+        format: 'yyyy-mm-dd hh:mm',
+        todayBtn: 1,
+		autoclose: 1,
+		todayHighlight: 1,		
+        showMeridian: 1
+    });
+    
+    $(function() {
+    	$(".page-link").click(function() {
+    		$("#inputPage").val($(this).text());
+    		$("#paymentSearchForm").submit();
+    	});
+    });
+</script>
 
 <jsp:include page="../page/footer.jsp" />

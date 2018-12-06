@@ -24,7 +24,12 @@ public class PaymentServiceImpl implements PaymentService {
 	public PaymentDTO getPayment(int p_id) {
 		return dao.getPayment(p_id);
 	}
-
+	
+	@Override
+	public int paymentCount(PaymentSearchDTO dto) {
+		return dao.paymentCount(dto);
+	}
+	
 	public List<PaymentDTO> searchPayment(PaymentSearchDTO dto) {
 		return dao.searchPayment(dto);
 	}
