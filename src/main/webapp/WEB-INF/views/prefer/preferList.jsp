@@ -6,7 +6,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="../page/header.jsp" />
-
+<style>
+	.table {border-top: 2px solid #ddd; border-bottom:1px solid #ddd;}
+	.table th {text-align:center;}
+	.table td {text-align:center; vertical-align: middle; line-height: 170px; padding: 4px 10px;}
+	.table td.site {text-align:left;}
+	.table .img-polaroid {width:120px; height:150px; margin: 0;}
+</style>
 <section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -51,13 +57,13 @@
 									<tbody>
 										<c:forEach var="result" items="${list }" varStatus="status">
 											<tr>
-												<td><img src="<c:url value="/"/>resources/img/actor/${result.a_picture }" width="136px" height="170px" style="padding:10px"/></td>
-												<td style="line-height: 170px;"><a
+												<td><img src="<c:url value="/"/>resources/img/actor/${result.a_picture }" class="img-polaroid" /></td>
+												<td><a
 													href="${pageContext.request.contextPath}/actor/detail?a_id=${result.a_id}">${result.a_name }</a></td>
-												<td style="line-height: 170px;"><fmt:formatDate value="${result.a_birth }"
+												<td><fmt:formatDate value="${result.a_birth }"
 														pattern="yyyy-MM-dd" /></td>
-												<td style="line-height: 170px;"><a href="${result.a_homepage }">${result.a_homepage }</a></td>
-												<td style="line-height: 170px;"><a
+												<td class="site"><a href="${result.a_homepage }">${result.a_homepage }</a></td>
+												<td><a
 													href="${pageContext.request.contextPath}/prefer/delete?a_id=${result.a_id}"
 													class="btn btn-danger" title="찜한 배우 삭제">삭제</a></td>
 											</tr>

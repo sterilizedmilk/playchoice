@@ -2,13 +2,13 @@ package com.playchoice.actor.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playchoice.actor.dao.ActorDAO;
 import com.playchoice.actor.dto.ActorDTO;
-import com.playchoice.actor.dto.SearchActorDTO;
 import com.playchoice.member.dto.MemberDTO;
 
 @Service
@@ -37,10 +37,26 @@ public class ActorServiceImpl implements ActorService {
 		return dao.mypickActor(param);
 	}
 
+	// 배우 아이디 가져오기
 	@Override
 	public ActorDTO getActor(int a_id) throws Exception {
 		ActorDTO dto = dao.getActor(a_id); 
 		return dto;
 	}
 
+	// 주연배우1 평점 가져오기
+	@Override
+	public double getReviewScore(int a_id) throws Exception {
+		Map<String, Integer> map1 = dao.getReviewScore1(a_id);
+		Map<String, Integer> map2 = dao.getReviewScore2(a_id);
+		System.out.println(map1);
+		System.out.println(map2);
+
+		int sum =  ((Number) map1.get("sum")).intValue() + ((Number) map2.get("sum")).intValue();
+		if (sum == 0)
+			return 0.0;
+		int count = ((Number) map1.get("count")).intValue() + ((Number) map2.get("count")).intValue();
+		double avg = (double) sum / count;
+		return Math.round(avg * 10) / 10;
+	}
 }

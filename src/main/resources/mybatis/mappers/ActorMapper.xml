@@ -27,4 +27,18 @@
 		WHERE a_id=#{a_id}
 	</select>
 	
+	<select id="getReviewScore1" parameterType="Integer" resultType="HashMap">
+		SELECT sum(r_actor1_score) as sum, count(r_actor1_score) as count
+		FROM schedule, review
+		WHERE schedule.a_id1 = #{a_id}
+		AND schedule.s_id = review.s_id
+	</select>
+
+	<select id="getReviewScore2" parameterType="Integer" resultType="HashMap">
+		SELECT sum(r_actor2_score) as sum, count(r_actor2_score) as count
+		FROM schedule, review
+		WHERE schedule.a_id2 = #{a_id}
+		AND schedule.s_id = review.s_id
+	</select>
+	
 </mapper>

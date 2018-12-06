@@ -49,8 +49,7 @@
 							<td style="line-height: 210px;">${actorDTO.a_name}</td>
 							<td style="line-height: 210px;">${actorDTO.sdf}</td>
 							<td style="line-height: 210px;"><a href="http://${actorDTO.a_homepage}" target="_blank">${actorDTO.a_homepage}</a></td>
-							<td></td>
-							<%-- <td><button id="basketBtn" class="btn btn-info basketBtn" data-actor="${actor.a_id }">찜</button></td> --%>
+							<td style="line-height: 210px;">${reviewScore}</td>
 						</tr>
 						</tbody>
 				</table>

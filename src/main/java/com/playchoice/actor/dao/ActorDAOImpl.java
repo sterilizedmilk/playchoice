@@ -2,6 +2,7 @@ package com.playchoice.actor.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class ActorDAOImpl implements ActorDAO {
 		return session.selectList(namespace+".listActorSeach",keyword);
 	}
 	
+	// 배우 아이디 가져오기
 	@Override
 	public ActorDTO getActor(int a_id) {
 		return session.selectOne(namespace + ".getActor", a_id);
@@ -55,6 +57,24 @@ public class ActorDAOImpl implements ActorDAO {
 	public int mypickActor(HashMap<String, Object> param) {
 		
 		return session.insert(namespace+".mypickActor", param);
+	}
+
+	// 주연배우1 평점 가져오기
+	@Override
+	public Map<String, Integer> getReviewScore1(int a_id) throws Exception {
+		Map<String, Integer> map = session.selectOne(namespace + ".getReviewScore1", a_id);
+		if (!map.containsKey("sum"))
+			map.put("sum", 0);
+		return map;
+	}
+	
+	// 주연배우2 평점 가져오기
+	@Override
+	public Map<String, Integer> getReviewScore2(int a_id) throws Exception {
+		Map<String, Integer> map = session.selectOne(namespace + ".getReviewScore2", a_id);
+		if (!map.containsKey("sum"))
+			map.put("sum", 0);
+		return map;
 	}
 
 }

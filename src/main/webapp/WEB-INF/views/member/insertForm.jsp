@@ -131,14 +131,10 @@
 				var idCheck = /^[a-z]+[a-z0-9]{4,11}$/;
 				
 				if(m_id == "") {
-					/* $("#submit").attr("disabled", "disabled"); */
-					/* alert("아이디를 입력하세요"); */
 					displayError("m_id", "아이디를 입력하세요.");
 					$("#m_id").focus();
 					return;
 				} else if(!idCheck.test(m_id)) {
-					/* $("#submit").attr("disabled", "disabled"); */
-					/* alert("한글 및 특수문자는 사용할 수 없습니다"); */
 					displayError("m_id", "5~10자의 영문 소문자, 숫자만 사용 가능합니다.");
 					$("#m_id").focus();
 					return;
@@ -150,11 +146,9 @@
 							if(data == "DUPLICATED") { // 아이디 중복인 경우
 								displayError("m_id", "이미 사용중인 아이디입니다.");
 								$("#m_id").focus();
-								/* $("#submit").attr("disabled", "disabled"); */
 							} else { // 사용가능한 경우
 								countId = 1;
 								displaySuccess("m_id", "사용가능한 아이디입니다.");
-								//$("#submit").removeAttr("disabled");
 							}
 						}
 					});
@@ -194,10 +188,8 @@
 				if(pw1 != "" && pw2 != "") {
 					if(pw1 != pw2) { // 비밀번호 불일치하는 경우
 						displayError("m_pwCheck", "비밀번호가 일치하지 않습니다.");
-						/* $("#submit").attr("disabled", "disabled"); */
 					} else { // 비밀번호 일치하는 경우
 						displaySuccess("m_pwCheck", "비밀번호가 일치합니다.");
-						//$("#submit").removeAttr("disabled");
 					}
 				}
 			});

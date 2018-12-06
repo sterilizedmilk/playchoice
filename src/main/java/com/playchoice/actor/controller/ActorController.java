@@ -40,12 +40,19 @@ public class ActorController {
 		return "actor/actorList";
 	}
 
-	// 배우 정보 조회 (+ 출연 작품 목록)
+	// 배우 정보 조회
 	@RequestMapping(value = "/detail")
 	public String actordetailController(@RequestParam("a_id") int a_id, Model model) throws Exception {
 		List<PlayDTO> appearDTO = appearService.appearList(a_id);
+		
 		model.addAttribute("actorDTO", actorService.getActor(a_id));
+		
+		// 출연작품
 		model.addAttribute("appearDTO", appearDTO);
+		
+		// 평점
+		model.addAttribute("reviewScore", actorService.getReviewScore(a_id));
+		
 		return "actor/actorDetail";
 	}
 
