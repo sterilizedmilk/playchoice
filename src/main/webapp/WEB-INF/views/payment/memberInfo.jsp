@@ -106,7 +106,7 @@
 								<div>환불 금액 : ${refund}</div>
 								<form action="${pageContext.request.contextPath}/payment/cancel" method="post">
 									<input type="hidden" name="p_id" value="${payment.p_id}">
-									<button>결제</button>
+									<button>환불</button>
 								</form>
 							</c:when>
 							<c:when test="${payment.p_canceled == 1}">
