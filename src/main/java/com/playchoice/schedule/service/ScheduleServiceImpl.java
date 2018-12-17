@@ -20,6 +20,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	
 	@Override
+	public List<ScheduleDTO> getScheduleListByMonth(int p_id, int year, int month) {
+		return dao.getScheduleListByMonth(p_id, year, month);
+	}
+	
+	@Override
 	public ScheduleDTO getSchedule(int s_id) {
 		return dao.getSchedule(s_id);
 	}

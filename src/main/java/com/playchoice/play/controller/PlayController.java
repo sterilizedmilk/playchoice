@@ -1,6 +1,7 @@
 package com.playchoice.play.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +30,8 @@ import com.playchoice.play.dto.PlayDTO;
 import com.playchoice.play.dto.PlayMenuDTO;
 import com.playchoice.play.service.PlayServiceImpl;
 import com.playchoice.schedule.dto.ScheduleDTO;
+import com.playchoice.schedule.dto.ScheduleJsonDTO;
+import com.playchoice.schedule.service.ScheduleService;
 
 /**
  * 연극 목록, 검색, 정보 열람, 예매
@@ -42,6 +45,9 @@ public class PlayController {
 
 	@Autowired
 	private PlayServiceImpl service;
+	
+	@Autowired
+	private ScheduleService scheduleService;
 
 	private static final Logger logger = LoggerFactory.getLogger(PlayController.class);
 
@@ -254,21 +260,18 @@ public class PlayController {
 	// 달력 일정 리턴
 	@RequestMapping(value = "playcal", method = RequestMethod.POST)
 	@ResponseBody
-	public Object getBookInfo(String str) {
-		System.out.println("123-----------");
-		scheduleDto = service.getSchedule(playDto.getP_id());
-		str = "";
-		String time = "";
-		SimpleDateFormat new_format = new SimpleDateFormat("yyyy-MM-dd");
+	public Object getBookInfo(int p_id, int year, int month) {
+		List<ScheduleDTO> scheduleList = scheduleService.getScheduleListByMonth(p_id, year, month);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ");
 
-		for (int i = 0; i < scheduleDto.size(); i++) {
-			time = new_format.format(scheduleDto.get(i).getS_time());
-			str += "{title:\"" + playDto.getP_name() + "\",start:\"" + time + "\"},";
+		List<ScheduleJsonDTO> result = new ArrayList<>();
+		for (ScheduleDTO sch : scheduleList) {
+			ScheduleJsonDTO a = new ScheduleJsonDTO();
+			a.setStart(sdf.format(sch.getS_time()));
+			a.setTitle(sch.getS_price() + "원");
+			result.add(a);
 		}
 
-		System.out.println("전:" + str);
-		str = str.substring(0, str.length() - 1);
-		System.out.println("후:" + str);
-		return str;
+		return result;
 	}
 }

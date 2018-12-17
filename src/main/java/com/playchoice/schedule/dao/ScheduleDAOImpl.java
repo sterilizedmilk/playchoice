@@ -1,6 +1,8 @@
 package com.playchoice.schedule.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,15 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	public List<ScheduleDTO> getScheduleList(int p_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".viewCal", p_id);
+	}
+	
+	@Override
+	public List<ScheduleDTO> getScheduleListByMonth(int p_id, int year, int month) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("p_id", p_id);
+		map.put("year", year);
+		map.put("month", month);
+		return sqlSession.selectList(namespace + ".ScheduleListByMonth", map);
 	}
 	
 	@Override

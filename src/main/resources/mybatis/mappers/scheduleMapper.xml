@@ -11,6 +11,17 @@
 		WHERE p_id = #{p_id}
 		ORDER BY s_time
 	</select>
+	
+	<select id="ScheduleListByMonth" resultType="ScheduleDTO">
+		SELECT s_price, s_time, a_id1, a_id2<!-- need join to get actor name -->
+		FROM schedule
+		WHERE p_id = #{p_id}
+		AND s_canceled = 0
+		AND s_ticket > 0
+		AND year(s_time) = #{year}
+		AND month(s_time) = #{month}
+		ORDER BY s_time
+	</select>
 
 	<select id="getSchedule" resultType="ScheduleDTO">
 		SELECT * FROM schedule

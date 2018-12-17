@@ -28,63 +28,74 @@ body {
 </style>
 
 <script type="text/javascript">
-	jQuery(document).ready(
-			function() {
-				var event = "";
+	var toDay = new Date();
+	var target = new Date();
+	
+	function createCal(playId, year, month) {
+		var event;
 
-				$.post("playcal", function(str) {
+		$.ajax({
+			type: "POST",
+			url: "playcal",
+			data: {"p_id" : playId,
+					"year" : year,
+					"month" : month},
+			dataType: "json",
+			async: false,
+			success: function(dat) {
+				event = dat;
+			}
+		});
 
-				
-	/* 	 alert(str);
-					 */
-				});/* 
-								alert("1" + event); */
-
-				var ToDay = new Date()
-				var y = new Date(ToDay.getFullYear(), ToDay.getMonth(), ToDay
-						.getDate() - 34)
-				y.getFullYear()
-						+ "-"
-						+ (y.getMonth() + 1 < 10 ? "0" + (y.getMonth() + 1) : y
-								.getMonth() + 1) + "-"
-						+ (y.getDate() < 10 ? "0" + y.getDate() : y.getDate())
-
-				jQuery("#calendar").fullCalendar({
-					defaultDate : ToDay,
-					editable : true,
-					eventLimit : true,
-
-					events : [ {
-						title : "오마이갓",
-						start : "2018-12-04"
-					}, {
-						title : "오마이갓",
-						start : "2018-12-04"
-					}, {
-						title : "오마이갓",
-						start : "2018-12-04"
-					}, {
-						title : "오마이갓",
-						start : "2018-12-07"
-					}
-					/*  {
-									title : "All Day Event",
-									start : "2018-12-03"
-									}, {
-									title : "Long Event",
-									start : "2018-12-03",
-									end : "2018-12-05"
-									}, {
-									title : "Repeating Event",
-									start : "2018-12-03",
-									end : "2018-12-04"
-									}, {
-									title : "Repeating Event",
-									start : "2018-12-03",
-									end : "2018-12-05"
-									}  */]
-				});
-			});
+		$("#calendar").fullCalendar({
+			defaultDate : toDay,
+			editable : false,
+			eventLimit : true,
+			events : event
+		});
+	}
+	
+	function updateCal(playId, year, month) {
+		var event;
+		
+		$.ajax({
+			type: "POST",
+			url: "playcal",
+			data: {"p_id" : playId,
+					"year" : year,
+					"month" : month},
+			dataType: "json",
+			async: false,
+			success: function(dat) {
+				event = dat;
+				console.log(dat);
+			}
+		});
+		
+//		$("#calendar").fullCalendar('removeEvents');	
+//		$("#calendar").fullCalendar('updateEvents', event); // Uncaught TypeError: Cannot read property 'clone' of undefined 오류
+	}
+	
+	$(function(){
+		createCal(new URLSearchParams(window.location.search).get("p_id"), toDay.getFullYear(), toDay.getMonth() + 1);
+		
+		$(".fc-today-button").click(function() {
+			target = new Date();
+			updateCal(new URLSearchParams(window.location.search).get("p_id"), target.getFullYear(), target.getMonth() + 1);
+		});
+		
+		$(".fc-prev-button").click(function() {
+			target.setMonth(target.getMonth() - 1);
+			updateCal(new URLSearchParams(window.location.search).get("p_id"), target.getFullYear(), target.getMonth() + 1);
+		});
+		
+		$(".fc-next-button").click(function() {
+			target.setMonth(target.getMonth() + 1);
+			updateCal(new URLSearchParams(window.location.search).get("p_id"), target.getFullYear(), target.getMonth() + 1);
+		});
+	
+	
+	});
 </script>
 <body>
 	<div id="calendar" style="width: 650px;"></div>

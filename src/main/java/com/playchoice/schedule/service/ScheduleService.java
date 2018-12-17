@@ -8,6 +8,8 @@ public interface ScheduleService {
 	
 	public List<ScheduleDTO> getScheduleList(int p_id);
 	
+	public List<ScheduleDTO> getScheduleListByMonth(int p_id, int year, int month);
+	
 	public ScheduleDTO getSchedule(int s_id);
 	
 	public int discountedPrice(ScheduleDTO schedule);
